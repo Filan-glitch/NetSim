@@ -3,7 +3,7 @@
 
 /**
  * @brief The Protocol class
- * @par The superclass to all Protocols
+ * @par The superclass to all protocols
  */
 class Protocol
 {

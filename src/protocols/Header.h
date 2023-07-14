@@ -3,40 +3,40 @@
 
 #include <vector>
 #include "headerAttribute.h"
-#include "HeaderNotFoundException.h"
+#include "headerNotFoundException.h"
 
 using namespace std;
 /**
  * @brief The Header class
- * @par This class Simulates a Header from the 5-Layer ISO-OSI-Modell like UDP,TCP,HTTP etc.
+ * @par This class simulates a header of a protocol
  */
 class Header
 {
 public:
     /**
      * @brief Header
-     * @param headerList
-     * @par The Cunstructor of a Header, requieres a List of Headers
+     * @param HeaderList
+     * @par The constructor of a Header, requires a list of HeaderAttributes
      */
     Header(vector<HeaderAttribute> headerList);
 
     /**
-     * @brief getSizeInBit
-     * @return sizeInBit
-     * @par returns the size of the Header in Bit
+     * @brief GetSizeInBit
+     * @return SizeInBit
+     * @par Returns the size of the Header in bits
      */
     int getSizeInBit() const{
         return this->sizeInBit;
     }
     /**
-     * @brief getHeaderByName
-     * @param name
-     * @return header
-     * @par returns the corrosponding headerAttribute to the given name
+     * @brief GetHeaderAttributeByName
+     * @param Name
+     * @return HeaderAttribute
+     * @par Returns the corrosponding HeaderAttribute to the given name
      */
-    HeaderAttribute getHeaderByName(string &name) const{
+    HeaderAttribute getHeaderAttributeByName(string &name) const{
         for(HeaderAttribute h : headerList){
-            if(h.getHeaderName() == name){
+            if(h.getName() == name){
                 return h;
             }
         }

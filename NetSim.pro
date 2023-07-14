@@ -9,28 +9,26 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    Protocols/header.cpp \
-    Protocols/headerAttribute.cpp \
-    Protocols/headernotfoundexception.cpp \
-    Protocols/tcp.cpp \
-    Protocols/udp.cpp \
-    main.cpp \
-    process.cpp \
-    Ansichten/mainwindow.cpp
-
+    src/main.cpp \
+    src/protocols/header.cpp \
+    src/protocols/headerAttribute.cpp \
+    src/protocols/headernotfoundexception.cpp \
+    src/protocols/protocol.cpp \
+    src/protocols/tcp.cpp \
+    src/protocols/udp.cpp \
+    src/views/widgets/mainwindow.cpp
 
 HEADERS += \
-    Ansichten/mainwindow.h \
-    Protocols/header.h \
-    Protocols/headerAttribute.h \
-    Protocols/headernotfoundexception.h \
-    Protocols/tcp.h \
-    Protocols/udp.h \
-    process.h
-
+    src/protocols/header.h \
+    src/protocols/headerAttribute.h \
+    src/protocols/headernotfoundexception.h \
+    src/protocols/protocol.h \
+    src/protocols/tcp.h \
+    src/protocols/udp.h \
+    src/views/widgets/mainwindow.h
 
 FORMS += \
-    Ansichten/mainwindow.ui \
+    src/views/widgets/mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -14,38 +14,38 @@ class HeaderAttribute
 public:
     /**
      * @brief HeaderAttribute
-     * @param headerName, sizeInByte, content
+     * @param HeaderName, sizeInByte, content
      * @par Constructor for a HeaderAttribute
      */
     HeaderAttribute(string headerName, int sizeInByte, int content);
 
     /**
-     * @brief getHeaderName
-     * @return headerName
+     * @brief GetName
+     * @return Name
      * @par Returns the name of the HeaderAttribute
      */
-    string getHeaderName() const{
-        return this->headerName;
+    string getName() const{
+        return this->name;
     }
     /**
-     * @brief getSizeInBit
-     * @return sizeInBit
-     * @par returns the size of the HeaderAttribute in Bits
+     * @brief GetSizeInBit
+     * @return SizeInBit
+     * @par Returns the size of the HeaderAttribute in bits
      */
     int getSizeInBit() const{
         return this->sizeInBit;
     }
     /**
-     * @brief getContent
-     * @return content
-     * @par returns the Content of the HeaderAttribute as Bits
+     * @brief GetContent
+     * @return Content
+     * @par Returns the content of the HeaderAttribute as bits
      */
     int getContent() const{
         return this->content;
     }
 
 private:
-    string headerName;
+    string name;
     int sizeInBit;
     int content;
 };

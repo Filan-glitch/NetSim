@@ -3,7 +3,7 @@
 
 /**
  * @brief The UDP class
- * @par represents the User Datagram Protocol
+ * @par Represents the User Datagram Protocol
  */
 class UDP
 {
