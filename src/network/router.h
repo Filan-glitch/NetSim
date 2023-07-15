@@ -3,11 +3,12 @@
 
 #include <QString>
 #include <QHash>
+#include "../protocols/ipaddress.h"
 
 class Router
 {
 private:
-    QHash<QString, qint32> domainTable;
+    QHash<QString, IPAddress> domainTable;
 public:
     Router();
 };

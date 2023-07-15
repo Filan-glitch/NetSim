@@ -10,20 +10,28 @@ CONFIG += c++17
 
 SOURCES += \
     src/main.cpp \
+    src/network/client.cpp \
     src/network/host.cpp \
     src/network/process.cpp \
     src/network/router.cpp \
+    src/network/server.cpp \
     src/network/socket.cpp \
     src/protocols/ipaddress.cpp \
+    src/protocols/macaddress.cpp \
+    src/protocols/port.cpp \
     src/views/widgets/mainwindow.cpp
 
 
 HEADERS += \
+    src/network/client.h \
     src/network/host.h \
     src/network/process.h \
     src/network/router.h \
+    src/network/server.h \
     src/network/socket.h \
     src/protocols/ipaddress.h \
+    src/protocols/macaddress.h \
+    src/protocols/port.h \
     src/views/widgets/mainwindow.h
 
 
