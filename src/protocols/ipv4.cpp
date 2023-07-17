@@ -1,11 +1,6 @@
 #include "headerAttribute.h"
 #include "ipv4.h"
 
-IPv4::IPv4()
-{
-
-}
-
 void IPv4::initHeader(qint16 id, qint8 flags, qint16 fragmentOffset, qint8 ttl, qint8 protocol, qint32 sourceAdress, qint32 destinationAdress, char* options, char* data)
 {
     HeaderAttribute version("Version",4,4);

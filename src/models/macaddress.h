@@ -17,6 +17,10 @@ public:
     qint8* getAddressAsArray() const {
         return address;
     }
+    qint64 getAddressAsInt() const {
+        //TODO Berechnen
+        return 0;
+    }
 };
 
 #endif // MACADDRESS_H

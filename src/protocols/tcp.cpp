@@ -1,20 +1,16 @@
 #include "tcp.h"
 #include "headerAttribute.h"
 
-TCP::TCP()
-{
-
-}
 
 //TODO Data-Offset, Checksum, Options
-void TCP::initHeader(int sourcePort, int destinationPort, int seqNumber, int ackNumber, bool ack,bool rst, bool syn, bool fin, int window){
-    HeaderAttribute srcPort("Source Port",16,sourcePort);
-    HeaderAttribute dstPort("Destination Port",16,destinationPort);
+void TCP::initHeader(Port sourcePort, Port destinationPort, qint32 seqNumber, qint32 ackNumber, bool ack,bool rst, bool syn, bool fin, qint16 window){
+    HeaderAttribute srcPort("Source Port",16,sourcePort.getPortNumber());
+    HeaderAttribute dstPort("Destination Port",16,destinationPort.getPortNumber());
     HeaderAttribute sequenceNumber("Sequence number",32,seqNumber);
     HeaderAttribute acknowledgementNumber("Acknowledgment number",32,ackNumber);
 
     //Sets the flags for the TCP Header Urgent and Push flag are always 0
-    uint16_t flags = 0x0000000000000000;
+    qint16 flags = 0x0000000000000000;
     setFlag(&flags,ack,11);
     setFlag(&flags,rst,13);
     setFlag(&flags,syn,14);
@@ -32,7 +28,7 @@ void TCP::initHeader(int sourcePort, int destinationPort, int seqNumber, int ack
     //TODO Checksum
 
     //The urgent pointer is always 0 in our case
-    uint16_t urgend_pointer = 0b0000000000000000;
+    qint16 urgend_pointer = 0b0000000000000000;
     HeaderAttribute urgentPointer("Urgent Pointer",16,urgend_pointer);
 
     //TODO Options
@@ -40,7 +36,7 @@ void TCP::initHeader(int sourcePort, int destinationPort, int seqNumber, int ack
 }
 
 
-void TCP::setFlag(uint16_t* flags, bool set, int position){
+void TCP::setFlag(qint16* flags, bool set, qint16 position){
     if (set) {
         // sets the bit at position
         *flags |= (1 << position);

@@ -1,9 +1,9 @@
 #ifndef HEADERATTRIBUTE_H
 #define HEADERATTRIBUTE_H
 
-#import <string>
+#include <QString>
 
-using namespace std;
+
 /**
  * @brief The HeaderAttribute class
  * @par Represents a single HeaderAttribute
@@ -14,17 +14,17 @@ class HeaderAttribute
 public:
     /**
      * @brief HeaderAttribute
-     * @param HeaderName, sizeInByte, content
+     * @param HeaderName, sizeInBit, content
      * @par Constructor for a HeaderAttribute
      */
-    HeaderAttribute(string headerName, int sizeInByte, int content);
+    HeaderAttribute(QString headerName, qint32 sizeInBit, qint64 content);
 
     /**
      * @brief GetName
      * @return Name
      * @par Returns the name of the HeaderAttribute
      */
-    string getName() const{
+    QString getName() const{
         return this->name;
     }
     /**
@@ -32,7 +32,7 @@ public:
      * @return SizeInBit
      * @par Returns the size of the HeaderAttribute in bits
      */
-    int getSizeInBit() const{
+    qint32 getSizeInBit() const{
         return this->sizeInBit;
     }
     /**
@@ -40,14 +40,14 @@ public:
      * @return Content
      * @par Returns the content of the HeaderAttribute as bits
      */
-    int getContent() const{
+    qint64 getContent() const{
         return this->content;
     }
 
 private:
-    string name;
-    int sizeInBit;
-    int content;
+    QString name;
+    qint32 sizeInBit;
+    qint64 content;
 };
 
 #endif // HEADERATTRIBUTE_H

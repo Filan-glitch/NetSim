@@ -1,7 +1,9 @@
 #ifndef TCP_H
 #define TCP_H
 
+#include "src/models/port.h"
 #include <cstdint>
+#include <QString>
 
 /**
  * @brief The TCP class
@@ -10,15 +12,10 @@
 class TCP
 {
 public:
-    /**
-     * @brief TCP
-     */
-    TCP();
-
-    static void initHeader(int sourcePort, int destinationPort, int seqNumber, int ackNumber, bool ack,bool rst, bool syn, bool fin, int window);
+    static void initHeader(Port sourcePort, Port destinationPort, qint32 seqNumber, qint32 ackNumber, bool ack,bool rst, bool syn, bool fin, qint16 window);
 
 private:
-    static void setFlag(uint16_t* flags, bool set, int position);
+    static void setFlag(qint16* flags, bool set, qint16 position);
 };
 
 #endif // TCP_H

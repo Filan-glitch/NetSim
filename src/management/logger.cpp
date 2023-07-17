@@ -1,7 +1,7 @@
 #include "logger.h"
 
 #include <QDir>
-#include <QTime>
+#include <QDateTime>
 
 QFile* Logger::logFile = Q_NULLPTR;
 bool Logger::isInit = false;
@@ -21,11 +21,9 @@ void Logger::init() {
 
     // Create log file
     QDir dir = QDir();
-    dir.cdUp();
     dir.mkdir("logs");
-    dir.cd("logs");
-    logFile = new QFile(dir.path());
-    logFile->setFileName(QTime::currentTime().toString("dd-mm-yyyy-ss-mm-hh") + ".log");
+    logFile = new QFile();
+    logFile->setFileName("logs/NetSim_log_" + QDateTime::currentDateTime().toString("dd_MM_yyyy_hh_mm_ss") + ".log");
     logFile->open(QIODevice::Append | QIODevice::Text);
 
     // Redirect logs to messageOutput

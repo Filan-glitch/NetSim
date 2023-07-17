@@ -27,7 +27,7 @@ SOURCES += \
     src/protocols/ipv4.cpp \
     src/protocols/mac.cpp \
     src/protocols/tcp.cpp \
-    src/protocols/udp.cpp \\
+    src/protocols/udp.cpp \
     src/views/widgets/mainwindow.cpp
 
 

@@ -2,13 +2,12 @@
 #define MAC_H
 
 #include <QString>
+#include "../models/macaddress.h"
 
 class MAC
 {
 public:
-    MAC();
-
-    static void initHeader(qint8* destMACAdress, qint8* srcMACAdress, qint16 lengthField);
+    static void initHeader(MACAddress destMACAdress, MACAddress srcMACAdress, qint16 lengthField);
 };
 
 #endif // MAC_H

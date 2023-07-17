@@ -1,8 +1,8 @@
 #include "headerAttribute.h"
 
-HeaderAttribute::HeaderAttribute(string name, int sizeInByte, int content)
+HeaderAttribute::HeaderAttribute(QString name, qint32 sizeInBit, qint64 content)
 {
     this->name = name;
-    this->sizeInBit = sizeInByte;
+    this->sizeInBit = sizeInBit;
     this->content = content;
 }
