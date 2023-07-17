@@ -10,6 +10,16 @@ CONFIG += c++17
 
 SOURCES += \
     src/main.cpp \
+    src/management/logger.cpp \
+    src/models/package.cpp \
+    src/models/process.cpp \
+    src/network/client.cpp \
+    src/network/host.cpp \
+    src/network/router.cpp \
+    src/network/server.cpp \
+    src/models/ipaddress.cpp \
+    src/models/macaddress.cpp \
+    src/models/port.cpp \
     src/protocols/header.cpp \
     src/protocols/headerAttribute.cpp \
     src/protocols/headernotfoundexception.cpp \
@@ -17,10 +27,21 @@ SOURCES += \
     src/protocols/ipv4.cpp \
     src/protocols/mac.cpp \
     src/protocols/tcp.cpp \
-    src/protocols/udp.cpp \
+    src/protocols/udp.cpp \\
     src/views/widgets/mainwindow.cpp
 
+
 HEADERS += \
+    src/management/logger.h \
+    src/models/package.h \
+    src/models/process.h \
+    src/network/client.h \
+    src/network/host.h \
+    src/network/router.h \
+    src/network/server.h \
+    src/models/ipaddress.h \
+    src/models/macaddress.h \
+    src/models/port.h \
     src/protocols/header.h \
     src/protocols/headerAttribute.h \
     src/protocols/headernotfoundexception.h \
@@ -31,6 +52,7 @@ HEADERS += \
     src/protocols/udp.h \
     src/views/widgets/mainwindow.h
 
+
 FORMS += \
     src/views/widgets/mainwindow.ui
 
@@ -38,3 +60,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    assets/ressources.qrc
