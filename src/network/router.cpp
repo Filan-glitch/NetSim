@@ -1,6 +1,5 @@
 #include "router.h"
 
-Router::Router()
-{
 
-}
+Router::Router(const QHash<QString, IPAddress> &domainTable) : domainTable(domainTable)
+{}

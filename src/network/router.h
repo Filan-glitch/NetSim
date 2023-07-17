@@ -3,14 +3,14 @@
 
 #include <QString>
 #include <QHash>
-#include "../protocols/ipaddress.h"
+#include "../models/ipaddress.h"
 
 class Router
 {
 private:
     QHash<QString, IPAddress> domainTable;
 public:
-    Router();
+    Router(const QHash<QString, IPAddress> &domainTable);
 };
 
 #endif // ROUTER_H
