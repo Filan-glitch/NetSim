@@ -32,7 +32,7 @@ void TCP::initHeader(int sourcePort, int destinationPort, int seqNumber, int ack
     //TODO Checksum
 
     //The urgent pointer is always 0 in our case
-    uint16_t urgend_pointer = 0x0000000000000000;
+    uint16_t urgend_pointer = 0b0000000000000000;
     HeaderAttribute urgentPointer("Urgent Pointer",16,urgend_pointer);
 
     //TODO Options

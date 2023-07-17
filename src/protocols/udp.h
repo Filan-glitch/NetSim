@@ -17,6 +17,14 @@ public:
      */
     UDP();
 
+    /**
+    * @brief UDP::initHeader
+    * @param sourcePort
+    * @param destinationPort
+    * @param dataLength
+    * @param data
+    * @par Initilizes an UDP Package and calculates its checksum
+    */
     static void initHeader(int sourcePort, int destinationPort,size_t length, char* data);
 
 private:

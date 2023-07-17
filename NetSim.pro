@@ -13,7 +13,9 @@ SOURCES += \
     src/protocols/header.cpp \
     src/protocols/headerAttribute.cpp \
     src/protocols/headernotfoundexception.cpp \
-    src/protocols/protocol.cpp \
+    src/protocols/http.cpp \
+    src/protocols/ipv4.cpp \
+    src/protocols/mac.cpp \
     src/protocols/tcp.cpp \
     src/protocols/udp.cpp \
     src/views/widgets/mainwindow.cpp
@@ -22,7 +24,9 @@ HEADERS += \
     src/protocols/header.h \
     src/protocols/headerAttribute.h \
     src/protocols/headernotfoundexception.h \
-    src/protocols/protocol.h \
+    src/protocols/http.h \
+    src/protocols/ipv4.h \
+    src/protocols/mac.h \
     src/protocols/tcp.h \
     src/protocols/udp.h \
     src/views/widgets/mainwindow.h

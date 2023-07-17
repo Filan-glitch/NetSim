@@ -1,12 +1,13 @@
 #include "udp.h"
 #include "headerAttribute.h"
 
+#include <QDebug>
+
 UDP::UDP()
 {
 
 }
 
-//TODO Length und Checksum Berechnung
 void UDP::initHeader(int sourcePort, int destinationPort,size_t dataLength, char* data){
     HeaderAttribute srcPort("Source Port",16,sourcePort);
     HeaderAttribute dstPort("Destination Port",16,destinationPort);
@@ -55,7 +56,6 @@ int UDP::getChecksum(char* data, size_t length, int sourcePort, int destinationP
     }
 
     //Returns the inverse
+    qDebug() << "Checksum: " << ~checksum;
     return ~checksum;
 }
-
-
