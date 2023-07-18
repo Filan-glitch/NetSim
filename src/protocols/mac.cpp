@@ -11,4 +11,5 @@ void MAC::initHeader(MACAddress destMACAddress, MACAddress srcMACAddress, qint16
     HeaderAttribute length("Length Field", 16, lengthField);
 
     //TODO FRAME CHECK SEQUENCE
+    //TODO DATA
 }

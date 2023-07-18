@@ -4,8 +4,6 @@
 
 
 void TCP::initHeader(IPAddress srcAdress, IPAddress destAdress, Port sourcePort, Port destinationPort, qint32 seqNumber, qint32 ackNumber, bool ack,bool rst, bool syn, bool fin, qint16 window,qint8* data,qint16 dataLength){
-    HeaderAttribute sourceAdress("Source IP-Adress", 32, srcAdress.getAddressAsArray());
-    HeaderAttribute destAdress("Destination IP-Adress",32,destAdress.getAddressAsArray());
     HeaderAttribute srcPort("Source Port",16,sourcePort.getPortNumber());
     HeaderAttribute dstPort("Destination Port",16,destinationPort.getPortNumber());
     HeaderAttribute sequenceNumber("Sequence number",32,seqNumber);
@@ -18,11 +16,9 @@ void TCP::initHeader(IPAddress srcAdress, IPAddress destAdress, Port sourcePort,
     setFlag(&flags,syn,14);
     setFlag(&flags,fin,15);
 
-    //Data-Offset is always 0, because we don't use the options TCP provides
-
+    //Data-Offset is always 0, because we don't use the options TCP provides in this project
     HeaderAttribute flag("Flags",16,flags);
     HeaderAttribute windowSize("window",16,window);
-
     HeaderAttribute checksum("TCP Checksum",16,
                              getTCPChecksum(srcAdress.getAddressAsArray(),
                                             destAdress.getAddressAsArray(),
@@ -37,6 +33,9 @@ void TCP::initHeader(IPAddress srcAdress, IPAddress destAdress, Port sourcePort,
     //The urgent pointer is always 0 in our case
     qint16 urgend_pointer = 0b0000000000000000;
     HeaderAttribute urgentPointer("Urgent Pointer",16,urgend_pointer);
+    HeaderAttribute options("Options",0,0);
+
+    //TODO DATA
 
 }
 

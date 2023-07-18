@@ -8,6 +8,7 @@ void UDP::initHeader(Port sourcePort, Port destinationPort, size_t dataLength, c
     HeaderAttribute dstPort("Destination Port",16,destinationPort.getPortNumber());
     HeaderAttribute length("length",16,dataLength);
     HeaderAttribute checksum("checksum",16,getChecksum(data,dataLength,sourcePort,destinationPort));
+    //TODO DATA
 }
 
 qint16 UDP::overflowHandling(qint16 checksum){
