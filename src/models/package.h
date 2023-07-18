@@ -11,6 +11,10 @@ private:
     char content[1500];
 public:
     Package();
+
+    const char* getData()const{
+        return content;
+    }
 };
 
 #endif // PACKAGE_H

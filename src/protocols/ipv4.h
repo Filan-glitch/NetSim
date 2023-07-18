@@ -3,7 +3,8 @@
 
 #include <QString>
 #include <QList>
-#include <src/models/ipaddress.cpp>
+#include "src/models/ipaddress.cpp"
+#include "src/models/package.h"
 #include "headerAttribute.h"
 
 /**
@@ -26,9 +27,9 @@ public:
      * @param data
      * @par adds a IPv4 Header to a package
      */
-    static void initHeader(qint16 id, qint8 flags, qint16 fragmentOffset, qint8 ttl, qint8 protocol, IPAddress sourceAddress, IPAddress destinationAdress, char* data);
+    static void initHeader(qint16 id, qint8 flags, qint16 fragmentOffset, qint8 ttl, qint8 protocol, IPAddress sourceAddress, IPAddress destinationAdress, Package data);
 private:
-    static qint16 getIPv4Checksum(qint16 totalLength, qint16 id, qint8 flags, qint16 fragOffset, qint8 ttl, qint8 protocol, qint8* srcAddress, qint8* destAddress);
+    static qint16 getIPv4Checksum(qint16 totalLength, qint16 id, qint8 flags, qint16 fragOffset, qint8 ttl, qint8 protocol, qint8* srcAddress, qint8* destAddress, const char* data, qint8 dataLength);
 };
 
 #endif // IPV4_H

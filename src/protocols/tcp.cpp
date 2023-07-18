@@ -3,7 +3,7 @@
 #include "qdebug.h"
 
 
-void TCP::initHeader(IPAddress srcAdress, IPAddress destAdress, Port sourcePort, Port destinationPort, qint32 seqNumber, qint32 ackNumber, bool ack,bool rst, bool syn, bool fin, qint16 window,qint8* data,qint16 dataLength){
+void TCP::initHeader(IPAddress srcAdress, IPAddress destAdress, Port sourcePort, Port destinationPort, qint32 seqNumber, qint32 ackNumber, bool ack,bool rst, bool syn, bool fin, qint16 window,Package data,qint16 dataLength){
     HeaderAttribute srcPort("Source Port",16,sourcePort.getPortNumber());
     HeaderAttribute dstPort("Destination Port",16,destinationPort.getPortNumber());
     HeaderAttribute sequenceNumber("Sequence number",32,seqNumber);
@@ -19,6 +19,7 @@ void TCP::initHeader(IPAddress srcAdress, IPAddress destAdress, Port sourcePort,
     //Data-Offset is always 0, because we don't use the options TCP provides in this project
     HeaderAttribute flag("Flags",16,flags);
     HeaderAttribute windowSize("window",16,window);
+
     HeaderAttribute checksum("TCP Checksum",16,
                              getTCPChecksum(srcAdress.getAddressAsArray(),
                                             destAdress.getAddressAsArray(),
@@ -27,7 +28,7 @@ void TCP::initHeader(IPAddress srcAdress, IPAddress destAdress, Port sourcePort,
                                             seqNumber,
                                             ackNumber,
                                             flags,
-                                            data,
+                                            data.getData(),
                                             dataLength));
 
     //The urgent pointer is always 0 in our case
@@ -50,7 +51,7 @@ void TCP::setFlag(qint16* flags, bool set, qint16 position){
     }
 }
 
-qint16 TCP::getTCPChecksum(qint8* sourceAddress, qint8* destinationAddress, qint16 sourcePort, qint16 destinationPort, qint32 seqNumber, qint32 ackNumber, qint16 flags, qint8* data, qint16 dataLength) {
+qint16 TCP::getTCPChecksum(qint8* sourceAddress, qint8* destinationAddress, qint16 sourcePort, qint16 destinationPort, qint32 seqNumber, qint32 ackNumber, qint16 flags,const char* data, qint16 dataLength) {
     // TCP Pseudo Header
     qint32 pseudoHeader = 0;
 

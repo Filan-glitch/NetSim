@@ -2,7 +2,7 @@
 #include "ipv4.h"
 #include "qdebug.h"
 
-void IPv4::initHeader(qint16 id, qint8 flags, qint16 fragmentOffset, qint8 ttl, qint8 protocol, IPAddress sourceAddress, IPAddress destinationAdress, char* data)
+void IPv4::initHeader(qint16 id, qint8 flags, qint16 fragmentOffset, qint8 ttl, qint8 protocol, IPAddress sourceAddress, IPAddress destinationAdress, Package data)
 {
     HeaderAttribute version("Version",4,4);
     //Will not be used, by default stores values between 5 and 15 we only store 5
@@ -10,7 +10,7 @@ void IPv4::initHeader(qint16 id, qint8 flags, qint16 fragmentOffset, qint8 ttl, 
     //Will not be used, is always 0 in this project
     HeaderAttribute TOS("Type of Service",8,0);
 
-    qint16 totalLength = strlen(data) + 20;
+    qint16 totalLength = strlen(data.getData()) + 20;
     HeaderAttribute length("Total Length",16,totalLength);
 
     HeaderAttribute identification("Identification", 16, id);
@@ -28,7 +28,9 @@ void IPv4::initHeader(qint16 id, qint8 flags, qint16 fragmentOffset, qint8 ttl, 
                                                  ttl,
                                                  protocol,
                                                  sourceAddress.getAddressAsArray(),
-                                                             destinationAdress.getAddressAsArray()));
+                                                 destinationAdress.getAddressAsArray(),
+                                                 data.getData(),
+                                                 strlen(data.getData())));
 
     HeaderAttribute srcAdress("Source Adress", 32, sourceAddress);
     HeaderAttribute destAdress("Destination Adress", 32, destinationAdress);
@@ -38,7 +40,7 @@ void IPv4::initHeader(qint16 id, qint8 flags, qint16 fragmentOffset, qint8 ttl, 
     //TODO Data
 }
 
-qint16 IPv4::getIPv4Checksum(qint16 totalLength, qint16 id, qint8 flags, qint16 fragOffset, qint8 ttl, qint8 protocol, qint8* srcAddress, qint8* destAddress)
+qint16 IPv4::getIPv4Checksum(qint16 totalLength, qint16 id, qint8 flags, qint16 fragOffset, qint8 ttl, qint8 protocol, qint8* srcAddress, qint8* destAddress, const char* data, qint8 dataLength)
 {
     qint32 checksum = 0;
 
@@ -113,6 +115,14 @@ qint16 IPv4::getIPv4Checksum(qint16 totalLength, qint16 id, qint8 flags, qint16 
     checksum += destinationIPAdressPart2;
     if (checksum >> 16) { //Overflow handling
         checksum = (checksum & 0xFFFF) + (checksum >> 16);
+    }
+
+    //Adding the Payload Data
+    for (int i = 0; i < dataLength; i += 2) {
+        qint16 dataWord = (data[i] << 8) | (data[i + 1] & 0xFF);
+        checksum += dataWord;
+        if (checksum >> 16)
+            checksum = (checksum & 0xFFFF) + (checksum >> 16);
     }
 
      qint16 finalChecksum = static_cast<qint16>(~checksum); //Converting back to qint16 -> Checksum is 16Bit in IPv4
