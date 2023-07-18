@@ -4,9 +4,20 @@
 #include <QString>
 #include "../models/macaddress.h"
 
+/**
+ * @brief The MAC class
+ * @par Represents the MAC-Protocol
+ */
 class MAC
 {
 public:
+    /**
+     * @brief initHeader
+     * @param destMACAdress
+     * @param srcMACAdress
+     * @param lengthField
+     * @par Adds a MAC-Header to a package
+     */
     static void initHeader(MACAddress destMACAdress, MACAddress srcMACAdress, qint16 lengthField);
 };
 

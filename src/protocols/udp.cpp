@@ -51,6 +51,6 @@ qint16 UDP::getChecksum(char* data, size_t length, Port sourcePort, Port destina
     }
 
     //Returns the inverse
-    qDebug() << "UDP Checksum: " << ~checksum;
+    qInfo() << "UDP Checksum: " << ~checksum;
     return ~checksum;
 }
