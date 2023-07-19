@@ -1,7 +1,7 @@
 #include "headerAttribute.h"
 #include "mac.h"
 
-void MAC::initHeader(Package data, MACAddress destMACAddress, MACAddress srcMACAddress, qint16 lengthField){
+void MAC::initHeader(Package& data, MACAddress destMACAddress, MACAddress srcMACAddress, qint16 lengthField){
     qint64 pre = 0b10101010'10101010'10101010'10101010'10101010'10101010'10101010;
     HeaderAttribute preamble("Preamble", 56, pre);
     qint8 frameDelimiter = 0b10101011;
@@ -11,5 +11,13 @@ void MAC::initHeader(Package data, MACAddress destMACAddress, MACAddress srcMACA
     HeaderAttribute length("Length Field", 16, lengthField);
 
     //TODO FRAME CHECK SEQUENCE
-    //TODO DATA
+    Header macHeader;
+    macHeader.addHeaderAttribute(preamble);
+    macHeader.addHeaderAttribute(sfd);
+    macHeader.addHeaderAttribute(destinationMacAddress);
+    macHeader.addHeaderAttribute(sourceMacAddress);
+    macHeader.addHeaderAttribute(length);
+    //TODO ADDING FCS
+
+    data.addHeader(macHeader);
 }

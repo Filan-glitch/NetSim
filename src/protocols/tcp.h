@@ -31,7 +31,7 @@ public:
      * @param dataLength
      * @par adds a TCP-Header to a package and calculates its checksum
      */
-    static void initHeader(IPAddress srcAdress, IPAddress destAdress, Port sourcePort, Port destinationPort, qint32 seqNumber, qint32 ackNumber, bool ack,bool rst, bool syn, bool fin, qint16 window, Package data, qint16 dataLength);
+    static void initHeader(IPAddress srcAdress, IPAddress destAdress, Port sourcePort, Port destinationPort, qint32 seqNumber, qint32 ackNumber, bool ack,bool rst, bool syn, bool fin, qint16 window, Package* data, qint16 dataLength);
 
 private:
     static void setFlag(qint16* flags, bool set, qint16 position);

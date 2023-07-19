@@ -3,12 +3,19 @@
 
 #include <QDebug>
 
-void UDP::initHeader(Port sourcePort, Port destinationPort, size_t dataLength, Package data){
+void UDP::initHeader(Port sourcePort, Port destinationPort, size_t dataLength, Package& data){
     HeaderAttribute srcPort("Source Port",16,sourcePort.getPortNumber());
     HeaderAttribute dstPort("Destination Port",16,destinationPort.getPortNumber());
     HeaderAttribute length("length",16,dataLength);
     HeaderAttribute checksum("checksum",16,getChecksum(data.getData(),dataLength,sourcePort,destinationPort));
-    //TODO DATA
+
+    Header udpHeader;
+    udpHeader.addHeaderAttribute(srcPort);
+    udpHeader.addHeaderAttribute(dstPort);
+    udpHeader.addHeaderAttribute(length);
+    udpHeader.addHeaderAttribute(checksum);
+
+    data.addHeader(udpHeader);
 }
 
 qint16 UDP::overflowHandling(qint16 checksum){

@@ -19,6 +19,13 @@ public:
     qint8* getAddressAsArray() const {
         return address;
     }
+    qint32 getAddressAsInt() const{
+        qint32 returnAddress = address[0];
+        returnAddress = (returnAddress << 8) + address[1];
+        returnAddress = (returnAddress << 8) + address[2];
+        returnAddress = (returnAddress << 8) + address[3];
+        return  returnAddress;
+    }
 };
 
 #endif // IPADDRESS_H

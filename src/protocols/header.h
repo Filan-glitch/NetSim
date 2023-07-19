@@ -18,6 +18,12 @@ public:
      * @par Constructor of a Header, needs a QList with all HeaderAttributes
      */
     Header(const QList<HeaderAttribute> &headerList);
+
+    Header();
+
+    void addHeaderAttribute(const HeaderAttribute& headerAttribute){
+        headerList.append(headerAttribute);
+    }
 };
 
 #endif // HEADER_H

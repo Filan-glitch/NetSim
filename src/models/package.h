@@ -15,6 +15,10 @@ public:
     const char* getData()const{
         return content;
     }
+
+    void addHeader(const Header& header){
+        headers.append(header);
+    }
 };
 
 #endif // PACKAGE_H
