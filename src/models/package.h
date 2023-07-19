@@ -11,6 +11,7 @@ private:
     char content[1500];
 public:
     Package();
+    Package(const QString& content);
 
     const char* getData()const{
         return content;
@@ -19,6 +20,7 @@ public:
     void addHeader(const Header& header){
         headers.append(header);
     }
+    
 };
 
 #endif // PACKAGE_H
