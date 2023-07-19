@@ -1,7 +1,7 @@
 #include "headerAttribute.h"
 #include "mac.h"
 
-void MAC::initHeader(Package& data, MACAddress destMACAddress, MACAddress srcMACAddress, qint16 lengthField){
+void MAC::initHeader(Package& data, const MACAddress &destMACAddress, const MACAddress &srcMACAddress, qint16 lengthField){
     qint64 pre = 0b10101010'10101010'10101010'10101010'10101010'10101010'10101010;
     HeaderAttribute preamble("Preamble", 56, pre);
     qint8 frameDelimiter = 0b10101011;

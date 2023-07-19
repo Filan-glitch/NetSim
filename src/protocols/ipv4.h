@@ -5,7 +5,6 @@
 #include <QList>
 #include "src/models/ipaddress.cpp"
 #include "src/models/package.h"
-#include "headerAttribute.h"
 
 /**
  * @brief The IPv4 class
@@ -25,11 +24,15 @@ public:
      * @param destinationAdress
      * @param options
      * @param data
+     * @param dataLength
      * @par adds a IPv4 Header to a package
      */
-    static void initHeader(qint16 id, qint8 flags, qint16 fragmentOffset, qint8 ttl, qint8 protocol, IPAddress sourceAddress, IPAddress destinationAdress, Package* data);
+    static void initHeader(qint16 id, bool DF, bool MF, qint16 fragmentOffset, qint8 ttl, qint8 protocol, const IPAddress &sourceAddress, const IPAddress &destinationAdress, Package& data);
+
+    static QList<Package> fragmentPackage(const Package& package, qint32 mtu);
 private:
-    static qint16 getIPv4Checksum(qint16 totalLength, qint16 id, qint8 flags, qint16 fragOffset, qint8 ttl, qint8 protocol, qint8* srcAddress, qint8* destAddress, const char* data, qint8 dataLength);
+    static qint16 getIPv4Checksum(qint16 totalLength, qint16 id, qint8 flags, qint16 fragOffset, qint8 ttl, qint8 protocol, qint8* srcAddress, qint8* destAddress, const char* data, qint16 dataLength);
+    static void setFlag(qint8* flags, bool set, qint8 position);
 };
 
 #endif // IPV4_H

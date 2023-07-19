@@ -10,6 +10,7 @@
 class Header
 {
 private:
+
     QList<HeaderAttribute> headerList;
 public:
     /**
@@ -25,5 +26,7 @@ public:
         headerList.append(headerAttribute);
     }
 };
+
+enum HeaderType {IP, TCP, UDP};
 
 #endif // HEADER_H

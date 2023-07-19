@@ -18,7 +18,7 @@ public:
      * @param version
      * @par adds the HTTP-Request Header to a package
      */
-    static void initHTTPRequest(QString requestType, QString url, QString version);
+    static void initHTTPRequest(const QString &requestType, const QString &url, const QString &version);
   
     /**
      * @brief initHTTPResponse
@@ -27,7 +27,7 @@ public:
      * @param messageText
      * @par adds the HTTP-Response Header to a package
      */
-    static void initHTTPResponse(QString version, qint16 messageCode, QString messageText);
+    static void initHTTPResponse(const QString &version, qint16 messageCode, const QString &messageText);
 };
 
 #endif // HTTP_H

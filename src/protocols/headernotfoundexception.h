@@ -16,7 +16,7 @@ public:
      * @param ErrorMessage
      * @par Constructor for the HeaderNotFoundException
      */
-    HeaderNotFoundException(QString errorMessage);
+    HeaderNotFoundException(const QString &errorMessage);
 
     /**
      * @brief GetErrorMessage

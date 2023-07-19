@@ -10,7 +10,7 @@ private:
     qint8* address;
 
 public:
-    IPAddress(qint8 address[4]);
+    IPAddress(qint8* address);
     QString getAddressAsDecString() const {
         QString result;
         QTextStream(&result) << address[0] << "." << address[1] << "." << address[2] << "." << address[3];
