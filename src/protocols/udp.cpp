@@ -3,11 +3,19 @@
 
 #include <QDebug>
 
-void UDP::initHeader(Port sourcePort, Port destinationPort, size_t dataLength, char* data){
+void UDP::initHeader(Port sourcePort, Port destinationPort, size_t dataLength, Package& data){
     HeaderAttribute srcPort("Source Port",16,sourcePort.getPortNumber());
     HeaderAttribute dstPort("Destination Port",16,destinationPort.getPortNumber());
     HeaderAttribute length("length",16,dataLength);
-    HeaderAttribute checksum("checksum",16,getChecksum(data,dataLength,sourcePort,destinationPort));
+    HeaderAttribute checksum("checksum",16,getChecksum(data.getData(),dataLength,sourcePort,destinationPort));
+
+    Header udpHeader;
+    udpHeader.addHeaderAttribute(srcPort);
+    udpHeader.addHeaderAttribute(dstPort);
+    udpHeader.addHeaderAttribute(length);
+    udpHeader.addHeaderAttribute(checksum);
+
+    data.addHeader(udpHeader);
 }
 
 qint16 UDP::overflowHandling(qint16 checksum){
@@ -17,7 +25,7 @@ qint16 UDP::overflowHandling(qint16 checksum){
     return checksum;
 }
 
-qint16 UDP::getChecksum(char* data, size_t length, Port sourcePort, Port destinationPort){
+qint16 UDP::getChecksum(const char* data, size_t length, Port sourcePort, Port destinationPort){
     qint16 checksum = 0;
 
     checksum += sourcePort.getPortNumber();
@@ -51,6 +59,6 @@ qint16 UDP::getChecksum(char* data, size_t length, Port sourcePort, Port destina
     }
 
     //Returns the inverse
-    qDebug() << "UDP Checksum: " << ~checksum;
+    qInfo() << "UDP Checksum: " << ~checksum;
     return ~checksum;
 }

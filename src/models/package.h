@@ -8,10 +8,19 @@ class Package
 {
 private:
     QList<Header> headers;
-    QString content;
+    char content[1500];
 public:
+    Package();
     Package(const QString& content);
-    void addHeader(const Header& header);
+
+    const char* getData()const{
+        return content;
+    }
+
+    void addHeader(const Header& header){
+        headers.append(header);
+    }
+    
 };
 
 #endif // PACKAGE_H
