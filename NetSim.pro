@@ -15,11 +15,13 @@ SOURCES += \
     src/models/process.cpp \
     src/network/client.cpp \
     src/network/host.cpp \
+    src/network/networkcard.cpp \
     src/network/router.cpp \
     src/network/server.cpp \
     src/models/ipaddress.cpp \
     src/models/macaddress.cpp \
     src/models/port.cpp \
+    src/network/socket.cpp \
     src/protocols/header.cpp \
     src/protocols/headerAttribute.cpp \
     src/protocols/headernotfoundexception.cpp \
@@ -37,11 +39,13 @@ HEADERS += \
     src/models/process.h \
     src/network/client.h \
     src/network/host.h \
+    src/network/networkcard.h \
     src/network/router.h \
     src/network/server.h \
     src/models/ipaddress.h \
     src/models/macaddress.h \
     src/models/port.h \
+    src/network/socket.h \
     src/protocols/header.h \
     src/protocols/headerAttribute.h \
     src/protocols/headernotfoundexception.h \

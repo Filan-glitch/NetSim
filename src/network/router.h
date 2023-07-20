@@ -11,6 +11,10 @@ private:
     QHash<QString, IPAddress> domainTable;
 public:
     Router(const QHash<QString, IPAddress> &domainTable);
+
+    bool initilizeServerConnection();
+    void getPackage();
+    void forwardPackage();
 };
 
 #endif // ROUTER_H

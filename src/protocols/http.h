@@ -2,6 +2,7 @@
 #define HTTP_H
 
 #include <QString>
+#include "src/models/package.h"
 
 /**
  * @brief The HTTP class
@@ -18,7 +19,7 @@ public:
      * @param version
      * @par adds the HTTP-Request Header to a package
      */
-    static void initHTTPRequest(const QString &requestType, const QString &url, const QString &version);
+    static void initHTTPRequest(const QString &requestType, const QString &url, const QString &version, Package& data);
   
     /**
      * @brief initHTTPResponse
