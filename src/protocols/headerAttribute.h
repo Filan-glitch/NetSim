@@ -22,6 +22,9 @@ public:
     HeaderAttribute(const QString &name, qint32 sizeInBit, qint32 content);
     HeaderAttribute(const QString &name, qint32 sizeInBit, qint64 content);
     HeaderAttribute(const QString &name, qint32 sizeInBit, qint8 *content);
+    HeaderAttribute(const QString &name, qint32 sizeInBit, const QString &content);
+
+    ~HeaderAttribute();
 
     /**
      * @brief GetName

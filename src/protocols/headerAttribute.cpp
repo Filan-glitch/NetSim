@@ -40,6 +40,19 @@ HeaderAttribute::HeaderAttribute(const QString &name, qint32 sizeInBit, qint64 c
     this->content[7] = content & 0xFF;
 }
 
+HeaderAttribute::HeaderAttribute(const QString &name, qint32 sizeInBit, const QString &content) : name(name), sizeInBit(std::move(sizeInBit))
+{
+    this->content = new qint8[content.length()];
+    for(auto i = 0; i < content.length(); i++) {
+        this->content[i] = content.at(i).toLatin1();
+    }
+}
+
+HeaderAttribute::~HeaderAttribute()
+{
+    delete this->content;
+}
+
 qint64 HeaderAttribute::getContentAsInt() const
 {
     qint64 returnInt = content[7];

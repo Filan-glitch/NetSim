@@ -3,7 +3,7 @@
 
 #include <QString>
 #include "../models/macaddress.h"
-#include "src/models/package.h"
+#include "../models/package.h"
 
 /**
  * @brief The MAC class

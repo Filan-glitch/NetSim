@@ -12,7 +12,7 @@ private:
 public:
     Router(const QHash<QString, IPAddress> &domainTable);
 
-    bool initilizeServerConnection();
+    bool initializeServerConnection();
     void getPackage();
     void forwardPackage();
 };

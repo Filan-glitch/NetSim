@@ -5,6 +5,8 @@
 
 class Client : public Host
 {
+private:
+
 public:
     Client();
 };

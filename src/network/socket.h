@@ -1,21 +1,22 @@
 #ifndef SOCKET_H
 #define SOCKET_H
 
-#include <src/models/package.h>
-#include <src/models/port.cpp>
+#include "../models/package.h"
+#include "../models/port.h"
 
 
 
 class Socket
 {
 public:
-    Socket(Port port);
+    Socket(const Port &sourcePort, const Port &destinationPort);
 
     void addTCPHeader(Package& data);
     void addUDPHeader(Package& data);
     void sentPackageToNetworkCard(Package& data);
 private:
-    Port port;
+    Port sourcePort;
+    Port destinationPort;
 };
 
 #endif // SOCKET_H

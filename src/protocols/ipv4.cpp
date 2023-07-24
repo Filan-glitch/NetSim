@@ -1,6 +1,5 @@
 #include "headerAttribute.h"
 #include "ipv4.h"
-#include "qdebug.h"
 
 void IPv4::initHeader(qint16 id, bool DF, bool MF, qint16 fragmentOffset, qint8 ttl, qint8 protocol, const IPAddress &sourceAddress, const IPAddress &destinationAdress, Package& data)
 {
@@ -74,8 +73,8 @@ QList<Package> IPv4::fragmentPackage(const Package &package, qint32 mtu)
         }
 
         returnList.append(package);
-
     }
+    return returnList;
 }
 
 void IPv4::setFlag(qint8* flags, bool set, qint8 position){

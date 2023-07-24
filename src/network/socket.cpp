@@ -1,20 +1,21 @@
 #include "socket.h"
-#include "src/protocols/tcp.h"
-#include "src/protocols/udp.h"
+#include "../protocols/tcp.h"
+#include "../protocols/udp.h"
 
-Socket::Socket(Port port):port(port)
-{
 
-}
 
 void Socket::addTCPHeader(Package& data)
 {
     //TODO HEADER INITIALISIERUNG
-    //TCP::initHeader()
+
 }
 
 void Socket::addUDPHeader(Package& data)
 {
     //TODO  Daten richtig ausfüllen
-    UDP::initHeader(this->port,80,0,data);
+    UDP::initHeader(this->sourcePort, this->destinationPort,0,data);
 }
+
+Socket::Socket(const Port &sourcePort, const Port &destinationPort) : sourcePort(sourcePort),
+    destinationPort(destinationPort)
+{}

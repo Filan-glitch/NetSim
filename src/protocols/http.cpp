@@ -5,3 +5,8 @@ void HTTP::initHTTPRequest(const QString &requestType, const QString &url, const
     //TODO url
     //TODO version
 }
+
+void HTTP::initHTTPResponse(const QString &version, qint16 messageCode, const QString &messageText)
+{
+
+}

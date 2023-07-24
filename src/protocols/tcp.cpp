@@ -1,6 +1,5 @@
 #include "tcp.h"
 #include "headerAttribute.h"
-#include "qdebug.h"
 
 
 void TCP::initHeader(const IPAddress &srcAdress, const IPAddress &destAdress, const Port &sourcePort, const Port &destinationPort, qint32 seqNumber, qint32 ackNumber, bool ack,bool rst, bool syn, bool fin, qint16 window, Package& data, qint16 dataLength){

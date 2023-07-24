@@ -1,23 +1,23 @@
 #ifndef NETWORKCARD_H
 #define NETWORKCARD_H
 
-#include <src/models/macaddress.cpp>
-#include <src/models/package.h>
+#include "../models/ipaddress.h"
+#include "../models/macaddress.h"
+#include "../models/package.h"
 
 
 
-class networkCard
+class NetworkCard
 {
 public:
 
-    networkCard(MACAddress address):physicalAddress(address){
-
-    }
+    NetworkCard(const IPAddress &networkAddress, const MACAddress &physicalAddress):networkAddress(networkAddress), physicalAddress(physicalAddress){};
 
     void addIPHeader(Package& data);
     void addMACHeader(Package& data);
     void sentToRouter(Package& data);
 private:
+    IPAddress networkAddress;
     MACAddress physicalAddress;
 };
 

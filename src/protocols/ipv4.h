@@ -3,8 +3,9 @@
 
 #include <QString>
 #include <QList>
-#include "src/models/ipaddress.cpp"
-#include "src/models/package.h"
+#include <QDebug>
+#include "../models/ipaddress.h"
+#include "../models/package.h"
 
 /**
  * @brief The IPv4 class
