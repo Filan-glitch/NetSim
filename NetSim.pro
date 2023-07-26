@@ -30,7 +30,8 @@ SOURCES += \
     src/protocols/mac.cpp \
     src/protocols/tcp.cpp \
     src/protocols/udp.cpp \
-    src/views/widgets/mainwindow.cpp
+    src/views/windows/simulationwindow.cpp \
+    src/views/windows/welcomewindow.cpp
 
 
 HEADERS += \
@@ -54,11 +55,13 @@ HEADERS += \
     src/protocols/mac.h \
     src/protocols/tcp.h \
     src/protocols/udp.h \
-    src/views/widgets/mainwindow.h
+    src/views/windows/simulationwindow.h \
+    src/views/windows/welcomewindow.h
 
 
 FORMS += \
-    src/views/widgets/mainwindow.ui
+    src/views/windows/simulationwindow.ui \
+    src/views/windows/welcomewindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

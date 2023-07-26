@@ -1,4 +1,4 @@
-#include "views/widgets/mainwindow.h"
+#include "views/widgets/welcomewindow.h"
 
 #include <QApplication>
 #include "management/logger.h"
@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
 
     QApplication a(argc, argv);
     qInfo() << "Application started";
-    MainWindow w;
+    WelcomeWindow w;
     w.show();
     bool state = a.exec();
 
