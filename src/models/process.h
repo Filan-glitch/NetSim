@@ -1,7 +1,7 @@
 #ifndef PROCESS_H
 #define PROCESS_H
 
-#include "../network/socket.h"
+#include "src/network/socket.h"
 
 #include <QString>
 

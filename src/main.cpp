@@ -1,4 +1,4 @@
-#include "views/widgets/welcomewindow.h"
+#include "views/windows/welcomewindow.h"
 
 #include <QApplication>
 #include "management/logger.h"

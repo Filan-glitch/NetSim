@@ -1,6 +1,6 @@
 #include "socket.h"
-#include "../protocols/tcp.h"
-#include "../protocols/udp.h"
+#include "src/protocols/tcp.h"
+#include "src/protocols/udp.h"
 
 
 

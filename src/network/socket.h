@@ -1,8 +1,8 @@
 #ifndef SOCKET_H
 #define SOCKET_H
 
-#include "../models/package.h"
-#include "../models/port.h"
+#include "src/models/package.h"
+#include "src/models/port.h"
 
 
 

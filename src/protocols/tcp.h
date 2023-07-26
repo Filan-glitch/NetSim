@@ -1,9 +1,9 @@
 #ifndef TCP_H
 #define TCP_H
 
-#include "../models/port.h"
-#include "../models/package.h"
-#include "../models/ipaddress.h"
+#include "src/models/port.h"
+#include "src/models/package.h"
+#include "src/models/ipaddress.h"
 #include <cstdint>
 #include <QString>
 #include <QDebug>

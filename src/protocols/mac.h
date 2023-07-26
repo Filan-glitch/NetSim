@@ -2,8 +2,8 @@
 #define MAC_H
 
 #include <QString>
-#include "../models/macaddress.h"
-#include "../models/package.h"
+#include "src/models/macaddress.h"
+#include "src/models/package.h"
 
 /**
  * @brief The MAC class

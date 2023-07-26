@@ -11,6 +11,7 @@ CONFIG += c++17
 SOURCES += \
     src/main.cpp \
     src/management/logger.cpp \
+    src/management/simulationmanager.cpp \
     src/models/package.cpp \
     src/models/process.cpp \
     src/network/client.cpp \
@@ -30,12 +31,15 @@ SOURCES += \
     src/protocols/mac.cpp \
     src/protocols/tcp.cpp \
     src/protocols/udp.cpp \
+    src/views/dialogs/settingsdialog.cpp \
+    src/views/widgets/serverwidget.cpp \
     src/views/windows/simulationwindow.cpp \
     src/views/windows/welcomewindow.cpp
 
 
 HEADERS += \
     src/management/logger.h \
+    src/management/simulationmanager.h \
     src/models/package.h \
     src/models/process.h \
     src/network/client.h \
@@ -55,11 +59,14 @@ HEADERS += \
     src/protocols/mac.h \
     src/protocols/tcp.h \
     src/protocols/udp.h \
+    src/views/dialogs/settingsdialog.h \
+    src/views/widgets/serverwidget.h \
     src/views/windows/simulationwindow.h \
     src/views/windows/welcomewindow.h
 
 
 FORMS += \
+    src/views/dialogs/settingsdialog.ui \
     src/views/windows/simulationwindow.ui \
     src/views/windows/welcomewindow.ui
 

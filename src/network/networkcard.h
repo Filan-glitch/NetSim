@@ -1,9 +1,9 @@
 #ifndef NETWORKCARD_H
 #define NETWORKCARD_H
 
-#include "../models/ipaddress.h"
-#include "../models/macaddress.h"
-#include "../models/package.h"
+#include "src/models/ipaddress.h"
+#include "src/models/macaddress.h"
+#include "src/models/package.h"
 
 
 

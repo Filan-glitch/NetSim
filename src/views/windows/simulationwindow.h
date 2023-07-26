@@ -1,7 +1,9 @@
 #ifndef SIMULATIONWINDOW_H
 #define SIMULATIONWINDOW_H
 
+#include "src/management/simulationmanager.h"
 #include <QMainWindow>
+#include <QKeyEvent>
 
 namespace Ui {
 class SimulationWindow;
@@ -14,9 +16,14 @@ class SimulationWindow : public QMainWindow
 public:
     explicit SimulationWindow(QWidget *parent = nullptr);
     ~SimulationWindow();
+    void keyPressEvent(QKeyEvent *event) override;
 
 private:
     Ui::SimulationWindow *ui;
+    SimulationManager* manager;
+
+private slots:
+    void openDocumentation();
 };
 
 #endif // SIMULATIONWINDOW_H

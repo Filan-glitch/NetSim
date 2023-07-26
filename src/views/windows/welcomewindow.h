@@ -17,5 +17,9 @@ public:
 
 private:
     Ui::WelcomeWindow *ui;
+    void startSimulation();
+
+private slots:
+    void openDocumentation();
 };
 #endif // WELCOMEWINDOW_H

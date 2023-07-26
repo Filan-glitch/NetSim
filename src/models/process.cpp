@@ -1,6 +1,6 @@
 #include "process.h"
 #include "package.h"
-#include "../protocols/http.h"
+#include "src/protocols/http.h"
 
 void Process::httpGetRequest(const QString &url, const Port &sourcePort){
     Package httpRequestPackage("");

@@ -3,11 +3,11 @@
 
 #include <QString>
 #include <QHash>
-#include "../models/process.h"
-#include "../models/ipaddress.h"
-#include "../models/macaddress.h"
-#include "../models/port.h"
-#include "../network/networkcard.h"
+#include "src/models/process.h"
+#include "src/models/ipaddress.h"
+#include "src/models/macaddress.h"
+#include "src/models/port.h"
+#include "src/network/networkcard.h"
 
 /**
  * This class represents the superclass host in a network simulation. It can either be implemented as a client or a server.

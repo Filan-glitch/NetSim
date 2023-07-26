@@ -3,7 +3,7 @@
 
 #include <QString>
 #include <QHash>
-#include "../models/ipaddress.h"
+#include "src/models/ipaddress.h"
 
 class Router
 {

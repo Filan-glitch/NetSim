@@ -2,7 +2,7 @@
 #define PACKAGE_H
 
 #include <QList>
-#include "../protocols/header.h"
+#include "src/protocols/header.h"
 
 class Package
 {

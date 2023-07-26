@@ -1,8 +1,8 @@
 #ifndef UDP_H
 #define UDP_H
 
-#include "../models/port.h"
-#include "../models/package.h"
+#include "src/models/port.h"
+#include "src/models/package.h"
 #include <cstdint>
 #include <QString>
 

@@ -2,7 +2,7 @@
 #define HTTP_H
 
 #include <QString>
-#include "../models/package.h"
+#include "src/models/package.h"
 
 /**
  * @brief The HTTP class
