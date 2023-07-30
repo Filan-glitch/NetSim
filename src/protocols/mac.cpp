@@ -11,12 +11,13 @@ void MAC::initHeader(Package& data, const MACAddress &destMACAddress, const MACA
     HeaderAttribute length("Length Field", 16, lengthField);
 
     //TODO FRAME CHECK SEQUENCE
-    Header macHeader;
-    macHeader.addHeaderAttribute(preamble);
-    macHeader.addHeaderAttribute(sfd);
-    macHeader.addHeaderAttribute(destinationMacAddress);
-    macHeader.addHeaderAttribute(sourceMacAddress);
-    macHeader.addHeaderAttribute(length);
+    Header* macHeader = new Header();
+    macHeader->setHeaderType(HeaderType::MAC);
+    macHeader->addHeaderAttribute(preamble);
+    macHeader->addHeaderAttribute(sfd);
+    macHeader->addHeaderAttribute(destinationMacAddress);
+    macHeader->addHeaderAttribute(sourceMacAddress);
+    macHeader->addHeaderAttribute(length);
     //TODO ADDING FCS
 
     data.addHeader(macHeader);

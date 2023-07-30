@@ -9,11 +9,12 @@ void UDP::initHeader(const Port &sourcePort, const Port &destinationPort, qint16
     HeaderAttribute length("length",16,dataLength);
     HeaderAttribute checksum("checksum",16,getChecksum(data.getData().toStdString().c_str(),dataLength,sourcePort.getPortNumber(),destinationPort.getPortNumber()));
 
-    Header udpHeader;
-    udpHeader.addHeaderAttribute(srcPort);
-    udpHeader.addHeaderAttribute(dstPort);
-    udpHeader.addHeaderAttribute(length);
-    udpHeader.addHeaderAttribute(checksum);
+    Header* udpHeader = new Header();
+    udpHeader->setHeaderType(HeaderType::UDP);
+    udpHeader->addHeaderAttribute(srcPort);
+    udpHeader->addHeaderAttribute(dstPort);
+    udpHeader->addHeaderAttribute(length);
+    udpHeader->addHeaderAttribute(checksum);
 
     data.addHeader(udpHeader);
 }

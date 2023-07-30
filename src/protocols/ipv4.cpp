@@ -41,19 +41,20 @@ void IPv4::initHeader(qint16 id, bool DF, bool MF, qint16 fragmentOffset, qint8 
     //The Options field is always 0, we do not provide options in IPv4 in this project
     HeaderAttribute options("Options", 0,0);
 
-    Header ipHeader;
-    ipHeader.addHeaderAttribute(version);
-    ipHeader.addHeaderAttribute(IHL);
-    ipHeader.addHeaderAttribute(TOS);
-    ipHeader.addHeaderAttribute(length);
-    ipHeader.addHeaderAttribute(identification);
-    ipHeader.addHeaderAttribute(flags);
-    ipHeader.addHeaderAttribute(fragOffset);
-    ipHeader.addHeaderAttribute(timeToLive);
-    ipHeader.addHeaderAttribute(nextProtocol);
-    ipHeader.addHeaderAttribute(checksum);
-    ipHeader.addHeaderAttribute(srcAdress);
-    ipHeader.addHeaderAttribute(destAdress);
+    Header* ipHeader = new Header();
+    ipHeader->setHeaderType(HeaderType::IP);
+    ipHeader->addHeaderAttribute(version);
+    ipHeader->addHeaderAttribute(IHL);
+    ipHeader->addHeaderAttribute(TOS);
+    ipHeader->addHeaderAttribute(length);
+    ipHeader->addHeaderAttribute(identification);
+    ipHeader->addHeaderAttribute(flags);
+    ipHeader->addHeaderAttribute(fragOffset);
+    ipHeader->addHeaderAttribute(timeToLive);
+    ipHeader->addHeaderAttribute(nextProtocol);
+    ipHeader->addHeaderAttribute(checksum);
+    ipHeader->addHeaderAttribute(srcAdress);
+    ipHeader->addHeaderAttribute(destAdress);
 
     data.addHeader(ipHeader);
 }
@@ -66,10 +67,10 @@ QList<Package> IPv4::fragmentPackage(const Package &package, qint32 mtu)
     for(auto i = 0; i < packageAmount; i++) {
         //Daten aufsplitten
         if(i != packageAmount - 1) {
-            auto packageFragment = Package(data.first(1500));
+            auto packageFragment = Package("IP Fragment No. " + QString::number(i), data.first(1500));
             data = data.last(data.size() - 1500);
         } else {
-            auto package = Package(data);
+            auto package = Package("IP Fragment No. " + QString::number(i), data);
         }
 
         returnList.append(package);

@@ -21,15 +21,10 @@ public:
 private:
     Ui::SimulationWindow *ui;
     SimulationManager* manager;
+    void setupNetwork(qint8 clientsAmount, qint8 serverAmount);
 
 private slots:
     void openDocumentation();
-    void on_pushButton_clicked();
-    void on_pushButton_4_clicked();
-    void on_clientButton_clicked();
-    void on_serverButton_clicked();
-    void on_router1Button_clicked();
-    void on_router2Button_clicked();
 };
 
 #endif // SIMULATIONWINDOW_H

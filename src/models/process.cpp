@@ -3,7 +3,7 @@
 #include "src/protocols/http.h"
 
 void Process::httpGetRequest(const QString &url, const Port &sourcePort){
-    Package httpRequestPackage("");
+    Package httpRequestPackage("Request HTML of " + url,"");
     HTTP::initHTTPRequest("GET",url,"HTTP/1.1",httpRequestPackage);
 
     openSocket(sourcePort);

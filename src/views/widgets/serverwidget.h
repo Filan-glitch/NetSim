@@ -1,15 +1,17 @@
 #ifndef SERVERWIDGET_H
 #define SERVERWIDGET_H
 
-#include <QWidget>
+#include "src/network/server.h"
+#include <QPushButton>
 
-class ServerWidget : public QWidget
+class ServerWidget : public QPushButton
 {
     Q_OBJECT
 public:
-    explicit ServerWidget(QWidget *parent = nullptr);
+    explicit ServerWidget(const Server &server, QWidget *parent = nullptr);
 
-signals:
+private:
+    Server server;
 
 };
 

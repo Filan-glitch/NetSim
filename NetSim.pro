@@ -11,6 +11,8 @@ CONFIG += c++17
 SOURCES += \
     src/main.cpp \
     src/management/logger.cpp \
+    src/management/packagedatabase.cpp \
+    src/management/packagetablemodel.cpp \
     src/management/simulationmanager.cpp \
     src/models/package.cpp \
     src/models/process.cpp \
@@ -27,11 +29,14 @@ SOURCES += \
     src/protocols/headerAttribute.cpp \
     src/protocols/headernotfoundexception.cpp \
     src/protocols/http.cpp \
+    src/protocols/ipheader.cpp \
     src/protocols/ipv4.cpp \
     src/protocols/mac.cpp \
     src/protocols/tcp.cpp \
     src/protocols/udp.cpp \
     src/views/dialogs/settingsdialog.cpp \
+    src/views/widgets/clientwidget.cpp \
+    src/views/widgets/routerwidget.cpp \
     src/views/widgets/serverwidget.cpp \
     src/views/windows/simulationwindow.cpp \
     src/views/windows/welcomewindow.cpp
@@ -39,6 +44,8 @@ SOURCES += \
 
 HEADERS += \
     src/management/logger.h \
+    src/management/packagedatabase.h \
+    src/management/packagetablemodel.h \
     src/management/simulationmanager.h \
     src/models/package.h \
     src/models/process.h \
@@ -55,11 +62,14 @@ HEADERS += \
     src/protocols/headerAttribute.h \
     src/protocols/headernotfoundexception.h \
     src/protocols/http.h \
+    src/protocols/ipheader.h \
     src/protocols/ipv4.h \
     src/protocols/mac.h \
     src/protocols/tcp.h \
     src/protocols/udp.h \
     src/views/dialogs/settingsdialog.h \
+    src/views/widgets/clientwidget.h \
+    src/views/widgets/routerwidget.h \
     src/views/widgets/serverwidget.h \
     src/views/windows/simulationwindow.h \
     src/views/windows/welcomewindow.h

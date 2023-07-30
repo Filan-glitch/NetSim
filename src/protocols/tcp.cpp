@@ -35,16 +35,17 @@ void TCP::initHeader(const IPAddress &srcAdress, const IPAddress &destAdress, co
     HeaderAttribute urgentPointer("Urgent Pointer",16,urgent_pointer);
     HeaderAttribute options("Options",0,0);
 
-    Header tcpHeader;
-    tcpHeader.addHeaderAttribute(srcPort);
-    tcpHeader.addHeaderAttribute(dstPort);
-    tcpHeader.addHeaderAttribute(sequenceNumber);
-    tcpHeader.addHeaderAttribute(acknowledgementNumber);
-    tcpHeader.addHeaderAttribute(flag);
-    tcpHeader.addHeaderAttribute(windowSize);
-    tcpHeader.addHeaderAttribute(checksum);
-    tcpHeader.addHeaderAttribute(urgentPointer);
-    tcpHeader.addHeaderAttribute(options);
+    Header* tcpHeader = new Header();
+    tcpHeader->setHeaderType(HeaderType::TCP);
+    tcpHeader->addHeaderAttribute(srcPort);
+    tcpHeader->addHeaderAttribute(dstPort);
+    tcpHeader->addHeaderAttribute(sequenceNumber);
+    tcpHeader->addHeaderAttribute(acknowledgementNumber);
+    tcpHeader->addHeaderAttribute(flag);
+    tcpHeader->addHeaderAttribute(windowSize);
+    tcpHeader->addHeaderAttribute(checksum);
+    tcpHeader->addHeaderAttribute(urgentPointer);
+    tcpHeader->addHeaderAttribute(options);
 
     data.addHeader(tcpHeader);
 }
