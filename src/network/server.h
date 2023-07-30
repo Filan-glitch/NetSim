@@ -8,6 +8,9 @@ class Server : public Host
 {
 public:
     Server();
+
+    void getRequest();
+    void sendResponse();
 };
 
 #endif // SERVER_H

@@ -3,10 +3,11 @@
 
 #include <QString>
 #include <QHash>
-#include "../models/process.h"
-#include "../models/ipaddress.h"
-#include "../models/macaddress.h"
-#include "../models/port.h"
+#include "src/models/process.h"
+#include "src/models/ipaddress.h"
+#include "src/models/macaddress.h"
+#include "src/models/port.h"
+#include "src/network/networkcard.h"
 
 /**
  * This class represents the superclass host in a network simulation. It can either be implemented as a client or a server.
@@ -15,13 +16,13 @@
 class Host
 {
 private:
-    IPAddress ipAddress;
     QHash<Port, Process> processTable;
     QHash<MACAddress, IPAddress> hostTable;
     QHash<QString, IPAddress> domainTable;
+    NetworkCard networkCard;
 
 public:
-    Host(const IPAddress &ipAddress, const QHash<Port, Process> &processTable, const QHash<MACAddress, IPAddress> &hostTable, const QHash<QString, IPAddress> &domainTable);
+    Host(const QHash<Port, Process> &processTable, const QHash<MACAddress, IPAddress> &hostTable, const QHash<QString, IPAddress> &domainTable, const NetworkCard &networkCard);
 };
 
 #endif // HOST_H

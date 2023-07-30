@@ -18,8 +18,15 @@ public:
         return address;
     }
     qint64 getAddressAsInt() const {
-        //TODO Berechnen
-        return 0;
+        qint64 returnInt = address[7];
+        returnInt = (returnInt << 8) + address[6];
+        returnInt = (returnInt << 8) + address[5];
+        returnInt = (returnInt << 8) + address[4];
+        returnInt = (returnInt << 8) + address[3];
+        returnInt = (returnInt << 8) + address[2];
+        returnInt = (returnInt << 8) + address[1];
+        returnInt = (returnInt << 8) + address[0];
+        return returnInt;
     }
 };
 

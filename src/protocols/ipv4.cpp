@@ -1,21 +1,24 @@
 #include "headerAttribute.h"
 #include "ipv4.h"
-#include "qdebug.h"
 
-void IPv4::initHeader(qint16 id, qint8 flags, qint16 fragmentOffset, qint8 ttl, qint8 protocol, IPAddress sourceAddress, IPAddress destinationAdress, Package& data)
+void IPv4::initHeader(qint16 id, bool DF, bool MF, qint16 fragmentOffset, qint8 ttl, qint8 protocol, const IPAddress &sourceAddress, const IPAddress &destinationAdress, Package& data)
 {
     HeaderAttribute version("Version",4,4);
-    //Will not be used, by default stores values between 5 and 15 we only store 5
+    //Will not be used, by default stores values between 5 or 6 we only store 5
     HeaderAttribute IHL("Internet Header Length",4,5);
     //Will not be used, is always 0 in this project
     HeaderAttribute TOS("Type of Service",8,0);
 
-    qint16 totalLength = strlen(data.getData()) + 20;
+    qint16 totalLength = data.getData().length() + 20;
     HeaderAttribute length("Total Length",16,totalLength);
 
     HeaderAttribute identification("Identification", 16, id);
 
-    //TODO Flags
+    qint8 flagsVal = 0b00000000;
+    setFlag(&flagsVal, DF, 1);
+    setFlag(&flagsVal, MF, 2);
+    HeaderAttribute flags("Flags", 3, flagsVal);
+
     HeaderAttribute fragOffset("Fragment Offset", 16, fragmentOffset);
     HeaderAttribute timeToLive("Time to live", 8, ttl);
     HeaderAttribute nextProtocol("Protocol", 8, protocol);
@@ -23,14 +26,14 @@ void IPv4::initHeader(qint16 id, qint8 flags, qint16 fragmentOffset, qint8 ttl, 
     HeaderAttribute checksum("Checksum", 16, getIPv4Checksum(
                                                  totalLength,
                                                  id,
-                                                 flags,
+                                                 flagsVal,
                                                  fragmentOffset,
                                                  ttl,
                                                  protocol,
                                                  sourceAddress.getAddressAsArray(),
                                                  destinationAdress.getAddressAsArray(),
-                                                 data.getData(),
-                                                 strlen(data.getData())));
+                                                 data.getData().toStdString().c_str(),
+                                                 totalLength));
 
     HeaderAttribute srcAdress("Source Adress", 32, sourceAddress.getAddressAsInt());
     HeaderAttribute destAdress("Destination Adress", 32, destinationAdress.getAddressAsInt());
@@ -38,24 +41,54 @@ void IPv4::initHeader(qint16 id, qint8 flags, qint16 fragmentOffset, qint8 ttl, 
     //The Options field is always 0, we do not provide options in IPv4 in this project
     HeaderAttribute options("Options", 0,0);
 
-    Header ipHeader;
-    ipHeader.addHeaderAttribute(version);
-    ipHeader.addHeaderAttribute(IHL);
-    ipHeader.addHeaderAttribute(TOS);
-    ipHeader.addHeaderAttribute(length);
-    ipHeader.addHeaderAttribute(identification);
-    //TODO Flags adden
-    ipHeader.addHeaderAttribute(fragOffset);
-    ipHeader.addHeaderAttribute(timeToLive);
-    ipHeader.addHeaderAttribute(nextProtocol);
-    ipHeader.addHeaderAttribute(checksum);
-    ipHeader.addHeaderAttribute(srcAdress);
-    ipHeader.addHeaderAttribute(destAdress);
+    Header* ipHeader = new Header();
+    ipHeader->setHeaderType(HeaderType::IP);
+    ipHeader->addHeaderAttribute(version);
+    ipHeader->addHeaderAttribute(IHL);
+    ipHeader->addHeaderAttribute(TOS);
+    ipHeader->addHeaderAttribute(length);
+    ipHeader->addHeaderAttribute(identification);
+    ipHeader->addHeaderAttribute(flags);
+    ipHeader->addHeaderAttribute(fragOffset);
+    ipHeader->addHeaderAttribute(timeToLive);
+    ipHeader->addHeaderAttribute(nextProtocol);
+    ipHeader->addHeaderAttribute(checksum);
+    ipHeader->addHeaderAttribute(srcAdress);
+    ipHeader->addHeaderAttribute(destAdress);
 
     data.addHeader(ipHeader);
 }
 
-qint16 IPv4::getIPv4Checksum(qint16 totalLength, qint16 id, qint8 flags, qint16 fragOffset, qint8 ttl, qint8 protocol, qint8* srcAddress, qint8* destAddress, const char* data, qint8 dataLength)
+QList<Package> IPv4::fragmentPackage(const Package &package, qint32 mtu)
+{
+    QList<Package> returnList = QList<Package>();
+    auto packageAmount = package.getData().size()/mtu + 1;
+    auto data = package.getData();
+    for(auto i = 0; i < packageAmount; i++) {
+        //Daten aufsplitten
+        if(i != packageAmount - 1) {
+            auto packageFragment = Package("IP Fragment No. " + QString::number(i), data.first(1500));
+            data = data.last(data.size() - 1500);
+        } else {
+            auto package = Package("IP Fragment No. " + QString::number(i), data);
+        }
+
+        returnList.append(package);
+    }
+    return returnList;
+}
+
+void IPv4::setFlag(qint8* flags, bool set, qint8 position){
+    if (set) {
+        // sets the bit at position
+        *flags |= (1 << position);
+    } else {
+        // deletes the bit at position
+        *flags &= ~(1 << position);
+    }
+}
+
+qint16 IPv4::getIPv4Checksum(qint16 totalLength, qint16 id, qint8 flags, qint16 fragOffset, qint8 ttl, qint8 protocol, qint8* srcAddress, qint8* destAddress, const char* data, qint16 dataLength)
 {
     qint32 checksum = 0;
 

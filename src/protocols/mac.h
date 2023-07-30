@@ -2,7 +2,7 @@
 #define MAC_H
 
 #include <QString>
-#include "../models/macaddress.h"
+#include "src/models/macaddress.h"
 #include "src/models/package.h"
 
 /**
@@ -20,7 +20,7 @@ public:
      * @param lengthField
      * @par Adds a MAC-Header to a package
      */
-    static void initHeader(Package* data, MACAddress destMACAdress, MACAddress srcMACAdress, qint16 lengthField);
+    static void initHeader(Package& data, const MACAddress &destMACAdress, const MACAddress &srcMACAdress, qint16 lengthField);
 };
 
 #endif // MAC_H

@@ -1,6 +1,6 @@
 #include "Headernotfoundexception.h"
 
-HeaderNotFoundException::HeaderNotFoundException(QString errorMessage)
+HeaderNotFoundException::HeaderNotFoundException(const QString &errorMessage)
     {
     this->errorMessage = errorMessage;
     }

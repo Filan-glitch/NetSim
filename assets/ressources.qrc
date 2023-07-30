@@ -1,5 +1,8 @@
 <RCC>
     <qresource prefix="/">
         <file>icon.svg</file>
+        <file>client.svg</file>
+        <file>router.svg</file>
+        <file>server.svg</file>
     </qresource>
 </RCC>

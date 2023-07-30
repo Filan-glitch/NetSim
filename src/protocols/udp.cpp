@@ -3,17 +3,18 @@
 
 #include <QDebug>
 
-void UDP::initHeader(Port sourcePort, Port destinationPort, size_t dataLength, Package& data){
+void UDP::initHeader(const Port &sourcePort, const Port &destinationPort, qint16 dataLength, Package& data){
     HeaderAttribute srcPort("Source Port",16,sourcePort.getPortNumber());
     HeaderAttribute dstPort("Destination Port",16,destinationPort.getPortNumber());
     HeaderAttribute length("length",16,dataLength);
-    HeaderAttribute checksum("checksum",16,getChecksum(data.getData(),dataLength,sourcePort,destinationPort));
+    HeaderAttribute checksum("checksum",16,getChecksum(data.getData().toStdString().c_str(),dataLength,sourcePort.getPortNumber(),destinationPort.getPortNumber()));
 
-    Header udpHeader;
-    udpHeader.addHeaderAttribute(srcPort);
-    udpHeader.addHeaderAttribute(dstPort);
-    udpHeader.addHeaderAttribute(length);
-    udpHeader.addHeaderAttribute(checksum);
+    Header* udpHeader = new Header();
+    udpHeader->setHeaderType(HeaderType::UDP);
+    udpHeader->addHeaderAttribute(srcPort);
+    udpHeader->addHeaderAttribute(dstPort);
+    udpHeader->addHeaderAttribute(length);
+    udpHeader->addHeaderAttribute(checksum);
 
     data.addHeader(udpHeader);
 }
@@ -25,11 +26,11 @@ qint16 UDP::overflowHandling(qint16 checksum){
     return checksum;
 }
 
-qint16 UDP::getChecksum(const char* data, size_t length, Port sourcePort, Port destinationPort){
+qint16 UDP::getChecksum(const char* data, qint16 length, qint16 sourcePort, qint16 destinationPort){
     qint16 checksum = 0;
 
-    checksum += sourcePort.getPortNumber();
-    checksum += destinationPort.getPortNumber();
+    checksum += sourcePort;
+    checksum += destinationPort;
 
     //Overflow handling
     checksum = overflowHandling(checksum);
@@ -39,7 +40,7 @@ qint16 UDP::getChecksum(const char* data, size_t length, Port sourcePort, Port d
     //Overflow handling
     checksum = overflowHandling(checksum);
 
-    for(size_t i = 0; i < length; i+=2){
+    for(qint16 i = 0; i < length; i+=2){
         //Combining to 16 Bit words
         qint16 word = (data[i] << 8) | data[i+1];
         checksum += word;
