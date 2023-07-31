@@ -17,12 +17,12 @@ public:
      * @param Name, sizeInBit, content
      * @par Constructor for a HeaderAttribute
      */
-    HeaderAttribute(const QString &name, qint32 sizeInBit, qint8 content);
-    HeaderAttribute(const QString &name, qint32 sizeInBit, qint16 content);
-    HeaderAttribute(const QString &name, qint32 sizeInBit, qint32 content);
-    HeaderAttribute(const QString &name, qint32 sizeInBit, qint64 content);
-    HeaderAttribute(const QString &name, qint32 sizeInBit, qint8 *content);
-    HeaderAttribute(const QString &name, qint32 sizeInBit, const QString &content);
+    HeaderAttribute(const QString &name, quint32 sizeInBit, quint8 content);
+    HeaderAttribute(const QString &name, quint32 sizeInBit, quint16 content);
+    HeaderAttribute(const QString &name, quint32 sizeInBit, quint32 content);
+    HeaderAttribute(const QString &name, quint32 sizeInBit, quint64 content);
+    HeaderAttribute(const QString &name, quint32 sizeInBit, quint8 *content);
+    HeaderAttribute(const QString &name, quint32 sizeInBit, const QString &content);
 
     ~HeaderAttribute();
 
@@ -40,7 +40,7 @@ public:
      * @return SizeInBit
      * @par Returns the size of the HeaderAttribute in bits
      */
-    qint32 getSizeInBit() const{
+    quint32 getSizeInBit() const{
         return this->sizeInBit;
     }
 
@@ -49,20 +49,20 @@ public:
      * @return Content
      * @par Returns the content of the HeaderAttribute as bits as int
      */
-    qint64 getContentAsInt() const;
+    quint64 getContentAsInt() const;
 
     /**
      * @brief GetContent
      * @return Content
      * @par Returns the content of the HeaderAttribute as bits as an array
      */
-    qint8* getContentAsArray() const;
+    quint8* getContentAsArray() const;
 
 
 private:
     QString name;
-    qint32 sizeInBit;
-    qint8* content;
+    quint32 sizeInBit;
+    quint8* content;
 };
 
 #endif // HEADERATTRIBUTE_H

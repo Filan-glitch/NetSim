@@ -14,14 +14,14 @@ class SimulationWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit SimulationWindow(QWidget *parent = nullptr);
+    explicit SimulationWindow(SimulationManager* manager, QWidget *parent = nullptr);
     ~SimulationWindow();
     void keyPressEvent(QKeyEvent *event) override;
 
 private:
     Ui::SimulationWindow *ui;
     SimulationManager* manager;
-    void setupNetwork(qint8 clientsAmount, qint8 serverAmount);
+    void setupNetwork();
 
 private slots:
     void openDocumentation();

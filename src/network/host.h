@@ -22,7 +22,11 @@ private:
     NetworkCard networkCard;
 
 public:
-    Host(const QHash<Port, Process> &processTable, const QHash<MACAddress, IPAddress> &hostTable, const QHash<QString, IPAddress> &domainTable, const NetworkCard &networkCard);
+    Host(const NetworkCard &networkCard);
+    QHash<Port, Process> getProcessTable() const;
+    QHash<MACAddress, IPAddress> getHostTable() const;
+    QHash<QString, IPAddress> getDomainTable() const;
+    NetworkCard getNetworkCard() const;
 };
 
 #endif // HOST_H

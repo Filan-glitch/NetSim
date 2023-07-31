@@ -1,20 +1,20 @@
 #include "headerAttribute.h"
 #include "ipv4.h"
 
-void IPv4::initHeader(qint16 id, bool DF, bool MF, qint16 fragmentOffset, qint8 ttl, qint8 protocol, const IPAddress &sourceAddress, const IPAddress &destinationAdress, Package& data)
+void IPv4::initHeader(quint16 id, bool DF, bool MF, quint16 fragmentOffset, quint8 ttl, quint8 protocol, const IPAddress &sourceAddress, const IPAddress &destinationAdress, Package& data)
 {
-    HeaderAttribute version("Version",4,4);
+    HeaderAttribute version("Version",static_cast<quint8>(4),static_cast<quint8>(4));
     //Will not be used, by default stores values between 5 or 6 we only store 5
-    HeaderAttribute IHL("Internet Header Length",4,5);
+    HeaderAttribute IHL("Internet Header Length",static_cast<quint8>(4),static_cast<quint8>(5));
     //Will not be used, is always 0 in this project
-    HeaderAttribute TOS("Type of Service",8,0);
+    HeaderAttribute TOS("Type of Service",static_cast<quint8>(8),static_cast<quint8>(0));
 
-    qint16 totalLength = data.getData().length() + 20;
+    quint16 totalLength = data.getData().length() + 20;
     HeaderAttribute length("Total Length",16,totalLength);
 
     HeaderAttribute identification("Identification", 16, id);
 
-    qint8 flagsVal = 0b00000000;
+    quint8 flagsVal = 0b00000000;
     setFlag(&flagsVal, DF, 1);
     setFlag(&flagsVal, MF, 2);
     HeaderAttribute flags("Flags", 3, flagsVal);
@@ -23,7 +23,7 @@ void IPv4::initHeader(qint16 id, bool DF, bool MF, qint16 fragmentOffset, qint8 
     HeaderAttribute timeToLive("Time to live", 8, ttl);
     HeaderAttribute nextProtocol("Protocol", 8, protocol);
 
-    HeaderAttribute checksum("Checksum", 16, getIPv4Checksum(
+    HeaderAttribute checksum("Checksum", 16, static_cast<quint8>(getIPv4Checksum(
                                                  totalLength,
                                                  id,
                                                  flagsVal,
@@ -33,13 +33,13 @@ void IPv4::initHeader(qint16 id, bool DF, bool MF, qint16 fragmentOffset, qint8 
                                                  sourceAddress.getAddressAsArray(),
                                                  destinationAdress.getAddressAsArray(),
                                                  data.getData().toStdString().c_str(),
-                                                 totalLength));
+                                                                           totalLength)));
 
     HeaderAttribute srcAdress("Source Adress", 32, sourceAddress.getAddressAsInt());
     HeaderAttribute destAdress("Destination Adress", 32, destinationAdress.getAddressAsInt());
 
     //The Options field is always 0, we do not provide options in IPv4 in this project
-    HeaderAttribute options("Options", 0,0);
+    HeaderAttribute options("Options", static_cast<quint8>(0), static_cast<quint8>(0));
 
     Header* ipHeader = new Header();
     ipHeader->setHeaderType(HeaderType::IP);
@@ -59,7 +59,7 @@ void IPv4::initHeader(qint16 id, bool DF, bool MF, qint16 fragmentOffset, qint8 
     data.addHeader(ipHeader);
 }
 
-QList<Package> IPv4::fragmentPackage(const Package &package, qint32 mtu)
+QList<Package> IPv4::fragmentPackage(const Package &package, quint32 mtu)
 {
     QList<Package> returnList = QList<Package>();
     auto packageAmount = package.getData().size()/mtu + 1;
@@ -78,7 +78,7 @@ QList<Package> IPv4::fragmentPackage(const Package &package, qint32 mtu)
     return returnList;
 }
 
-void IPv4::setFlag(qint8* flags, bool set, qint8 position){
+void IPv4::setFlag(quint8* flags, bool set, quint8 position){
     if (set) {
         // sets the bit at position
         *flags |= (1 << position);
@@ -88,9 +88,9 @@ void IPv4::setFlag(qint8* flags, bool set, qint8 position){
     }
 }
 
-qint16 IPv4::getIPv4Checksum(qint16 totalLength, qint16 id, qint8 flags, qint16 fragOffset, qint8 ttl, qint8 protocol, qint8* srcAddress, qint8* destAddress, const char* data, qint16 dataLength)
+quint16 IPv4::getIPv4Checksum(quint16 totalLength, quint16 id, quint8 flags, quint16 fragOffset, quint8 ttl, quint8 protocol, quint8* srcAddress, quint8* destAddress, const char* data, quint16 dataLength)
 {
-    qint32 checksum = 0;
+    quint32 checksum = 0;
 
     //Version
     checksum += 4;
@@ -138,12 +138,12 @@ qint16 IPv4::getIPv4Checksum(qint16 totalLength, qint16 id, qint8 flags, qint16 
     }
 
     // Splitting the source IP-Address into 2 16-bit parts with correct byte order
-    qint16 sourceIPAdressPart1 = (srcAddress[0] << 8) | (srcAddress[1] & 0xFF);
-    qint16 sourceIPAdressPart2 = (srcAddress[2] << 8) | (srcAddress[3] & 0xFF);
+    quint16 sourceIPAdressPart1 = (srcAddress[0] << 8) | (srcAddress[1] & 0xFF);
+    quint16 sourceIPAdressPart2 = (srcAddress[2] << 8) | (srcAddress[3] & 0xFF);
 
     // Splitting the destination IP-Address into 2 16-bit parts with correct byte order
-    qint16 destinationIPAdressPart1 = (destAddress[0] << 8) | (destAddress[1] & 0xFF);
-    qint16 destinationIPAdressPart2 = (destAddress[2] << 8) | (destAddress[3] & 0xFF);
+    quint16 destinationIPAdressPart1 = (destAddress[0] << 8) | (destAddress[1] & 0xFF);
+    quint16 destinationIPAdressPart2 = (destAddress[2] << 8) | (destAddress[3] & 0xFF);
 
     //Source IP Address
     checksum += sourceIPAdressPart1;
@@ -166,14 +166,14 @@ qint16 IPv4::getIPv4Checksum(qint16 totalLength, qint16 id, qint8 flags, qint16 
     }
 
     //Adding the Payload Data
-    for (int i = 0; i < dataLength; i += 2) {
-        qint16 dataWord = (data[i] << 8) | (data[i + 1] & 0xFF);
+    for (auto i = 0; i < dataLength; i += 2) {
+        quint16 dataWord = (data[i] << 8) | (data[i + 1] & 0xFF);
         checksum += dataWord;
         if (checksum >> 16)
             checksum = (checksum & 0xFFFF) + (checksum >> 16);
     }
 
-     qint16 finalChecksum = static_cast<qint16>(~checksum); //Converting back to qint16 -> Checksum is 16Bit in IPv4
+     quint16 finalChecksum = static_cast<quint16>(~checksum); //Converting back to qint16 -> Checksum is 16Bit in IPv4
 
     qInfo() << "IPv4 Checksum: " << ~finalChecksum;
     return ~finalChecksum;

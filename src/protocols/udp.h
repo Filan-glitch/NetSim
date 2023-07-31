@@ -23,11 +23,11 @@ public:
     * @param data
     * @par Initilizes an UDP Package and calculates its checksum
     */
-    static void initHeader(const Port &sourcePort, const Port &destinationPort, qint16 length, Package& data);
+    static void initHeader(const Port &sourcePort, const Port &destinationPort, quint16 length, Package& data);
 
 private:
-    static qint16 getChecksum(const char* data, qint16 length, qint16 sourcePort, qint16 destinationPort);
-    static qint16 overflowHandling(qint16 checksum);
+    static quint16 getChecksum(const char* data, quint16 length, quint16 sourcePort, quint16 destinationPort);
+    static quint16 overflowHandling(quint16 checksum);
 };
 
 #endif // UDP_H

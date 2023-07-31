@@ -6,10 +6,10 @@
 class Port
 {
 private:
-    qint16 portNumber;
+    quint16 portNumber;
 public:
-    Port(qint16 portNumber);
-    qint16 getPortNumber() const {
+    Port(quint16 portNumber);
+    quint16 getPortNumber() const {
         return portNumber;
     }
 };

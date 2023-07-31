@@ -28,12 +28,12 @@ public:
      * @param dataLength
      * @par adds a IPv4 Header to a package
      */
-    static void initHeader(qint16 id, bool DF, bool MF, qint16 fragmentOffset, qint8 ttl, qint8 protocol, const IPAddress &sourceAddress, const IPAddress &destinationAdress, Package& data);
+    static void initHeader(quint16 id, bool DF, bool MF, quint16 fragmentOffset, quint8 ttl, quint8 protocol, const IPAddress &sourceAddress, const IPAddress &destinationAdress, Package& data);
 
-    static QList<Package> fragmentPackage(const Package& package, qint32 mtu);
+    static QList<Package> fragmentPackage(const Package& package, quint32 mtu);
 private:
-    static qint16 getIPv4Checksum(qint16 totalLength, qint16 id, qint8 flags, qint16 fragOffset, qint8 ttl, qint8 protocol, qint8* srcAddress, qint8* destAddress, const char* data, qint16 dataLength);
-    static void setFlag(qint8* flags, bool set, qint8 position);
+    static quint16 getIPv4Checksum(quint16 totalLength, quint16 id, quint8 flags, quint16 fragOffset, quint8 ttl, quint8 protocol, quint8* srcAddress, quint8* destAddress, const char* data, quint16 dataLength);
+    static void setFlag(quint8* flags, bool set, quint8 position);
 };
 
 #endif // IPV4_H

@@ -32,11 +32,11 @@ public:
      * @param dataLength
      * @par adds a TCP-Header to a package and calculates its checksum
      */
-    static void initHeader(const IPAddress &srcAdress, const IPAddress &destAdress, const Port &sourcePort, const Port &destinationPort, qint32 seqNumber, qint32 ackNumber, bool ack,bool rst, bool syn, bool fin, qint16 window, Package& data, qint16 dataLength);
+    static void initHeader(const IPAddress &srcAdress, const IPAddress &destAdress, const Port &sourcePort, const Port &destinationPort, quint32 seqNumber, quint32 ackNumber, bool ack,bool rst, bool syn, bool fin, quint16 window, Package& data, quint16 dataLength);
 
 private:
-    static void setFlag(qint16* flags, bool set, qint16 position);
-    static qint16 getTCPChecksum(qint8* sourceAddress, qint8* destinationAddress, qint16 sourcePort, qint16 destinationPort, qint32 seqNumber, qint32 ackNumber, qint16 flags, const char* data, qint16 dataLength);
+    static void setFlag(quint16* flags, bool set, quint16 position);
+    static quint16 getTCPChecksum(quint8* sourceAddress, quint8* destinationAddress, quint16 sourcePort, quint16 destinationPort, quint32 seqNumber, quint32 ackNumber, quint16 flags, const char* data, quint16 dataLength);
 };
 
 #endif // TCP_H

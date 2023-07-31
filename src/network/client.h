@@ -5,10 +5,11 @@
 
 class Client : public Host
 {
-private:
-
 public:
-    Client();
+    Client(const NetworkCard &networkCard) : Host(networkCard)
+    {}
+
+
 };
 
 #endif // CLIENT_H

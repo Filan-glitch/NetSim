@@ -16,6 +16,9 @@ public:
     void addIPHeader(Package& data);
     void addMACHeader(Package& data);
     void sentToRouter(Package& data);
+    IPAddress getNetworkAddress() const;
+    MACAddress getPhysicalAddress() const;
+
 private:
     IPAddress networkAddress;
     MACAddress physicalAddress;
