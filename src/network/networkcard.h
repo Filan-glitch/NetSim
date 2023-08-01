@@ -11,17 +11,17 @@ class NetworkCard
 {
 public:
 
-    NetworkCard(const IPAddress &networkAddress, const MACAddress &physicalAddress):networkAddress(networkAddress), physicalAddress(physicalAddress){};
+    NetworkCard(IPAddress *networkAddress, MACAddress *physicalAddress) : networkAddress(networkAddress), physicalAddress(physicalAddress){};
 
     void addIPHeader(Package& data);
     void addMACHeader(Package& data);
     void sentToRouter(Package& data);
-    IPAddress getNetworkAddress() const;
-    MACAddress getPhysicalAddress() const;
+    IPAddress* getNetworkAddress() const;
+    MACAddress* getPhysicalAddress() const;
 
 private:
-    IPAddress networkAddress;
-    MACAddress physicalAddress;
+    IPAddress* networkAddress;
+    MACAddress* physicalAddress;
 };
 
 #endif // NETWORKCARD_H

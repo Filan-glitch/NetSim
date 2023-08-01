@@ -2,11 +2,11 @@
 #include "headerAttribute.h"
 
 
-void TCP::initHeader(const IPAddress &srcAdress, const IPAddress &destAdress, const Port &sourcePort, const Port &destinationPort, quint32 seqNumber, quint32 ackNumber, bool ack,bool rst, bool syn, bool fin, quint16 window, Package& data, quint16 dataLength){
-    HeaderAttribute srcPort("Source Port",16,sourcePort.getPortNumber());
-    HeaderAttribute dstPort("Destination Port",16,destinationPort.getPortNumber());
-    HeaderAttribute sequenceNumber("Sequence number",32,seqNumber);
-    HeaderAttribute acknowledgementNumber("Acknowledgment number",32,ackNumber);
+void TCP::initHeader(IPAddress *srcAdress, IPAddress *destAdress, Port *sourcePort, Port *destinationPort, quint32 seqNumber, quint32 ackNumber, bool ack, bool rst, bool syn, bool fin, quint16 window, Package& data, quint16 dataLength){
+    HeaderAttribute* srcPort = new HeaderAttribute("Source Port",16,sourcePort->getPortNumber());
+    HeaderAttribute* dstPort = new HeaderAttribute("Destination Port",16,destinationPort->getPortNumber());
+    HeaderAttribute* sequenceNumber = new HeaderAttribute("Sequence number",32,seqNumber);
+    HeaderAttribute* acknowledgementNumber = new HeaderAttribute("Acknowledgment number",32,ackNumber);
 
     //Sets the flags for the TCP Header Urgent and Push flag are always 0
     quint16 flags = 0x0000000000000000;
@@ -16,14 +16,14 @@ void TCP::initHeader(const IPAddress &srcAdress, const IPAddress &destAdress, co
     setFlag(&flags,fin,15);
 
     //Data-Offset is always 0, because we don't use the options TCP provides in this project
-    HeaderAttribute flag("Flags",16,flags);
-    HeaderAttribute windowSize("window",16,window);
+    HeaderAttribute* flag = new HeaderAttribute("Flags",16,flags);
+    HeaderAttribute* windowSize = new HeaderAttribute("window",16,window);
 
-    HeaderAttribute checksum("TCP Checksum",16,
-                             getTCPChecksum(srcAdress.getAddressAsArray(),
-                                            destAdress.getAddressAsArray(),
-                                            sourcePort.getPortNumber(),
-                                            destinationPort.getPortNumber(),
+    HeaderAttribute* checksum = new HeaderAttribute("TCP Checksum",16,
+                                            getTCPChecksum(srcAdress->getAddressAsArray(),
+                                            destAdress->getAddressAsArray(),
+                                            sourcePort->getPortNumber(),
+                                            destinationPort->getPortNumber(),
                                             seqNumber,
                                             ackNumber,
                                             flags,
@@ -32,8 +32,8 @@ void TCP::initHeader(const IPAddress &srcAdress, const IPAddress &destAdress, co
 
     //The urgent pointer is always 0 in our case
     quint16 urgent_pointer = 0b0000000000000000;
-    HeaderAttribute urgentPointer("Urgent Pointer",16,urgent_pointer);
-    HeaderAttribute options("Options",static_cast<quint8>(0),static_cast<quint8>(0));
+    HeaderAttribute* urgentPointer = new HeaderAttribute("Urgent Pointer",16,urgent_pointer);
+    HeaderAttribute* options = new HeaderAttribute("Options",static_cast<quint8>(0),static_cast<quint8>(0));
 
     Header* tcpHeader = new Header();
     tcpHeader->setHeaderType(HeaderType::TCP);

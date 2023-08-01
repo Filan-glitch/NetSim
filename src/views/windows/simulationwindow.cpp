@@ -1,7 +1,6 @@
 #include "simulationwindow.h"
 #include "src/views/widgets/clientwidget.h"
 #include "src/views/widgets/serverwidget.h"
-#include "src/views/widgets/connectionwidget.h"
 #include "src/views/widgets/routerwidget.h"
 #include "ui_simulationwindow.h"
 #include <QLabel>

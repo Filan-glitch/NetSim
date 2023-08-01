@@ -28,7 +28,7 @@ public:
      * @param dataLength
      * @par adds a IPv4 Header to a package
      */
-    static void initHeader(quint16 id, bool DF, bool MF, quint16 fragmentOffset, quint8 ttl, quint8 protocol, const IPAddress &sourceAddress, const IPAddress &destinationAdress, Package& data);
+    static void initHeader(quint16 id, bool DF, bool MF, quint16 fragmentOffset, quint8 ttl, quint8 protocol, IPAddress *sourceAddress, IPAddress *destinationAdress, Package& data);
 
     static QList<Package> fragmentPackage(const Package& package, quint32 mtu);
 private:

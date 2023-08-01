@@ -1,45 +1,45 @@
 #include "headerAttribute.h"
 #include "ipv4.h"
 
-void IPv4::initHeader(quint16 id, bool DF, bool MF, quint16 fragmentOffset, quint8 ttl, quint8 protocol, const IPAddress &sourceAddress, const IPAddress &destinationAdress, Package& data)
+void IPv4::initHeader(quint16 id, bool DF, bool MF, quint16 fragmentOffset, quint8 ttl, quint8 protocol, IPAddress *sourceAddress, IPAddress *destinationAdress, Package& data)
 {
-    HeaderAttribute version("Version",static_cast<quint8>(4),static_cast<quint8>(4));
+    HeaderAttribute* version = new HeaderAttribute("Version",static_cast<quint8>(4),static_cast<quint8>(4));
     //Will not be used, by default stores values between 5 or 6 we only store 5
-    HeaderAttribute IHL("Internet Header Length",static_cast<quint8>(4),static_cast<quint8>(5));
+    HeaderAttribute* IHL = new HeaderAttribute("Internet Header Length",static_cast<quint8>(4),static_cast<quint8>(5));
     //Will not be used, is always 0 in this project
-    HeaderAttribute TOS("Type of Service",static_cast<quint8>(8),static_cast<quint8>(0));
+    HeaderAttribute* TOS = new HeaderAttribute("Type of Service",static_cast<quint8>(8),static_cast<quint8>(0));
 
     quint16 totalLength = data.getData().length() + 20;
-    HeaderAttribute length("Total Length",16,totalLength);
+    HeaderAttribute* length = new HeaderAttribute("Total Length",16,totalLength);
 
-    HeaderAttribute identification("Identification", 16, id);
+    HeaderAttribute* identification = new HeaderAttribute("Identification", 16, id);
 
     quint8 flagsVal = 0b00000000;
     setFlag(&flagsVal, DF, 1);
     setFlag(&flagsVal, MF, 2);
-    HeaderAttribute flags("Flags", 3, flagsVal);
+    HeaderAttribute* flags = new HeaderAttribute("Flags", 3, flagsVal);
 
-    HeaderAttribute fragOffset("Fragment Offset", 16, fragmentOffset);
-    HeaderAttribute timeToLive("Time to live", 8, ttl);
-    HeaderAttribute nextProtocol("Protocol", 8, protocol);
+    HeaderAttribute* fragOffset = new HeaderAttribute("Fragment Offset", 16, fragmentOffset);
+    HeaderAttribute* timeToLive = new HeaderAttribute("Time to live", 8, ttl);
+    HeaderAttribute* nextProtocol = new HeaderAttribute("Protocol", 8, protocol);
 
-    HeaderAttribute checksum("Checksum", 16, static_cast<quint8>(getIPv4Checksum(
+    HeaderAttribute* checksum = new HeaderAttribute("Checksum", 16, static_cast<quint8>(getIPv4Checksum(
                                                  totalLength,
                                                  id,
                                                  flagsVal,
                                                  fragmentOffset,
                                                  ttl,
                                                  protocol,
-                                                 sourceAddress.getAddressAsArray(),
-                                                 destinationAdress.getAddressAsArray(),
+                                                                                 sourceAddress->getAddressAsArray(),
+                                                                                 destinationAdress->getAddressAsArray(),
                                                  data.getData().toStdString().c_str(),
                                                                            totalLength)));
 
-    HeaderAttribute srcAdress("Source Adress", 32, sourceAddress.getAddressAsInt());
-    HeaderAttribute destAdress("Destination Adress", 32, destinationAdress.getAddressAsInt());
+    HeaderAttribute* srcAdress = new HeaderAttribute("Source Adress", 32, sourceAddress->getAddressAsInt());
+    HeaderAttribute* destAdress = new HeaderAttribute("Destination Adress", 32, destinationAdress->getAddressAsInt());
 
     //The Options field is always 0, we do not provide options in IPv4 in this project
-    HeaderAttribute options("Options", static_cast<quint8>(0), static_cast<quint8>(0));
+    HeaderAttribute* options = new HeaderAttribute("Options", static_cast<quint8>(0), static_cast<quint8>(0));
 
     Header* ipHeader = new Header();
     ipHeader->setHeaderType(HeaderType::IP);

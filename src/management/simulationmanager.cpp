@@ -5,15 +5,15 @@ SimulationManager::SimulationManager(quint8 clientAmount, quint8 serverAmount)
     //Erstelle die Clients
     for (quint8 i = 0; i < clientAmount; i++)
     {
-        quint8 ipAddress[4] = {192, 168, 178, i};
-        clients.append(new Client(NetworkCard(IPAddress(ipAddress), MACAddress::getRandomAddress())));
+        quint8 ipAddress[4] = {192, 168, 178, static_cast<quint8>(QString::number(i).toInt())};
+        clients.append(new Client(new NetworkCard(new IPAddress(ipAddress), MACAddress::getRandomAddress())));
     }
 
     //Erstelle die Server
     for (auto i = 0; i < serverAmount; i++)
     {
         quint8 ipAddress[4] = {216, 188, 21, 2};
-        server.append(new Server(NetworkCard(IPAddress(ipAddress), MACAddress::getRandomAddress())));
+        server.append(new Server(new NetworkCard(new IPAddress(ipAddress), MACAddress::getRandomAddress())));
     }
 
     //Erstelle die Router

@@ -8,7 +8,7 @@
 class Router
 {
 private:
-    QHash<QString, IPAddress> domainTable;
+    QHash<QString, IPAddress*> domainTable;
 public:
     Router()
     {}

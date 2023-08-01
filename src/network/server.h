@@ -7,7 +7,7 @@
 class Server : public Host
 {
 public:
-    Server(const NetworkCard &networkCard) : Host(networkCard)
+    Server(NetworkCard* networkCard) : Host(networkCard)
     {}
 
     void getRequest();

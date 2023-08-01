@@ -19,19 +19,28 @@ class Header
 private:
     HeaderType headerType;
 protected:
-    QList<HeaderAttribute> headerList;
+    QList<HeaderAttribute*> headerList;
 public:
     /**
      * @brief Header
-     * @param headerList
-     * @param headerType
-     * @par Constructor of a Header, needs a QList with all HeaderAttributes
+     * @par Constructor of a Header
      */
-    Header(const HeaderType& headerType, const QList<HeaderAttribute> &headerList);
+    Header() {}
 
-    Header();
+    /**
+     * @brief Header
+     * @par Constructor of a Header
+     * @param headerType
+     * @param headerList
+     */
+    Header(HeaderType headerType, const QList<HeaderAttribute*> &headerList) : headerType(headerType), headerList(headerList) {}
 
-    virtual void addHeaderAttribute(const HeaderAttribute& headerAttribute){
+    virtual ~Header() {
+        for(int i = 0; i < headerList.size(); i++)
+            delete headerList[i];
+    }
+
+    virtual void addHeaderAttribute(HeaderAttribute* headerAttribute){
         headerList.append(headerAttribute);
     }
 
@@ -39,7 +48,7 @@ public:
         this->headerType = headerType;
     }
 
-    virtual QList<HeaderAttribute> getHeaderList() const {
+    virtual QList<HeaderAttribute*> getHeaderList() const {
         return headerList;
     }
 

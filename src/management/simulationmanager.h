@@ -13,9 +13,9 @@ public:
     quint8 getClientsAmount() const;
     quint8 getServerAmount() const;
 
-    QList<Server *> getServer() const;
-    QList<Client *> getClients() const;
-    QList<Router *> getRouters() const;
+    QList<Server*> getServer() const;
+    QList<Client*> getClients() const;
+    QList<Router*> getRouters() const;
 
 private:
     QList<Server*> server;

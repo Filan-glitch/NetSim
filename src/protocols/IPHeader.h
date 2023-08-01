@@ -8,12 +8,12 @@ class IPHeader : virtual public Header
 {
 public:
     IPHeader() : Header{} {}
-    IPHeader(const HeaderType& headerType, const QList<HeaderAttribute> &headerList) : Header(headerType, headerList){}
+    IPHeader(const HeaderType& headerType, const QList<HeaderAttribute*> &headerList) : Header(headerType, headerList){}
     inline IPAddress getSourceAddress() const {
-        return IPAddress(headerList.at(10).getContentAsArray());
+        return IPAddress(headerList.at(10)->getContentAsArray());
     }
     inline IPAddress getDestinationAddress() const {
-        return IPAddress(headerList.at(11).getContentAsArray());
+        return IPAddress(headerList.at(11)->getContentAsArray());
     }
 };
 

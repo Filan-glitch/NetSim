@@ -8,10 +8,17 @@ class Package
 {
 private:
     QList<Header*> headers;
-    QString summary;
+    QString info;
     QString content;
 public:
-    Package(const QString& summary, const QString& content);
+    Package(const QString& info, const QString &content) : headers(QList<Header*>()), info(info), content(content)
+    {}
+
+    ~Package(){
+        for (int i = 0; i < headers.size(); i++) {
+            delete headers[i];
+        }
+    }
 
     QString getData() const {
         return content;
@@ -32,6 +39,10 @@ public:
 
     void addHeader(Header* header){
         headers.append(header);
+    }
+
+    QString getInfo() const {
+        return info;
     }
     
 };

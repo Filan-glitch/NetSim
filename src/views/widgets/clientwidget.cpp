@@ -11,8 +11,14 @@ ClientWidget::ClientWidget(Client* client, QWidget *parent)
     //Set the Icon
     m_button->setIcon(QIcon(":/client.svg"));
     m_button->setIconSize(QSize(64, 64));
+    m_button->setFixedSize(QSize(64, 64));
 
-    m_ipLabel->setText("IP-Adresse: " + m_client->getNetworkCard().getNetworkAddress().getAddressAsDecString());
-    m_macLabel->setText("MAC-Adresse: " + m_client->getNetworkCard().getPhysicalAddress().getAddressAsString());
+    m_ipLabel->setText("IP-Adresse: " + m_client->getNetworkCard()->getNetworkAddress()->getAddressAsDecString());
+    m_macLabel->setText("MAC-Adresse: " + m_client->getNetworkCard()->getPhysicalAddress()->getAddressAsString());
 
+    //Erstelle Layout
+    m_layout = new QVBoxLayout(this);
+    m_layout->addWidget(m_button);
+    m_layout->addWidget(m_ipLabel);
+    m_layout->addWidget(m_macLabel);
 }

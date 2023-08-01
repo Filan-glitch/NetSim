@@ -9,5 +9,6 @@ RouterWidget::RouterWidget(Router *router, QWidget *parent)
     //Set the Icon
     m_button->setIcon(QIcon(":/router.svg"));
     m_button->setIconSize(QSize(64, 64));
+    m_button->setFixedSize(QSize(64, 64));
 
 }
