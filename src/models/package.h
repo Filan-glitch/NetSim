@@ -21,6 +21,7 @@ public:
     Header getHeaderByType(const HeaderType& type) const;
 
     void addHeader(const Header &header);
+    void setContent(QString content);
 
     QString getInfo() const;
     
