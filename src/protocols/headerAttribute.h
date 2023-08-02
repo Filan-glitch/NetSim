@@ -31,18 +31,14 @@ public:
      * @return Name
      * @par Returns the name of the HeaderAttribute
      */
-    QString getName() const{
-        return this->name;
-    }
+    QString getName() const;
 
     /**
      * @brief GetSizeInBit
      * @return SizeInBit
      * @par Returns the size of the HeaderAttribute in bits
      */
-    quint32 getSizeInBit() const{
-        return this->sizeInBit;
-    }
+    quint32 getSizeInBit() const;
 
     /**
      * @brief GetContent

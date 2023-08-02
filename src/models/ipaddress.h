@@ -1,6 +1,7 @@
 #ifndef IPADDRESS_H
 #define IPADDRESS_H
 
+#include <QRandomGenerator>
 #include <QString>
 #include <QTextStream>
 
@@ -11,21 +12,16 @@ private:
 
 public:
     IPAddress(quint8* address);
-    QString getAddressAsDecString() const {
-        QString result;
-        QTextStream(&result) << address[0] << "." << address[1] << "." << address[2] << "." << address[3];
-        return result;
-    }
-    quint8* getAddressAsArray() const {
-        return address;
-    }
-    quint32 getAddressAsInt() const{
-        quint32 returnAddress = address[0];
-        returnAddress = (returnAddress << 8) + address[1];
-        returnAddress = (returnAddress << 8) + address[2];
-        returnAddress = (returnAddress << 8) + address[3];
-        return  returnAddress;
-    }
+
+    ~IPAddress();
+
+    QString getAddressAsDecString() const;
+
+    quint8* getAddressAsArray() const;
+
+    quint32 getAddressAsInt() const;
+
+    static IPAddress* getRandomAddress();
 };
 
 #endif // IPADDRESS_H

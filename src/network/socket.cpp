@@ -16,6 +16,11 @@ void Socket::addUDPHeader(Package& data)
     UDP::initHeader(this->sourcePort, this->destinationPort,0,data);
 }
 
-Socket::Socket(const Port &sourcePort, const Port &destinationPort) : sourcePort(sourcePort),
+void Socket::sentPackageToNetworkCard(Package &data)
+{
+    
+}
+
+Socket::Socket(Port *sourcePort, Port *destinationPort) : sourcePort(sourcePort),
     destinationPort(destinationPort)
 {}

@@ -24,8 +24,8 @@ private slots:
 
 private:
     Ui::SettingsDialog *ui;
-    quint8 clientsAmount;
-    quint8 serverAmount;
+    quint8 clientsAmount = 1;
+    quint8 serverAmount = 1;
 };
 
 #endif // SETTINGSDIALOG_H

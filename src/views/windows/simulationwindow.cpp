@@ -1,7 +1,6 @@
 #include "simulationwindow.h"
 #include "src/views/widgets/clientwidget.h"
 #include "src/views/widgets/serverwidget.h"
-#include "src/views/widgets/connectionwidget.h"
 #include "src/views/widgets/routerwidget.h"
 #include "ui_simulationwindow.h"
 #include <QLabel>
@@ -62,6 +61,11 @@ void SimulationWindow::setupNetwork()
     for(auto i = 0; i < manager->getServerAmount(); i++) {
         ServerWidget* serverWidget = new ServerWidget(manager->getServer().at(i), this);
         mainLayout->addWidget(serverWidget, i, 0);
+    }
+
+    for(auto i = 1; i <= manager->getServerAmount(); i++) {
+        RouterWidget* routerWidget = new RouterWidget(manager->getRouters().at(i), this);
+        mainLayout->addWidget(routerWidget, i - 1, 1);
     }
 }
 

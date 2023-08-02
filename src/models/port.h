@@ -9,9 +9,7 @@ private:
     quint16 portNumber;
 public:
     Port(quint16 portNumber);
-    quint16 getPortNumber() const {
-        return portNumber;
-    }
+    quint16 getPortNumber() const;
 };
 
 #endif // PORT_H

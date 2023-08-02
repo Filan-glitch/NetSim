@@ -20,7 +20,7 @@ public:
      * @param lengthField
      * @par Adds a MAC-Header to a package
      */
-    static void initHeader(Package& data, const MACAddress &destMACAdress, const MACAddress &srcMACAdress, quint16 lengthField);
+    static void initHeader(Package& data, MACAddress *destMACAdress, MACAddress *srcMACAdress, quint16 lengthField);
 
 private:
     /**
@@ -32,7 +32,7 @@ private:
      * @return Frame Check Sequenz
      * @par Return the Frame Check Sequenz of a Ethernet II Header
      */
-    static quint32 getFCS(const MACAddress &destMACAdress, const MACAddress &srcMACAdress, quint16 etherType, Package &data);
+    static quint32 getFCS(MACAddress *destMACAdress, MACAddress *srcMACAdress, quint16 etherType, Package &data);
     /**
      * @brief calculateCRC32
      * @param data

@@ -1,11 +1,28 @@
 #include "networkcard.h"
 
-IPAddress NetworkCard::getNetworkAddress() const
+NetworkCard::NetworkCard(IPAddress *networkAddress, MACAddress *physicalAddress) : networkAddress(networkAddress), physicalAddress(physicalAddress){}
+
+void NetworkCard::addIPHeader(Package &data)
+{
+
+}
+
+void NetworkCard::addMACHeader(Package &data)
+{
+
+}
+
+void NetworkCard::sentToRouter(Package &data)
+{
+
+}
+
+IPAddress* NetworkCard::getNetworkAddress() const
 {
     return networkAddress;
 }
 
-MACAddress NetworkCard::getPhysicalAddress() const
+MACAddress* NetworkCard::getPhysicalAddress() const
 {
     return physicalAddress;
 }

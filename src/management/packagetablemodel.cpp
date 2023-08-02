@@ -17,7 +17,7 @@ QVariant PackageTableModel::headerData(int section, Qt::Orientation orientation,
             case 1:
                 return tr("Destination");
             case 2:
-                return tr("Size");
+                return tr("Protocol");
             case 3:
                 return tr("Info");
             }
@@ -57,8 +57,11 @@ QVariant PackageTableModel::data(const QModelIndex &index, int role) const
             return dynamic_cast<IPHeader*>(package.getHeaderByType(HeaderType::IP))->getSourceAddress().getAddressAsDecString();
         case 1:
             return dynamic_cast<IPHeader*>(package.getHeaderByType(HeaderType::IP))->getDestinationAddress().getAddressAsDecString();
+        case 2:
+            //TODO: add protocol name
+        case 3:
+            return package.getInfo();
         }
-        //TODO: add other columns
     }
     return QVariant();
 }

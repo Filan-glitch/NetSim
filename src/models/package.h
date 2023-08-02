@@ -8,31 +8,22 @@ class Package
 {
 private:
     QList<Header*> headers;
-    QString summary;
+    QString info;
     QString content;
 public:
-    Package(const QString& summary, const QString& content);
+    Package(const QString& info, const QString &content);
 
-    QString getData() const {
-        return content;
-    }
+    ~Package();
 
-    QList<Header*> getHeaders() const {
-        return headers;
-    }
+    QString getData() const;
 
-    Header* getHeaderByType(const HeaderType& type) const {
-        for (int i = 0; i < headers.size(); i++) {
-            if (headers[i]->getType() == type) {
-                return headers[i];
-            }
-        }
-        return new Header();
-    }
+    QList<Header*> getHeaders() const;
 
-    void addHeader(Header* header){
-        headers.append(header);
-    }
+    Header* getHeaderByType(const HeaderType& type) const;
+
+    void addHeader(Header* header);
+
+    QString getInfo() const;
     
 };
 

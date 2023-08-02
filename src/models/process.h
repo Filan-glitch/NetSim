@@ -10,10 +10,10 @@ class Process
 public:
     Process();
 
-    void httpGetRequest(const QString &url, const Port &sourcePort);
-    void openSocket(const Port &sourcePort);
+    void httpGetRequest(const QString &url, Port *sourcePort);
+    void openSocket(Port *sourcePort);
 private:
-    Socket socket;
+    Socket* socket;
 };
 
 #endif // PROCESS_H

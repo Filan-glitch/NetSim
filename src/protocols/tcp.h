@@ -32,7 +32,7 @@ public:
      * @param dataLength
      * @par adds a TCP-Header to a package and calculates its checksum
      */
-    static void initHeader(const IPAddress &srcAdress, const IPAddress &destAdress, const Port &sourcePort, const Port &destinationPort, quint32 seqNumber, quint32 ackNumber, bool ack,bool rst, bool syn, bool fin, quint16 window, Package& data, quint16 dataLength);
+    static void initHeader(IPAddress *srcAdress, IPAddress *destAdress, Port *sourcePort, Port *destinationPort, quint32 seqNumber, quint32 ackNumber, bool ack,bool rst, bool syn, bool fin, quint16 window, Package& data, quint16 dataLength);
 
 private:
     /**
