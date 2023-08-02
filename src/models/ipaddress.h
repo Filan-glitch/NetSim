@@ -4,24 +4,23 @@
 #include <QRandomGenerator>
 #include <QString>
 #include <QTextStream>
+#include <QVector>
 
 class IPAddress
 {
 private:
-    quint8* address;
+    QVector<quint8> address;
 
 public:
-    IPAddress(quint8* address);
-
-    ~IPAddress();
+    IPAddress(const QVector<quint8> &address);
 
     QString getAddressAsDecString() const;
 
-    quint8* getAddressAsArray() const;
+    QVector<quint8> getAddressAsArray() const;
 
     quint32 getAddressAsInt() const;
 
-    static IPAddress* getRandomAddress();
+    static IPAddress getRandomAddress(bool isLocal = false);
 };
 
 #endif // IPADDRESS_H

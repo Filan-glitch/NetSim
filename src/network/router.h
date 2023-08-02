@@ -9,18 +9,18 @@
 class Router
 {
 private:
-    QHash<QString, IPAddress*> domainTable;
-    NetworkCard* networkCard;
-    IPAddress* globalIpAddress;
+    QHash<QString, IPAddress> domainTable;
+    NetworkCard networkCard;
+    IPAddress globalIpAddress;
 public:
     Router();
 
-    void addDomain(QString domain, IPAddress* ipAddress);
+    void addDomain(const QString &domain, const IPAddress &ipAddress);
     bool initializeServerConnection();
     void getPackage();
     void forwardPackage();
-    IPAddress *getGlobalIpAddress() const;
-    NetworkCard *getNetworkCard() const;
+    IPAddress getGlobalIpAddress() const;
+    NetworkCard getNetworkCard() const;
 };
 
 #endif // ROUTER_H

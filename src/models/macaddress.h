@@ -3,23 +3,22 @@
 
 #include <QString>
 #include <QRandomGenerator>
+#include <QVector>
 
 using namespace Qt;
 
 class MACAddress
 {
 private:
-    quint8* address;
+    QVector<quint8> address;
 public:
-    MACAddress(quint8 *address);
-
-    ~MACAddress();
+    MACAddress(const QVector<quint8> &address);
 
     QString getAddressAsString() const;
-    quint8* getAddressAsArray() const;
+    QVector<quint8> getAddressAsArray() const;
     quint64 getAddressAsInt() const;
 
-    static MACAddress* getRandomAddress();
+    static MACAddress getRandomAddress();
 };
 
 

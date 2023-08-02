@@ -4,14 +4,10 @@
 
 Header::Header() {}
 
-Header::Header(HeaderType headerType, const QList<HeaderAttribute *> &headerList) : headerType(headerType), headerList(headerList) {}
+Header::Header(const HeaderType &headerType, const QList<HeaderAttribute> &headerList) : headerType(headerType), headerList(headerList) {}
 
-Header::~Header() {
-    for(int i = 0; i < headerList.size(); i++)
-        delete headerList[i];
-}
 
-void Header::addHeaderAttribute(HeaderAttribute *headerAttribute){
+void Header::addHeaderAttribute(const HeaderAttribute &headerAttribute){
     headerList.append(headerAttribute);
 }
 
@@ -19,10 +15,10 @@ void Header::setHeaderType(const HeaderType &headerType){
     this->headerType = headerType;
 }
 
-QList<HeaderAttribute *> Header::getHeaderList() const {
+QList<HeaderAttribute> Header::getHeaderList() const {
     return headerList;
 }
 
-HeaderType &Header::getType() {
+HeaderType Header::getType() const {
     return headerType;
 }

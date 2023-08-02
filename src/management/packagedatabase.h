@@ -12,7 +12,6 @@ private:
 
 public:
     QList<Package>* packageList();
-
     static PackageDatabase* instance();
 };
 

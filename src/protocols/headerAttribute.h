@@ -2,6 +2,7 @@
 #define HEADERATTRIBUTE_H
 
 #include <QString>
+#include <QVector>
 
 
 /**
@@ -21,10 +22,8 @@ public:
     HeaderAttribute(const QString &name, quint32 sizeInBit, quint16 content);
     HeaderAttribute(const QString &name, quint32 sizeInBit, quint32 content);
     HeaderAttribute(const QString &name, quint32 sizeInBit, quint64 content);
-    HeaderAttribute(const QString &name, quint32 sizeInBit, quint8 *content);
+    HeaderAttribute(const QString &name, quint32 sizeInBit, const QVector<quint8> &content);
     HeaderAttribute(const QString &name, quint32 sizeInBit, const QString &content);
-
-    ~HeaderAttribute();
 
     /**
      * @brief GetName
@@ -52,13 +51,13 @@ public:
      * @return Content
      * @par Returns the content of the HeaderAttribute as bits as an array
      */
-    quint8* getContentAsArray() const;
+    QVector<quint8> getContentAsArray() const;
 
 
 private:
     QString name;
     quint32 sizeInBit;
-    quint8* content;
+    QVector<quint8> content;
 };
 
 #endif // HEADERATTRIBUTE_H

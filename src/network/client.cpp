@@ -1,5 +1,5 @@
 #include "client.h"
 
 
-Client::Client(NetworkCard *networkCard) : Host(networkCard)
+Client::Client(const NetworkCard &networkCard) : Host(networkCard)
 {}

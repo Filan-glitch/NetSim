@@ -21,7 +21,7 @@ public:
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
     // Add data:
-    void addPackage(const Package& package);
+    void addPackage(const Package &package);
 
 private:
     QList<Package>* m_packageList;

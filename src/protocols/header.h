@@ -19,7 +19,7 @@ class Header
 private:
     HeaderType headerType;
 protected:
-    QList<HeaderAttribute*> headerList;
+    QList<HeaderAttribute> headerList;
 public:
     /**
      * @brief Header
@@ -33,17 +33,15 @@ public:
      * @param headerType
      * @param headerList
      */
-    Header(HeaderType headerType, const QList<HeaderAttribute*> &headerList);
+    Header(const HeaderType &headerType, const QList<HeaderAttribute> &headerList);
 
-    virtual ~Header();
+    void addHeaderAttribute(const HeaderAttribute &headerAttribute);
 
-    virtual void addHeaderAttribute(HeaderAttribute* headerAttribute);
+    void setHeaderType(const HeaderType& headerType);
 
-    virtual void setHeaderType(const HeaderType& headerType);
+    QList<HeaderAttribute> getHeaderList() const;
 
-    virtual QList<HeaderAttribute*> getHeaderList() const;
-
-    virtual HeaderType& getType();
+    HeaderType getType() const;
 };
 
 #endif // HEADER_H

@@ -9,14 +9,15 @@
 class Socket
 {
 public:
-    Socket(Port *sourcePort, Port *destinationPort);
+    Socket();
+    Socket(const Port &sourcePort, const Port &destinationPort);
 
     void addTCPHeader(Package& data);
     void addUDPHeader(Package& data);
     void sentPackageToNetworkCard(Package& data);
 private:
-    Port* sourcePort;
-    Port* destinationPort;
+    Port sourcePort;
+    Port destinationPort;
 };
 
 #endif // SOCKET_H
