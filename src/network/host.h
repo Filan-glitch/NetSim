@@ -16,17 +16,17 @@
 class Host
 {
 private:
-    QHash<Port*, Process*> processTable;
-    QHash<MACAddress*, IPAddress*> hostTable;
-    QHash<QString, IPAddress*> domainTable;
-    NetworkCard* networkCard;
+    QHash<Port, Process> processTable;
+    QHash<MACAddress, IPAddress> hostTable;
+    QHash<QString, IPAddress> domainTable;
+    NetworkCard networkCard;
 
 public:
-    Host(NetworkCard *networkCard);
-    QHash<Port*, Process*> getProcessTable() const;
-    QHash<MACAddress*, IPAddress*> getHostTable() const;
-    QHash<QString, IPAddress*> getDomainTable() const;
-    NetworkCard* getNetworkCard() const;
+    Host(const NetworkCard &networkCard);
+    QHash<Port, Process> getProcessTable() const;
+    QHash<MACAddress, IPAddress> getHostTable() const;
+    QHash<QString, IPAddress> getDomainTable() const;
+    NetworkCard getNetworkCard() const;
 };
 
 #endif // HOST_H

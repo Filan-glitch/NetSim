@@ -1,60 +1,60 @@
 #include "headerAttribute.h"
 #include "ipv4.h"
 
-void IPv4::initHeader(quint16 id, bool DF, bool MF, quint16 fragmentOffset, quint8 ttl, quint8 protocol, IPAddress *sourceAddress, IPAddress *destinationAdress, Package& data)
+void IPv4::initHeader(quint16 id, bool DF, bool MF, quint16 fragmentOffset, quint8 ttl, quint8 protocol, const IPAddress &sourceAddress, const IPAddress &destinationAdress, Package &data)
 {
-    HeaderAttribute* version = new HeaderAttribute("Version",static_cast<quint8>(4),static_cast<quint8>(4));
+    HeaderAttribute version("Version",static_cast<quint8>(4),static_cast<quint8>(4));
     //Will not be used, by default stores values between 5 or 6 we only store 5
-    HeaderAttribute* IHL = new HeaderAttribute("Internet Header Length",static_cast<quint8>(4),static_cast<quint8>(5));
+    HeaderAttribute IHL("Internet Header Length",static_cast<quint8>(4),static_cast<quint8>(5));
     //Will not be used, is always 0 in this project
-    HeaderAttribute* TOS = new HeaderAttribute("Type of Service",static_cast<quint8>(8),static_cast<quint8>(0));
+    HeaderAttribute TOS("Type of Service",static_cast<quint8>(8),static_cast<quint8>(0));
 
     quint16 totalLength = data.getData().length() + 20;
-    HeaderAttribute* length = new HeaderAttribute("Total Length",16,totalLength);
+    HeaderAttribute length("Total Length",16,totalLength);
 
-    HeaderAttribute* identification = new HeaderAttribute("Identification", 16, id);
+    HeaderAttribute identification("Identification", 16, id);
 
     quint8 flagsVal = 0b00000000;
     setFlag(&flagsVal, DF, 1);
     setFlag(&flagsVal, MF, 2);
-    HeaderAttribute* flags = new HeaderAttribute("Flags", 3, flagsVal);
+    HeaderAttribute flags("Flags", 3, flagsVal);
 
-    HeaderAttribute* fragOffset = new HeaderAttribute("Fragment Offset", 16, fragmentOffset);
-    HeaderAttribute* timeToLive = new HeaderAttribute("Time to live", 8, ttl);
-    HeaderAttribute* nextProtocol = new HeaderAttribute("Protocol", 8, protocol);
+    HeaderAttribute fragOffset("Fragment Offset", 16, fragmentOffset);
+    HeaderAttribute timeToLive("Time to live", 8, ttl);
+    HeaderAttribute nextProtocol("Protocol", 8, protocol);
 
-    HeaderAttribute* checksum = new HeaderAttribute("Checksum", 16, static_cast<quint8>(getIPv4Checksum(
+    HeaderAttribute checksum("Checksum", 16, static_cast<quint8>(getIPv4Checksum(
                                                  totalLength,
                                                  id,
                                                  flagsVal,
                                                  fragmentOffset,
                                                  ttl,
                                                  protocol,
-                                                                                 sourceAddress->getAddressAsArray(),
-                                                                                 destinationAdress->getAddressAsArray(),
+                                                 sourceAddress.getAddressAsArray(),
+                                                 destinationAdress.getAddressAsArray(),
                                                  data.getData().toStdString().c_str(),
                                                                            totalLength)));
 
-    HeaderAttribute* srcAdress = new HeaderAttribute("Source Address", 32, sourceAddress->getAddressAsInt());
-    HeaderAttribute* destAdress = new HeaderAttribute("Destination Address", 32, destinationAdress->getAddressAsInt());
+    HeaderAttribute srcAdress("Source Address", 32, sourceAddress.getAddressAsInt());
+    HeaderAttribute destAdress("Destination Address", 32, destinationAdress.getAddressAsInt());
 
     //The Options field is always 0, we do not provide options in IPv4 in this project
-    HeaderAttribute* options = new HeaderAttribute("Options", static_cast<quint8>(0), static_cast<quint8>(0));
+    HeaderAttribute options("Options", static_cast<quint8>(0), static_cast<quint8>(0));
 
-    Header* ipHeader = new Header();
-    ipHeader->setHeaderType(HeaderType::IP);
-    ipHeader->addHeaderAttribute(version);
-    ipHeader->addHeaderAttribute(IHL);
-    ipHeader->addHeaderAttribute(TOS);
-    ipHeader->addHeaderAttribute(length);
-    ipHeader->addHeaderAttribute(identification);
-    ipHeader->addHeaderAttribute(flags);
-    ipHeader->addHeaderAttribute(fragOffset);
-    ipHeader->addHeaderAttribute(timeToLive);
-    ipHeader->addHeaderAttribute(nextProtocol);
-    ipHeader->addHeaderAttribute(checksum);
-    ipHeader->addHeaderAttribute(srcAdress);
-    ipHeader->addHeaderAttribute(destAdress);
+    Header ipHeader;
+    ipHeader.setHeaderType(HeaderType::IP);
+    ipHeader.addHeaderAttribute(version);
+    ipHeader.addHeaderAttribute(IHL);
+    ipHeader.addHeaderAttribute(TOS);
+    ipHeader.addHeaderAttribute(length);
+    ipHeader.addHeaderAttribute(identification);
+    ipHeader.addHeaderAttribute(flags);
+    ipHeader.addHeaderAttribute(fragOffset);
+    ipHeader.addHeaderAttribute(timeToLive);
+    ipHeader.addHeaderAttribute(nextProtocol);
+    ipHeader.addHeaderAttribute(checksum);
+    ipHeader.addHeaderAttribute(srcAdress);
+    ipHeader.addHeaderAttribute(destAdress);
 
     data.addHeader(ipHeader);
 }
@@ -66,14 +66,15 @@ QList<Package> IPv4::fragmentPackage(const Package &package, quint32 mtu)
     auto data = package.getData();
     for(auto i = 0; i < packageAmount; i++) {
         //Daten aufsplitten
+        Package packageFragment;
         if(i != packageAmount - 1) {
             auto packageFragment = Package("IP Fragment No. " + QString::number(i), data.first(1500));
             data = data.last(data.size() - 1500);
         } else {
-            auto package = Package("IP Fragment No. " + QString::number(i), data);
+            auto packageFragment = Package("IP Fragment No. " + QString::number(i), data);
         }
 
-        returnList.append(package);
+        returnList.append(packageFragment);
     }
     return returnList;
 }
@@ -88,7 +89,7 @@ void IPv4::setFlag(quint8* flags, bool set, quint8 position){
     }
 }
 
-quint16 IPv4::getIPv4Checksum(quint16 totalLength, quint16 id, quint8 flags, quint16 fragOffset, quint8 ttl, quint8 protocol, quint8* srcAddress, quint8* destAddress, const char* data, quint16 dataLength)
+quint16 IPv4::getIPv4Checksum(quint16 totalLength, quint16 id, quint8 flags, quint16 fragOffset, quint8 ttl, quint8 protocol, const QVector<quint8> &srcAddress, const QVector<quint8> &destAddress, const char* data, quint16 dataLength)
 {
     quint32 checksum = 0;
 

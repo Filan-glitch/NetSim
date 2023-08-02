@@ -6,7 +6,7 @@
 class Client : public Host
 {
 public:
-    Client(NetworkCard *networkCard);
+    Client(const NetworkCard &networkCard);
 
 
 };

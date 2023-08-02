@@ -2,17 +2,15 @@
 
 
 
-IPAddress::IPAddress(quint8 *address) : address(address) {}
+IPAddress::IPAddress(const QVector<quint8> &address) : address(address) {
 
-IPAddress::~IPAddress() {
-    delete[] address;
 }
 
 QString IPAddress::getAddressAsDecString() const {
     return QString::number(static_cast<int>(address[0])) + "." + QString::number(static_cast<int>(address[1])) + "." + QString::number(static_cast<int>(address[2])) + "." + QString::number(static_cast<int>(address[3]));
 }
 
-quint8 *IPAddress::getAddressAsArray() const {
+QVector<quint8> IPAddress::getAddressAsArray() const {
     return address;
 }
 
@@ -24,12 +22,12 @@ quint32 IPAddress::getAddressAsInt() const{
     return  returnAddress;
 }
 
-IPAddress *IPAddress::getRandomAddress() {
+IPAddress IPAddress::getRandomAddress(bool isLocal) {
     static QRandomGenerator* generator = new QRandomGenerator(2183193);
-    quint8* addressArray = new quint8[4];
-    for (int i = 0; i < 3; i++) {
-        addressArray[i] = generator->generate() % 256;
+    QVector<quint8> addressArray;
+    for (int i = 0; i < 4; i++) {
+        addressArray.append(generator->generate() % 256);
     }
-    addressArray[3] = 1;
-    return new IPAddress(addressArray);
+    if(isLocal) addressArray[3] = 1;
+    return IPAddress(addressArray);
 }

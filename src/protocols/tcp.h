@@ -7,6 +7,7 @@
 #include <cstdint>
 #include <QString>
 #include <QDebug>
+#include <QVector>
 
 /**
  * @brief The TCP class
@@ -32,7 +33,7 @@ public:
      * @param dataLength
      * @par adds a TCP-Header to a package and calculates its checksum
      */
-    static void initHeader(IPAddress *srcAdress, IPAddress *destAdress, Port *sourcePort, Port *destinationPort, quint32 seqNumber, quint32 ackNumber, bool ack,bool rst, bool syn, bool fin, quint16 window, Package& data, quint16 dataLength);
+    static void initHeader(const IPAddress &srcAdress, const IPAddress &destAdress, const Port &sourcePort, const Port &destinationPort, quint32 seqNumber, quint32 ackNumber, bool ack,bool rst, bool syn, bool fin, quint16 window, Package &data, quint16 dataLength);
 
 private:
     /**
@@ -57,7 +58,7 @@ private:
      * @return TCP checksum
      * @par returns the TCP Checksum to given TCP-Header
      */
-    static quint16 getTCPChecksum(quint8* sourceAddress, quint8* destinationAddress, quint16 sourcePort, quint16 destinationPort, quint32 seqNumber, quint32 ackNumber, quint16 flags, const char* data, quint16 dataLength);
+    static quint16 getTCPChecksum(const QVector<quint8> &sourceAddress, const QVector<quint8> &destinationAddress, quint16 sourcePort, quint16 destinationPort, quint32 seqNumber, quint32 ackNumber, quint16 flags, const char* data, quint16 dataLength);
 };
 
 #endif // TCP_H

@@ -10,10 +10,10 @@ class ServerWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit ServerWidget(Server *server, QWidget *parent = nullptr);
+    explicit ServerWidget(const Server &server, QWidget *parent = nullptr);
 
 private:
-    Server* m_server;
+    Server m_server;
 
     //Widgets
     QPushButton* m_button;

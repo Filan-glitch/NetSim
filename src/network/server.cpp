@@ -1,7 +1,7 @@
 #include "server.h"
 
 
-Server::Server(NetworkCard *networkCard) : Host(networkCard)
+Server::Server(const NetworkCard &networkCard) : Host(networkCard)
 {}
 
 void Server::getRequest()

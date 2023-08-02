@@ -4,17 +4,17 @@
 
 Process::Process()
 {
-    
+
 }
 
-void Process::httpGetRequest(const QString &url, Port *sourcePort){
+void Process::httpGetRequest(const QString &url, const Port &sourcePort){
     Package httpRequestPackage("Request HTML of " + url,"");
-    HTTP::initHTTPRequest("GET",url,"HTTP/1.1",httpRequestPackage);
+    HTTP::initHTTPRequest("GET",url,"HTTP/1.1", httpRequestPackage);
 
     openSocket(sourcePort);
-    socket->addTCPHeader(httpRequestPackage);
+    socket.addTCPHeader(httpRequestPackage);
 }
 
-void Process::openSocket(Port *sourcePort){
-    this->socket = new Socket(sourcePort, new Port(80));
+void Process::openSocket(const Port &sourcePort){
+    this->socket = Socket(sourcePort, Port(80));
 }

@@ -3,18 +3,18 @@
 
 #include <QDebug>
 
-void UDP::initHeader(Port *sourcePort, Port *destinationPort, quint16 dataLength, Package& data){
-    HeaderAttribute* srcPort = new HeaderAttribute("Source Port",16,sourcePort->getPortNumber());
-    HeaderAttribute* dstPort = new HeaderAttribute("Destination Port",16,destinationPort->getPortNumber());
-    HeaderAttribute* length = new HeaderAttribute("length",16,dataLength);
-    HeaderAttribute* checksum = new HeaderAttribute("checksum",16,getChecksum(data.getData().toStdString().c_str(),dataLength,sourcePort->getPortNumber(),destinationPort->getPortNumber()));
+void UDP::initHeader(const Port &sourcePort, const Port &destinationPort, quint16 dataLength, Package& data){
+    HeaderAttribute srcPort("Source Port",16,sourcePort.getPortNumber());
+    HeaderAttribute dstPort("Destination Port",16,destinationPort.getPortNumber());
+    HeaderAttribute length("length",16,dataLength);
+    HeaderAttribute checksum("checksum",16,getChecksum(data.getData().toStdString().c_str(),dataLength,sourcePort.getPortNumber(),destinationPort.getPortNumber()));
 
-    Header* udpHeader = new Header();
-    udpHeader->setHeaderType(HeaderType::UDP);
-    udpHeader->addHeaderAttribute(srcPort);
-    udpHeader->addHeaderAttribute(dstPort);
-    udpHeader->addHeaderAttribute(length);
-    udpHeader->addHeaderAttribute(checksum);
+    Header udpHeader;
+    udpHeader.setHeaderType(HeaderType::UDP);
+    udpHeader.addHeaderAttribute(srcPort);
+    udpHeader.addHeaderAttribute(dstPort);
+    udpHeader.addHeaderAttribute(length);
+    udpHeader.addHeaderAttribute(checksum);
 
     data.addHeader(udpHeader);
 }

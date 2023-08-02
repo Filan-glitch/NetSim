@@ -8,11 +8,9 @@
 class HeaderAttributeNotFoundException
 {
 public:
-    HeaderAttributeNotFoundException(QString errorMessage);
+    HeaderAttributeNotFoundException(const QString &errorMessage);
 
-    QString getErrorMessage(){
-        return errorMessage;
-    }
+    QString getErrorMessage() const;
 
 private:
     QString errorMessage;

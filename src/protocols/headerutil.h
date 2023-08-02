@@ -20,7 +20,7 @@ public:
      * @param attributeName
      * @return Returns the HTTP Headerattribute corresponding to the attributename
      */
-    static QString getHTTPAttributeAsString(const Package &data, const QString attributeName);
+    static QString getHTTPAttributeAsString(const Package &data, const QString &attributeName);
 
     /**
      * @brief getPort
@@ -38,14 +38,14 @@ public:
      * @param flagName
      * @return Returns the tcp flag as true or false corresponding to the flag name
      */
-    static QString getTCPFlag(const Package &data, QString flagName);
+    static QString getTCPFlag(const Package &data, const QString &flagName);
 
     /**
      * @brief getIPAddress
      * @param data
      * @param src
      * @return returns the IPAddress
-     * @par Returns the IPAddress of a package. You get the source Address is src is true otherwise you get the destonation Address
+     * @par Returns the IPAddress of a package. You get the source Address if src is true, otherwise you get the destination Address
      */
     static QString getIPAddress(const Package &data, bool src);
 
@@ -55,7 +55,7 @@ public:
      * @param flagName
      * @return Returns the IPFlag corresponding to the flag name
      */
-    static QString getIPFlag(const Package &data, QString flagName);
+    static QString getIPFlag(const Package &data, const QString &flagName);
 
     /**
      * @brief getIPNextProtocol
@@ -87,7 +87,7 @@ private:
      * @param data
      * @return Returns the corresponding Header to a Headertype in a package
      */
-    static Header* getHeaderByType(const HeaderType &type, const Package &data);
+    static Header getHeaderByType(const HeaderType &type, const Package &data);
 
     /**
      * @brief getHeaderAttributeByName
@@ -95,7 +95,7 @@ private:
      * @param header
      * @return Returns the corresponging HeaderAttribute to a HeaderAttributeName in a Header
      */
-    static HeaderAttribute* getHeaderAttributeByName(const QString &name, Header *header);
+    static HeaderAttribute getHeaderAttributeByName(const QString &name, const Header &header);
 };
 
 #endif // HEADERUTIL_H

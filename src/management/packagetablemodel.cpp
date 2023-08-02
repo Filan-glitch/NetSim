@@ -1,5 +1,5 @@
 #include "packagetablemodel.h"
-
+#include "src/protocols/headerutil.h"
 
 PackageTableModel::PackageTableModel(QList<Package> *packageList, QObject *parent)
     : QAbstractTableModel(parent), m_packageList(packageList)
@@ -50,15 +50,15 @@ QVariant PackageTableModel::data(const QModelIndex &index, int role) const
         return QVariant();
 
     if(role == Qt::DisplayRole) {
-        const Package &package = m_packageList->at(index.row());
+        const Package package = m_packageList->at(index.row());
 
         switch(index.column()) {
         case 0:
-            //return dynamic_cast<IPHeader*>(package.getHeaderByType(HeaderType::IP))->getSourceAddress().getAddressAsDecString();
+            return HeaderUtil::getIPAddress(package, true);
         case 1:
-            //return dynamic_cast<IPHeader*>(package.getHeaderByType(HeaderType::IP))->getDestinationAddress().getAddressAsDecString();
+            return HeaderUtil::getIPAddress(package, false);
         case 2:
-            //TODO: add protocol name
+            return "HTTP";
         case 3:
             return package.getInfo();
         }
@@ -66,7 +66,7 @@ QVariant PackageTableModel::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
-void PackageTableModel::addPackage(const Package& package) {
+void PackageTableModel::addPackage(const Package &package) {
     beginInsertRows(QModelIndex(), rowCount(), rowCount());
 
     m_packageList->append(package);

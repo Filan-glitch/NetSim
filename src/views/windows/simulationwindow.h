@@ -1,6 +1,7 @@
 #ifndef SIMULATIONWINDOW_H
 #define SIMULATIONWINDOW_H
 
+#include "src/management/packagetablemodel.h"
 #include "src/management/simulationmanager.h"
 #include <QMainWindow>
 #include <QKeyEvent>
@@ -21,7 +22,9 @@ public:
 private:
     Ui::SimulationWindow *ui;
     SimulationManager* manager;
+    PackageTableModel* m_packageModel;
     void setupNetwork();
+
 
 private slots:
     void openDocumentation();

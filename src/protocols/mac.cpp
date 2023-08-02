@@ -2,34 +2,34 @@
 #include "mac.h"
 #include <QtCore>
 
-void MAC::initHeader(Package& data, MACAddress *destMACAddress, MACAddress *srcMACAddress, quint16 etherType){
+void MAC::initHeader(Package &data, const MACAddress &destMACAddress, const MACAddress &srcMACAddress, quint16 etherType){
     quint64 pre = 0b10101010'10101010'10101010'10101010'10101010'10101010'10101010;
-    HeaderAttribute* preamble = new HeaderAttribute("Preamble", 56, pre);
+    HeaderAttribute preamble("Preamble", 56, pre);
     quint8 frameDelimiter = 0b10101011;
-    HeaderAttribute* sfd = new HeaderAttribute("Start Frame Delimiter", 8, frameDelimiter);
-    HeaderAttribute* destinationMacAddress = new HeaderAttribute("Destination MAC Address", 48, destMACAddress->getAddressAsInt());
-    HeaderAttribute* sourceMacAddress = new HeaderAttribute("Source MAC Address", 48, srcMACAddress->getAddressAsInt());
-    HeaderAttribute* eType = new HeaderAttribute("EtherType",16,etherType);
-    HeaderAttribute* fcs = new HeaderAttribute("Frame Check Sequence",32,getFCS(destMACAddress,srcMACAddress,etherType,data));
+    HeaderAttribute sfd("Start Frame Delimiter", 8, frameDelimiter);
+    HeaderAttribute destinationMacAddress("Destination MAC Address", 48, destMACAddress.getAddressAsInt());
+    HeaderAttribute sourceMacAddress("Source MAC Address", 48, srcMACAddress.getAddressAsInt());
+    HeaderAttribute eType("EtherType",16,etherType);
+    HeaderAttribute fcs("Frame Check Sequence",32,getFCS(destMACAddress,srcMACAddress,etherType,data));
 
-    Header* macHeader = new Header();
-    macHeader->setHeaderType(HeaderType::MAC);
-    macHeader->addHeaderAttribute(preamble);
-    macHeader->addHeaderAttribute(sfd);
-    macHeader->addHeaderAttribute(destinationMacAddress);
-    macHeader->addHeaderAttribute(sourceMacAddress);
-    macHeader->addHeaderAttribute(eType);
-    macHeader->addHeaderAttribute(fcs);
+    Header macHeader;
+    macHeader.setHeaderType(HeaderType::MAC);
+    macHeader.addHeaderAttribute(preamble);
+    macHeader.addHeaderAttribute(sfd);
+    macHeader.addHeaderAttribute(destinationMacAddress);
+    macHeader.addHeaderAttribute(sourceMacAddress);
+    macHeader.addHeaderAttribute(eType);
+    macHeader.addHeaderAttribute(fcs);
 
     data.addHeader(macHeader);
 }
 
 
-quint32 MAC::getFCS(MACAddress *destMACAddress, MACAddress *srcMACAddress, quint16 etherType, Package& data){
+quint32 MAC::getFCS(const MACAddress &destMACAddress, const MACAddress &srcMACAddress, quint16 etherType, const Package &data){
     //Putting all the data in a QByteArray
     QByteArray frameData;
     QDataStream stream(&frameData, QIODevice::WriteOnly);
-    stream << destMACAddress->getAddressAsInt() << srcMACAddress->getAddressAsInt() << etherType << data.getData();
+    stream << destMACAddress.getAddressAsInt() << srcMACAddress.getAddressAsInt() << etherType << data.getData();
 
     //Returning the CRC32 of the framedata
     return calculateCRC32(frameData);
