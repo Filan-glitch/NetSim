@@ -31,6 +31,10 @@ public:
 
     Header();
 
+    virtual ~Header(){
+
+    }
+
     virtual void addHeaderAttribute(const HeaderAttribute& headerAttribute){
         headerList.append(headerAttribute);
     }

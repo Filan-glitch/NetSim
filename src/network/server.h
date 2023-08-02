@@ -7,7 +7,8 @@
 class Server : public Host
 {
 public:
-    Server();
+    Server(const NetworkCard &networkCard) : Host(networkCard)
+    {}
 
     void getRequest();
     void sendResponse();

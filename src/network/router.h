@@ -10,7 +10,9 @@ class Router
 private:
     QHash<QString, IPAddress> domainTable;
 public:
-    Router(const QHash<QString, IPAddress> &domainTable);
+    Router()
+    {}
+
 
     bool initializeServerConnection();
     void getPackage();

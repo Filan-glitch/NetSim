@@ -34,11 +34,19 @@
        <number>0</number>
       </property>
       <widget class="QWidget" name="networkTab">
+       <attribute name="icon">
+        <iconset resource="../../../assets/ressources.qrc">
+         <normaloff>:/network.svg</normaloff>:/network.svg</iconset>
+       </attribute>
        <attribute name="title">
         <string>Network</string>
        </attribute>
       </widget>
       <widget class="QWidget" name="packageTab">
+       <attribute name="icon">
+        <iconset resource="../../../assets/ressources.qrc">
+         <normaloff>:/package.svg</normaloff>:/package.svg</iconset>
+       </attribute>
        <attribute name="title">
         <string>Packages</string>
        </attribute>
@@ -68,11 +76,19 @@
        </layout>
       </widget>
       <widget class="QWidget" name="sourceTab">
+       <attribute name="icon">
+        <iconset resource="../../../assets/ressources.qrc">
+         <normaloff>:/source.svg</normaloff>:/source.svg</iconset>
+       </attribute>
        <attribute name="title">
         <string>Sources</string>
        </attribute>
       </widget>
       <widget class="QWidget" name="processTab">
+       <attribute name="icon">
+        <iconset resource="../../../assets/ressources.qrc">
+         <normaloff>:/process.svg</normaloff>:/process.svg</iconset>
+       </attribute>
        <attribute name="title">
         <string>Processes</string>
        </attribute>
@@ -94,6 +110,7 @@
     <property name="title">
      <string>Simulation</string>
     </property>
+    <addaction name="actionQuit"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -101,7 +118,6 @@
     </property>
     <addaction name="actionDocumentation"/>
     <addaction name="separator"/>
-    <addaction name="actionQuit"/>
    </widget>
    <addaction name="menuSimulation"/>
    <addaction name="menuHelp"/>

@@ -1,8 +1,25 @@
 #include "host.h"
 
-Host::Host(const QHash<Port, Process> &processTable, const QHash<MACAddress, IPAddress> &hostTable, const QHash<QString, IPAddress> &domainTable, const NetworkCard &networkCard) :
-    processTable(processTable),
-    hostTable(hostTable),
-    domainTable(domainTable),
+QHash<Port, Process> Host::getProcessTable() const
+{
+    return processTable;
+}
+
+QHash<MACAddress, IPAddress> Host::getHostTable() const
+{
+    return hostTable;
+}
+
+QHash<QString, IPAddress> Host::getDomainTable() const
+{
+    return domainTable;
+}
+
+NetworkCard Host::getNetworkCard() const
+{
+    return networkCard;
+}
+
+Host::Host(const NetworkCard &networkCard) :
     networkCard(networkCard)
 {}

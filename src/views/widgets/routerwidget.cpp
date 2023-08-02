@@ -1,7 +1,13 @@
 #include "routerwidget.h"
 
-RouterWidget::RouterWidget(const Router &router, QWidget *parent)
-    : QPushButton{parent}, router{router}
+RouterWidget::RouterWidget(Router *router, QWidget *parent)
+    : QWidget{parent}, m_router{router}
 {
-    this->icon().addFile(":/router.svg");
+    //Erstelle die Widgets
+    m_button = new QPushButton(this);
+
+    //Set the Icon
+    m_button->setIcon(QIcon(":/router.svg"));
+    m_button->setIconSize(QSize(64, 64));
+
 }

@@ -4,5 +4,9 @@
         <file>client.svg</file>
         <file>router.svg</file>
         <file>server.svg</file>
+        <file>network.svg</file>
+        <file>package.svg</file>
+        <file>process.svg</file>
+        <file>source.svg</file>
     </qresource>
 </RCC>

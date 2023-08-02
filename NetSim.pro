@@ -27,15 +27,17 @@ SOURCES += \
     src/network/socket.cpp \
     src/protocols/header.cpp \
     src/protocols/headerAttribute.cpp \
+    src/protocols/headerattributenotfoundexception.cpp \
     src/protocols/headernotfoundexception.cpp \
+    src/protocols/headerutil.cpp \
     src/protocols/http.cpp \
-    src/protocols/ipheader.cpp \
     src/protocols/ipv4.cpp \
     src/protocols/mac.cpp \
     src/protocols/tcp.cpp \
     src/protocols/udp.cpp \
     src/views/dialogs/settingsdialog.cpp \
     src/views/widgets/clientwidget.cpp \
+    src/views/widgets/connectionwidget.cpp \
     src/views/widgets/routerwidget.cpp \
     src/views/widgets/serverwidget.cpp \
     src/views/windows/simulationwindow.cpp \
@@ -60,15 +62,17 @@ HEADERS += \
     src/network/socket.h \
     src/protocols/header.h \
     src/protocols/headerAttribute.h \
+    src/protocols/headerattributenotfoundexception.h \
     src/protocols/headernotfoundexception.h \
+    src/protocols/headerutil.h \
     src/protocols/http.h \
-    src/protocols/ipheader.h \
     src/protocols/ipv4.h \
     src/protocols/mac.h \
     src/protocols/tcp.h \
     src/protocols/udp.h \
     src/views/dialogs/settingsdialog.h \
     src/views/widgets/clientwidget.h \
+    src/views/widgets/connectionwidget.h \
     src/views/widgets/routerwidget.h \
     src/views/widgets/serverwidget.h \
     src/views/windows/simulationwindow.h \

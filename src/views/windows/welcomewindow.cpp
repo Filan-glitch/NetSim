@@ -31,8 +31,11 @@ void WelcomeWindow::startSimulation() {
         // Schließe das aktuelle Fenster (Startmenü).
         close();
 
+        // Manager initialisieren.
+        SimulationManager* manager = new SimulationManager(settings.getClientsAmount(), settings.getServerAmount());
+
         // Öffne das Fenster für die Simulation.
-        SimulationWindow* simWindow = new SimulationWindow(this);
+        SimulationWindow* simWindow = new SimulationWindow(manager, this);
         simWindow->show();
     }
 }

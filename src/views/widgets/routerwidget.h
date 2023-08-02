@@ -3,15 +3,22 @@
 
 #include "src/network/router.h"
 #include <QPushButton>
+#include <QVBoxLayout>
 
-class RouterWidget : public QPushButton
+class RouterWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit RouterWidget(const Router &router, QWidget *parent = nullptr);
+    explicit RouterWidget(Router *router, QWidget *parent = nullptr);
 
 private:
-    Router router;
+    Router* m_router;
+
+    //Widgets
+    QPushButton* m_button;
+
+    //Layout
+    QVBoxLayout* m_layout;
 };
 
 #endif // ROUTERWIDGET_H
