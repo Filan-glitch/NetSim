@@ -6,8 +6,7 @@
 class Client : public Host
 {
 public:
-    Client(NetworkCard *networkCard) : Host(networkCard)
-    {}
+    Client(NetworkCard *networkCard);
 
 
 };

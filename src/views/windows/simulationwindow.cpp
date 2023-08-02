@@ -62,6 +62,11 @@ void SimulationWindow::setupNetwork()
         ServerWidget* serverWidget = new ServerWidget(manager->getServer().at(i), this);
         mainLayout->addWidget(serverWidget, i, 0);
     }
+
+    for(auto i = 1; i <= manager->getServerAmount(); i++) {
+        RouterWidget* routerWidget = new RouterWidget(manager->getRouters().at(i), this);
+        mainLayout->addWidget(routerWidget, i - 1, 1);
+    }
 }
 
 

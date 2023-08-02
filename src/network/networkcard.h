@@ -11,7 +11,7 @@ class NetworkCard
 {
 public:
 
-    NetworkCard(IPAddress *networkAddress, MACAddress *physicalAddress) : networkAddress(networkAddress), physicalAddress(physicalAddress){};
+    NetworkCard(IPAddress *networkAddress, MACAddress *physicalAddress);;
 
     void addIPHeader(Package& data);
     void addMACHeader(Package& data);

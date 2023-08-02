@@ -2,6 +2,11 @@
 #include "package.h"
 #include "src/protocols/http.h"
 
+Process::Process()
+{
+    
+}
+
 void Process::httpGetRequest(const QString &url, Port *sourcePort){
     Package httpRequestPackage("Request HTML of " + url,"");
     HTTP::initHTTPRequest("GET",url,"HTTP/1.1",httpRequestPackage);

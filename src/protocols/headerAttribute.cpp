@@ -53,6 +53,14 @@ HeaderAttribute::~HeaderAttribute()
     delete this->content;
 }
 
+QString HeaderAttribute::getName() const{
+    return this->name;
+}
+
+quint32 HeaderAttribute::getSizeInBit() const{
+    return this->sizeInBit;
+}
+
 quint64 HeaderAttribute::getContentAsInt() const
 {
     quint64 returnInt = content[7];

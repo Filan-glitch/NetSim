@@ -23,9 +23,7 @@ public:
      * @return ErrorMessage
      * @par Returns the errorMessage
      */
-    QString getErrorMessage() const{
-        return this->errorMessage;
-    }
+    QString getErrorMessage() const;
 
 private:
     QString errorMessage;

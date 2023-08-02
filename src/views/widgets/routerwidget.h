@@ -1,6 +1,7 @@
 #ifndef ROUTERWIDGET_H
 #define ROUTERWIDGET_H
 
+#include "qlabel.h"
 #include "src/network/router.h"
 #include <QPushButton>
 #include <QVBoxLayout>
@@ -16,6 +17,9 @@ private:
 
     //Widgets
     QPushButton* m_button;
+    QLabel* m_localIpLabel;
+    QLabel* m_globalIpLabel;
+    QLabel* m_macLabel;
 
     //Layout
     QVBoxLayout* m_layout;

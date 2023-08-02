@@ -8,10 +8,8 @@ class Port
 private:
     quint16 portNumber;
 public:
-    Port(quint16 portNumber) : portNumber(portNumber) {}
-    quint16 getPortNumber() const {
-        return portNumber;
-    }
+    Port(quint16 portNumber);
+    quint16 getPortNumber() const;
 };
 
 #endif // PORT_H
