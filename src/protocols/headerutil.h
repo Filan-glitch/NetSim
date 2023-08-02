@@ -95,7 +95,7 @@ private:
      * @param header
      * @return Returns the corresponging HeaderAttribute to a HeaderAttributeName in a Header
      */
-    static HeaderAttribute getHeaderAttributeByName(const QString &name, const Header &header);
+    static HeaderAttribute* getHeaderAttributeByName(const QString &name, Header *header);
 };
 
 #endif // HEADERUTIL_H

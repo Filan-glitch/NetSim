@@ -20,10 +20,10 @@ Header* HeaderUtil::getHeaderByType(const HeaderType &type, const Package &data)
     throw HeaderNotFoundException("This Headertype does not exist: ");
 }
 
-HeaderAttribute HeaderUtil::getHeaderAttributeByName(const QString &name, const Header &header){
-    QList<HeaderAttribute> attributeList = header.getHeaderList();
+HeaderAttribute* HeaderUtil::getHeaderAttributeByName(const QString &name, Header *header){
+    QList<HeaderAttribute*> attributeList = header->getHeaderList();
     for(auto& attribute : attributeList){
-        if(attribute.getName() == name){
+        if(attribute->getName() == name){
             return attribute;
         }
     }
@@ -47,8 +47,8 @@ QString HeaderUtil::getHTTPAttributeAsString(const Package &data, const QString 
     quint8* attribute;
     quint32 attributeSize;
     try{
-        attribute = getHeaderAttributeByName(attributeName, *header).getContentAsArray();
-        attributeSize = getHeaderAttributeByName(attributeName, *header).getSizeInBit();
+        attribute = getHeaderAttributeByName(attributeName, header)->getContentAsArray();
+        attributeSize = getHeaderAttributeByName(attributeName, header)->getSizeInBit();
     }
     catch(HeaderAttributeNotFoundException hanfe){
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getAttributeAsString";
@@ -59,8 +59,6 @@ QString HeaderUtil::getHTTPAttributeAsString(const Package &data, const QString 
     for(quint32 i = 0; i < attributeSize/8;i++){
         returnString.append(static_cast<char>(attribute[i]));
     }
-    delete header;
-    delete attribute;
     return returnString;
 }
 
@@ -83,7 +81,7 @@ QString HeaderUtil::getPort(const Package& data, bool src){
     quint8* attribute;
     if(src){
         try{
-            attribute = getHeaderAttributeByName("Source Port", *header).getContentAsArray();
+            attribute = getHeaderAttributeByName("Source Port", header)->getContentAsArray();
         }
         catch(HeaderAttributeNotFoundException hanfe){
             qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getPort";
@@ -91,7 +89,7 @@ QString HeaderUtil::getPort(const Package& data, bool src){
     }
     else{
         try{
-            attribute = getHeaderAttributeByName("Destination Port", *header).getContentAsArray();
+            attribute = getHeaderAttributeByName("Destination Port", header)->getContentAsArray();
         }
         catch(HeaderAttributeNotFoundException hanfe){
             qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getPort";
@@ -100,8 +98,6 @@ QString HeaderUtil::getPort(const Package& data, bool src){
 
     quint16 port = (static_cast<quint16>(attribute[0]) << 8) + attribute[1];
 
-    delete header;
-    delete attribute;
     return QString::number(port);
 }
 
@@ -118,7 +114,7 @@ QString HeaderUtil::getTCPFlag(const Package &data, QString flagName){
     //Get flags
     quint8* attribute;
        try{
-           attribute = getHeaderAttributeByName("Flags", *header).getContentAsArray();
+        attribute = getHeaderAttributeByName("Flags", header)->getContentAsArray();
        }
        catch(HeaderAttributeNotFoundException hanfe){
            qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getTCPFlag";
@@ -147,9 +143,6 @@ QString HeaderUtil::getTCPFlag(const Package &data, QString flagName){
     if(flagName != "ACK" && flagName !="RST" && flagName !="SYN" && flagName != "FIN"){
            qDebug() << "This flag does not exist: " << flagName << " in HeaderUtil::getTCPFlag";
     }
-
-    delete header;
-    delete attribute;
     return returnString;
 }
 
@@ -167,7 +160,7 @@ QString HeaderUtil::getIPAddress(const Package &data, bool src){
     //Getting the source or destination address
     if(src){
            try{
-            attribute = getHeaderAttributeByName("Source Address", *header).getContentAsArray();
+            attribute = getHeaderAttributeByName("Source Address", header)->getContentAsArray();
            }
            catch(HeaderAttributeNotFoundException hanfe){
             qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getTCPFlag";
@@ -175,7 +168,7 @@ QString HeaderUtil::getIPAddress(const Package &data, bool src){
     }
     else{
            try{
-            attribute = getHeaderAttributeByName("Destination Address", *header).getContentAsArray();
+            attribute = getHeaderAttributeByName("Destination Address", header)->getContentAsArray();
            }
            catch(HeaderAttributeNotFoundException hanfe){
             qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getTCPFlag";
@@ -184,8 +177,6 @@ QString HeaderUtil::getIPAddress(const Package &data, bool src){
     //Creating the IP Address
     IPAddress address(attribute);
 
-    delete header;
-    delete attribute;
     return address.getAddressAsDecString();
 }
 
@@ -201,7 +192,7 @@ QString HeaderUtil::getIPFlag(const Package &data,  QString flagName){
     quint8* attribute;
     //Getting the flags
     try{
-           attribute = getHeaderAttributeByName("Flags",*header).getContentAsArray();
+           attribute = getHeaderAttributeByName("Flags", header)->getContentAsArray();
     }
     catch(HeaderAttributeNotFoundException hanfe){
           qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getIPFlag";
@@ -209,21 +200,18 @@ QString HeaderUtil::getIPFlag(const Package &data,  QString flagName){
 
     quint8 flags = attribute[0];
     QString returnString;
-    delete header;
 
     //Checking which flag
     if(flagName=="DF"){
         ((flags >> 1) & 1) != 0 ? returnString = "true" : returnString = "false";
-          delete attribute;
         return returnString;
     }
     if(flagName=="MF"){
         ((flags >> 2) & 1) != 0 ? returnString = "true" : returnString = "false";
-        delete attribute;
         return returnString;
     }
     qDebug() << "This flag does not exist: " << flagName << " in HeaderUtil::getIPFlag";
-    delete attribute;
+
     return "";
 }
 
@@ -239,28 +227,23 @@ QString HeaderUtil::getIPNextProtocol(const Package &data){
     quint8* attribute;
     //Getting the next Protocol
     try{
-        attribute = getHeaderAttributeByName("Protocol",*header).getContentAsArray();
+        attribute = getHeaderAttributeByName("Protocol", header)->getContentAsArray();
     }
     catch(HeaderAttributeNotFoundException hanfe){
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getIPNextProtocol";
     }
 
-    delete header;
     //Returning the right String
     if(attribute[0] == 17){
-        delete attribute;
         return "UDP";
     }
     if(attribute[0] == 6){
-        delete attribute;
         return "TCP";
     }
     if(attribute[0] == 0){
-        delete attribute;
         return "";
     }
     qDebug() << "Cannot find a following Protocol in HeaderUtil::getIPNextProtocol";
-    delete attribute;
     return "";
 }
 
@@ -278,7 +261,7 @@ QString HeaderUtil::getMacAddress(const Package &data, bool src){
     quint8* attribute;
     if(src){
         try{
-            attribute = getHeaderAttributeByName("Source MAC Address",*header).getContentAsArray();
+            attribute = getHeaderAttributeByName("Source MAC Address", header)->getContentAsArray();
         }
         catch(HeaderAttributeNotFoundException hanfe){
             qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getMacAddress";
@@ -286,7 +269,7 @@ QString HeaderUtil::getMacAddress(const Package &data, bool src){
     }
     else{
         try{
-            attribute = getHeaderAttributeByName("Destination MAC Address",*header).getContentAsArray();
+            attribute = getHeaderAttributeByName("Destination MAC Address", header)->getContentAsArray();
         }
         catch(HeaderAttributeNotFoundException hanfe){
             qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getMacAddress";
@@ -294,8 +277,6 @@ QString HeaderUtil::getMacAddress(const Package &data, bool src){
     }
 
     MACAddress address(attribute);
-    delete attribute;
-    delete header;
     return address.getAddressAsString();
 }
 
@@ -311,24 +292,20 @@ QString HeaderUtil::getEtherType(const Package &data){
 
     quint8* attribute;
     try{
-        attribute = getHeaderAttributeByName("EtherType",*header).getContentAsArray();
+        attribute = getHeaderAttributeByName("EtherType", header)->getContentAsArray();
     }
     catch(HeaderAttributeNotFoundException hanfe){
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getEtherType";
     }
 
     quint16 etherType = (static_cast<quint16>(attribute[0]) << 8) + attribute[1];
-    delete header;
 
     if(etherType == 2048){
-        delete attribute;
         return "IPv4";
     }
     if(etherType == 0){
-        delete attribute;
         return "";
     }
     qDebug() << "No corresponding EtherType found in HeaderUtil::getEtherType";
-    delete attribute;
     return "";
 }
