@@ -12,6 +12,8 @@ class ClientWidget : public QWidget
 public:
     explicit ClientWidget(const Client &client, QWidget *parent = nullptr);
 
+    QPushButton *button() const;
+
 private:
     Client m_client;
 

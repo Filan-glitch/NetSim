@@ -1,5 +1,6 @@
 #include "simulationwindow.h"
 #include "src/views/widgets/clientwidget.h"
+#include "src/views/widgets/networktab.h"
 #include "src/views/widgets/serverwidget.h"
 #include "src/views/widgets/routerwidget.h"
 #include "src/management/packagedatabase.h"
@@ -27,6 +28,7 @@ SimulationWindow::SimulationWindow(SimulationManager *manager, QWidget *parent) 
 
     //Connections
     connect(this->ui->actionDocumentation, &QAction::triggered, this, &SimulationWindow::openDocumentation);
+
 }
 
 SimulationWindow::~SimulationWindow()
@@ -46,7 +48,9 @@ void SimulationWindow::setupNetwork()
 {
     // Mainlayout
     auto mainLayout = new QGridLayout(this);
-    this->ui->networkTab->setLayout(mainLayout);
+    NetworkTab *networkTab = new NetworkTab(this);
+    networkTab->setLayout(mainLayout);
+    this->ui->tabWidget->insertTab(0, networkTab, QIcon(":/network.svg"), "Network");
 
     // Mainrouter
     auto mainRouter = new RouterWidget(this->manager->getRouters().at(0), this);
@@ -63,23 +67,26 @@ void SimulationWindow::setupNetwork()
         mainLayout->addWidget(mainRouter, 2, 3);
         break;
     }
+    networkTab->addRouter(mainRouter);
 
-    QList<QWidget*> widgets;
     for(auto i = 0; i < manager->getServerAmount(); i++) {
         ServerWidget* serverWidget = new ServerWidget(manager->getServer().at(i), this);
-        widgets.append(serverWidget);
         mainLayout->addWidget(serverWidget, i, 0);
+        networkTab->addServer(serverWidget);
     }
 
     for(auto i = 1; i <= manager->getServerAmount(); i++) {
         RouterWidget* routerWidget = new RouterWidget(manager->getRouters().at(i), this);
         mainLayout->addWidget(routerWidget, i - 1, 1);
+        networkTab->addRouter(routerWidget);
     }
 
     for(auto i = 0; i < manager->getClientsAmount(); i++) {
         ClientWidget* clientWidget = new ClientWidget(manager->getClients().at(i), this);
         mainLayout->addWidget(clientWidget, i, 4);
+        networkTab->addClient(clientWidget);
     }
+    this->ui->tabWidget->setCurrentIndex(0);
 }
 
 

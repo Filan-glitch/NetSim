@@ -12,6 +12,8 @@ class RouterWidget : public QWidget
 public:
     explicit RouterWidget(const Router &router, QWidget *parent = nullptr);
 
+    QPushButton *button() const;
+
 private:
     Router m_router;
 

@@ -36,18 +36,6 @@
       <property name="currentIndex">
        <number>0</number>
       </property>
-      <widget class="QWidget" name="networkTab">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
-       <attribute name="icon">
-        <iconset resource="../../../assets/ressources.qrc">
-         <normaloff>:/network.svg</normaloff>:/network.svg</iconset>
-       </attribute>
-       <attribute name="title">
-        <string>Network</string>
-       </attribute>
-      </widget>
       <widget class="QWidget" name="packageTab">
        <attribute name="icon">
         <iconset resource="../../../assets/ressources.qrc">
