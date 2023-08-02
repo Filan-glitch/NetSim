@@ -25,9 +25,10 @@ private:
     PackageTableModel* m_packageModel;
     void setupNetwork();
 
-
 private slots:
     void openDocumentation();
+
+
 };
 
 #endif // SIMULATIONWINDOW_H

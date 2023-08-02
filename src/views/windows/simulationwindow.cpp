@@ -27,7 +27,6 @@ SimulationWindow::SimulationWindow(SimulationManager *manager, QWidget *parent) 
 
     //Connections
     connect(this->ui->actionDocumentation, &QAction::triggered, this, &SimulationWindow::openDocumentation);
-
 }
 
 SimulationWindow::~SimulationWindow()
@@ -49,8 +48,26 @@ void SimulationWindow::setupNetwork()
     auto mainLayout = new QGridLayout(this);
     this->ui->networkTab->setLayout(mainLayout);
 
+    // Mainrouter
+    auto mainRouter = new RouterWidget(this->manager->getRouters().at(0), this);
+    switch(this->manager->getClientsAmount()) {
+    case 1:
+        mainLayout->addWidget(mainRouter, 0, 3);
+        break;
+    case 2:
+    case 3:
+        mainLayout->addWidget(mainRouter, 2, 3);
+        break;
+    case 4:
+    case 5:
+        mainLayout->addWidget(mainRouter, 2, 3);
+        break;
+    }
+
+    QList<QWidget*> widgets;
     for(auto i = 0; i < manager->getServerAmount(); i++) {
         ServerWidget* serverWidget = new ServerWidget(manager->getServer().at(i), this);
+        widgets.append(serverWidget);
         mainLayout->addWidget(serverWidget, i, 0);
     }
 
@@ -59,24 +76,9 @@ void SimulationWindow::setupNetwork()
         mainLayout->addWidget(routerWidget, i - 1, 1);
     }
 
-    // Mainrouter
-    auto mainRouter = new RouterWidget(this->manager->getRouters().at(0), this);
-    switch(this->manager->getClientsAmount()) {
-    case 1:
-        mainLayout->addWidget(mainRouter, 0, 2);
-        break;
-    case 2:
-        mainLayout->addWidget(mainRouter, 1, 2);
-    case 3:
-    case 4:
-    case 5:
-        mainLayout->addWidget(mainRouter, 2, 2);
-        break;
-    }
-
     for(auto i = 0; i < manager->getClientsAmount(); i++) {
         ClientWidget* clientWidget = new ClientWidget(manager->getClients().at(i), this);
-        mainLayout->addWidget(clientWidget, i, 3);
+        mainLayout->addWidget(clientWidget, i, 4);
     }
 }
 
