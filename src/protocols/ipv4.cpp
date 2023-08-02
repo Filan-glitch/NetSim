@@ -35,8 +35,8 @@ void IPv4::initHeader(quint16 id, bool DF, bool MF, quint16 fragmentOffset, quin
                                                  data.getData().toStdString().c_str(),
                                                                            totalLength)));
 
-    HeaderAttribute srcAdress("Source Adress", 32, sourceAddress.getAddressAsInt());
-    HeaderAttribute destAdress("Destination Adress", 32, destinationAdress.getAddressAsInt());
+    HeaderAttribute srcAdress("Source Address", 32, sourceAddress.getAddressAsInt());
+    HeaderAttribute destAdress("Destination Address", 32, destinationAdress.getAddressAsInt());
 
     //The Options field is always 0, we do not provide options in IPv4 in this project
     HeaderAttribute options("Options", static_cast<quint8>(0), static_cast<quint8>(0));
