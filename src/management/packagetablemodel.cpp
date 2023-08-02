@@ -1,5 +1,5 @@
 #include "packagetablemodel.h"
-#include "src/protocols/ipheader.h"
+
 
 PackageTableModel::PackageTableModel(QList<Package> *packageList, QObject *parent)
     : QAbstractTableModel(parent), m_packageList(packageList)
@@ -54,9 +54,9 @@ QVariant PackageTableModel::data(const QModelIndex &index, int role) const
 
         switch(index.column()) {
         case 0:
-            return dynamic_cast<IPHeader*>(package.getHeaderByType(HeaderType::IP))->getSourceAddress().getAddressAsDecString();
+            //return dynamic_cast<IPHeader*>(package.getHeaderByType(HeaderType::IP))->getSourceAddress().getAddressAsDecString();
         case 1:
-            return dynamic_cast<IPHeader*>(package.getHeaderByType(HeaderType::IP))->getDestinationAddress().getAddressAsDecString();
+            //return dynamic_cast<IPHeader*>(package.getHeaderByType(HeaderType::IP))->getDestinationAddress().getAddressAsDecString();
         case 2:
             //TODO: add protocol name
         case 3:
