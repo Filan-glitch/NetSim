@@ -33,3 +33,7 @@ void Package::addHeader(Header *header){
 QString Package::getInfo() const {
     return info;
 }
+
+void Package::setContent(QString content){
+    this->content = content;
+}
