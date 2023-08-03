@@ -25,12 +25,15 @@ bool Router::initializeServerConnection()
     return false;
 }
 
-void Router::getPackage()
+void Router::receivePackage(const Package &data)
 {
-    
+    cachePackage.push(data);
 }
 
-void Router::forwardPackage()
-{
-    
+void Router::sendPackageToRouter(MACAddress destinationAddress){
+    routerCable.value(destinationAddress)->receivePackage(cachePackage.pop());
+}
+
+void Router::sendPackageToHost(MACAddress destinationAddress){
+    hostCable.value(destinationAddress)->receivePackage(cachePackage.pop());
 }
