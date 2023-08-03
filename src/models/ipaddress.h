@@ -14,6 +14,8 @@ private:
 public:
     IPAddress(const QVector<quint8> &address);
 
+    IPAddress(){};
+
     QString getAddressAsDecString() const;
 
     QVector<quint8> getAddressAsArray() const;
@@ -21,6 +23,10 @@ public:
     quint32 getAddressAsInt() const;
 
     static IPAddress getRandomAddress(bool isLocal = false);
+
+    bool operator<(const IPAddress& other)const{
+        return getAddressAsInt() < other.getAddressAsInt();
+    }
 };
 
 #endif // IPADDRESS_H

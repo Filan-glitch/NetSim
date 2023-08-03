@@ -22,6 +22,7 @@ public:
 
     //TODO SERVER SIDE
     Package getHandShakePackage(const QString &url, bool initiate, bool client);
+
 private:
     Socket socket;
     Host* host;

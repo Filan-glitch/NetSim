@@ -17,7 +17,7 @@ Router::Router() : networkCard(NetworkCard(IPAddress::getRandomAddress(true), MA
 
 void Router::addDomain(const QString &domain, const IPAddress &ipAddress)
 {
-    domainTable.insert(domain, ipAddress);
+    domainTable[domain] = ipAddress;
 }
 
 bool Router::initializeServerConnection()
@@ -31,9 +31,9 @@ void Router::receivePackage(const Package &data)
 }
 
 void Router::sendPackageToRouter(MACAddress destinationAddress){
-    routerCable.value(destinationAddress)->receivePackage(cachePackage.pop());
+    //routerCable[destinationAddress]->receivePackage(cachePackage.pop());
 }
 
 void Router::sendPackageToHost(MACAddress destinationAddress){
-    hostCable.value(destinationAddress)->receivePackage(cachePackage.pop());
+    //hostCable[destinationAddress]->receivePackage(cachePackage.pop());
 }

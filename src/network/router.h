@@ -13,9 +13,9 @@ class Host;
 class Router
 {
 private:
-    QHash<QString, IPAddress> domainTable;
-    QHash<MACAddress, Router*> routerCable;
-    QHash<MACAddress, Host*> hostCable;
+    map<QString, IPAddress> domainTable;
+    map<MACAddress, Router*> routerCable;
+    map<MACAddress, Host*> hostCable;
     NetworkCard networkCard;
     IPAddress globalIpAddress;
     QStack<Package> cachePackage;

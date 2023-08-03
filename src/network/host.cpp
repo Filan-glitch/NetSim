@@ -1,18 +1,18 @@
 #include "host.h"
 #include "router.h"
-#include "src/management/packagedatabase.h""
+#include "src/management/packagedatabase.h"
 
-QHash<Port, Process> Host::getProcessTable() const
+map<Port, Process> Host::getProcessTable() const
 {
     return processTable;
 }
 
-QHash<IPAddress, MACAddress> Host::getHostTable() const
+map<IPAddress, MACAddress> Host::getHostTable() const
 {
     return hostTable;
 }
 
-QHash<QString, IPAddress> Host::getDomainTable() const
+map<QString, IPAddress> Host::getDomainTable() const
 {
     return domainTable;
 }
@@ -27,11 +27,11 @@ Host::Host(const NetworkCard &networkCard) :
 {}
 
 Router* Host::getRouterByMACAddress(MACAddress destinationAddress){
-    return this->cables.value(destinationAddress);
+    return this->cables[destinationAddress];
 }
 
 Package Host::sendPackage(const Package &data, MACAddress destinationAddress){
-    cables.value(destinationAddress)->receivePackage(data);
+    cables[destinationAddress]->receivePackage(data);
 }
 
 void Host::receivePackage(const Package &data){

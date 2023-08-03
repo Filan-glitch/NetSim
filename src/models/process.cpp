@@ -14,7 +14,7 @@ void Process::openSocket(const Port &sourcePort){
 }
 
 Package Process::getHTTPRequest(const QString &url){
-    IPAddress destination = host->getDomainTable().value(url);
+    IPAddress destination = host->getDomainTable()[url].getAddressAsArray();
     Package data;
     //Adding HTTP Header
     HTTP::initHTTPRequest("GET",url,"1.1",data);
@@ -31,14 +31,14 @@ Package Process::getHTTPRequest(const QString &url){
     host->getNetworkCard().addIPHeader(data,6,destination);
 
     //Adding Ethernet II Header
-    host->getNetworkCard().addMACHeader(data,host->getHostTable().value(destination),0);
+    //host->getNetworkCard().addMACHeader(data,host->getHostTable()[destination],0);
     return data;
 }
 
 Package Process::getHandShakePackage(const QString &url, bool initiate, bool client){
     //Client Handshakepackages
     if(initiate && client){
-        IPAddress destinationAddress(host->getDomainTable().value(url));
+        IPAddress destinationAddress(host->getDomainTable()[url]);
         Package tcpSynPackage;
 
         //Adding TCP Header
@@ -54,11 +54,11 @@ Package Process::getHandShakePackage(const QString &url, bool initiate, bool cli
         host->getNetworkCard().addIPHeader(tcpSynPackage,6,destinationAddress);
 
         //Adding Ethernet II Header
-        host->getNetworkCard().addMACHeader(tcpSynPackage,host->getHostTable().value(destinationAddress),0);
+        host->getNetworkCard().addMACHeader(tcpSynPackage,host->getHostTable()[destinationAddress],0);
         return tcpSynPackage;
     }
     else if(!initiate && client){
-        IPAddress destinationAddress(host->getDomainTable().value(url));
+        IPAddress destinationAddress(host->getDomainTable()[url]);
         Package tcpACKPackage;
         socket.addTCPHeader(tcpACKPackage,
                             host->getNetworkCard().getNetworkAddress(),
@@ -69,7 +69,7 @@ Package Process::getHandShakePackage(const QString &url, bool initiate, bool cli
                             false);
 
         host->getNetworkCard().addIPHeader(tcpACKPackage,6,destinationAddress);
-        host->getNetworkCard().addMACHeader(tcpACKPackage,host->getHostTable().value(destinationAddress),0);
+        host->getNetworkCard().addMACHeader(tcpACKPackage,host->getHostTable()[destinationAddress],0);
         return tcpACKPackage;
     }
     //TODO SERVER HANDSHAKEPACKAGES
