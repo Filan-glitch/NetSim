@@ -13,7 +13,7 @@ PackageDatabase::PackageDatabase()
     IPAddress src = IPAddress::getRandomAddress(false);
     IPAddress dst = IPAddress::getRandomAddress(false);
     TCP::initHeader(src, dst, Port(1024), Port(80), 28, 394, false, false, false, false, 200, package);
-    IPv4::initHeader(69, false, false, 0, 10, 6, src, dst, package);
+    IPv4::initHeader(25650, false, false, 0, 10, 6, src, dst, package);
     MAC::initHeader(package, MACAddress::getRandomAddress(), MACAddress::getRandomAddress(), 2048);
 
     Package package2("DNS Test Package", "There is no content");

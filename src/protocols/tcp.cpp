@@ -7,10 +7,10 @@ void TCP::initHeader(const IPAddress &srcAdress, const IPAddress &destAdress, co
     HeaderAttribute dstPort("Destination Port",16,destinationPort.getPortNumber());
     HeaderAttribute sequenceNumber("Sequence Number",32,seqNumber);
     HeaderAttribute acknowledgementNumber("Acknowledgment Number",32,ackNumber);
-    HeaderAttribute headerLength("Header Length", 4, static_cast<quint8>(20));
+    HeaderAttribute headerLength("Header Length", 4, static_cast<quint8>(5));
 
     //Sets the flags for the TCP Header Urgent and Push flag are always 0
-    quint16 flags = 0x0000000000000000;
+    quint16 flags = 0;
     setFlag(&flags,ack,4);
     setFlag(&flags,rst,2);
     setFlag(&flags,syn,1);

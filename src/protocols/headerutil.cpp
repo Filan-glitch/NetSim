@@ -1,9 +1,8 @@
 #include "Headernotfoundexception.h"
 #include "headerattributenotfoundexception.h"
 #include "headerutil.h"
-#include "src/models/dnsentry.h"
 #include "src/models/ipaddress.h"
-#include "src/models/macaddress.cpp"
+#include "src/models/macaddress.h"
 #include <QDebug>
 
 // Ethernet
@@ -59,7 +58,7 @@ QString HeaderUtil::getEtherType(const Package &data){
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getEtherType";
     }
 
-    quint16 etherType = (static_cast<quint16>(attribute[0]) << 8) + attribute[1];
+    quint16 etherType = attribute[0] << 8 | attribute[1];
 
     if(etherType == 2048){
         return "IPv4";
@@ -106,7 +105,28 @@ QString HeaderUtil::getIPAddress(const Package &data, bool src){
     return address.getAddressAsDecString();
 }
 
-QString HeaderUtil::getIPFlag(const Package &data, const QString &flagName){
+QString HeaderUtil::getIPFlags(const Package &data){
+    //Getting the IP Header
+    Header header;
+    try{
+           header = getHeaderByType(HeaderType::IP, data);
+    }
+    catch(HeaderNotFoundException hnfe){
+           qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getIPAddress";
+    }
+    QVector<quint8> attribute;
+    //Getting the flags
+    try{
+           attribute = getHeaderAttributeByName("Flags", header).getContentAsArray();
+    }
+    catch(HeaderAttributeNotFoundException hanfe){
+           qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getIPFlag";
+    }
+
+    return QString("0x") + QString::number(attribute[0], 16);
+}
+
+QString HeaderUtil::getIPFlag(const Package &data, const IPFlag &flagName){
     //Getting the IP Header
     Header header;
     try{
@@ -128,12 +148,12 @@ QString HeaderUtil::getIPFlag(const Package &data, const QString &flagName){
     QString returnString;
 
     //Checking which flag
-    if(flagName=="DF"){
-        ((flags >> 1) & 1) != 0 ? returnString = "true" : returnString = "false";
+    if(flagName == IPFlag::DF){
+        ((flags >> 1) & 1) != 0 ? returnString = "Set" : returnString = "Not Set";
         return returnString;
     }
-    if(flagName=="MF"){
-        ((flags >> 2) & 1) != 0 ? returnString = "true" : returnString = "false";
+    if(flagName == IPFlag::MF){
+        ((flags >> 2) & 1) != 0 ? returnString = "Set" : returnString = "Not Set";
         return returnString;
     }
     qDebug() << "This flag does not exist: " << flagName << " in HeaderUtil::getIPFlag";
@@ -191,7 +211,7 @@ QString HeaderUtil::getIPHeaderLength(const Package &data) {
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getIPNextProtocol";
     }
 
-    return QString::number(attribute[0]);
+    return QString::number(attribute[0] * 4) + " Bytes";
 }
 
 QString HeaderUtil::getIPTOS(const Package &data) {
@@ -212,7 +232,7 @@ QString HeaderUtil::getIPTOS(const Package &data) {
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getIPNextProtocol";
     }
 
-    return QString("0x") + QString::number(attribute[0], 16);
+    return QString("0x") + QString::number(attribute[0], 16).rightJustified(2, '0');
 }
 
 QString HeaderUtil::getIPTotalLength(const Package &data) {
@@ -233,7 +253,7 @@ QString HeaderUtil::getIPTotalLength(const Package &data) {
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getIPNextProtocol";
     }
 
-    quint16 length = (static_cast<quint16>(attribute[0]) << 8) + attribute[1];
+    quint16 length = attribute[0] << 8 | attribute[1];
 
     return QString::number(length);
 }
@@ -256,9 +276,9 @@ QString HeaderUtil::getIPIdentification(const Package &data) {
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getIPNextProtocol";
     }
 
-    quint16 id = (static_cast<quint16>(attribute[0]) << 8) + attribute[1];
+    quint16 id = attribute[0] << 8 | attribute[1];
 
-    return QString("0x") + QString::number(id, 16);
+    return QString("0x") + QString::number(id, 16).rightJustified(4, '0');
 }
 
 QString HeaderUtil::getIPTTL(const Package &data) {
@@ -300,7 +320,7 @@ QString HeaderUtil::getIPChecksum(const Package& data) {
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getIPNextProtocol";
     }
 
-    quint16 checksum = (static_cast<quint16>(attribute[0]) << 8) + attribute[1];
+    quint16 checksum = attribute[0] << 8 | attribute[1];
 
     return QString("0x") + QString::number(checksum, 16).toUpper();
 }
@@ -323,7 +343,7 @@ QString HeaderUtil::getIPFragmentOffset(const Package& data) {
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getIPNextProtocol";
     }
 
-    quint16 offset = (static_cast<quint16>(attribute[0]) << 8) + attribute[1];
+    quint16 offset = attribute[0] << 8 | attribute[1];
 
     return QString::number(offset);
 }
@@ -364,12 +384,34 @@ QString HeaderUtil::getPort(const Package &data, bool src){
         }
     }
 
-    quint16 port = (static_cast<quint16>(attribute[0]) << 8) + attribute[1];
+    quint16 port = attribute[0] << 8 | attribute[1];
 
     return QString::number(port);
 }
 
-QString HeaderUtil::getTCPFlag(const Package &data, const QString &flagName){
+QString HeaderUtil::getTCPFlags(const Package &data) {
+    //Get header
+    Header header;
+    try{
+        header = getHeaderByType(HeaderType::TCP, data);
+    }
+    catch(HeaderNotFoundException hnfe){
+        qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getTCPFlag";
+    }
+
+    //Get flags
+    QVector<quint8> attribute;
+    try{
+        attribute = getHeaderAttributeByName("Flags", header).getContentAsArray();
+    }
+    catch(HeaderAttributeNotFoundException hanfe){
+        qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getTCPFlag";
+    }
+
+    return QString("0x") + QString::number(attribute[0], 16).rightJustified(3, '0');
+}
+
+QString HeaderUtil::getTCPFlag(const Package &data, const TCPFlag &flagName){
     //Get header
     Header header;
     try{
@@ -389,27 +431,41 @@ QString HeaderUtil::getTCPFlag(const Package &data, const QString &flagName){
     }
 
     //putting the flags from quint8* together to quint16
-    quint16 flag = (static_cast<quint16>(attribute[0]) << 8) + attribute[1];
+    quint16 flag = attribute[0] << 8 | attribute[1];
     QString returnString;
 
     //checking ack flag
-    if(flagName == "ACK"){
-        ((flag >> 4) & 1) != 0 ? returnString = "true" : returnString = "false";
-    }
-    //checking rst flag
-    if(flagName == "RST"){
-        ((flag >> 2) & 1) != 0 ? returnString = "true" : returnString = "false";
-    }
-    //checking syn flag
-    if(flagName == "SYN"){
-        ((flag >> 1) & 1) != 0 ? returnString = "true" : returnString = "false";
-    }
-    //checking fin flag
-    if(flagName == "FIN"){
-        (flag & 1) != 0 ? returnString = "true" : returnString = "false";
-    }
-    if(flagName != "ACK" && flagName !="RST" && flagName !="SYN" && flagName != "FIN"){
-        qDebug() << "This flag does not exist: " << flagName << " in HeaderUtil::getTCPFlag";
+    switch (flagName) {
+    case TCPFlag::NS:
+        returnString = (flag & 0b1000'0000) ? "Set" : "Not Set";
+        break;
+    case TCPFlag::CWR:
+        returnString = (flag & 0b1000'0000) ? "Set" : "Not Set";
+        break;
+    case TCPFlag::ECE:
+        returnString = (flag & 0b100'0000) ? "Set" : "Not Set";
+        break;
+    case TCPFlag::URG:
+        returnString = (flag & 0b10'0000) ? "Set" : "Not Set";
+        break;
+    case TCPFlag::ACK:
+        returnString = (flag & 0b1'0000) ? "Set" : "Not Set";
+        break;
+    case TCPFlag::PSH:
+        returnString = (flag & 0b1000) ? "Set" : "Not Set";
+        break;
+    case TCPFlag::RST:
+        returnString = (flag & 0b100) ? "Set" : "Not Set";
+        break;
+    case TCPFlag::SYN:
+        returnString = (flag & 0b10) ? "Set" : "Not Set";
+        break;
+    case TCPFlag::FIN:
+        returnString = (flag & 0b1) ? "Set" : "Not Set";
+        break;
+    default:
+        qDebug() << "Unknown flag name in HeaderUtil::getTCPFlag";
+        break;
     }
     return returnString;
 }
@@ -480,7 +536,7 @@ QString HeaderUtil::getTCPHeaderLength(const Package &data) {
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getTCPFlag";
     }
 
-    return QString::number(attribute[0]);
+    return QString::number(attribute[0] * 4) + " Bytes";
 }
 
 QString HeaderUtil::getTCPWindow(const Package &data) {
@@ -523,7 +579,7 @@ QString HeaderUtil::getTCPChecksum(const Package &data) {
     }
 
     quint16 checksum = attribute[0] << 8 | attribute[1];
-    return QString("0x") + QString::number(checksum, 16).toUpper();
+    return QString("0x") + QString::number(checksum, 16).toUpper().rightJustified(4, '0');
 }
 
 QString HeaderUtil::getTCPUrgentPointer(const Package &data) {
@@ -565,7 +621,7 @@ QString HeaderUtil::getUDPChecksum(const Package &data) {
 
     quint16 checksum = attribute[0] << 8 | attribute[1];
 
-    return QString("0x") + QString::number(checksum, 16).toUpper();
+    return QString("0x") + QString::number(checksum, 16).toUpper().rightJustified(4, '0');
 }
 
 QString HeaderUtil::getUDPLength(const Package &data) {
@@ -583,7 +639,7 @@ QString HeaderUtil::getUDPLength(const Package &data) {
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getUDPLength";
     }
 
-    quint16 length = (static_cast<quint16>(attribute[0]) << 8) + attribute[1];
+    quint16 length = attribute[0] << 8 | attribute[1];
 
     return QString::number(length);
 }
@@ -613,7 +669,7 @@ QString HeaderUtil::getHTTPAttribute(const Package &data, const QString &attribu
 
     //Converting to String
     QString returnString;
-    for(quint32 i = 0; i < attributeSize/8;i++){
+    for(unsigned int i = 0; i < attributeSize/8; i++){
         returnString.append(static_cast<char>(attribute[i]));
     }
     return returnString;
@@ -639,12 +695,12 @@ QString HeaderUtil::getDNSID(const Package &data)
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getDNSID";
     }
 
-    quint16 dnsID = (static_cast<quint16>(attribute[0]) << 8) + attribute[1];
+    quint16 dnsID = attribute[0] << 8 | attribute[1];
 
-    return QString("0x") + QString::number(dnsID, 16).toUpper();
+    return QString("0x") + QString::number(dnsID, 16).toUpper().rightJustified(4, '0');
 }
 
-QString HeaderUtil::getDNSFlag(const Package &data)
+QString HeaderUtil::getDNSFlags(const Package &data)
 {
     Header header;
     try{
@@ -662,9 +718,84 @@ QString HeaderUtil::getDNSFlag(const Package &data)
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getDNSFlag";
     }
 
-    quint16 dnsFlag = (static_cast<quint16>(attribute[0]) << 8) + attribute[1];
+    quint16 dnsFlag = attribute[0] << 8 | attribute[1];
 
-    return QString("0b") + QString::number(dnsFlag, 2).rightJustified(16, '0');
+    return QString("0x") + QString::number(dnsFlag, 16).rightJustified(4, '0');
+}
+
+QString HeaderUtil::getDNSFlag(const Package &data, const DNSFlag &flagName) {
+    Header header;
+    try{
+        header = getHeaderByType(HeaderType::DNS, data);
+    }
+    catch(HeaderNotFoundException hnfe){
+        qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getDNSFlag";
+    }
+
+    QVector<quint8> attribute;
+    try{
+        attribute = getHeaderAttributeByName("Flags", header).getContentAsArray();
+    }
+    catch(HeaderAttributeNotFoundException hanfe){
+        qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getDNSFlag";
+    }
+
+    quint16 dnsFlag = attribute[0] << 8 | attribute[1];
+
+    switch (flagName) {
+    case DNSFlag::RESPONSE:
+        return dnsFlag & 0b1000'0000'0000'0000 ? "Message is a response" : "Message is a query";
+    case DNSFlag::OPCODE: {
+        switch(dnsFlag & 0b111'1000'0000'0000 >> 11) {
+            case 0:
+                return "Standard query (0)";
+            case 1:
+                return "Inverse query (1)";
+            case 2:
+                return "Server status request (2)";
+            case 3:
+                return "Reserved for future use (3)";
+            case 4:
+                return "Notify (4)";
+            case 5:
+                return "Update (5)";
+            case 6:
+                return "DNS Stateful Operations (DSO) (6)";
+            default:
+                return "Unknown opcode (" + QString::number(dnsFlag & 0b111'1000'0000'0000 >> 11) + ")";
+        }
+    }
+    case DNSFlag::AUTHORITATIVE:
+        return dnsFlag & 0b0000'0100'0000'0000 ? "Server is an authority for domain" : "Server is not an authority for domain";
+    case DNSFlag::TRUNCATED:
+        return dnsFlag & 0b0000'0010'0000'0000 ? "Message is truncated" : "Message is not truncated";
+    case DNSFlag::RECURSION_DESIRED:
+        return dnsFlag & 0b0000'0001'0000'0000 ? "Do query recursively" : "Do not query recursively";
+    case DNSFlag::RECURSION_AVAILABLE:
+        return dnsFlag & 0b0000'0000'1000'0000 ? "Server can do recursive queries" : "Server cannot do recursive queries";
+    case DNSFlag::ANSWER_AUTHENTICATED:
+        return dnsFlag & 0b0000'0000'0100'0000 ? "Answer/authority portion was authenticated by server" : "Answer/authority portion was not authenticated by server";
+    case DNSFlag::NON_AUTHENTICATED_DATA:
+        return dnsFlag & 0b0000'0000'0010'0000 ? "Acceptable" : "Unacceptable";
+    case DNSFlag::REPLY_CODE: {
+        switch(dnsFlag & 0b1111) {
+            case 0:
+                return "No error (0)";
+            case 1:
+                return "Format error (1)";
+            case 2:
+                return "Server failure (2)";
+            case 3:
+                return "Non-existent domain (3)";
+            case 4:
+                return "Query type not implemented (4)";
+            default:
+                return "Unknown error (" + QString::number(dnsFlag & 0b1111) + ")";
+        }
+    }
+    default:
+        return QString();
+    }
 }
 
 QString HeaderUtil::getDNSQuestions(const Package &data)
@@ -681,7 +812,7 @@ QString HeaderUtil::getDNSQuestions(const Package &data)
     quint16 dnsQuestions = 0;
     try{
         attribute = getHeaderAttributeByName("Questions", header).getContentAsArray();
-        dnsQuestions = (static_cast<quint16>(attribute[0]) << 8) + attribute[1];
+        dnsQuestions = attribute[0] << 8 | attribute[1];
     }
     catch(HeaderAttributeNotFoundException hanfe){
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getDNSQuestions";
@@ -708,7 +839,7 @@ QString HeaderUtil::getDNSAnswerRRs(const Package &data)
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getDNSQuestions";
     }
 
-    quint16 dnsAnswers = (static_cast<quint16>(attribute[0]) << 8) + attribute[1];
+    quint16 dnsAnswers = attribute[0] << 8 | attribute[1];
 
     return QString::number(dnsAnswers);
 }
@@ -731,7 +862,7 @@ QString HeaderUtil::getDNSAuthorityRRs(const Package &data)
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getDNSQuestions";
     }
 
-    quint16 dnsAuthority = (static_cast<quint16>(attribute[0]) << 8) + attribute[1];
+    quint16 dnsAuthority = attribute[0] << 8 | attribute[1];
 
     return QString::number(dnsAuthority);
 }
@@ -754,12 +885,12 @@ QString HeaderUtil::getDNSAdditionalRRs(const Package &data)
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getDNSQuestions";
     }
 
-    quint16 dnsAdditional = (static_cast<quint16>(attribute[0]) << 8) + attribute[1];
+    quint16 dnsAdditional = attribute[0] << 8 | attribute[1];
 
     return QString::number(dnsAdditional);
 }
 
-QString HeaderUtil::getDNSQuery(const Package &data, int index)
+QString HeaderUtil::getDNSQuery(const Package &data, int index, const RRAttribute &attr)
 {
     Header header;
     try{
@@ -777,10 +908,29 @@ QString HeaderUtil::getDNSQuery(const Package &data, int index)
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getDNSQuestions";
     }
 
+
+    switch (attr) {
+    case RRAttribute::FULL_DATA: {
+        break;
+        //Converting to String
+        QString returnString;
+        unsigned int i = 0;
+        while(attribute[i] != 0x00){
+                returnString.append(static_cast<char>(attribute[i++]));
+        }
+        i++;
+        returnString.append(": ");
+
+        break;
+    }
+    default:
+        break;
+    }
+
     return QString();
 }
 
-QString HeaderUtil::getDNSAnswer(const Package &data, int index)
+QString HeaderUtil::getDNSAnswer(const Package &data, int index, const RRAttribute &attr)
 {
     Header header;
     try{
@@ -801,7 +951,7 @@ QString HeaderUtil::getDNSAnswer(const Package &data, int index)
     return QString();
 }
 
-QString HeaderUtil::getDNSAuthoritativeNameserver(const Package &data, int index)
+QString HeaderUtil::getDNSAuthoritativeNameserver(const Package &data, int index, const RRAttribute &attr)
 {
     Header header;
     try{
@@ -822,7 +972,7 @@ QString HeaderUtil::getDNSAuthoritativeNameserver(const Package &data, int index
     return QString();
 }
 
-QString HeaderUtil::getDNSAdditionalRecord(const Package &data, int index)
+QString HeaderUtil::getDNSAdditionalRecord(const Package &data, int index, const RRAttribute &attr)
 {
     Header header;
     try{

@@ -3,6 +3,9 @@
 
 #include <QString>
 #include "src/models/package.h"
+#include "tcp.h"
+#include "ipv4.h"
+#include "dns.h"
 
 /**
  * @brief The HeaderUtil class
@@ -78,7 +81,15 @@ public:
      * @param flagName
      * @return Returns the IPFlag corresponding to the flag name
      */
-    static QString getIPFlag(const Package &data, const QString &flagName);
+    static QString getIPFlags(const Package &data);
+
+    /**
+     * @brief getIPFlag
+     * @param data
+     * @param flagName
+     * @return Returns the IPFlag corresponding to the flag name
+     */
+    static QString getIPFlag(const Package &data, const IPFlag &flagName);
 
     /**
      * @brief getIPNextProtocol
@@ -118,7 +129,15 @@ public:
      * @param flagName
      * @return Returns the tcp flag as true or false corresponding to the flag name
      */
-    static QString getTCPFlag(const Package &data, const QString &flagName);
+    static QString getTCPFlags(const Package &data);
+
+    /**
+     * @brief getTCPFlag
+     * @param data
+     * @param flagName
+     * @return Returns the tcp flag as true or false corresponding to the flag name
+     */
+    static QString getTCPFlag(const Package &data, const TCPFlag &flagName);
 
     /**
      * @brief getTCPSequenceNumber
@@ -192,11 +211,18 @@ public:
     static QString getDNSID(const Package &data);
 
     /**
+     * @brief getDNSFlags
+     * @param data
+     * @return Returns the Flags of the DNS Protocol
+     */
+    static QString getDNSFlags(const Package &data);
+
+    /**
      * @brief getDNSFlag
      * @param data
      * @return Returns the Flags of the DNS Protocol
      */
-    static QString getDNSFlag(const Package &data);
+    static QString getDNSFlag(const Package &data, const DNSFlag &flagName);
 
     /**
      * @brief getDNSQuestions
@@ -232,7 +258,7 @@ public:
      * @param index
      * @return Returns a Query of the DNS Protocol
      */
-    static QString getDNSQuery(const Package &data, int index);
+    static QString getDNSQuery(const Package &data, int index, const RRAttribute &attr = RRAttribute::FULL_DATA);
 
     /**
      * @brief getDNSAnswer
@@ -240,7 +266,7 @@ public:
      * @param index
      * @return Returns an Answer of the DNS Protocol
      */
-    static QString getDNSAnswer(const Package &data, int index);
+    static QString getDNSAnswer(const Package &data, int index, const RRAttribute &attr = RRAttribute::FULL_DATA);
 
     /**
      * @brief getDNSAuthoritativeNameserver
@@ -248,7 +274,7 @@ public:
      * @param index
      * @return Returns an Authoritative Nameserver of the DNS Protocol
      */
-    static QString getDNSAuthoritativeNameserver(const Package &data, int index);
+    static QString getDNSAuthoritativeNameserver(const Package &data, int index, const RRAttribute &attr = RRAttribute::FULL_DATA);
 
     /**
      * @brief getDNSAdditionalRecord
@@ -256,7 +282,7 @@ public:
      * @param index
      * @return Returns an Additional Record of the DNS Protocol
      */
-    static QString getDNSAdditionalRecord(const Package &data, int index);
+    static QString getDNSAdditionalRecord(const Package &data, int index, const RRAttribute &attr = RRAttribute::FULL_DATA);
 
     /**
      * @brief getDNSName

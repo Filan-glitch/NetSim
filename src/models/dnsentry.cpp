@@ -25,27 +25,15 @@ quint16 DNSEntry::getDataLength() const
     return dataLength;
 }
 
-IPAddress DNSEntry::getAddress() const
+QVector<quint8> DNSEntry::getData() const
 {
-    return address;
+    return data;
 }
 
-DNSEntry::DNSEntry(const QString &name, quint16 type, quint16 dnsClass, quint32 ttl, quint16 dataLength, const IPAddress &address) : name(name),
+DNSEntry::DNSEntry(const QString &name, quint16 type, quint16 dnsClass, quint32 ttl, quint16 dataLength, const QVector<quint8> &data) : name(name),
     type(std::move(type)),
     dnsClass(std::move(dnsClass)),
     ttl(std::move(ttl)),
     dataLength(std::move(dataLength)),
-    address(address)
+    data(data)
 {}
-
-DNSEntry DNSEntry::fromString(const QString& str)
-{
-    QString name;
-    quint16 type = 0;
-    quint16 dnsClass = 0;
-    quint32 ttl = 0;
-    quint16 dataLength = 0;
-    IPAddress address;
-
-    return DNSEntry(name, type, dnsClass, ttl, dataLength, address);
-}
