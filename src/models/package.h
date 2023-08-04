@@ -14,7 +14,7 @@ public:
     Package();
     Package(const QString& info, const QString &content);
 
-    QString getData() const;
+    QString getContent() const;
 
     QList<Header> getHeaders() const;
 
@@ -24,6 +24,8 @@ public:
     void setContent(QString content);
 
     QString getInfo() const;
+
+    quint16 getLength() const;
     
 };
 

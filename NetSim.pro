@@ -14,6 +14,7 @@ SOURCES += \
     src/management/packagedatabase.cpp \
     src/management/packagetablemodel.cpp \
     src/management/simulationmanager.cpp \
+    src/models/dnsentry.cpp \
     src/models/package.cpp \
     src/models/process.cpp \
     src/network/client.cpp \
@@ -25,6 +26,7 @@ SOURCES += \
     src/models/macaddress.cpp \
     src/models/port.cpp \
     src/network/socket.cpp \
+    src/protocols/dns.cpp \
     src/protocols/header.cpp \
     src/protocols/headerAttribute.cpp \
     src/protocols/headerattributenotfoundexception.cpp \
@@ -49,6 +51,7 @@ HEADERS += \
     src/management/packagedatabase.h \
     src/management/packagetablemodel.h \
     src/management/simulationmanager.h \
+    src/models/dnsentry.h \
     src/models/package.h \
     src/models/process.h \
     src/network/client.h \
@@ -60,6 +63,7 @@ HEADERS += \
     src/models/macaddress.h \
     src/models/port.h \
     src/network/socket.h \
+    src/protocols/dns.h \
     src/protocols/header.h \
     src/protocols/headerAttribute.h \
     src/protocols/headerattributenotfoundexception.h \

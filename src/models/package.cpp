@@ -6,7 +6,7 @@ Package::Package() {}
 Package::Package(const QString &info, const QString &content) : headers(QList<Header>()), info(info), content(content)
 {}
 
-QString Package::getData() const {
+QString Package::getContent() const {
     return content;
 }
 
@@ -33,4 +33,12 @@ QString Package::getInfo() const {
 
 void Package::setContent(QString content){
     this->content = content;
+}
+
+quint16 Package::getLength() const {
+    quint16 length = getContent().length();
+    for(const Header& header : headers){
+        length += header.getHeaderLength();
+    }
+    return length;
 }

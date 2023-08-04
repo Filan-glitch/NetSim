@@ -1,7 +1,5 @@
 #include "header.h"
 
-
-
 Header::Header() {}
 
 Header::Header(const HeaderType &headerType, const QList<HeaderAttribute> &headerList) : headerType(headerType), headerList(headerList) {}
@@ -21,4 +19,12 @@ QList<HeaderAttribute> Header::getHeaderList() const {
 
 HeaderType Header::getType() const {
     return headerType;
+}
+
+quint16 Header::getHeaderLength() const {
+    quint16 length = 0;
+    for(const HeaderAttribute &headerAttribute : headerList){
+        length += headerAttribute.getSizeInBit();
+    }
+    return length / 8;
 }

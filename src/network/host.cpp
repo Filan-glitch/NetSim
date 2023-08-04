@@ -5,7 +5,7 @@ QHash<Port, Process> Host::getProcessTable() const
     return processTable;
 }
 
-QHash<MACAddress, IPAddress> Host::getHostTable() const
+QHash<IPAddress, MACAddress> Host::getHostTable() const
 {
     return hostTable;
 }

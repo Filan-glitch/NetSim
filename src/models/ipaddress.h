@@ -12,6 +12,7 @@ private:
     QVector<quint8> address;
 
 public:
+    IPAddress();
     IPAddress(const QVector<quint8> &address);
 
     QString getAddressAsDecString() const;

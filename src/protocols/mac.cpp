@@ -29,7 +29,7 @@ quint32 MAC::getFCS(const MACAddress &destMACAddress, const MACAddress &srcMACAd
     //Putting all the data in a QByteArray
     QByteArray frameData;
     QDataStream stream(&frameData, QIODevice::WriteOnly);
-    stream << destMACAddress.getAddressAsInt() << srcMACAddress.getAddressAsInt() << etherType << data.getData();
+    stream << destMACAddress.getAddressAsInt() << srcMACAddress.getAddressAsInt() << etherType << data.getContent().toLatin1().constData();
 
     //Returning the CRC32 of the framedata
     return calculateCRC32(frameData);

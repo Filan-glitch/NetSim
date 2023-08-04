@@ -29,7 +29,7 @@ RouterWidget::RouterWidget(const Router &router, QWidget *parent)
     m_layout->addWidget(m_globalIpLabel);
     m_layout->addWidget(m_macLabel);
 
-    this->setFixedSize(QSize(200, 156));
+    this->setFixedSize(QSize(256, 156));
 
 }
 

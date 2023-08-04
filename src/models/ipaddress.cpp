@@ -1,6 +1,8 @@
 #include "ipaddress.h"
 
+IPAddress::IPAddress() : address(QVector<quint8>()) {
 
+}
 
 IPAddress::IPAddress(const QVector<quint8> &address) : address(address) {
 

@@ -20,7 +20,7 @@ public:
      * @param lengthField
      * @par Adds a MAC-Header to a package
      */
-    static void initHeader(Package& data, const MACAddress &destMACAdress, const MACAddress &srcMACAdress, quint16 lengthField);
+    static void initHeader(Package& data, const MACAddress &destMACAdress, const MACAddress &srcMACAdress, quint16 etherType);
 
 private:
     /**

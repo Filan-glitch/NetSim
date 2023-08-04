@@ -13,7 +13,7 @@ void Socket::addTCPHeader(Package &data)
 void Socket::addUDPHeader(Package &data)
 {
     //TODO  Daten richtig ausfüllen
-    UDP::initHeader(this->sourcePort, this->destinationPort,0,data);
+    UDP::initHeader(this->sourcePort, this->destinationPort, data);
 }
 
 void Socket::sentPackageToNetworkCard(Package &data)
