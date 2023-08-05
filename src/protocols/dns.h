@@ -21,7 +21,7 @@ class DNS
 {
 public:
     static void initDNSRequest(Package& data, const QList<DNSEntry> queries);
-    static void initDNSResponse(Package& data, const QList<DNSEntry> queries, const QList<DNSEntry> answers, const QList<DNSEntry> authoritativeNameservers, const QList<DNSEntry> additionalRecords);
+    static void initDNSResponse(Package& data, const QList<DNSEntry> queries, const QList<DNSEntry> answers);
 
 private:
     static void setFlag(quint16* flags, bool set, quint8 position);

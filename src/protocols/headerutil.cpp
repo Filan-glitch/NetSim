@@ -675,6 +675,28 @@ QString HeaderUtil::getHTTPAttribute(const Package &data, const QString &attribu
     return returnString;
 }
 
+bool HeaderUtil::getHTTPIsResponse(const Package &data) {
+    //Getting the Header
+    Header header;
+    try{
+        header = getHeaderByType(HeaderType::HTTP, data);
+    }
+    catch(HeaderNotFoundException hnfe){
+        qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::ggetAttributeAsString";
+    }
+
+    //Getting the attribute
+    QVector<quint8> attribute;
+    try{
+        attribute = getHeaderAttributeByName("Response", header).getContentAsArray();
+    }
+    catch(HeaderAttributeNotFoundException hanfe){
+        qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getAttributeAsString";
+    }
+
+    return attribute[0];
+}
+
 // DNS
 
 QString HeaderUtil::getDNSID(const Package &data)
@@ -844,52 +866,6 @@ QString HeaderUtil::getDNSAnswerRRs(const Package &data)
     return QString::number(dnsAnswers);
 }
 
-QString HeaderUtil::getDNSAuthorityRRs(const Package &data)
-{
-    Header header;
-    try{
-        header = getHeaderByType(HeaderType::DNS, data);
-    }
-    catch(HeaderNotFoundException hnfe){
-        qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getDNSQuestions";
-    }
-
-    QVector<quint8> attribute;
-    try{
-        attribute = getHeaderAttributeByName("Authority RRs", header).getContentAsArray();
-    }
-    catch(HeaderAttributeNotFoundException hanfe){
-        qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getDNSQuestions";
-    }
-
-    quint16 dnsAuthority = attribute[0] << 8 | attribute[1];
-
-    return QString::number(dnsAuthority);
-}
-
-QString HeaderUtil::getDNSAdditionalRRs(const Package &data)
-{
-    Header header;
-    try{
-        header = getHeaderByType(HeaderType::DNS, data);
-    }
-    catch(HeaderNotFoundException hnfe){
-        qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getDNSQuestions";
-    }
-
-    QVector<quint8> attribute;
-    try{
-        attribute = getHeaderAttributeByName("Additional RRs", header).getContentAsArray();
-    }
-    catch(HeaderAttributeNotFoundException hanfe){
-        qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getDNSQuestions";
-    }
-
-    quint16 dnsAdditional = attribute[0] << 8 | attribute[1];
-
-    return QString::number(dnsAdditional);
-}
-
 QString HeaderUtil::getDNSQuery(const Package &data, int index, const RRAttribute &attr)
 {
     Header header;
@@ -909,25 +885,67 @@ QString HeaderUtil::getDNSQuery(const Package &data, int index, const RRAttribut
     }
 
 
-    switch (attr) {
-    case RRAttribute::FULL_DATA: {
-        break;
-        //Converting to String
-        QString returnString;
-        unsigned int i = 0;
-        while(attribute[i] != 0x00){
-                returnString.append(static_cast<char>(attribute[i++]));
+    QString name = "";
+    QString type = "";
+    QString _class = "";
+
+    unsigned int i = 0;
+
+
+    while(attribute[i] != 0x00){
+        if(attribute[i] < 0x20) {
+                name.append('.');
+                i++;
+                continue;
         }
-        i++;
-        returnString.append(": ");
-
-        break;
+        name.append(static_cast<char>(attribute[i++]));
     }
-    default:
-        break;
+    i++;
+    quint16 typeValue = attribute[i++] << 8;
+    switch(typeValue | attribute[i++]){
+        case 0x0001:
+            type = "A";
+            break;
+        case 0x0002:
+            type = "NS";
+            break;
+        case 0x0005:
+            type = "CNAME";
+            break;
+        case 0x0006:
+            type = "SOA";
+            break;
+        case 0x000c:
+            type = "PTR";
+            break;
+        case 0x000f:
+            type = "MX";
+            break;
+        case 0x0010:
+            type = "TXT";
+            break;
+        case 0x001c:
+            type = "AAAA";
+            break;
+        default:
+            type = "Unknown";
+            break;
     }
+    quint16 classNumber = attribute[i++] << 8;
+    _class = (classNumber | attribute[i]) == 0x0001 ? "IN" : "Unknown";
 
-    return QString();
+    switch (attr) {
+        case RRAttribute::FULL_DATA:
+            return name + ": type " + type + ", class " + _class;
+        case RRAttribute::NAME:
+            return name;
+        case RRAttribute::TYPE:
+            return type;
+        case RRAttribute::CLASS:
+            return _class;
+        default:
+            return "";
+    }
 }
 
 QString HeaderUtil::getDNSAnswer(const Package &data, int index, const RRAttribute &attr)
@@ -948,49 +966,93 @@ QString HeaderUtil::getDNSAnswer(const Package &data, int index, const RRAttribu
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getDNSQuestions";
     }
 
-    return QString();
-}
+    QString name = "";
+    QString type = "";
+    QString _class = "";
+    QString ttl = "";
+    QString dataLength = "";
 
-QString HeaderUtil::getDNSAuthoritativeNameserver(const Package &data, int index, const RRAttribute &attr)
-{
-    Header header;
-    try{
-        header = getHeaderByType(HeaderType::DNS, data);
+    unsigned int i = 0;
+
+    while(attribute[i] != 0x00){
+        if(attribute[i] < 0x20) {
+                name.append('.');
+                i++;
+                continue;
+        }
+        name.append(static_cast<char>(attribute[i++]));
     }
-    catch(HeaderNotFoundException hnfe){
-        qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getDNSQuestions";
+    i++;
+
+    quint16 typeValue = attribute[i++] << 8;
+    switch(typeValue | attribute[i++]){
+    case 0x0001:
+        type = "A";
+        break;
+    case 0x0002:
+        type = "NS";
+        break;
+    case 0x0005:
+        type = "CNAME";
+        break;
+    case 0x0006:
+        type = "SOA";
+        break;
+    case 0x000c:
+        type = "PTR";
+        break;
+    case 0x000f:
+        type = "MX";
+        break;
+    case 0x0010:
+        type = "TXT";
+        break;
+    case 0x001c:
+        type = "AAAA";
+        break;
+    default:
+        type = "Unknown";
+        break;
     }
 
-    QVector<quint8> attribute;
-    try{
-        attribute = getHeaderAttributeByName("Authoritative Nameserver " + QString::number(index), header).getContentAsArray();
-    }
-    catch(HeaderAttributeNotFoundException hanfe){
-        qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getDNSQuestions";
-    }
+    quint16 classNumber = attribute[i++] << 8;
+    _class = (classNumber | attribute[i++]) == 0x0001 ? "IN" : "Unknown";
 
-    return QString();
-}
+    quint32 ttlValue = attribute[i++] << 24;
+    ttlValue |= attribute[i++] << 16;
+    ttlValue |= attribute[i++] << 8;
+    ttlValue |= attribute[i++];
+    ttl = QString::number(ttlValue);
 
-QString HeaderUtil::getDNSAdditionalRecord(const Package &data, int index, const RRAttribute &attr)
-{
-    Header header;
-    try{
-        header = getHeaderByType(HeaderType::DNS, data);
-    }
-    catch(HeaderNotFoundException hnfe){
-        qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getDNSQuestions";
-    }
+    quint16 dataLengthValue = attribute[i++] << 8;
+    dataLengthValue |= attribute[i++];
+    dataLength = QString::number(dataLengthValue);
 
-    QVector<quint8> attribute;
-    try{
-        attribute = getHeaderAttributeByName("Additional Record " + QString::number(index), header).getContentAsArray();
-    }
-    catch(HeaderAttributeNotFoundException hanfe){
-        qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getDNSQuestions";
-    }
+    QVector<quint8> ipData;
+    ipData.append(attribute[i++]);
+    ipData.append(attribute[i++]);
+    ipData.append(attribute[i++]);
+    ipData.append(attribute[i]);
+    IPAddress ip(ipData);
 
-    return QString();
+    switch (attr) {
+    case RRAttribute::FULL_DATA:
+        return name + ": type " + type + ", class " + _class + ", addr " + ip.getAddressAsDecString();
+    case RRAttribute::NAME:
+        return name;
+    case RRAttribute::TYPE:
+        return type;
+    case RRAttribute::CLASS:
+        return _class;
+    case RRAttribute::TTL:
+        return ttl;
+    case RRAttribute::DATA_LENGTH:
+        return dataLength;
+    case RRAttribute::DATA:
+        return ip.getAddressAsDecString();
+    default:
+        return "";
+    }
 }
 
 // Allrounder

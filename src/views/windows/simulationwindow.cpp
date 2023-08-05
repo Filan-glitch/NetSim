@@ -57,34 +57,35 @@ void SimulationWindow::setupNetwork()
 {
     // Mainlayout
     auto mainLayout = new QGridLayout(this);
+
     NetworkTab *networkTab = new NetworkTab(this);
     networkTab->setLayout(mainLayout);
     this->ui->tabWidget->insertTab(0, networkTab, QIcon(":/network.svg"), "Network");
 
     // Mainrouter
     auto mainRouter = new RouterWidget(this->manager->getRouters().at(0), this);
+    auto dnsServer = new ServerWidget(this->manager->getServer().at(0), this);
     switch(this->manager->getClientsAmount()) {
     case 1:
-        mainLayout->addWidget(mainRouter, 0, 3);
+        mainLayout->addWidget(mainRouter, 1, 2);
+        mainLayout->addWidget(dnsServer , 0, 2);
         break;
     case 2:
     case 3:
-        mainLayout->addWidget(mainRouter, 2, 3);
-        break;
     case 4:
     case 5:
-        mainLayout->addWidget(mainRouter, 2, 3);
+        mainLayout->addWidget(mainRouter, 3, 2);
+        mainLayout->addWidget(dnsServer , 2, 2);
         break;
     }
     networkTab->addRouter(mainRouter);
-
-    for(auto i = 0; i < manager->getServerAmount(); i++) {
-        ServerWidget* serverWidget = new ServerWidget(manager->getServer().at(i), this);
-        mainLayout->addWidget(serverWidget, i, 0);
-        networkTab->addServer(serverWidget);
-    }
+    networkTab->addServer(dnsServer);
 
     for(auto i = 1; i <= manager->getServerAmount(); i++) {
+        ServerWidget* serverWidget = new ServerWidget(manager->getServer().at(i), this);
+        mainLayout->addWidget(serverWidget, i - 1, 0);
+        networkTab->addServer(serverWidget);
+
         RouterWidget* routerWidget = new RouterWidget(manager->getRouters().at(i), this);
         mainLayout->addWidget(routerWidget, i - 1, 1);
         networkTab->addRouter(routerWidget);
@@ -92,7 +93,7 @@ void SimulationWindow::setupNetwork()
 
     for(auto i = 0; i < manager->getClientsAmount(); i++) {
         ClientWidget* clientWidget = new ClientWidget(manager->getClients().at(i), this);
-        mainLayout->addWidget(clientWidget, i, 4);
+        mainLayout->addWidget(clientWidget, i, 3);
         networkTab->addClient(clientWidget);
     }
     this->ui->tabWidget->setCurrentIndex(0);
@@ -178,10 +179,27 @@ void SimulationWindow::updateTreeWidget(const QModelIndex &index)
 
     // Application Header (if existant)
     if(HeaderUtil::getApplicationProtocol(package) == HeaderType::HTTP) {
-        QTreeWidgetItem* applicationHeader = new QTreeWidgetItem(static_cast<QTreeWidget *>(nullptr), QStringList(QString("Hypertext Transfer Protocol")));
-        applicationHeader->addChild(new QTreeWidgetItem(applicationHeader, QStringList(QString("%1 %2 %3"))));
+        if(HeaderUtil::getHTTPIsResponse(package)) {
+            QTreeWidgetItem* applicationHeader = new QTreeWidgetItem(static_cast<QTreeWidget *>(nullptr), QStringList(QString("Hypertext Transfer Protocol")));
+            applicationHeader->addChild(new QTreeWidgetItem(applicationHeader, QStringList(QString("Response Version: %1").arg(HeaderUtil::getHTTPAttribute(package, "Version")))));
+            applicationHeader->addChild(new QTreeWidgetItem(applicationHeader, QStringList(QString("Status Code: %1").arg(HeaderUtil::getHTTPAttribute(package, "Code")))));
+            applicationHeader->addChild(new QTreeWidgetItem(applicationHeader, QStringList(QString("Response Phrase: %1").arg(HeaderUtil::getHTTPAttribute(package, "Phrase")))));
+            applicationHeader->addChild(new QTreeWidgetItem(applicationHeader, QStringList(QString("Content-Type: %1").arg(HeaderUtil::getHTTPAttribute(package, "Content-Type")))));
 
-        this->m_treeWidget->addTopLevelItem(applicationHeader);
+            QTreeWidgetItem* contentHeader = new QTreeWidgetItem(static_cast<QTreeWidget *>(nullptr), QStringList(QString("Line-based text data: %1").arg(HeaderUtil::getHTTPAttribute(package, "Content-Type"))));
+            contentHeader->addChild(new QTreeWidgetItem(contentHeader, QStringList(package.getContent())));
+
+            this->m_treeWidget->addTopLevelItem(applicationHeader);
+            this->m_treeWidget->addTopLevelItem(contentHeader);
+        } else {
+            QTreeWidgetItem* applicationHeader = new QTreeWidgetItem(static_cast<QTreeWidget *>(nullptr), QStringList(QString("Hypertext Transfer Protocol")));
+            applicationHeader->addChild(new QTreeWidgetItem(applicationHeader, QStringList(QString("Request Method: %1").arg(HeaderUtil::getHTTPAttribute(package, "Method")))));
+            applicationHeader->addChild(new QTreeWidgetItem(applicationHeader, QStringList(QString("Request URI: %1").arg(HeaderUtil::getHTTPAttribute(package, "URI")))));
+            applicationHeader->addChild(new QTreeWidgetItem(applicationHeader, QStringList(QString("Request Version: %1").arg(HeaderUtil::getHTTPAttribute(package, "Version")))));
+
+            this->m_treeWidget->addTopLevelItem(applicationHeader);
+        }
+
     } else if (HeaderUtil::getApplicationProtocol(package) == HeaderType::DNS) {
         QTreeWidgetItem* applicationHeader = new QTreeWidgetItem(static_cast<QTreeWidget *>(nullptr), QStringList(QString("Domain Name System")));
         applicationHeader->addChild(new QTreeWidgetItem(applicationHeader, QStringList(QString("Transaction ID: %1").arg(HeaderUtil::getDNSID(package)))));
@@ -199,30 +217,28 @@ void SimulationWindow::updateTreeWidget(const QModelIndex &index)
         dnsFlags->addChild(new QTreeWidgetItem(dnsFlags, QStringList(QString("Reply code: %1").arg(HeaderUtil::getDNSFlag(package, DNSFlag::REPLY_CODE)))));
         applicationHeader->addChild(new QTreeWidgetItem(applicationHeader, QStringList(QString("Questions: %1").arg(HeaderUtil::getDNSQuestions(package)))));
         applicationHeader->addChild(new QTreeWidgetItem(applicationHeader, QStringList(QString("Answer RRs: %1").arg(HeaderUtil::getDNSAnswerRRs(package)))));
-        applicationHeader->addChild(new QTreeWidgetItem(applicationHeader, QStringList(QString("Authority RRs: %1").arg(HeaderUtil::getDNSAuthorityRRs(package)))));
-        applicationHeader->addChild(new QTreeWidgetItem(applicationHeader, QStringList(QString("Additional RRs: %1").arg(HeaderUtil::getDNSAdditionalRRs(package)))));
-        QTreeWidgetItem* queriesItem = new QTreeWidgetItem(applicationHeader, QStringList(QString("Queries")));
-        applicationHeader->addChild(queriesItem);
+
+        QTreeWidgetItem* queriesItems = new QTreeWidgetItem(applicationHeader, QStringList(QString("Queries")));
+        applicationHeader->addChild(queriesItems);
         for (auto i = 0; i < HeaderUtil::getDNSQuestions(package).toInt(); i++) {
-            queriesItem->addChild(new QTreeWidgetItem(queriesItem, QStringList(HeaderUtil::getDNSQuery(package, i))));
+            QTreeWidgetItem* query = new QTreeWidgetItem(queriesItems, QStringList(HeaderUtil::getDNSQuery(package, i)));
+            query->addChild(new QTreeWidgetItem(query, QStringList(QString("Name: %1").arg(HeaderUtil::getDNSQuery(package, i, RRAttribute::NAME)))));
+            query->addChild(new QTreeWidgetItem(query, QStringList(QString("Type: %1").arg(HeaderUtil::getDNSQuery(package, i, RRAttribute::TYPE)))));
+            query->addChild(new QTreeWidgetItem(query, QStringList(QString("Class: %1").arg(HeaderUtil::getDNSQuery(package, i, RRAttribute::CLASS)))));
+            queriesItems->addChild(query);
         }
 
-        QTreeWidgetItem* answersItem = new QTreeWidgetItem(applicationHeader, QStringList(QString("Answers")));
-        applicationHeader->addChild(answersItem);
+        QTreeWidgetItem* answersItems = new QTreeWidgetItem(applicationHeader, QStringList(QString("Answers")));
+        applicationHeader->addChild(answersItems);
         for (auto i = 0; i < HeaderUtil::getDNSAnswerRRs(package).toInt(); i++) {
-            queriesItem->addChild(new QTreeWidgetItem(answersItem, QStringList(HeaderUtil::getDNSAnswer(package, i))));
-        }
-
-        QTreeWidgetItem* authoritativeNameserversItem = new QTreeWidgetItem(applicationHeader, QStringList(QString("Authoritative nameservers")));
-        applicationHeader->addChild(authoritativeNameserversItem);
-        for (auto i = 0; i < HeaderUtil::getDNSAuthorityRRs(package).toInt(); i++) {
-            queriesItem->addChild(new QTreeWidgetItem(authoritativeNameserversItem, QStringList(HeaderUtil::getDNSAuthoritativeNameserver(package, i))));
-        }
-
-        QTreeWidgetItem* additionalRecordsItem = new QTreeWidgetItem(applicationHeader, QStringList(QString("Additional records")));
-        applicationHeader->addChild(additionalRecordsItem);
-        for (auto i = 0; i < HeaderUtil::getDNSAdditionalRRs(package).toInt(); i++) {
-            queriesItem->addChild(new QTreeWidgetItem(additionalRecordsItem, QStringList(HeaderUtil::getDNSAdditionalRecord(package, i))));
+            QTreeWidgetItem* answer = new QTreeWidgetItem(answersItems, QStringList(HeaderUtil::getDNSAnswer(package, i)));
+            answer->addChild(new QTreeWidgetItem(answer, QStringList(QString("Name: %1").arg(HeaderUtil::getDNSAnswer(package, i, RRAttribute::NAME)))));
+            answer->addChild(new QTreeWidgetItem(answer, QStringList(QString("Type: %1").arg(HeaderUtil::getDNSAnswer(package, i, RRAttribute::TYPE)))));
+            answer->addChild(new QTreeWidgetItem(answer, QStringList(QString("Class: %1").arg(HeaderUtil::getDNSAnswer(package, i, RRAttribute::CLASS)))));
+            answer->addChild(new QTreeWidgetItem(answer, QStringList(QString("Time to live: %1").arg(HeaderUtil::getDNSAnswer(package, i, RRAttribute::TTL)))));
+            answer->addChild(new QTreeWidgetItem(answer, QStringList(QString("Data length: %1").arg(HeaderUtil::getDNSAnswer(package, i, RRAttribute::DATA_LENGTH)))));
+            answer->addChild(new QTreeWidgetItem(answer, QStringList(QString("Address: %1").arg(HeaderUtil::getDNSAnswer(package, i, RRAttribute::DATA)))));
+            queriesItems->addChild(answer);
         }
 
         this->m_treeWidget->addTopLevelItem(applicationHeader);

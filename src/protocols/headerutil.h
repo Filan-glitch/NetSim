@@ -204,6 +204,13 @@ public:
     static QString getHTTPAttribute(const Package &data, const QString &attributeName);
 
     /**
+     * @brief getHTTPISResponse
+     * @param data
+     * @return Returns the HTTP Headerattribute corresponding to the attributename
+     */
+    static bool getHTTPIsResponse(const Package &data);
+
+    /**
      * @brief getDNSID
      * @param data
      * @return Returns the Transaction ID of the DNS Protocol
@@ -239,20 +246,6 @@ public:
     static QString getDNSAnswerRRs(const Package &data);
 
     /**
-     * @brief getDNSAuthorityRRs
-     * @param data
-     * @return Returns the Authority RRs of the DNS Protocol
-     */
-    static QString getDNSAuthorityRRs(const Package &data);
-
-    /**
-     * @brief getDNSAdditionalRRs
-     * @param data
-     * @return Returns the Addiditional RRs of the DNS Protocol
-     */
-    static QString getDNSAdditionalRRs(const Package &data);
-
-    /**
      * @brief getDNSQuery
      * @param data
      * @param index
@@ -267,22 +260,6 @@ public:
      * @return Returns an Answer of the DNS Protocol
      */
     static QString getDNSAnswer(const Package &data, int index, const RRAttribute &attr = RRAttribute::FULL_DATA);
-
-    /**
-     * @brief getDNSAuthoritativeNameserver
-     * @param data
-     * @param index
-     * @return Returns an Authoritative Nameserver of the DNS Protocol
-     */
-    static QString getDNSAuthoritativeNameserver(const Package &data, int index, const RRAttribute &attr = RRAttribute::FULL_DATA);
-
-    /**
-     * @brief getDNSAdditionalRecord
-     * @param data
-     * @param index
-     * @return Returns an Additional Record of the DNS Protocol
-     */
-    static QString getDNSAdditionalRecord(const Package &data, int index, const RRAttribute &attr = RRAttribute::FULL_DATA);
 
     /**
      * @brief getDNSName

@@ -16,6 +16,9 @@ SimulationManager::SimulationManager(quint8 clientAmount, quint8 serverAmount)
         clients.append(Client(NetworkCard(IPAddress(routerAddress), MACAddress::getRandomAddress())));
     }
 
+    //DNS Server
+    server.append(Server(NetworkCard(IPAddress::getRandomAddress(), MACAddress::getRandomAddress())));
+
     //Erstelle die Server
     for (auto i = 0; i < serverAmount; i++)
     {
@@ -32,7 +35,7 @@ quint8 SimulationManager::getClientsAmount() const
 
 quint8 SimulationManager::getServerAmount() const
 {
-    return static_cast<quint8>(server.size());
+    return static_cast<quint8>(server.size() - 1);
 }
 
 QList<Server> SimulationManager::getServer() const

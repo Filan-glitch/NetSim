@@ -3,7 +3,10 @@
 
 Package::Package() {}
 
-Package::Package(const QString &info, const QString &content) : headers(QList<Header>()), info(info), content(content)
+Package::Package(const QString &info) : headers(QList<Header>()), info(info), content(QString())
+{}
+
+Package::Package(const QString &info, const QString& content) : headers(QList<Header>()), info(info), content(content)
 {}
 
 QString Package::getContent() const {

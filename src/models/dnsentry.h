@@ -12,7 +12,7 @@ enum RRAttribute {
     CLASS,
     TTL,
     DATA_LENGTH,
-    RRDATA
+    DATA
 };
 
 class DNSEntry

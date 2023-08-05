@@ -8,7 +8,7 @@ Process::Process()
 }
 
 void Process::httpGetRequest(const QString &url, const Port &sourcePort){
-    Package httpRequestPackage("Request HTML of " + url,"");
+    Package httpRequestPackage("Request HTML of " + url);
     HTTP::initHTTPRequest("GET",url,"HTTP/1.1", httpRequestPackage);
 
     openSocket(sourcePort);

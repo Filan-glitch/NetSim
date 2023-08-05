@@ -5,8 +5,6 @@ void DNS::initDNSRequest(Package &data, const QList<DNSEntry> queries)
     HeaderAttribute transactionID("Transaction ID", 16, static_cast<quint16>(QRandomGenerator::global()->generate() % 0xFFFF));
     HeaderAttribute _questions("Questions", 16,  static_cast<quint16>(queries.size()));
     HeaderAttribute _answerRRs("Answer RRs", 16,  static_cast<quint16>(0));
-    HeaderAttribute _authorityRRs("Authority RRs", 16, static_cast<quint16>(0));
-    HeaderAttribute _additionalRRs("Additional RRs", 16, static_cast<quint16>(0));
 
     HeaderAttribute _flags("Flags", 16, static_cast<quint16>(0));
 
@@ -16,11 +14,20 @@ void DNS::initDNSRequest(Package &data, const QList<DNSEntry> queries)
     headerList.append(_flags);
     headerList.append(_questions);
     headerList.append(_answerRRs);
-    headerList.append(_authorityRRs);
-    headerList.append(_additionalRRs);
 
     for(auto i = 0; i < queries.size(); i++) {
-        HeaderAttribute query("Query " + QString::number(i), queries.at(i).getName().toLatin1().length()*8 + 32, queries.at(i).getName().toLatin1() + QString::number(queries.at(i).getType()) + QString::number(queries.at(i).getDnsClass()));
+        QByteArray queryData = queries.at(i).getName().toLatin1();
+        queryData = queryData.append('\0');
+        QVector<quint8> queryDataVector;
+        for(auto i = 0; i < queryData.length(); i++) {
+            queryDataVector.append(static_cast<quint8>(queryData.at(i)));
+        }
+        queryDataVector.append(queries.at(i).getType() >> 8);
+        queryDataVector.append(queries.at(i).getType() & 0xFF);
+        queryDataVector.append(queries.at(i).getDnsClass() >> 8);
+        queryDataVector.append(queries.at(i).getDnsClass() & 0xFF);
+
+        HeaderAttribute query("Query " + QString::number(i), queryDataVector.size() * 8, queryDataVector);
         headerList.append(query);
     }
 
@@ -28,14 +35,12 @@ void DNS::initDNSRequest(Package &data, const QList<DNSEntry> queries)
     data.addHeader(dnsHeader);
 }
 
-void DNS::initDNSResponse(Package &data, const QList<DNSEntry> queries, const QList<DNSEntry> answers, const QList<DNSEntry> authoritativeNameservers, const QList<DNSEntry> additionalRecords)
+void DNS::initDNSResponse(Package &data, const QList<DNSEntry> queries, const QList<DNSEntry> answers)
 {
     HeaderAttribute transactionID("Transaction ID", 16, static_cast<quint16>(QRandomGenerator::global()->generate() % 0xFFFF));
 
     HeaderAttribute _questions("Questions", 16, static_cast<quint16>(queries.size()));
     HeaderAttribute _answerRRs("Answer RRs", 16,  static_cast<quint16>(answers.size()));
-    HeaderAttribute _authorityRRs("Authority RRs", 16,  static_cast<quint16>(authoritativeNameservers.size()));
-    HeaderAttribute _additionalRRs("Additional RRs", 16,  static_cast<quint16>(additionalRecords.size()));
 
     quint16 flagsVal = 0;
     setFlag(&flagsVal, true, 15);
@@ -46,28 +51,43 @@ void DNS::initDNSResponse(Package &data, const QList<DNSEntry> queries, const QL
     headerList.append(_flags);
     headerList.append(_questions);
     headerList.append(_answerRRs);
-    headerList.append(_authorityRRs);
-    headerList.append(_additionalRRs);
 
     for(auto i = 0; i < queries.size(); i++) {
-        //QVector<quint8> queryData = stringToArray(name);
-        HeaderAttribute query("Query " + QString::number(i), queries.at(i).getName().toLatin1().length()*8 + 48, queries.at(i).getName().toLatin1() + QString::number(queries.at(i).getType()) + QString::number(queries.at(i).getDnsClass()));
+        QByteArray queryData = queries.at(i).getName().toLatin1();
+        queryData = queryData.append('\0');
+        QVector<quint8> queryDataVector;
+        for(auto i = 0; i < queryData.length(); i++) {
+            queryDataVector.append(static_cast<quint8>(queryData.at(i)));
+        }
+        queryDataVector.append(queries.at(i).getType() >> 8);
+        queryDataVector.append(queries.at(i).getType() & 0xFF);
+        queryDataVector.append(queries.at(i).getDnsClass() >> 8);
+        queryDataVector.append(queries.at(i).getDnsClass() & 0xFF);
+
+        HeaderAttribute query("Query " + QString::number(i), queryDataVector.size() * 8, queryDataVector);
         headerList.append(query);
     }
 
     for(auto i = 0; i < answers.size(); i++) {
-        HeaderAttribute answer("Answer " + QString::number(i), answers.at(i).getName().toLatin1().length()*8 + 32, answers.at(i).getName() + QString::number(answers.at(i).getType()) + QString::number(answers.at(i).getDnsClass()));
+        QByteArray answerData = answers.at(i).getName().toLatin1().append('\0');
+        QVector<quint8> answerDataVector;
+        for(auto i = 0; i < answerData.length(); i++) {
+            answerDataVector.append(static_cast<quint8>(answerData.at(i)));
+        }
+        answerDataVector.append(answers.at(i).getType() >> 8);
+        answerDataVector.append(answers.at(i).getType() & 0xFF);
+        answerDataVector.append(answers.at(i).getDnsClass() >> 8);
+        answerDataVector.append(answers.at(i).getDnsClass() & 0xFF);
+        answerDataVector.append(answers.at(i).getTtl() >> 24);
+        answerDataVector.append(answers.at(i).getTtl() >> 16 & 0xFF);
+        answerDataVector.append(answers.at(i).getTtl() >> 8 & 0xFF);
+        answerDataVector.append(answers.at(i).getTtl() & 0xFF);
+        answerDataVector.append(answers.at(i).getDataLength() >> 8);
+        answerDataVector.append(answers.at(i).getDataLength() & 0xFF);
+        answerDataVector.append(answers.at(i).getData());
+
+        HeaderAttribute answer("Answer " + QString::number(i), answerDataVector.size() * 8, answerDataVector);
         headerList.append(answer);
-    }
-
-    for(auto i = 0; i < authoritativeNameservers.size(); i++) {
-        HeaderAttribute authoritativeNameserver("Authoritative Nameserver " + QString::number(i), authoritativeNameservers.at(i).getName().toLatin1().length()*8 + 32, authoritativeNameservers.at(i).getName() + QString::number(authoritativeNameservers.at(i).getType()) + QString::number(authoritativeNameservers.at(i).getDnsClass()));
-        headerList.append(authoritativeNameserver);
-    }
-
-    for(auto i = 0; i < additionalRecords.size(); i++) {
-        HeaderAttribute additionalRecord("Additional Record " + QString::number(i), additionalRecords.at(i).getName().toLatin1().length()*8 + 32, additionalRecords.at(i).getName() + QString::number(additionalRecords.at(i).getType()) + QString::number(additionalRecords.at(i).getDnsClass()));
-        headerList.append(additionalRecord);
     }
 
     Header dnsHeader(HeaderType::DNS, headerList);

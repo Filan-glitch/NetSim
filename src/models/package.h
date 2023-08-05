@@ -12,7 +12,8 @@ private:
     QString content;
 public:
     Package();
-    Package(const QString& info, const QString &content);
+    Package(const QString& info);
+    Package(const QString& info, const QString& content);
 
     QString getContent() const;
 
