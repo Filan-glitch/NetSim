@@ -2,16 +2,16 @@
 #include "headerAttribute.h"
 
 
-void TCP::initHeader(const IPAddress &srcAdress, const IPAddress &destAdress, const Port &sourcePort, const Port &destinationPort, quint32 seqNumber, quint32 ackNumber, bool ack, bool rst, bool syn, bool fin, quint16 window, Package& data, quint16 dataLength){
+void TCP::initHeader(const IPAddress &srcAdress, const IPAddress &destAdress, const Port &sourcePort, const Port &destinationPort, quint32 seqNumber, quint32 ackNumber, bool ack, bool psh, bool syn, bool fin, quint16 window, Package& data, quint16 dataLength){
     HeaderAttribute srcPort("Source Port",16,sourcePort.getPortNumber());
     HeaderAttribute dstPort("Destination Port",16,destinationPort.getPortNumber());
     HeaderAttribute sequenceNumber("Sequence number",32,seqNumber);
     HeaderAttribute acknowledgementNumber("Acknowledgment number",32,ackNumber);
 
-    //Sets the flags for the TCP Header Urgent and Push flag are always 0
+    //Sets the flags for the TCP Header Urgent and rst flag are always 0
     quint16 flags = 0x0000000000000000;
     setFlag(&flags,ack,11);
-    setFlag(&flags,rst,13);
+    setFlag(&flags,psh,12);
     setFlag(&flags,syn,14);
     setFlag(&flags,fin,15);
 

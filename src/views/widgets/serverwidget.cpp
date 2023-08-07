@@ -14,7 +14,9 @@ ServerWidget::ServerWidget(const Server &server, QWidget *parent)
     m_button->setFixedSize(QSize(64, 64));
 
     m_ipLabel->setText("IP-Adresse: " + m_server.getNetworkCard().getNetworkAddress().getAddressAsDecString());
+    m_ipLabel->setStyleSheet("QLabel { background-color : #f9f9f9; }");
     m_macLabel->setText("MAC-Adresse: " + m_server.getNetworkCard().getPhysicalAddress().getAddressAsString());
+    m_macLabel->setStyleSheet("QLabel { background-color : #f9f9f9; }");
 
     //Erstelle Layout
     m_layout = new QVBoxLayout(this);
@@ -23,4 +25,9 @@ ServerWidget::ServerWidget(const Server &server, QWidget *parent)
     m_layout->addWidget(m_macLabel);
 
     this->setFixedSize(QSize(256, 128));
+}
+
+QPushButton *ServerWidget::button() const
+{
+    return m_button;
 }

@@ -4,21 +4,14 @@
 
 
 
-void Socket::addTCPHeader(Package &data)
+void Socket::addTCPHeader(Package &data, IPAddress srcAddress, IPAddress destAddress, bool ack, bool psh, bool syn, bool fin)
 {
-    //TODO HEADER INITIALISIERUNG
-
+    TCP::initHeader(srcAddress, destAddress, this->sourcePort, this->destinationPort,startSeq+amountReceivedData,serverSeq+amountReceivedData, ack, psh, syn, fin,512,data,data.getData().length());
 }
 
 void Socket::addUDPHeader(Package &data)
 {
-    //TODO  Daten richtig ausfüllen
     UDP::initHeader(this->sourcePort, this->destinationPort,0,data);
-}
-
-void Socket::sentPackageToNetworkCard(Package &data)
-{
-    
 }
 
 Socket::Socket(const Port &sourcePort, const Port &destinationPort) : sourcePort(sourcePort),

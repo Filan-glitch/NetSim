@@ -12,6 +12,8 @@ class ServerWidget : public QWidget
 public:
     explicit ServerWidget(const Server &server, QWidget *parent = nullptr);
 
+    QPushButton *button() const;
+
 private:
     Server m_server;
 

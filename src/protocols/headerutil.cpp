@@ -124,13 +124,21 @@ QString HeaderUtil::getTCPFlag(const Package &data, const QString &flagName){
     quint16 flag = (static_cast<quint16>(attribute[0]) << 8) + attribute[1];
     QString returnString;
 
+    //checking URG flag
+    if(flagName == "URG"){
+           return "false";
+    }
     //checking ack flag
     if(flagName == "ACK"){
            ((flag >> 10) & 1) != 0 ? returnString = "true" : returnString = "false";
     }
+    //checking psh flag
+    if(flagName == "PSH"){
+           ((flag >> 11) & 1) != 0 ? returnString = "true" : returnString = "false";
+    }
     //checking rst flag
     if(flagName == "RST"){
-           ((flag >> 12) & 1) != 0 ? returnString = "true" : returnString = "false";
+           return "false";
     }
     //checking syn flag
     if(flagName == "SYN"){
@@ -140,7 +148,7 @@ QString HeaderUtil::getTCPFlag(const Package &data, const QString &flagName){
     if(flagName == "FIN"){
            ((flag >> 14) & 1) != 0 ? returnString = "true" : returnString = "false";
     }
-    if(flagName != "ACK" && flagName !="RST" && flagName !="SYN" && flagName != "FIN"){
+    if(flagName != "URG" && flagName != "ACK" && flagName != "PSH" && flagName !="RST" && flagName !="SYN" && flagName != "FIN"){
            qDebug() << "This flag does not exist: " << flagName << " in HeaderUtil::getTCPFlag";
     }
     return returnString;

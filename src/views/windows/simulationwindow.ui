@@ -24,6 +24,9 @@
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
      <widget class="QTabWidget" name="tabWidget">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
       <property name="tabPosition">
        <enum>QTabWidget::North</enum>
       </property>
@@ -33,15 +36,6 @@
       <property name="currentIndex">
        <number>0</number>
       </property>
-      <widget class="QWidget" name="networkTab">
-       <attribute name="icon">
-        <iconset resource="../../../assets/ressources.qrc">
-         <normaloff>:/network.svg</normaloff>:/network.svg</iconset>
-       </attribute>
-       <attribute name="title">
-        <string>Network</string>
-       </attribute>
-      </widget>
       <widget class="QWidget" name="packageTab">
        <attribute name="icon">
         <iconset resource="../../../assets/ressources.qrc">

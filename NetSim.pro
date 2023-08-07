@@ -37,7 +37,7 @@ SOURCES += \
     src/protocols/udp.cpp \
     src/views/dialogs/settingsdialog.cpp \
     src/views/widgets/clientwidget.cpp \
-    src/views/widgets/connectionwidget.cpp \
+    src/views/widgets/networktab.cpp \
     src/views/widgets/routerwidget.cpp \
     src/views/widgets/serverwidget.cpp \
     src/views/windows/simulationwindow.cpp \
@@ -72,7 +72,7 @@ HEADERS += \
     src/protocols/udp.h \
     src/views/dialogs/settingsdialog.h \
     src/views/widgets/clientwidget.h \
-    src/views/widgets/connectionwidget.h \
+    src/views/widgets/networktab.h \
     src/views/widgets/routerwidget.h \
     src/views/widgets/serverwidget.h \
     src/views/windows/simulationwindow.h \
