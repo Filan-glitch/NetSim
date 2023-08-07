@@ -3,6 +3,7 @@
 
 #include "src/models/package.h"
 #include "src/models/port.h"
+#include "src/models/ipaddress.h"
 
 
 
@@ -12,12 +13,14 @@ public:
     Socket();
     Socket(const Port &sourcePort, const Port &destinationPort);
 
-    void addTCPHeader(Package& data);
+    void addTCPHeader(Package &data, IPAddress srcAddress, IPAddress destAddress, bool ack, bool psh, bool syn, bool fin);
     void addUDPHeader(Package& data);
-    void sentPackageToNetworkCard(Package& data);
 private:
     Port sourcePort;
     Port destinationPort;
+    quint32 startSeq = 100;
+    quint32 serverSeq;
+    quint32 amountReceivedData = 0;
 };
 
 #endif // SOCKET_H
