@@ -8,5 +8,6 @@
         <file>package.svg</file>
         <file>process.svg</file>
         <file>source.svg</file>
+        <file>full_logo.svg</file>
     </qresource>
 </RCC>

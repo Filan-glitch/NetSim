@@ -30,6 +30,7 @@ private:
 private slots:
     void openDocumentation();
     void updateTreeWidget(const QModelIndex& index);
+    void about();
 
 };
 

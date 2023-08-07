@@ -129,7 +129,7 @@
      <string>Help</string>
     </property>
     <addaction name="actionDocumentation"/>
-    <addaction name="separator"/>
+    <addaction name="actionAbout_NetSim"/>
    </widget>
    <addaction name="menuSimulation"/>
    <addaction name="menuHelp"/>
@@ -143,6 +143,11 @@
   <action name="actionQuit">
    <property name="text">
     <string>Quit</string>
+   </property>
+  </action>
+  <action name="actionAbout_NetSim">
+   <property name="text">
+    <string>About NetSim</string>
    </property>
   </action>
  </widget>

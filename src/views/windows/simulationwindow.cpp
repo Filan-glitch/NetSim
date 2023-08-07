@@ -1,5 +1,6 @@
 #include "simulationwindow.h"
 #include "src/protocols/headerutil.h"
+#include "src/views/dialogs/about_dialog.h"
 #include "src/views/widgets/clientwidget.h"
 #include "src/views/widgets/networktab.h"
 #include "src/views/widgets/serverwidget.h"
@@ -37,6 +38,7 @@ SimulationWindow::SimulationWindow(SimulationManager *manager, QWidget *parent) 
     //Connections
     connect(this->ui->actionDocumentation, &QAction::triggered, this, &SimulationWindow::openDocumentation);
     connect(this->ui->packagesTableView, &QTableView::doubleClicked, this, &SimulationWindow::updateTreeWidget);
+    connect(this->ui->actionAbout_NetSim, &QAction::triggered, this, &SimulationWindow::about);
 
 }
 
@@ -245,5 +247,10 @@ void SimulationWindow::updateTreeWidget(const QModelIndex &index)
     }
 
 
+}
+
+void SimulationWindow::about() {
+    About_Dialog aboutDialog(this);
+    aboutDialog.exec();
 }
 
