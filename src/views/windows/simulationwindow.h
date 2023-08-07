@@ -26,6 +26,7 @@ private:
     PackageTableModel* m_packageModel;
     QTreeWidget* m_treeWidget;
     void setupNetwork();
+    void setupDNS();
 
 private slots:
     void openDocumentation();

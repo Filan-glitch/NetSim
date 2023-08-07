@@ -10,12 +10,13 @@ class RouterWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit RouterWidget(const Router &router, QWidget *parent = nullptr);
+    explicit RouterWidget(Router* router, QWidget *parent = nullptr);
+    Router* router();
 
     QPushButton *button() const;
 
 private:
-    Router m_router;
+    Router* m_router;
 
     //Widgets
     QPushButton* m_button;

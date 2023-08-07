@@ -13,6 +13,12 @@
     <height>1080</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>0</width>
+    <height>0</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>NetSim - The educational Network Simulation</string>
   </property>
@@ -86,24 +92,6 @@
          </widget>
         </item>
        </layout>
-      </widget>
-      <widget class="QWidget" name="sourceTab">
-       <attribute name="icon">
-        <iconset resource="../../../assets/ressources.qrc">
-         <normaloff>:/source.svg</normaloff>:/source.svg</iconset>
-       </attribute>
-       <attribute name="title">
-        <string>Sources</string>
-       </attribute>
-      </widget>
-      <widget class="QWidget" name="processTab">
-       <attribute name="icon">
-        <iconset resource="../../../assets/ressources.qrc">
-         <normaloff>:/process.svg</normaloff>:/process.svg</iconset>
-       </attribute>
-       <attribute name="title">
-        <string>Processes</string>
-       </attribute>
       </widget>
      </widget>
     </item>

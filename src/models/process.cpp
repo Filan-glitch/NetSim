@@ -2,9 +2,8 @@
 #include "package.h"
 #include "src/protocols/http.h"
 #include "src/network/host.h"
-#include "src/protocols/tcp.h"
 
-Process::Process()
+Process::Process(Host* host) : host(host)
 {
 
 }

@@ -10,6 +10,7 @@ private:
 public:
     Port(quint16 portNumber);
     quint16 getPortNumber() const;
+    static Port getRandomPort();
 };
 
 #endif // PORT_H

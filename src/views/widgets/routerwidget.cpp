@@ -1,6 +1,6 @@
 #include "routerwidget.h"
 
-RouterWidget::RouterWidget(const Router &router, QWidget *parent)
+RouterWidget::RouterWidget(Router* router, QWidget *parent)
     : QWidget{parent}, m_router{router}
 {
     //Erstelle die Widgets
@@ -15,11 +15,11 @@ RouterWidget::RouterWidget(const Router &router, QWidget *parent)
     m_button->setFixedSize(QSize(64, 64));
 
     //Set the label
-    m_localIpLabel->setText("Lokale IP-Adresse: " + m_router.getNetworkCard().getNetworkAddress().getAddressAsDecString());
+    m_localIpLabel->setText("Lokale IP-Adresse: " + m_router->getNetworkCard().getNetworkAddress().getAddressAsDecString());
     m_localIpLabel->setStyleSheet("QLabel { background-color : #f9f9f9; }");
-    m_globalIpLabel->setText("Global IP-Adresse: " + m_router.getGlobalIpAddress().getAddressAsDecString());
+    m_globalIpLabel->setText("Global IP-Adresse: " + m_router->getGlobalIpAddress().getAddressAsDecString());
     m_globalIpLabel->setStyleSheet("QLabel { background-color : #f9f9f9; }");
-    m_macLabel->setText("MAC-Adresse: " + m_router.getNetworkCard().getPhysicalAddress().getAddressAsString());
+    m_macLabel->setText("MAC-Adresse: " + m_router->getNetworkCard().getPhysicalAddress().getAddressAsString());
     m_macLabel->setStyleSheet("QLabel { background-color : #f9f9f9; }");
 
     //Erstelle das Layout
@@ -30,7 +30,12 @@ RouterWidget::RouterWidget(const Router &router, QWidget *parent)
     m_layout->addWidget(m_macLabel);
 
     this->setFixedSize(QSize(256, 156));
+    
+}
 
+Router *RouterWidget::router()
+{
+    return m_router;
 }
 
 QPushButton *RouterWidget::button() const
