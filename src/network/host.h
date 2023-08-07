@@ -8,6 +8,7 @@
 #include "src/models/macaddress.h"
 #include "src/models/port.h"
 #include "src/network/networkcard.h"
+#include <map>
 
 /**
  * This class represents the superclass host in a network simulation. It can either be implemented as a client or a server.

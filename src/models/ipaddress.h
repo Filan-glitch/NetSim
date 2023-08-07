@@ -15,8 +15,6 @@ public:
     IPAddress();
     IPAddress(const QVector<quint8> &address);
 
-    IPAddress(){};
-
     QString getAddressAsDecString() const;
 
     QVector<quint8> getAddressAsArray() const;

@@ -6,12 +6,12 @@
 
 void Socket::addTCPHeader(Package &data, IPAddress srcAddress, IPAddress destAddress, bool ack, bool psh, bool syn, bool fin)
 {
-    TCP::initHeader(srcAddress, destAddress, this->sourcePort, this->destinationPort,startSeq+amountReceivedData,serverSeq+amountReceivedData, ack, psh, syn, fin,512,data,data.getData().length());
+    TCP::initHeader(srcAddress, destAddress, this->sourcePort, this->destinationPort,startSeq+amountReceivedData,serverSeq+amountReceivedData, ack, psh, syn, fin,512,data);
 }
 
 void Socket::addUDPHeader(Package &data)
 {
-    UDP::initHeader(this->sourcePort, this->destinationPort,0,data);
+    UDP::initHeader(this->sourcePort, this->destinationPort,data);
 }
 
 Socket::Socket(const Port &sourcePort, const Port &destinationPort) : sourcePort(sourcePort),
