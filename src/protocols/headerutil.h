@@ -3,6 +3,9 @@
 
 #include <QString>
 #include "src/models/package.h"
+#include "tcp.h"
+#include "ipv4.h"
+#include "dns.h"
 
 /**
  * @brief The HeaderUtil class
@@ -12,15 +15,103 @@
 class HeaderUtil
 {
 public:
-    HeaderUtil();
 
     /**
-     * @brief getHTTPAttributeAsString
+     * @brief getMacAddress
      * @param data
-     * @param attributeName
-     * @return Returns the HTTP Headerattribute corresponding to the attributename
+     * @param src
+     * @return Returns the MAC Address, if src is true you get the source Address, otherwise the destination Address
      */
-    static QString getHTTPAttributeAsString(const Package &data, const QString &attributeName);
+    static QString getMacAddress(const Package &data, bool src);
+
+    /**
+     * @brief getEtherType
+     * @param data
+     * @return Returns the EtherType from the Ethernet II Protocol
+     */
+    static QString getEtherType(const Package &data);
+
+    /**
+     * @brief getIPHeaderLength
+     * @param data
+     * @return Returns the IP Header Length
+     */
+    static QString getIPHeaderLength(const Package &data);
+
+    /**
+     * @brief getIPTOS
+     * @param data
+     * @return Returns the IP Type of Service
+     */
+    static QString getIPTOS(const Package &data);
+
+    /**
+     * @brief getIPTotalLength
+     * @param data
+     * @return Returns the IP Total Length
+     */
+    static QString getIPTotalLength(const Package &data);
+
+    /**
+     * @brief getIPIdentification
+     * @param data
+     * @return Returns the IP Identification
+     */
+    static QString getIPIdentification(const Package &data);
+
+    /**
+     * @brief getIPTTL
+     * @param data
+     * @return Returns the IP TTL
+     */
+    static QString getIPTTL(const Package &data);
+
+    /**
+     * @brief getIPAddress
+     * @param data
+     * @param src
+     * @return returns the IPAddress
+     * @par Returns the IPAddress of a package. You get the source Address if src is true, otherwise you get the destination Address
+     */
+    static QString getIPAddress(const Package &data, bool src);
+
+    /**
+     * @brief getIPFlag
+     * @param data
+     * @param flagName
+     * @return Returns the IPFlag corresponding to the flag name
+     */
+    static QString getIPFlags(const Package &data);
+
+    /**
+     * @brief getIPFlag
+     * @param data
+     * @param flagName
+     * @return Returns the IPFlag corresponding to the flag name
+     */
+    static QString getIPFlag(const Package &data, const IPFlag &flagName);
+
+    /**
+     * @brief getIPNextProtocol
+     * @param data
+     * @return Returns the next Protocol after IPv4, currently only UDP and TCP are possible
+     */
+    static QString getIPNextProtocol(const Package &data);
+
+    /**
+     * @brief getIPChecksum
+     * @param data
+     * @return Returns the IPChecksum
+     */
+    static QString getIPChecksum(const Package &data);
+
+    /**
+     * @brief getIPFragmentOffset
+     * @param data
+     * @return Returns the IP Fragment Offset
+     */
+    static QString getIPFragmentOffset(const Package &data);
+
 
     /**
      * @brief getPort
@@ -38,47 +129,152 @@ public:
      * @param flagName
      * @return Returns the tcp flag as true or false corresponding to the flag name
      */
-    static QString getTCPFlag(const Package &data, const QString &flagName);
+    static QString getTCPFlags(const Package &data);
 
     /**
-     * @brief getIPAddress
-     * @param data
-     * @param src
-     * @return returns the IPAddress
-     * @par Returns the IPAddress of a package. You get the source Address if src is true, otherwise you get the destination Address
-     */
-    static QString getIPAddress(const Package &data, bool src);
-
-    /**
-     * @brief getIPFlag
+     * @brief getTCPFlag
      * @param data
      * @param flagName
-     * @return Returns the IPFlag corresponding to the flag name
+     * @return Returns the tcp flag as true or false corresponding to the flag name
      */
-    static QString getIPFlag(const Package &data, const QString &flagName);
+    static QString getTCPFlag(const Package &data, const TCPFlag &flagName);
 
     /**
-     * @brief getIPNextProtocol
+     * @brief getTCPSequenceNumber
      * @param data
-     * @return Returns the next Protocol after IPv4, currently only UDP and TCP are possible
+     * @return Returns the TCP Sequence Number
      */
-    static QString getIPNextProtocol(const Package &data);
+    static QString getTCPSequenceNumber(const Package &data);
 
     /**
-     * @brief getMacAddress
+     * @brief getTCPAcknowledgementNumber
      * @param data
-     * @param src
-     * @return Returns the MAC Address, if src is true you get the source Address, otherwise the destination Address
+     * @return Returns the TCP Acknowledgement Number
      */
-    static QString getMacAddress(const Package &data, bool src);
-
+    static QString getTCPAcknowledgementNumber(const Package &data);
 
     /**
-     * @brief getEtherType
+     * @brief getTCPHeaderLength
      * @param data
-     * @return Returns the EtherType from the Ethernet II Protocol
+     * @return Returns the TCP Header Length
      */
-    static QString getEtherType(const Package &data);
+    static QString getTCPHeaderLength(const Package &data);
+
+    /**
+     * @brief getTCPWindowSize
+     * @param data
+     * @return Returns the TCP Window Size
+     */
+    static QString getTCPWindow(const Package &data);
+
+    /**
+     * @brief getTCPChecksum
+     * @param data
+     * @return Returns the TCP Checksum
+     */
+    static QString getTCPChecksum(const Package &data);
+
+    /**
+     * @brief getTCPUrgentPointer
+     * @param data
+     * @return Returns the TCP Urgent Pointer
+     */
+    static QString getTCPUrgentPointer(const Package &data);
+
+    /**
+     * @brief getUDPChecksum
+     * @param data
+     * @return Returns the UDP Checksum
+     */
+    static QString getUDPChecksum(const Package &data);
+
+    /**
+     * @brief getUDPLength
+     * @param data
+     * @return Returns the UDP Length
+     */
+    static QString getUDPLength(const Package &data);
+
+    /**
+     * @brief getHTTPAttributeAsString
+     * @param data
+     * @param attributeName
+     * @return Returns the HTTP Headerattribute corresponding to the attributename
+     */
+    static QString getHTTPAttribute(const Package &data, const QString &attributeName);
+
+    /**
+     * @brief getHTTPISResponse
+     * @param data
+     * @return Returns the HTTP Headerattribute corresponding to the attributename
+     */
+    static bool getHTTPIsResponse(const Package &data);
+
+    /**
+     * @brief getDNSID
+     * @param data
+     * @return Returns the Transaction ID of the DNS Protocol
+     */
+    static QString getDNSID(const Package &data);
+
+    /**
+     * @brief getDNSFlags
+     * @param data
+     * @return Returns the Flags of the DNS Protocol
+     */
+    static QString getDNSFlags(const Package &data);
+
+    /**
+     * @brief getDNSFlag
+     * @param data
+     * @return Returns the Flags of the DNS Protocol
+     */
+    static QString getDNSFlag(const Package &data, const DNSFlag &flagName);
+
+    /**
+     * @brief getDNSQuestions
+     * @param data
+     * @return Returns the Questions of the DNS Protocol
+     */
+    static QString getDNSQuestions(const Package &data);
+
+    /**
+     * @brief getDNSAnswerRRs
+     * @param data
+     * @return Returns the Answer RRs of the DNS Protocol
+     */
+    static QString getDNSAnswerRRs(const Package &data);
+
+    /**
+     * @brief getDNSQuery
+     * @param data
+     * @param index
+     * @return Returns a Query of the DNS Protocol
+     */
+    static QString getDNSQuery(const Package &data, int index, const RRAttribute &attr = RRAttribute::FULL_DATA);
+
+    /**
+     * @brief getDNSAnswer
+     * @param data
+     * @param index
+     * @return Returns an Answer of the DNS Protocol
+     */
+    static QString getDNSAnswer(const Package &data, int index, const RRAttribute &attr = RRAttribute::FULL_DATA);
+
+    /**
+     * @brief getDNSName
+     * @param data
+     * @param index
+     * @return Returns a Name of the DNS Protocol
+     */
+    static QString getPackageLength(const Package &data);
+
+    /**
+     * @brief getApplication
+     * @param data
+     * @return Returns the HeaderType of the Application Protocol
+     */
+    static HeaderType getApplicationProtocol(const Package &data);
 
 private:
     /**

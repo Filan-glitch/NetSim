@@ -3,11 +3,11 @@
 
 #include <QDebug>
 
-void UDP::initHeader(const Port &sourcePort, const Port &destinationPort, quint16 dataLength, Package& data){
+void UDP::initHeader(const Port &sourcePort, const Port &destinationPort, Package& data){
     HeaderAttribute srcPort("Source Port",16,sourcePort.getPortNumber());
     HeaderAttribute dstPort("Destination Port",16,destinationPort.getPortNumber());
-    HeaderAttribute length("length",16,dataLength);
-    HeaderAttribute checksum("checksum",16,getChecksum(data.getData().toStdString().c_str(),dataLength,sourcePort.getPortNumber(),destinationPort.getPortNumber()));
+    HeaderAttribute length("Length",16, static_cast<quint16>(data.getContent().length() + 8));
+    HeaderAttribute checksum("Checksum",16,getChecksum(data.getContent().toLatin1().constData(), data.getContent().length() + 8,sourcePort.getPortNumber(),destinationPort.getPortNumber()));
 
     Header udpHeader;
     udpHeader.setHeaderType(HeaderType::UDP);

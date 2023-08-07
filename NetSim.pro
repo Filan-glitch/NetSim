@@ -14,6 +14,7 @@ SOURCES += \
     src/management/packagedatabase.cpp \
     src/management/packagetablemodel.cpp \
     src/management/simulationmanager.cpp \
+    src/models/dnsentry.cpp \
     src/models/package.cpp \
     src/models/process.cpp \
     src/network/client.cpp \
@@ -25,6 +26,7 @@ SOURCES += \
     src/models/macaddress.cpp \
     src/models/port.cpp \
     src/network/socket.cpp \
+    src/protocols/dns.cpp \
     src/protocols/header.cpp \
     src/protocols/headerAttribute.cpp \
     src/protocols/headerattributenotfoundexception.cpp \
@@ -35,6 +37,7 @@ SOURCES += \
     src/protocols/mac.cpp \
     src/protocols/tcp.cpp \
     src/protocols/udp.cpp \
+    src/views/dialogs/about_dialog.cpp \
     src/views/dialogs/settingsdialog.cpp \
     src/views/widgets/clientwidget.cpp \
     src/views/widgets/networktab.cpp \
@@ -49,6 +52,7 @@ HEADERS += \
     src/management/packagedatabase.h \
     src/management/packagetablemodel.h \
     src/management/simulationmanager.h \
+    src/models/dnsentry.h \
     src/models/package.h \
     src/models/process.h \
     src/network/client.h \
@@ -60,6 +64,7 @@ HEADERS += \
     src/models/macaddress.h \
     src/models/port.h \
     src/network/socket.h \
+    src/protocols/dns.h \
     src/protocols/header.h \
     src/protocols/headerAttribute.h \
     src/protocols/headerattributenotfoundexception.h \
@@ -70,6 +75,7 @@ HEADERS += \
     src/protocols/mac.h \
     src/protocols/tcp.h \
     src/protocols/udp.h \
+    src/views/dialogs/about_dialog.h \
     src/views/dialogs/settingsdialog.h \
     src/views/widgets/clientwidget.h \
     src/views/widgets/networktab.h \
@@ -80,6 +86,7 @@ HEADERS += \
 
 
 FORMS += \
+    src/views/dialogs/about_dialog.ui \
     src/views/dialogs/settingsdialog.ui \
     src/views/windows/simulationwindow.ui \
     src/views/windows/welcomewindow.ui
@@ -90,4 +97,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-    assets/ressources.qrc
+    assets/ressources.qrc \
+    license.qrc

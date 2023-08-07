@@ -15,9 +15,9 @@ void Process::openSocket(const Port &sourcePort){
 
 Package Process::getHTTPRequest(const QString &url){
     IPAddress destination = host->getDomainTable()[url].getAddressAsArray();
-    Package data;
+    Package data("Request HTML of " + url);
     //Adding HTTP Header
-    HTTP::initHTTPRequest("GET",url,"1.1",data);
+    HTTP::initHTTPRequest("GET",url,"HTTP/1.1",data);
 
     //Adding TCP Header
     socket.addTCPHeader(data,host->getNetworkCard().getNetworkAddress(),

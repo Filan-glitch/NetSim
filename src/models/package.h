@@ -12,9 +12,10 @@ private:
     QString content;
 public:
     Package();
-    Package(const QString& info, const QString &content);
+    Package(const QString& info);
+    Package(const QString& info, const QString& content);
 
-    QString getData() const;
+    QString getContent() const;
 
     QList<Header> getHeaders() const;
 
@@ -24,6 +25,8 @@ public:
     void setContent(QString content);
 
     QString getInfo() const;
+
+    quint16 getLength() const;
     
 };
 

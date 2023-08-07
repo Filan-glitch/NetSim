@@ -19,10 +19,12 @@ QVariant PackageTableModel::headerData(int section, Qt::Orientation orientation,
             case 2:
                 return tr("Protocol");
             case 3:
+                return tr("Size");
+            case 4:
                 return tr("Info");
             }
         } else {
-            return QString::number(section + 1);
+            return QString::number(m_packageList->size() - section);
         }
     }
     return QVariant();
@@ -41,7 +43,7 @@ int PackageTableModel::columnCount(const QModelIndex &parent) const
     if (parent.isValid())
         return 0;
 
-    return 4;
+    return 5;
 }
 
 QVariant PackageTableModel::data(const QModelIndex &index, int role) const
@@ -50,7 +52,7 @@ QVariant PackageTableModel::data(const QModelIndex &index, int role) const
         return QVariant();
 
     if(role == Qt::DisplayRole) {
-        const Package package = m_packageList->at(index.row());
+        const Package package = m_packageList->at(m_packageList->size() - index.row() - 1);
 
         switch(index.column()) {
         case 0:
@@ -58,8 +60,10 @@ QVariant PackageTableModel::data(const QModelIndex &index, int role) const
         case 1:
             return HeaderUtil::getIPAddress(package, false);
         case 2:
-            return "HTTP";
+            return HeaderUtil::getApplicationProtocol(package) ? "DNS" : "HTTP";
         case 3:
+            return HeaderUtil::getPackageLength(package);
+        case 4:
             return package.getInfo();
         }
     }

@@ -8,7 +8,7 @@
  * @brief The HeaderType enum
  * @par Represents the type of a header
  */
-enum HeaderType {HTTP, TCP, UDP, IP, MAC};
+enum HeaderType {HTTP, DNS, TCP, UDP, IP, MAC, UNKNOWN};
 
 /**
  * @brief The Header class
@@ -42,6 +42,8 @@ public:
     QList<HeaderAttribute> getHeaderList() const;
 
     HeaderType getType() const;
+
+    quint16 getHeaderLength() const;
 };
 
 #endif // HEADER_H

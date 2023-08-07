@@ -8,6 +8,12 @@
 #include "src/models/ipaddress.h"
 #include "src/models/package.h"
 
+enum IPFlag
+{
+    MF = 0,
+    DF = 1
+};
+
 /**
  * @brief The IPv4 class
  * @par This class represents the IPv4 Protocol

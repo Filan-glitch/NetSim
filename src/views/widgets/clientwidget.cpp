@@ -23,7 +23,7 @@ ClientWidget::ClientWidget(const Client &client, QWidget *parent)
     m_layout->addWidget(m_button);
     m_layout->addWidget(m_ipLabel);
     m_layout->addWidget(m_macLabel);
-    this->setFixedSize(QSize(200, 128));
+    this->setFixedSize(QSize(256, 128));
 }
 
 QPushButton *ClientWidget::button() const
