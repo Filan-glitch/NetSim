@@ -11,11 +11,15 @@ class Host;
 class Process
 {
 public:
-    Process(Host* host);
+    Process(){};
 
-    void openSocket(const Port &sourcePort);
+    Process(Host* host, const Port &destinationPort);
 
-    Package getHTTPRequest(const QString &url);
+    Socket getSocket();
+
+    void openSocket(const Port &destinationPort);
+
+    Package getHTTPRequest(const QString &uri);
 
     //TODO IMPLEMENT
     Package getHTTPResponse(IPAddress destination);

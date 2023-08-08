@@ -15,6 +15,12 @@ public:
 
     void addTCPHeader(Package &data, IPAddress srcAddress, IPAddress destAddress, bool ack, bool psh, bool syn, bool fin);
     void addUDPHeader(Package& data);
+    Port getSourcePort();
+    void setSourcePort(Port sourcePort);
+    Port getDestinationPort();
+    quint32 getStartSeq();
+    quint32 getServerSeq();
+    quint32 getAmountReceivedData();
 private:
     Port sourcePort;
     Port destinationPort;

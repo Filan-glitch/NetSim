@@ -20,7 +20,7 @@ public:
      * @param data
      * @par adds the HTTP-Request Header to a package
      */
-    static void initHTTPRequest(const QString &requestType, const QString &url, const QString &version, Package& data);
+    static void initHTTPRequest(const QString &requestType, const QString &uri, const QString &version, Package& data);
   
     /**
      * @brief initHTTPResponse

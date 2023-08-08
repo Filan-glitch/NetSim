@@ -35,3 +35,7 @@ QPushButton *ClientWidget::button() const
 {
     return m_button;
 }
+
+void ClientWidget::httpRequest(){
+
+}

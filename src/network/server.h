@@ -15,6 +15,8 @@ public:
 
     void getRequest();
     void sendResponse();
+
+    virtual void receivePackage(const Package &data);
 };
 
 #endif // SERVER_H

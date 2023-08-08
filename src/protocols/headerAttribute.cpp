@@ -69,4 +69,6 @@ QVector<quint8> HeaderAttribute::getContentAsArray() const
     return content;
 }
 
-
+void HeaderAttribute::setContent(QVector<quint8> content){
+    this->content = content;
+}

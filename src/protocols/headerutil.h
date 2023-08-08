@@ -276,6 +276,10 @@ public:
      */
     static HeaderType getApplicationProtocol(const Package &data);
 
+
+     static IPAddress getIPAddressAsIPAddress(const Package &data, bool src);
+
+    static Port getPortAsPort(const Package &data, bool src);
 private:
     /**
      * @brief getHeaderByType

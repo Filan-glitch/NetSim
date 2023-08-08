@@ -1093,3 +1093,96 @@ HeaderAttribute HeaderUtil::getHeaderAttributeByName(const QString &name, const 
     errorMessage.append(name);
     throw HeaderAttributeNotFoundException(errorMessage);
 }
+
+IPAddress HeaderUtil::getIPAddressAsIPAddress(const Package &data, bool src){
+    //Getting the IP Header
+    Header header;
+    try{
+        header = getHeaderByType(HeaderType::IP, data);
+    }
+    catch(HeaderNotFoundException hnfe){
+        qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getIPAddressAsIPAddress";
+    }
+
+    QVector<quint8> attribute;
+    //Getting the source or destination address
+    if(src){
+        try{
+            attribute = getHeaderAttributeByName("Source Address", header).getContentAsArray();
+        }
+        catch(HeaderAttributeNotFoundException hanfe){
+            qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getIPAddressAsIPAddress";
+        }
+    }
+    else{
+        try{
+            attribute = getHeaderAttributeByName("Destination Address", header).getContentAsArray();
+        }
+        catch(HeaderAttributeNotFoundException hanfe){
+            qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getIPAddressAsIPAddress";
+        }
+    }
+
+    return attribute;
+}
+
+Port HeaderUtil::getPortAsPort(const Package &data, bool src){
+    //Getting the right header
+    Header header;
+    try{
+        header = getHeaderByType(HeaderType::TCP, data);
+    }
+    catch(HeaderNotFoundException hnfe){
+        try{
+            header = getHeaderByType(HeaderType::UDP,data);
+        }
+        catch(HeaderNotFoundException hnfe){
+            qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getPortAsPort";
+        }
+    }
+
+    //Getting the source or destination port
+    QVector<quint8> attribute;
+    if(src){
+        try{
+            attribute = getHeaderAttributeByName("Source Port", header).getContentAsArray();
+        }
+        catch(HeaderAttributeNotFoundException hanfe){
+            qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getPortAsPort";
+        }
+    }
+    else{
+        try{
+            attribute = getHeaderAttributeByName("Destination Port", header).getContentAsArray();
+        }
+        catch(HeaderAttributeNotFoundException hanfe){
+            qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getPortAsPort";
+        }
+    }
+
+    quint16 port = attribute[0] << 8 | attribute[1];
+
+    return Port(port);
+}
+
+void HeaderUtil::changeAttribute(const Package &data, HeaderType type, QString attributeName, QVector<quint8> value){
+    //Getting the right header
+    Header header;
+    try{
+        header = getHeaderByType(type, data);
+    }
+    catch(HeaderNotFoundException hnfe){
+        qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::changeAttribute";
+    }
+
+    //changing the attribute
+    HeaderAttribute attribute;
+    try{
+        attribute = getHeaderAttributeByName(attributeName, header);
+    }
+    catch(HeaderAttributeNotFoundException hanfe){
+        qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::changeAttribute";
+    }
+
+    attribute.setContent(value);
+}

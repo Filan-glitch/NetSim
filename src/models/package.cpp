@@ -1,5 +1,9 @@
 #include "package.h"
 #include "src/protocols/Headernotfoundexception.h"
+#include "src/management/logger.h"
+#include "src/protocols/tcp.h"
+
+#include <src/protocols/headerattributenotfoundexception.h>
 
 Package::Package() {}
 
@@ -15,15 +19,6 @@ QString Package::getContent() const {
 
 QList<Header> Package::getHeaders() const {
     return headers;
-}
-
-Header Package::getHeaderByType(const HeaderType &type) const {
-    for (int i = 0; i < this->headers.size(); i++) {
-        if (this->headers.at(i).getType() == type) {
-            return this->headers[i];
-        }
-    }
-    throw HeaderNotFoundException("Header of type " + QString::number(type) + " not found");
 }
 
 void Package::addHeader(const Header &header){
@@ -44,4 +39,57 @@ quint16 Package::getLength() const {
         length += header.getHeaderLength();
     }
     return length;
+}
+
+void Package::changePortAndIP(Port number, IPAddress address, bool src){
+    Header copyHeader;
+    bool udp = false;
+
+    try{
+        copyHeader = this->getHeaderByType(HeaderType::TCP);
+    }
+    catch(HeaderNotFoundException hnfe){
+        try{
+            copyHeader = getHeaderByType(HeaderType::UDP);
+            udp = true;
+        }
+        catch(HeaderNotFoundException hnfe2){
+            qDebug() << hnfe2.getErrorMessage() << " in Package::changePort";
+        }
+    }
+
+    udp ? deleteHeaderByType(HeaderType::UDP) : deleteHeaderByType(HeaderType::TCP);
+
+    //TODO CONTINUE
+}
+
+void Package::changeEthernetHeader(MACAddress srcAddress, MACAddress destAddress){
+
+}
+
+Header Package::getHeaderByType(HeaderType type){
+    for(Header header : this->headers){
+        if(header.getType() == type){
+            return header;
+        }
+    }
+    throw HeaderNotFoundException("Could not find Header in Package::getHeaderByType");
+}
+
+void Package::deleteHeaderByType(HeaderType type){
+    for(int i = 0; i < this->headers.size(); i++){
+        if(headers.at(i).getType() == type){
+            headers.removeAt(i);
+        }
+    }
+    throw HeaderNotFoundException("Could not find Header");
+}
+
+HeaderAttribute Package::getHeaderAttributeByName(Header header, QString name){
+    for(HeaderAttribute attribute : header.getHeaderList()){
+        if(attribute.getName() == name){
+            return attribute;
+        }
+    }
+    throw HeaderAttributeNotFoundException("Could not find HeaderAttribute");
 }

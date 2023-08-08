@@ -3,20 +3,21 @@
 #include "src/protocols/http.h"
 #include "src/network/host.h"
 
-Process::Process(Host* host) : host(host)
+Process::Process(Host* host, const Port &destinationPort) : host(host)
 {
-
+    openSocket(destinationPort);
 }
 
-void Process::openSocket(const Port &sourcePort){
-    this->socket = Socket(sourcePort, Port(80));
+void Process::openSocket(const Port &destinationPort){
+    this->socket = Socket(0, destinationPort);
+    socket.setSourcePort(Port::getRandomPort());
 }
 
-Package Process::getHTTPRequest(const QString &url){
-    IPAddress destination = host->getDomainTable()[url].getAddressAsArray();
-    Package data("Request HTML of " + url);
+Package Process::getHTTPRequest(const QString &uri){
+    IPAddress destination = host->getDomainTable()[uri].getAddressAsArray();
+    Package data("Request HTML of " + uri);
     //Adding HTTP Header
-    HTTP::initHTTPRequest("GET",url,"HTTP/1.1",data);
+    HTTP::initHTTPRequest("GET",uri,"HTTP/1.1",data);
 
     //Adding TCP Header
     socket.addTCPHeader(data,host->getNetworkCard().getNetworkAddress(),
@@ -30,7 +31,7 @@ Package Process::getHTTPRequest(const QString &url){
     host->getNetworkCard().addIPHeader(data,6,destination);
 
     //Adding Ethernet II Header
-    //host->getNetworkCard().addMACHeader(data,host->getHostTable()[destination],0);
+    host->getNetworkCard().addMACHeader(data,host->getHostTable()[destination],0);
     return data;
 }
 
@@ -73,4 +74,8 @@ Package Process::getHandShakePackage(const QString &url, bool initiate, bool cli
     }
     //TODO SERVER HANDSHAKEPACKAGES
 
+}
+
+Socket Process::getSocket(){
+    return socket;
 }

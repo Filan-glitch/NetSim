@@ -5,6 +5,7 @@
 #include <QStack>
 #include <QHash>
 #include "host.h"
+#include "natentry.h"
 #include "src/models/ipaddress.h"
 #include "src/network/networkcard.h"
 
@@ -16,17 +17,16 @@ private:
     QMap<IPAddress, MACAddress> macTable;
     QMap<MACAddress, Router*> routerCable;
     QMap<MACAddress, Host*> hostCable;
+    QMap<Port,NATEntry> portToNAT;
+    QMap<NATEntry, Port> natToPort;
     NetworkCard networkCard;
     IPAddress globalIpAddress;
-    QStack<Package> cachePackage;
 public:
     Router();
 
     void addDomain(const QString &domain, const IPAddress &ipAddress);
     bool initializeServerConnection();
     void receivePackage(const Package& data);
-    void sendPackageToRouter(MACAddress destinationAddress);
-    void sendPackageToHost(MACAddress destinationAddress);
     IPAddress getGlobalIpAddress() const;
     NetworkCard getNetworkCard() const;
     void addIPAddress(const IPAddress &ipAddress, const MACAddress &macaddress);

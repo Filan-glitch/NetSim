@@ -3,13 +3,13 @@
 void HTTP::initHTTPRequest(const QString &method, const QString &uri, const QString &version, Package& data){
     HeaderAttribute isResponse("Response",8,static_cast<quint8>(0));
     HeaderAttribute requestMethod("Method",method.toLatin1().length()*8,method);
-    HeaderAttribute URL("URI",uri.toLatin1().length()*8,uri);
+    HeaderAttribute URI("URI",uri.toLatin1().length()*8,uri);
     HeaderAttribute httpVersion("Version", version.toLatin1().length()*8,version);
 
     QList<HeaderAttribute> headerList;
     headerList.append(isResponse);
     headerList.append(requestMethod);
-    headerList.append(URL);
+    headerList.append(URI);
     headerList.append(httpVersion);
 
     Header httpHeader(HeaderType::HTTP,headerList);
