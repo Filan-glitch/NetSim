@@ -1,5 +1,42 @@
-<?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-<svg width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-  <path d="M8,2h8a2,2,0,0,1,2,2V20a2,2,0,0,1-2,2H8a2,2,0,0,1-2-2V4A2,2,0,0,1,8,2M8,4V6h8V4H8m8,4H8v2h8V8m0,10H14v2h2Z"/>
-  <rect width="24" height="24" fill="none"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+
+<svg
+   width="800px"
+   height="800px"
+   viewBox="0 0 24 24"
+   version="1.1"
+   id="svg855"
+   sodipodi:docname="server.svg"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs859" />
+  <sodipodi:namedview
+     id="namedview857"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     showgrid="false"
+     inkscape:zoom="1.31625"
+     inkscape:cx="337.32194"
+     inkscape:cy="399.62013"
+     inkscape:window-width="3440"
+     inkscape:window-height="1369"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg855" />
+  <path
+     style="fill:#a9b7c6;fill-rule:evenodd;stroke:#ff6647;stroke-width:1.14857;stroke-linecap:round;stroke-linejoin:round"
+     d="m 257.54986,732.30857 c -16.2734,-2.37473 -32.63815,-11.7416 -42.55794,-24.35933 -5.16417,-6.56871 -10.31278,-16.82982 -12.70864,-25.32816 l -1.71348,-6.07787 -0.21694,-272.36467 c -0.15232,-191.24264 0.0266,-274.23756 0.60081,-278.65283 3.98145,-30.616048 27.27054,-53.906678 57.90538,-57.909201 4.36487,-0.570283 48.81187,-0.753406 145.31949,-0.598721 l 139.03134,0.222844 6.07787,1.711397 c 24.2969,6.841477 42.0586,24.740539 48.4322,48.806751 l 1.71025,6.45774 V 400 675.78348 l -1.71025,6.45774 c -6.37357,24.06608 -24.13444,41.96438 -48.4322,48.80697 l -6.07787,1.71161 -140.55081,0.10698 c -77.30294,0.0588 -142.60209,-0.19236 -145.10921,-0.55821 z M 533.7132,633.23837 V 599.4302 h -33.80817 -33.80816 v 33.80817 33.80816 h 33.80816 33.80817 z m 0,-333.1434 v -33.4283 H 400 266.2868 v 33.4283 33.4283 H 400 533.7132 Z m 0,-133.33334 V 132.95347 H 400 266.2868 v 33.80816 33.80817 H 400 533.7132 Z"
+     id="path978"
+     transform="scale(0.03)" />
 </svg>

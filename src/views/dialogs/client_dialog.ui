@@ -1,30 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>SimulationWindow</class>
- <widget class="QMainWindow" name="SimulationWindow">
-  <property name="windowModality">
-   <enum>Qt::ApplicationModal</enum>
-  </property>
+ <class>Client_Dialog</class>
+ <widget class="QDialog" name="Client_Dialog">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1920</width>
-    <height>1080</height>
+    <width>552</width>
+    <height>477</height>
    </rect>
   </property>
-  <property name="minimumSize">
-   <size>
-    <width>0</width>
-    <height>0</height>
-   </size>
-  </property>
   <property name="windowTitle">
-   <string>NetSim - The educational Network Simulation</string>
-  </property>
-  <property name="windowIcon">
-   <iconset resource="../../../assets/ressources.qrc">
-    <normaloff>:/icon.svg</normaloff>:/icon.svg</iconset>
+   <string>Dialog</string>
   </property>
   <property name="styleSheet">
    <string notr="true">/*
@@ -61,16 +48,21 @@ QPlainTextEdit {
 }
 QPushButton{
 	border-style: solid;
+	border-top-color: transparent;
+	border-right-color: transparent;
+	border-left-color: transparent;
+	border-bottom-color: transparent;
 	border-width: 1px;
 	border-style: solid;
-	border-color: black;
 	color: #a9b7c6;
 	padding: 2px;
 	background-color: #1e1d23;
 }
 QPushButton::default{
-	border-bottom-style: inset;
-	border-color: black;
+	border-style: inset;
+	border-top-color: transparent;
+	border-right-color: transparent;
+	border-left-color: transparent;
 	border-bottom-color: #04b97f;
 	border-width: 1px;
 	color: #a9b7c6;
@@ -102,9 +94,12 @@ QToolButton:hover{
 	background-color: #1e1d23;
 }
 QPushButton:hover{
-	border-color: black;
+	border-style: solid;
+	border-top-color: transparent;
+	border-right-color: transparent;
+	border-left-color: transparent;
 	border-bottom-color: #37efba;
-	border-width: 1px;
+	border-bottom-width: 1px;
 	border-style: solid;
 	color: #FFFFFF;
 	padding-bottom: 2px;
@@ -112,8 +107,9 @@ QPushButton:hover{
 }
 QPushButton:pressed{
 	border-style: solid;
-	border-width: 1px;
-	border-color: black;
+	border-top-color: transparent;
+	border-right-color: transparent;
+	border-left-color: transparent;
 	border-bottom-color: #37efba;
 	border-bottom-width: 2px;
 	border-style: solid;
@@ -213,13 +209,13 @@ QTabWidget {
 	background-color:#1e1d23;
 }
 QTabWidget::pane {
-	border-top-color: transparent;
-	border-right-color: transparent;
-	border-left-color: transparent;
-	border-bottom-color: transparent;
+		border-color: rgb(77,77,77);
+		background-color:#1e1d23;
+		border-style: solid;
+		border-width: 1px;
+    	border-radius: 6px;
 }
 QTabBar::tab {
-	height: 30px;
 	border-style: solid;
 	border-top-color: transparent;
 	border-right-color: transparent;
@@ -232,8 +228,7 @@ QTabBar::tab {
 	margin-left:3px;
 	background-color: #1e1d23;
 }
-QTabBar::tab:selected  {
-	height: 30px;
+QTabBar::tab:selected, QTabBar::tab:last:selected, QTabBar::tab:hover {
   	border-style: solid;
 	border-top-color: transparent;
 	border-right-color: transparent;
@@ -408,177 +403,87 @@ QSlider::sub-page:horizontal {
 }
 QSlider::sub-page:vertical {
     background: #04b97f;
-}
-
-QTableView { 
-	color: #a9b7c6; 
-	background-color : #1e1d23;
-	alternate-background-color:  #3a3940;
-	gridline-color: #a9b7c6;
-}
-
-QTableView QTableCornerButton::section {
-	background-color: #1e1d23;
-}
-
-QHeaderView {
-	background-color: #1e1d23;
-}
-
-QHeaderView::section {
-	background-color:#2a2930;
-	color: #a9b7c6;
-}
-QTreeWidget { 
-	color: #a9b7c6; 
-	background-color : #1e1d23; 
-	show-decoration-selected: 1;
-}
-QTreeWidget::branch:has-children:!has-siblings:closed,
-QTreeWidget::branch:closed:has-children:has-siblings {
-    image: url(:/collapsed.svg);
-}
-
-QTreeWidget::branch:open:has-children:!has-siblings,
-QTreeWidget::branch:open:has-children:has-siblings {
-    image: url(:/ellapsed.svg);
 }</string>
   </property>
-  <widget class="QWidget" name="centralwidget">
-   <layout class="QHBoxLayout" name="horizontalLayout">
-    <item>
-     <widget class="QTabWidget" name="tabWidget">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="tabPosition">
-       <enum>QTabWidget::North</enum>
-      </property>
-      <property name="tabShape">
-       <enum>QTabWidget::Rounded</enum>
-      </property>
-      <property name="currentIndex">
-       <number>0</number>
-      </property>
-      <widget class="QWidget" name="packageTab">
-       <attribute name="icon">
-        <iconset resource="../../../assets/ressources.qrc">
-         <normaloff>:/package.svg</normaloff>:/package.svg</iconset>
-       </attribute>
-       <attribute name="title">
-        <string>Packages</string>
-       </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout">
-        <item>
-         <widget class="QTableView" name="packagesTableView">
-          <property name="frameShadow">
-           <enum>QFrame::Sunken</enum>
-          </property>
-          <property name="editTriggers">
-           <set>QAbstractItemView::NoEditTriggers</set>
-          </property>
-          <property name="alternatingRowColors">
-           <bool>true</bool>
-          </property>
-          <property name="selectionMode">
-           <enum>QAbstractItemView::SingleSelection</enum>
-          </property>
-          <property name="selectionBehavior">
-           <enum>QAbstractItemView::SelectRows</enum>
-          </property>
-          <property name="textElideMode">
-           <enum>Qt::ElideRight</enum>
-          </property>
-          <property name="sortingEnabled">
-           <bool>true</bool>
-          </property>
-          <property name="cornerButtonEnabled">
-           <bool>false</bool>
-          </property>
-          <attribute name="horizontalHeaderCascadingSectionResizes">
-           <bool>true</bool>
-          </attribute>
-          <attribute name="horizontalHeaderHighlightSections">
-           <bool>false</bool>
-          </attribute>
-          <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
-           <bool>false</bool>
-          </attribute>
-          <attribute name="horizontalHeaderStretchLastSection">
-           <bool>true</bool>
-          </attribute>
-          <attribute name="verticalHeaderHighlightSections">
-           <bool>true</bool>
-          </attribute>
-         </widget>
-        </item>
-       </layout>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QFormLayout" name="formLayout">
+     <item row="2" column="0">
+      <widget class="QLabel" name="serverDomainLabel">
+       <property name="text">
+        <string>Server Domain:</string>
+       </property>
       </widget>
-     </widget>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1920</width>
-     <height>18</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menuSimulation">
-    <property name="title">
-     <string>Simulation</string>
-    </property>
-    <addaction name="actionQuit"/>
-   </widget>
-   <widget class="QMenu" name="menuHelp">
-    <property name="title">
-     <string>Help</string>
-    </property>
-    <addaction name="actionDocumentation"/>
-    <addaction name="actionAbout_NetSim"/>
-   </widget>
-   <addaction name="menuSimulation"/>
-   <addaction name="menuHelp"/>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionDocumentation">
-   <property name="text">
-    <string>Documentation</string>
-   </property>
-  </action>
-  <action name="actionQuit">
-   <property name="text">
-    <string>Quit</string>
-   </property>
-  </action>
-  <action name="actionAbout_NetSim">
-   <property name="text">
-    <string>About NetSim</string>
-   </property>
-  </action>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLineEdit" name="serverDomainlineEdit"/>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="clientIPLabel">
+       <property name="text">
+        <string>Client IP-Address:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="clientMACLabel">
+       <property name="text">
+        <string>Client MAC-Address:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLabel" name="macLabel">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="ipLabel">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetMinimumSize</enum>
+     </property>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="sendPushButton">
+       <property name="text">
+        <string>Send Request</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="cancelPushButton">
+       <property name="text">
+        <string>Cancel</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
  </widget>
- <resources>
-  <include location="../../../assets/ressources.qrc"/>
- </resources>
- <connections>
-  <connection>
-   <sender>actionQuit</sender>
-   <signal>triggered()</signal>
-   <receiver>SimulationWindow</receiver>
-   <slot>close()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>959</x>
-     <y>539</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <resources/>
+ <connections/>
 </ui>

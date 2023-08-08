@@ -23,12 +23,13 @@ SimulationWindow::SimulationWindow(SimulationManager *manager, QWidget *parent) 
     ui->setupUi(this);
     showFullScreen();
     setupNetwork();
-    setupDNS();
 
     //Model Initialization
     m_packageModel = new PackageTableModel(PackageDatabase::instance()->packageList(), this);
     ui->packagesTableView->setModel(m_packageModel);
+    ui->packagesTableView->horizontalHeader()->setDefaultAlignment(Qt::AlignLeft);
     ui->packagesTableView->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->packagesTableView->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
     //TreeWidget Initialization
     m_treeWidget = new QTreeWidget(this);
@@ -95,18 +96,12 @@ void SimulationWindow::setupNetwork()
     }
 
     for(auto i = 0; i < manager->getClientsAmount(); i++) {
-        ClientWidget* clientWidget = new ClientWidget(&(*manager->getClients())[i], this);
+        ClientWidget* clientWidget = new ClientWidget(&(*manager->getClients())[i], QString("Client %1").arg(i + 1), this);
         mainLayout->addWidget(clientWidget, i, 3);
         networkTab->addClient(clientWidget);
     }
     this->ui->tabWidget->setCurrentIndex(0);
 }
-
-void SimulationWindow::setupDNS() {
-
-}
-
-
 
 void SimulationWindow::openDocumentation() {
     QDesktopServices::openUrl(QUrl("https://github.com/Filan-glitch/NetSim/wiki"));

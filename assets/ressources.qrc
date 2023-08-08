@@ -9,5 +9,7 @@
         <file>process.svg</file>
         <file>source.svg</file>
         <file>full_logo.svg</file>
+        <file>collapsed.svg</file>
+        <file>ellapsed.svg</file>
     </qresource>
 </RCC>
