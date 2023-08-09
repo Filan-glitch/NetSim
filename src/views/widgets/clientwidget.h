@@ -26,6 +26,12 @@ private:
 
     //Layout
     QVBoxLayout* m_layout;
+
+private slots:
+    void onButtonClicked();
+
+signals:
+    void clicked(ClientWidget* client);
 };
 
 #endif // CLIENTWIDGET_H

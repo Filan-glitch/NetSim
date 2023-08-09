@@ -26,6 +26,12 @@ private:
 
     //Layout
     QVBoxLayout* m_layout;
+
+private slots:
+    void onButtonClicked();
+
+signals:
+    void clicked(RouterWidget* router);
 };
 
 #endif // ROUTERWIDGET_H

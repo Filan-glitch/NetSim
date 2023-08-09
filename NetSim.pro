@@ -39,6 +39,8 @@ SOURCES += \
     src/protocols/udp.cpp \
     src/views/dialogs/about_dialog.cpp \
     src/views/dialogs/client_dialog.cpp \
+    src/views/dialogs/router_dialog.cpp \
+    src/views/dialogs/server_dialog.cpp \
     src/views/dialogs/settingsdialog.cpp \
     src/views/widgets/clientwidget.cpp \
     src/views/widgets/networktab.cpp \
@@ -78,6 +80,8 @@ HEADERS += \
     src/protocols/udp.h \
     src/views/dialogs/about_dialog.h \
     src/views/dialogs/client_dialog.h \
+    src/views/dialogs/router_dialog.h \
+    src/views/dialogs/server_dialog.h \
     src/views/dialogs/settingsdialog.h \
     src/views/widgets/clientwidget.h \
     src/views/widgets/networktab.h \
@@ -90,6 +94,8 @@ HEADERS += \
 FORMS += \
     src/views/dialogs/about_dialog.ui \
     src/views/dialogs/client_dialog.ui \
+    src/views/dialogs/router_dialog.ui \
+    src/views/dialogs/server_dialog.ui \
     src/views/dialogs/settingsdialog.ui \
     src/views/windows/simulationwindow.ui \
     src/views/windows/welcomewindow.ui

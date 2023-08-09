@@ -35,6 +35,9 @@ ServerWidget::ServerWidget(Server* server, QWidget *parent)
     m_layout->addWidget(m_macLabel);
     
     this->setFixedSize(QSize(256, 156));
+
+    //Connections
+    connect(m_button, &QPushButton::clicked, this, &ServerWidget::onButtonClicked);
 }
 
 Server *ServerWidget::server()
@@ -45,4 +48,8 @@ Server *ServerWidget::server()
 QPushButton *ServerWidget::button() const
 {
     return m_button;
+}
+
+void ServerWidget::onButtonClicked() {
+    emit clicked(this);
 }

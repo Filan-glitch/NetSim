@@ -36,7 +36,9 @@ RouterWidget::RouterWidget(Router* router, QWidget *parent)
     m_layout->addWidget(m_macLabel);
 
     this->setFixedSize(QSize(256, 156));
-    
+
+    //Connections
+    connect(m_button, &QPushButton::clicked, this, &RouterWidget::onButtonClicked);
 }
 
 Router *RouterWidget::router()
@@ -47,4 +49,8 @@ Router *RouterWidget::router()
 QPushButton *RouterWidget::button() const
 {
     return m_button;
+}
+
+void RouterWidget::onButtonClicked() {
+    emit clicked(this);
 }

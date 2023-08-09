@@ -52,21 +52,16 @@ QPlainTextEdit {
 }
 QPushButton{
 	border-style: solid;
-	border-top-color: transparent;
-	border-right-color: transparent;
-	border-left-color: transparent;
-	border-bottom-color: transparent;
 	border-width: 1px;
 	border-style: solid;
+	border-color: black;
 	color: #a9b7c6;
 	padding: 2px;
 	background-color: #1e1d23;
 }
 QPushButton::default{
-	border-style: inset;
-	border-top-color: transparent;
-	border-right-color: transparent;
-	border-left-color: transparent;
+	border-bottom-style: inset;
+	border-color: black;
 	border-bottom-color: #04b97f;
 	border-width: 1px;
 	color: #a9b7c6;
@@ -98,12 +93,9 @@ QToolButton:hover{
 	background-color: #1e1d23;
 }
 QPushButton:hover{
-	border-style: solid;
-	border-top-color: transparent;
-	border-right-color: transparent;
-	border-left-color: transparent;
+	border-color: black;
 	border-bottom-color: #37efba;
-	border-bottom-width: 1px;
+	border-width: 1px;
 	border-style: solid;
 	color: #FFFFFF;
 	padding-bottom: 2px;
@@ -111,9 +103,8 @@ QPushButton:hover{
 }
 QPushButton:pressed{
 	border-style: solid;
-	border-top-color: transparent;
-	border-right-color: transparent;
-	border-left-color: transparent;
+	border-width: 1px;
+	border-color: black;
 	border-bottom-color: #37efba;
 	border-bottom-width: 2px;
 	border-style: solid;
@@ -213,13 +204,13 @@ QTabWidget {
 	background-color:#1e1d23;
 }
 QTabWidget::pane {
-		border-color: rgb(77,77,77);
-		background-color:#1e1d23;
-		border-style: solid;
-		border-width: 1px;
-    	border-radius: 6px;
+	border-top-color: transparent;
+	border-right-color: transparent;
+	border-left-color: transparent;
+	border-bottom-color: transparent;
 }
 QTabBar::tab {
+	height: 30px;
 	border-style: solid;
 	border-top-color: transparent;
 	border-right-color: transparent;
@@ -232,7 +223,8 @@ QTabBar::tab {
 	margin-left:3px;
 	background-color: #1e1d23;
 }
-QTabBar::tab:selected, QTabBar::tab:last:selected, QTabBar::tab:hover {
+QTabBar::tab:selected  {
+	height: 30px;
   	border-style: solid;
 	border-top-color: transparent;
 	border-right-color: transparent;
@@ -407,6 +399,40 @@ QSlider::sub-page:horizontal {
 }
 QSlider::sub-page:vertical {
     background: #04b97f;
+}
+
+QTableView { 
+	color: #a9b7c6; 
+	background-color : #1e1d23;
+	alternate-background-color:  #3a3940;
+	gridline-color: #a9b7c6;
+}
+
+QTableView QTableCornerButton::section {
+	background-color: #1e1d23;
+}
+
+QHeaderView {
+	background-color: #1e1d23;
+}
+
+QHeaderView::section {
+	background-color:#2a2930;
+	color: #a9b7c6;
+}
+QTreeWidget { 
+	color: #a9b7c6; 
+	background-color : #1e1d23; 
+	show-decoration-selected: 1;
+}
+QTreeWidget::branch:has-children:!has-siblings:closed,
+QTreeWidget::branch:closed:has-children:has-siblings {
+    image: url(:/collapsed.svg);
+}
+
+QTreeWidget::branch:open:has-children:!has-siblings,
+QTreeWidget::branch:open:has-children:has-siblings {
+    image: url(:/ellapsed.svg);
 }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">

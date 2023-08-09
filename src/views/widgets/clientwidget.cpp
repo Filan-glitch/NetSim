@@ -34,6 +34,9 @@ ClientWidget::ClientWidget(Client* client, const QString &name, QWidget *parent)
     m_layout->addWidget(m_ipLabel);
     m_layout->addWidget(m_macLabel);
     this->setFixedSize(QSize(256, 156));
+
+    //Connections
+    connect(m_button, &QPushButton::clicked, this, &ClientWidget::onButtonClicked);
 }
 
 Client *ClientWidget::client()
@@ -44,4 +47,9 @@ Client *ClientWidget::client()
 QPushButton *ClientWidget::button() const
 {
     return m_button;
+}
+
+void ClientWidget::onButtonClicked()
+{
+    emit clicked(this);
 }
