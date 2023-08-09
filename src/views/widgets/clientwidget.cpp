@@ -53,3 +53,7 @@ void ClientWidget::onButtonClicked()
 {
     emit clicked(this);
 }
+
+QString ClientWidget::name() const {
+    return m_nameLabel->text();
+}

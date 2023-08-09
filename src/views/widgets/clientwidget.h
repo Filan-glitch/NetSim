@@ -14,6 +14,7 @@ public:
     Client* client();
 
     QPushButton *button() const;
+    QString name() const;
 
 private:
     Client* m_client;

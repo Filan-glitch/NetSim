@@ -267,6 +267,8 @@ void SimulationWindow::clientDialog(ClientWidget *client)
 {
     Client_Dialog clientDialog(client, this);
     clientDialog.exec();
+
+    //TODO: Initiate Request
 }
 
 void SimulationWindow::routerDialog(RouterWidget *router)

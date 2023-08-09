@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>552</width>
-    <height>477</height>
+    <width>530</width>
+    <height>194</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -434,6 +434,12 @@ QTreeWidget::branch:open:has-children:has-siblings {
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QLabel" name="nameLabel">
+     <property name="font">
+      <font>
+       <pointsize>14</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
      <property name="text">
       <string/>
      </property>
@@ -489,6 +495,20 @@ QTreeWidget::branch:open:has-children:has-siblings {
      <item row="3" column="1">
       <widget class="QLineEdit" name="pathLineEdit"/>
      </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="disclaimerLabel">
+       <property name="text">
+        <string>Disclaimer:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Standard HTML is at /index.html, for Error 404 Response insert wrong path.</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </item>
    <item>
@@ -528,5 +548,22 @@ QTreeWidget::branch:open:has-children:has-siblings {
   </layout>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>cancelPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>Client_Dialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>498</x>
+     <y>172</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>264</x>
+     <y>96</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

@@ -7,6 +7,7 @@ Client_Dialog::Client_Dialog(ClientWidget* client, QWidget *parent) :
     client(client)
 {
     ui->setupUi(this);
+    ui->nameLabel->setText(client->name());
     ui->ipLabel->setText(client->client()->getNetworkCard().getNetworkAddress().getAddressAsDecString());
     ui->macLabel->setText(client->client()->getNetworkCard().getPhysicalAddress().getAddressAsString());
 }
