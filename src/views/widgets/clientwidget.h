@@ -10,12 +10,13 @@ class ClientWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit ClientWidget(const Client &client, QWidget *parent = nullptr);
+    explicit ClientWidget(Client* client, QWidget *parent = nullptr);
+    Client* client();
 
     QPushButton *button() const;
 
 private:
-    Client m_client;
+    Client* m_client;
 
     //Widgets
     QPushButton* m_button;

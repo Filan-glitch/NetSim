@@ -23,6 +23,7 @@ SimulationWindow::SimulationWindow(SimulationManager *manager, QWidget *parent) 
     ui->setupUi(this);
     showFullScreen();
     setupNetwork();
+    setupDNS();
 
     //Model Initialization
     m_packageModel = new PackageTableModel(PackageDatabase::instance()->packageList(), this);
@@ -65,41 +66,46 @@ void SimulationWindow::setupNetwork()
     this->ui->tabWidget->insertTab(0, networkTab, QIcon(":/network.svg"), "Network");
 
     // Mainrouter
-    auto mainRouter = new RouterWidget(this->manager->getRouters().at(0), this);
-    auto dnsServer = new ServerWidget(this->manager->getServer().at(0), this);
+    auto mainRouter = new RouterWidget(&(*manager->getRouters())[0], this);
+    auto dnsServer = new ServerWidget(&(*manager->getServer())[0], this);
     switch(this->manager->getClientsAmount()) {
     case 1:
-        mainLayout->addWidget(mainRouter, 1, 2);
-        mainLayout->addWidget(dnsServer , 0, 2);
+        mainLayout->addWidget(mainRouter, 0, 2);
+        mainLayout->addWidget(dnsServer , 1, 2);
         break;
     case 2:
     case 3:
     case 4:
     case 5:
-        mainLayout->addWidget(mainRouter, 3, 2);
-        mainLayout->addWidget(dnsServer , 2, 2);
+        mainLayout->addWidget(mainRouter, 2, 2);
+        mainLayout->addWidget(dnsServer , 0, 2);
         break;
     }
     networkTab->addRouter(mainRouter);
     networkTab->addServer(dnsServer);
 
     for(auto i = 1; i <= manager->getServerAmount(); i++) {
-        ServerWidget* serverWidget = new ServerWidget(manager->getServer().at(i), this);
+        ServerWidget* serverWidget = new ServerWidget(&(*manager->getServer())[i], this);
         mainLayout->addWidget(serverWidget, i - 1, 0);
         networkTab->addServer(serverWidget);
 
-        RouterWidget* routerWidget = new RouterWidget(manager->getRouters().at(i), this);
+        RouterWidget* routerWidget = new RouterWidget(&(*manager->getRouters())[i], this);
         mainLayout->addWidget(routerWidget, i - 1, 1);
         networkTab->addRouter(routerWidget);
     }
 
     for(auto i = 0; i < manager->getClientsAmount(); i++) {
-        ClientWidget* clientWidget = new ClientWidget(manager->getClients().at(i), this);
+        ClientWidget* clientWidget = new ClientWidget(&(*manager->getClients())[i], this);
         mainLayout->addWidget(clientWidget, i, 3);
         networkTab->addClient(clientWidget);
     }
     this->ui->tabWidget->setCurrentIndex(0);
 }
+
+void SimulationWindow::setupDNS() {
+
+}
+
 
 
 void SimulationWindow::openDocumentation() {

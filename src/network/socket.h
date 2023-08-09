@@ -2,10 +2,10 @@
 #define SOCKET_H
 
 #include "src/models/package.h"
-#include "src/models/port.h"
 #include "src/models/ipaddress.h"
+#include "src/models/port.h"
 
-
+class Port;
 
 class Socket
 {

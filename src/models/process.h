@@ -11,7 +11,7 @@ class Host;
 class Process
 {
 public:
-    Process();
+    Process(Host* host);
 
     void openSocket(const Port &sourcePort);
 

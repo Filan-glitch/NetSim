@@ -9,13 +9,13 @@
 class SimulationManager
 {
 public:
-    SimulationManager(quint8 clientAmount, quint8 serverAmount);
+    SimulationManager(quint8 clientAmount, quint8 serverAmount, QList<QString> domains);
     quint8 getClientsAmount() const;
     quint8 getServerAmount() const;
 
-    QList<Server> getServer() const;
-    QList<Client> getClients() const;
-    QList<Router> getRouters() const;
+    QList<Server>* getServer();
+    QList<Client>* getClients();
+    QList<Router>* getRouters();
 
 private:
     QList<Server> server;

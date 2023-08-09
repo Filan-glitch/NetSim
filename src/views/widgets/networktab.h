@@ -14,6 +14,9 @@ public:
     void addRouter(RouterWidget* router);
     void addServer(ServerWidget* server);
     void addClient(ClientWidget* client);
+    QList<RouterWidget*> getRouters() const;
+    QList<ServerWidget*> getServers() const;
+    QList<ClientWidget*> getClients() const;
 
 private:
     QList<RouterWidget*> routers;

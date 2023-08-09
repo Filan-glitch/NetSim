@@ -13,9 +13,9 @@ class Host;
 class Router
 {
 private:
-    map<QString, IPAddress> domainTable;
-    map<MACAddress, Router*> routerCable;
-    map<MACAddress, Host*> hostCable;
+    QMap<IPAddress, MACAddress> macTable;
+    QMap<MACAddress, Router*> routerCable;
+    QMap<MACAddress, Host*> hostCable;
     NetworkCard networkCard;
     IPAddress globalIpAddress;
     QStack<Package> cachePackage;
@@ -29,6 +29,9 @@ public:
     void sendPackageToHost(MACAddress destinationAddress);
     IPAddress getGlobalIpAddress() const;
     NetworkCard getNetworkCard() const;
+    void addIPAddress(const IPAddress &ipAddress, const MACAddress &macaddress);
+    void addMACAddress(const MACAddress &macAddress, Router *router);
+    void addMACAddress(const MACAddress &macAddress, Host *host);
 };
 
 #endif // ROUTER_H

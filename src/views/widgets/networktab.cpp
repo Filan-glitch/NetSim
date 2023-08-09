@@ -22,6 +22,21 @@ void NetworkTab::addClient(ClientWidget *client)
     clients.append(client);
 }
 
+QList<RouterWidget *> NetworkTab::getRouters() const
+{
+    return routers;
+}
+
+QList<ServerWidget *> NetworkTab::getServers() const
+{
+    return servers;
+}
+
+QList<ClientWidget *> NetworkTab::getClients() const
+{
+    return clients;
+}
+
 void NetworkTab::paintEvent(QPaintEvent *event)
 {
     QWidget::paintEvent(event);
@@ -49,3 +64,4 @@ void NetworkTab::paintEvent(QPaintEvent *event)
     painter.setPen(QPen(Qt::red, 2));
     painter.drawLine(routers[0]->mapTo(this, routers[0]->button()->rect().center()), servers[0]->mapTo(this, servers[0]->button()->rect().center()));
 }
+
