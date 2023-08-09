@@ -69,4 +69,17 @@ QVector<quint8> HeaderAttribute::getContentAsArray() const
     return content;
 }
 
+void HeaderAttribute::setContent(QVector<quint8> content){
+    this->content = content;
+}
 
+quint64 HeaderAttribute::getContentAsInt64(int size)const{
+    quint64 returnInt = 0;
+    int shiftAmount = 0; // Start shifting from the least significant byte
+
+    for (int i = 0; i < size; i++) {
+        returnInt |= static_cast<quint64>(content.at(i)) << shiftAmount;
+        shiftAmount += 8; // Move to the next byte position
+    }
+    return returnInt;
+}

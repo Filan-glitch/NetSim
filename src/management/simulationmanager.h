@@ -8,8 +8,9 @@
 
 class SimulationManager
 {
+
 public:
-    SimulationManager(quint8 clientAmount, quint8 serverAmount, QList<QString> domains);
+    explicit SimulationManager(quint8 clientAmount, quint8 serverAmount, QList<QString> domains);
     quint8 getClientsAmount() const;
     quint8 getServerAmount() const;
 

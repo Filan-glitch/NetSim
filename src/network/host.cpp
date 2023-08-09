@@ -24,19 +24,19 @@ NetworkCard Host::getNetworkCard() const
 
 Host::Host(const NetworkCard &networkCard) :
     networkCard(networkCard)
-{}
+{
+    Process http(this,80);
+    Process dns(this, 53);
+    processTable[http.getSocket().getSourcePort().getPortNumber()] = http;
+    processTable[dns.getSocket().getSourcePort().getPortNumber()] = dns;
+}
 
 Router* Host::getRouterByMACAddress(MACAddress destinationAddress){
     return this->cables[destinationAddress];
 }
 
-void Host::sendPackage(const Package &data, MACAddress destinationAddress){
+void Host::sendPackage(Package &data, MACAddress destinationAddress){
     cables[destinationAddress]->receivePackage(data);
-}
-
-void Host::receivePackage(const Package &data){
-    //TODO ADD PACKAGE TO DATABASE
-    PackageDatabase::instance()->packageList()->append(data);
 }
 
 void Host::addIPAddress(const IPAddress &ipAddress, const MACAddress &macAddress)

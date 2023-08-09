@@ -210,6 +210,8 @@ public:
      */
     static bool getHTTPIsResponse(const Package &data);
 
+    static bool getHTTPIsRequest(const Package &data);
+
     /**
      * @brief getDNSID
      * @param data
@@ -276,6 +278,10 @@ public:
      */
     static HeaderType getApplicationProtocol(const Package &data);
 
+
+     static IPAddress getIPAddressAsIPAddress(const Package &data, bool src);
+
+    static Port getPortAsPort(const Package &data, bool src);
 private:
     /**
      * @brief getHeaderByType

@@ -11,17 +11,21 @@ class Host;
 class Process
 {
 public:
-    Process(Host* host);
+    Process(){};
 
-    void openSocket(const Port &sourcePort);
+    Process(Host* host, const Port &destinationPort);
 
-    Package getHTTPRequest(const QString &url);
+    Socket getSocket();
 
-    //TODO IMPLEMENT
-    Package getHTTPResponse(IPAddress destination);
+    void openSocket(const Port &destinationPort);
 
-    //TODO SERVER SIDE
-    Package getHandShakePackage(const QString &url, bool initiate, bool client);
+    Package getHTTPRequest(const QString &uri,const IPAddress &destination);
+
+    Package getHTTPResponse(const IPAddress &destination);
+
+    Package getHandShakePackage(const IPAddress &address, bool initiate, bool client);
+
+    Package getCloseConnectionPackage(const IPAddress &address, bool initiate, bool client);
 
 private:
     Socket socket;
