@@ -24,7 +24,12 @@ NetworkCard Host::getNetworkCard() const
 
 Host::Host(const NetworkCard &networkCard) :
     networkCard(networkCard)
-{}
+{
+    Process http(this,80);
+    Process dns(this, 53);
+    processTable[http.getSocket().getSourcePort().getPortNumber()] = http;
+    processTable[dns.getSocket().getSourcePort().getPortNumber()] = dns;
+}
 
 Router* Host::getRouterByMACAddress(MACAddress destinationAddress){
     return this->cables[destinationAddress];

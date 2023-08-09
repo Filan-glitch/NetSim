@@ -654,6 +654,7 @@ QString HeaderUtil::getHTTPAttribute(const Package &data, const QString &attribu
     }
     catch(HeaderNotFoundException hnfe){
         qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::ggetAttributeAsString";
+        return "";
     }
 
     //Getting the attribute
@@ -665,6 +666,7 @@ QString HeaderUtil::getHTTPAttribute(const Package &data, const QString &attribu
     }
     catch(HeaderAttributeNotFoundException hanfe){
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getAttributeAsString";
+        return "";
     }
 
     //Converting to String
@@ -683,18 +685,44 @@ bool HeaderUtil::getHTTPIsResponse(const Package &data) {
     }
     catch(HeaderNotFoundException hnfe){
         qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::ggetAttributeAsString";
+        return false;
     }
 
     //Getting the attribute
     QVector<quint8> attribute;
     try{
-        attribute = getHeaderAttributeByName("Response", header).getContentAsArray();
+        attribute = getHeaderAttributeByName("Code", header).getContentAsArray();
     }
     catch(HeaderAttributeNotFoundException hanfe){
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getAttributeAsString";
+        return false;
     }
 
-    return attribute[0];
+    return true;
+}
+
+bool HeaderUtil::getHTTPIsRequest(const Package &data) {
+    //Getting the Header
+    Header header;
+    try{
+        header = getHeaderByType(HeaderType::HTTP, data);
+    }
+    catch(HeaderNotFoundException hnfe){
+        qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::ggetAttributeAsString";
+        return false;
+    }
+
+    //Getting the attribute
+    QVector<quint8> attribute;
+    try{
+        attribute = getHeaderAttributeByName("Method", header).getContentAsArray();
+    }
+    catch(HeaderAttributeNotFoundException hanfe){
+        qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getAttributeAsString";
+        return false;
+    }
+
+    return true;
 }
 
 // DNS

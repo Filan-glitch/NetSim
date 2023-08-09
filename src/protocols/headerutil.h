@@ -210,6 +210,8 @@ public:
      */
     static bool getHTTPIsResponse(const Package &data);
 
+    static bool getHTTPIsRequest(const Package &data);
+
     /**
      * @brief getDNSID
      * @param data

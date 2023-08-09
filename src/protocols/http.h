@@ -30,7 +30,7 @@ public:
      * @param data
      * @par adds the HTTP-Response Header to a package
      */
-    static void initHTTPResponse(const QString &version, quint16 messageCode, const QString &messageText, Package& data, QString htmlFile);
+    static void initHTTPResponse(const QString &version, quint16 messageCode, const QString &messageText, Package& data,const QString &htmlFile);
 };
 
 #endif // HTTP_H

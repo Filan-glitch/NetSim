@@ -38,7 +38,7 @@ bool Router::initializeServerConnection()
     return false;
 }
 
-void Router::receivePackage(Package &data)
+void Router::receivePackage(Package data)
 {
     //Getting the macAddress
     IPAddress destIP = HeaderUtil::getIPAddressAsIPAddress(data, false);
@@ -50,7 +50,7 @@ void Router::receivePackage(Package &data)
         data.changePortAndIP(entry.getPortNumber(),entry.getIPAddress(),false);
         destMAC = this->macTable[entry.getIPAddress()];
     }
-    else{
+    else if(this->networkCard.getNetworkAddress().getAddressAsInt() != 0){
         NATEntry entry(HeaderUtil::getIPAddressAsIPAddress(data,true),HeaderUtil::getPortAsPort(data,true));
         int port = 50000 + natToPort.size();
         if(!natToPort.contains(entry) && !portToNAT.contains(port)){

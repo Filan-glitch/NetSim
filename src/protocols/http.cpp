@@ -16,7 +16,7 @@ void HTTP::initHTTPRequest(const QString &method, const QString &uri, const QStr
     data.addHeader(httpHeader);
 }
 
-void HTTP::initHTTPResponse(const QString &version, quint16 messageCode, const QString &messagePhrase, Package& data, QString htmlFile)
+void HTTP::initHTTPResponse(const QString &version, quint16 messageCode, const QString &messagePhrase, Package& data,const QString &htmlFile)
 {
     HeaderAttribute isResponse("Response",8,static_cast<quint8>(1));
     HeaderAttribute httpVersion("Version", version.toLatin1().length()*8,version);

@@ -19,13 +19,13 @@ public:
 
     void openSocket(const Port &destinationPort);
 
-    Package getHTTPRequest(const QString &uri);
+    Package getHTTPRequest(const QString &uri,const IPAddress &destination);
 
-    //TODO IMPLEMENT
-    Package getHTTPResponse(IPAddress destination);
+    Package getHTTPResponse(const IPAddress &destination);
 
-    //TODO SERVER SIDE
-    Package& getHandShakePackage(const QString &url, bool initiate, bool client);
+    Package getHandShakePackage(const IPAddress &address, bool initiate, bool client);
+
+    Package getCloseConnectionPackage(const IPAddress &address, bool initiate, bool client);
 
 private:
     Socket socket;
