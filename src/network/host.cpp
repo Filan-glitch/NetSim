@@ -30,7 +30,7 @@ Router* Host::getRouterByMACAddress(MACAddress destinationAddress){
     return this->cables[destinationAddress];
 }
 
-void Host::sendPackage(const Package &data, MACAddress destinationAddress){
+void Host::sendPackage(Package &data, MACAddress destinationAddress){
     cables[destinationAddress]->receivePackage(data);
 }
 

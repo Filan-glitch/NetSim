@@ -38,14 +38,8 @@ bool Router::initializeServerConnection()
     return false;
 }
 
-void Router::receivePackage(const Package &data)
+void Router::receivePackage(Package &data)
 {
-    //TODO Change Ethernet II Header
-
-
-    //Fragmenting Package
-    QList<Package> fragments = IPv4::fragmentPackage(data,1500);
-
     //Getting the macAddress
     IPAddress destIP = HeaderUtil::getIPAddressAsIPAddress(data, false);
     MACAddress destMAC = this->macTable[destIP];
@@ -53,19 +47,24 @@ void Router::receivePackage(const Package &data)
     //NAT (PAT Port address Translation)
     if(destIP.getAddressAsInt() == this->globalIpAddress.getAddressAsInt()){
         NATEntry entry = portToNAT[HeaderUtil::getPortAsPort(data,false)];
-
-        //TODO change package
+        data.changePortAndIP(entry.getPortNumber(),entry.getIPAddress(),false);
         destMAC = this->macTable[entry.getIPAddress()];
     }
     else{
         NATEntry entry(HeaderUtil::getIPAddressAsIPAddress(data,true),HeaderUtil::getPortAsPort(data,true));
-        natToPort[entry] = 50000 + natToPort.size();
-
-        //TODO change package
+        int port = 50000 + natToPort.size();
+        if(!natToPort.contains(entry) && !portToNAT.contains(port)){
+            natToPort[entry] = port;
+            portToNAT[port] = entry;
+        }
+        data.changePortAndIP(natToPort[entry].getPortNumber(),this->globalIpAddress, true);
     }
 
     //Changing the Ethernet II Header
-    HeaderUtil::changeAttribute(data,HeaderType::MAC,"")
+     data.changeEthernetHeader(this->networkCard.getPhysicalAddress(),destMAC);
+
+     //Fragmenting the Package
+     QList<Package> fragments = IPv4::fragmentPackage(data,1500);
 
     //Getting the router/Host
     Router* nextRouter = this->routerCable[destMAC];

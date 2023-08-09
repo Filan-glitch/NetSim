@@ -56,6 +56,9 @@ public:
 
     void setContent(QVector<quint8> content);
 
+    quint64 getContentAsInt64(int size) const;
+
+
 
 private:
     QString name;

@@ -17,12 +17,17 @@ void Client::execHandShake(const QString &domain){
     MACAddress routerMAC = this->getHostTable()[routerIP];
     Router* router = this->getRouterByMACAddress(routerMAC);
 
+    if(router == nullptr){
+        qDebug() << "Router is nullptr in Client::execDomainResolution";
+        return;
+    }
+
     QList<Process> processList = this->getProcessTable().values();
     Process httpProcess;
 
-    for(Process pro: processList){
-        if(pro.getSocket().getDestinationPort().getPortNumber() == 80){
-            httpProcess = pro;
+    for(int i = 0; i < processList.size(); i++){
+        if(processList[i].getSocket().getSourcePort().getPortNumber() == 80){
+            httpProcess = processList[i];
         }
     }
 

@@ -10,7 +10,7 @@
 class Package
 {
 private:
-    Header getHeaderByType(HeaderType type);
+    Header& getHeaderByType(HeaderType type);
     void deleteHeaderByType(HeaderType type);
     HeaderAttribute getHeaderAttributeByName(Header header, QString name);
 

@@ -26,7 +26,7 @@ public:
 
     void addDomain(const QString &domain, const IPAddress &ipAddress);
     bool initializeServerConnection();
-    void receivePackage(const Package& data);
+    void receivePackage(Package& data);
     IPAddress getGlobalIpAddress() const;
     NetworkCard getNetworkCard() const;
     void addIPAddress(const IPAddress &ipAddress, const MACAddress &macaddress);

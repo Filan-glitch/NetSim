@@ -25,7 +25,7 @@ public:
     Package getHTTPResponse(IPAddress destination);
 
     //TODO SERVER SIDE
-    Package getHandShakePackage(const QString &url, bool initiate, bool client);
+    Package& getHandShakePackage(const QString &url, bool initiate, bool client);
 
 private:
     Socket socket;

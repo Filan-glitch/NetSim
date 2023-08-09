@@ -35,7 +35,7 @@ Package Process::getHTTPRequest(const QString &uri){
     return data;
 }
 
-Package Process::getHandShakePackage(const QString &url, bool initiate, bool client){
+Package& Process::getHandShakePackage(const QString &url, bool initiate, bool client){
     //Client Handshakepackages
     if(initiate && client){
         IPAddress destinationAddress(host->getDomainTable()[url]);

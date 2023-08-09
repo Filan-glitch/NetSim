@@ -1165,24 +1165,4 @@ Port HeaderUtil::getPortAsPort(const Package &data, bool src){
     return Port(port);
 }
 
-void HeaderUtil::changeAttribute(const Package &data, HeaderType type, QString attributeName, QVector<quint8> value){
-    //Getting the right header
-    Header header;
-    try{
-        header = getHeaderByType(type, data);
-    }
-    catch(HeaderNotFoundException hnfe){
-        qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::changeAttribute";
-    }
 
-    //changing the attribute
-    HeaderAttribute attribute;
-    try{
-        attribute = getHeaderAttributeByName(attributeName, header);
-    }
-    catch(HeaderAttributeNotFoundException hanfe){
-        qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::changeAttribute";
-    }
-
-    attribute.setContent(value);
-}

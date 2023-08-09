@@ -13,6 +13,7 @@ public:
     IPAddress execDomainResolution(const QString &domain);
     void execHandShake(const QString &domain);
     void execHTTPRequest();
+    void execCloseConnection();
 
     virtual void receivePackage(const Package &data);
 };
