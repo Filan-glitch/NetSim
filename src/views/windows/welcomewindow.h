@@ -21,5 +21,6 @@ private:
 
 private slots:
     void openDocumentation();
+    void about();
 };
 #endif // WELCOMEWINDOW_H

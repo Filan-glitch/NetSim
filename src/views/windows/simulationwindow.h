@@ -3,6 +3,9 @@
 
 #include "src/management/packagetablemodel.h"
 #include "src/management/simulationmanager.h"
+#include "src/views/widgets/clientwidget.h"
+#include "src/views/widgets/routerwidget.h"
+#include "src/views/widgets/serverwidget.h"
 #include <QMainWindow>
 #include <QKeyEvent>
 #include <QTreeWidget>
@@ -26,12 +29,14 @@ private:
     PackageTableModel* m_packageModel;
     QTreeWidget* m_treeWidget;
     void setupNetwork();
-    void setupDNS();
 
 private slots:
     void openDocumentation();
     void updateTreeWidget(const QModelIndex& index);
     void about();
+    void clientDialog(ClientWidget* client);
+    void routerDialog(RouterWidget* router);
+    void serverDialog(ServerWidget* server);
 
 };
 

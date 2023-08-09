@@ -10,24 +10,29 @@ class ClientWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit ClientWidget(Client* client, QWidget *parent = nullptr);
+    explicit ClientWidget(Client* client, const QString &name, QWidget *parent = nullptr);
     Client* client();
 
     QPushButton *button() const;
+    QString name() const;
 
 private:
     Client* m_client;
 
     //Widgets
     QPushButton* m_button;
+    QLabel* m_nameLabel;
     QLabel* m_ipLabel;
     QLabel* m_macLabel;
 
     //Layout
     QVBoxLayout* m_layout;
 
-public slots:
-    void httpRequest();
+private slots:
+    void onButtonClicked();
+
+signals:
+    void clicked(ClientWidget* client);
 };
 
 #endif // CLIENTWIDGET_H

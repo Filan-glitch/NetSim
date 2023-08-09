@@ -1,6 +1,9 @@
 #include "simulationwindow.h"
 #include "src/protocols/headerutil.h"
 #include "src/views/dialogs/about_dialog.h"
+#include "src/views/dialogs/client_dialog.h"
+#include "src/views/dialogs/router_dialog.h"
+#include "src/views/dialogs/server_dialog.h"
 #include "src/views/widgets/clientwidget.h"
 #include "src/views/widgets/networktab.h"
 #include "src/views/widgets/serverwidget.h"
@@ -23,12 +26,13 @@ SimulationWindow::SimulationWindow(SimulationManager *manager, QWidget *parent) 
     ui->setupUi(this);
     showFullScreen();
     setupNetwork();
-    setupDNS();
 
     //Model Initialization
     m_packageModel = new PackageTableModel(PackageDatabase::instance()->packageList(), this);
     ui->packagesTableView->setModel(m_packageModel);
+    ui->packagesTableView->horizontalHeader()->setDefaultAlignment(Qt::AlignLeft);
     ui->packagesTableView->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->packagesTableView->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
     //TreeWidget Initialization
     m_treeWidget = new QTreeWidget(this);
@@ -67,7 +71,9 @@ void SimulationWindow::setupNetwork()
 
     // Mainrouter
     auto mainRouter = new RouterWidget(&(*manager->getRouters())[0], this);
+    connect(mainRouter, &RouterWidget::clicked, this, &SimulationWindow::routerDialog);
     auto dnsServer = new ServerWidget(&(*manager->getServer())[0], this);
+    connect(dnsServer, &ServerWidget::clicked, this, &SimulationWindow::serverDialog);
     switch(this->manager->getClientsAmount()) {
     case 1:
         mainLayout->addWidget(mainRouter, 0, 2);
@@ -86,27 +92,24 @@ void SimulationWindow::setupNetwork()
 
     for(auto i = 1; i <= manager->getServerAmount(); i++) {
         ServerWidget* serverWidget = new ServerWidget(&(*manager->getServer())[i], this);
+        connect(serverWidget, &ServerWidget::clicked, this, &SimulationWindow::serverDialog);
         mainLayout->addWidget(serverWidget, i - 1, 0);
         networkTab->addServer(serverWidget);
 
         RouterWidget* routerWidget = new RouterWidget(&(*manager->getRouters())[i], this);
+        connect(routerWidget, &RouterWidget::clicked, this, &SimulationWindow::routerDialog);
         mainLayout->addWidget(routerWidget, i - 1, 1);
         networkTab->addRouter(routerWidget);
     }
 
     for(auto i = 0; i < manager->getClientsAmount(); i++) {
-        ClientWidget* clientWidget = new ClientWidget(&(*manager->getClients())[i], this);
+        ClientWidget* clientWidget = new ClientWidget(&(*manager->getClients())[i], QString("Client %1").arg(i + 1), this);
+        connect(clientWidget, &ClientWidget::clicked, this, &SimulationWindow::clientDialog);
         mainLayout->addWidget(clientWidget, i, 3);
         networkTab->addClient(clientWidget);
     }
     this->ui->tabWidget->setCurrentIndex(0);
 }
-
-void SimulationWindow::setupDNS() {
-
-}
-
-
 
 void SimulationWindow::openDocumentation() {
     QDesktopServices::openUrl(QUrl("https://github.com/Filan-glitch/NetSim/wiki"));
@@ -259,4 +262,25 @@ void SimulationWindow::about() {
     About_Dialog aboutDialog(this);
     aboutDialog.exec();
 }
+
+void SimulationWindow::clientDialog(ClientWidget *client)
+{
+    Client_Dialog clientDialog(client, this);
+    clientDialog.exec();
+
+    //TODO: Initiate Request
+}
+
+void SimulationWindow::routerDialog(RouterWidget *router)
+{
+    Router_Dialog routerDialog(router, this);
+    routerDialog.exec();
+}
+
+void SimulationWindow::serverDialog(ServerWidget *server)
+{
+    Server_Dialog serverDialog(server, this);
+    serverDialog.exec();
+}
+
 

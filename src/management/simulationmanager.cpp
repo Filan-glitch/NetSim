@@ -25,6 +25,7 @@ SimulationManager::SimulationManager(quint8 clientAmount, quint8 serverAmount, Q
         QVector<quint8> routerAddress = routers[i+1].getNetworkCard().getNetworkAddress().getAddressAsArray();
         routerAddress[3] = 2;
         server.append(Server(NetworkCard(IPAddress(routerAddress), MACAddress::getRandomAddress()), domains[i]));
+        server[0].addDomain(domains[i], server[i + 1].getNetworkCard().getNetworkAddress());
     }
 
 
@@ -32,7 +33,7 @@ SimulationManager::SimulationManager(quint8 clientAmount, quint8 serverAmount, Q
     for (auto& client : clients)
     {
         for (auto& router : routers) {
-            client.addIPAddress(router.getNetworkCard().getNetworkAddress(), router.getNetworkCard().getPhysicalAddress()); //DNS Server
+            client.addIPAddress(router.getNetworkCard().getNetworkAddress(), router.getNetworkCard().getPhysicalAddress());
         }
         client.addMACAddress(routers[0].getNetworkCard().getPhysicalAddress(), &routers[0]);
     }
@@ -40,13 +41,13 @@ SimulationManager::SimulationManager(quint8 clientAmount, quint8 serverAmount, Q
     for (int i{0}; auto& server : server)
     {
         for (auto& router : routers) {
-            server.addIPAddress(router.getNetworkCard().getNetworkAddress(), router.getNetworkCard().getPhysicalAddress()); //DNS Server
+            server.addIPAddress(router.getNetworkCard().getNetworkAddress(), router.getNetworkCard().getPhysicalAddress());
         }
         server.addMACAddress(routers[i].getNetworkCard().getPhysicalAddress(), &routers[i]);
     }
 
     for (auto& router : routers) {
-        routers[0].addIPAddress(router.getNetworkCard().getNetworkAddress(), router.getNetworkCard().getPhysicalAddress()); //DNS Server
+        routers[0].addIPAddress(router.getNetworkCard().getNetworkAddress(), router.getNetworkCard().getPhysicalAddress());
     }
 
     routers[0].addIPAddress(server[0].getNetworkCard().getNetworkAddress(), server[0].getNetworkCard().getPhysicalAddress());
@@ -67,7 +68,7 @@ SimulationManager::SimulationManager(quint8 clientAmount, quint8 serverAmount, Q
             continue;
         }
         for (auto& router2 : routers) {
-            router.addIPAddress(router2.getNetworkCard().getNetworkAddress(), router2.getNetworkCard().getPhysicalAddress()); //DNS Server
+            router.addIPAddress(router2.getNetworkCard().getNetworkAddress(), router2.getNetworkCard().getPhysicalAddress());
         }
         router.addMACAddress(routers[0].getNetworkCard().getPhysicalAddress(), &routers[0]);
         router.addMACAddress(server[i].getNetworkCard().getPhysicalAddress(), &server[i]);

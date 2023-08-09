@@ -26,6 +26,12 @@ private:
 
     //Layout
     QVBoxLayout* m_layout;
+
+private slots:
+    void onButtonClicked();
+
+signals:
+    void clicked(ServerWidget* server);
 };
 
 #endif // SERVERWIDGET_H

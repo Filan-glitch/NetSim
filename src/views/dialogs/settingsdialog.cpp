@@ -19,7 +19,11 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     ui->domainLineEdit_4->setVisible(false);
     ui->domainLabel_5->setVisible(false);
     ui->domainLineEdit_5->setVisible(false);
-
+    QRect rect = parent->geometry();
+    rect.setHeight(0);
+    this->setGeometry(rect);
+    this->setFixedSize(size());
+    setWindowFlags(Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint);
 }
 
 
@@ -36,6 +40,7 @@ void SettingsDialog::setClientsAmount(int amount)
 void SettingsDialog::setServerAmount(int amount)
 {
     serverAmount = static_cast<quint8>(amount);
+    QRect rect;
     switch(amount) {
     case 1:
         ui->domainLabel_2->setVisible(false);
@@ -46,6 +51,11 @@ void SettingsDialog::setServerAmount(int amount)
         ui->domainLineEdit_4->setVisible(false);
         ui->domainLabel_5->setVisible(false);
         ui->domainLineEdit_5->setVisible(false);
+        rect = static_cast<QWidget*>(this->parent())->geometry();
+        rect.setX(this->geometry().x());
+        rect.setY(this->geometry().y());
+        rect.setHeight(0);
+        this->setGeometry(rect);
         break;
     case 2:
         ui->domainLabel_2->setVisible(true);
@@ -56,6 +66,11 @@ void SettingsDialog::setServerAmount(int amount)
         ui->domainLineEdit_4->setVisible(false);
         ui->domainLabel_5->setVisible(false);
         ui->domainLineEdit_5->setVisible(false);
+        rect = static_cast<QWidget*>(this->parent())->geometry();
+        rect.setX(this->geometry().x());
+        rect.setY(this->geometry().y());
+        rect.setHeight(0);
+        this->setGeometry(rect);
         break;
     case 3:
         ui->domainLabel_2->setVisible(true);
@@ -66,6 +81,11 @@ void SettingsDialog::setServerAmount(int amount)
         ui->domainLineEdit_4->setVisible(false);
         ui->domainLabel_5->setVisible(false);
         ui->domainLineEdit_5->setVisible(false);
+        rect = static_cast<QWidget*>(this->parent())->geometry();
+        rect.setX(this->geometry().x());
+        rect.setY(this->geometry().y());
+        rect.setHeight(0);
+        this->setGeometry(rect);
         break;
     case 4:
         ui->domainLabel_2->setVisible(true);
@@ -76,6 +96,11 @@ void SettingsDialog::setServerAmount(int amount)
         ui->domainLineEdit_4->setVisible(true);
         ui->domainLabel_5->setVisible(false);
         ui->domainLineEdit_5->setVisible(false);
+        rect = static_cast<QWidget*>(this->parent())->geometry();
+        rect.setX(this->geometry().x());
+        rect.setY(this->geometry().y());
+        rect.setHeight(0);
+        this->setGeometry(rect);
         break;
     case 5:
         ui->domainLabel_2->setVisible(true);
@@ -86,6 +111,11 @@ void SettingsDialog::setServerAmount(int amount)
         ui->domainLineEdit_4->setVisible(true);
         ui->domainLabel_5->setVisible(true);
         ui->domainLineEdit_5->setVisible(true);
+        rect = static_cast<QWidget*>(this->parent())->geometry();
+        rect.setX(this->geometry().x());
+        rect.setY(this->geometry().y());
+        rect.setHeight(0);
+        this->setGeometry(rect);
         break;
     }
 }
@@ -137,5 +167,7 @@ QList<QString> SettingsDialog::domains() const {
         return QList<QString>() << m_domain1 << m_domain2 << m_domain3 << m_domain4;
     case 5:
         return QList<QString>() << m_domain1 << m_domain2 << m_domain3 << m_domain4 << m_domain5;
+    default:
+        return QList<QString>() << m_domain1;
     }
 }

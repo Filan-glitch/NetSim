@@ -5,10 +5,9 @@
 
 class Client : public Host
 {
-private:
-
 public:
     Client(const NetworkCard &networkCard);
+
 
     IPAddress execDomainResolution(const QString &domain);
     void execHandShake(const IPAddress &address);

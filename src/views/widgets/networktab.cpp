@@ -42,7 +42,7 @@ void NetworkTab::paintEvent(QPaintEvent *event)
     QWidget::paintEvent(event);
 
     QPainter painter{this};
-    painter.setPen(QPen(Qt::black, 2));
+    painter.setPen(QPen(Qt::black, 4));
 
     // Connections Server -> Router
     for (auto i = 1; i < servers.size(); ++i) {
@@ -61,7 +61,7 @@ void NetworkTab::paintEvent(QPaintEvent *event)
     }
 
     // Connection Router -> DNS Server
-    painter.setPen(QPen(Qt::red, 2));
+    painter.setPen(QPen(Qt::red, 4));
     painter.drawLine(routers[0]->mapTo(this, routers[0]->button()->rect().center()), servers[0]->mapTo(this, servers[0]->button()->rect().center()));
 }
 

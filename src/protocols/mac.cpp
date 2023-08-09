@@ -7,8 +7,8 @@ void MAC::initHeader(Package &data, const MACAddress &destMACAddress, const MACA
     HeaderAttribute preamble("Preamble", 56, pre);
     quint8 frameDelimiter = 0b10101011;
     HeaderAttribute sfd("Start Frame Delimiter", 8, frameDelimiter);
-    HeaderAttribute destinationMacAddress("Destination MAC Address", 48, destMACAddress.getAddressAsInt());
-    HeaderAttribute sourceMacAddress("Source MAC Address", 48, srcMACAddress.getAddressAsInt());
+    HeaderAttribute destinationMacAddress("Destination MAC Address", 48, destMACAddress.getAddressAsArray());
+    HeaderAttribute sourceMacAddress("Source MAC Address", 48, srcMACAddress.getAddressAsArray());
     HeaderAttribute eType("EtherType",16,etherType);
     HeaderAttribute fcs("Frame Check Sequence",32,getFCS(destMACAddress,srcMACAddress,etherType,data));
 
