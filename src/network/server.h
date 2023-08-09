@@ -8,6 +8,7 @@ class Server : public Host
 {
 private:
     QString m_domain;
+    QString htmlFile;
 public:
     Server(const NetworkCard &networkCard, const QString &domain);
 
@@ -15,6 +16,10 @@ public:
 
     void getRequest();
     void sendResponse();
+
+    void receivePackage(Package &data) override;
+
+    QString getHtmlFile()const;
 };
 
 #endif // SERVER_H

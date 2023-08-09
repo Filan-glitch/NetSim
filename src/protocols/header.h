@@ -44,6 +44,15 @@ public:
     HeaderType getType() const;
 
     quint16 getHeaderLength() const;
+
+    HeaderAttribute* operator[](const QString &name){
+        for(int i = 0; i < headerList.size(); i++){
+            if(headerList.at(i).getName() == name){
+                return &headerList[i];
+            }
+        }
+        return nullptr;
+    }
 };
 
 #endif // HEADER_H

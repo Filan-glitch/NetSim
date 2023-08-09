@@ -17,8 +17,10 @@ SOURCES += \
     src/models/dnsentry.cpp \
     src/models/package.cpp \
     src/models/process.cpp \
+    src/network/cablenotfoundexception.cpp \
     src/network/client.cpp \
     src/network/host.cpp \
+    src/network/natentry.cpp \
     src/network/networkcard.cpp \
     src/network/router.cpp \
     src/network/server.cpp \
@@ -55,8 +57,10 @@ HEADERS += \
     src/models/dnsentry.h \
     src/models/package.h \
     src/models/process.h \
+    src/network/cablenotfoundexception.h \
     src/network/client.h \
     src/network/host.h \
+    src/network/natentry.h \
     src/network/networkcard.h \
     src/network/router.h \
     src/network/server.h \

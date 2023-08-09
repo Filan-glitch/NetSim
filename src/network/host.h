@@ -31,8 +31,8 @@ public:
     QMap<QString, IPAddress> getDomainTable() const;
     NetworkCard getNetworkCard() const;
     Router* getRouterByMACAddress(MACAddress destinationAddress);
-    void sendPackage(const Package &data, MACAddress destinationAddress);
-    void receivePackage(const Package &data);
+    void sendPackage(Package &data, MACAddress destinationAddress);
+    virtual void receivePackage(Package &data) = 0;
     void addIPAddress(const IPAddress &ipAddress, const MACAddress &macAddress);
     void addMACAddress(const MACAddress &macAddress, Router* router);
     void addDomain(const QString &domain, const IPAddress &ipAddress);

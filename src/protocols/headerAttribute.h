@@ -24,6 +24,7 @@ public:
     HeaderAttribute(const QString &name, quint32 sizeInBit, quint64 content);
     HeaderAttribute(const QString &name, quint32 sizeInBit, const QVector<quint8> &content);
     HeaderAttribute(const QString &name, quint32 sizeInBit, const QString &content);
+    HeaderAttribute();
 
     /**
      * @brief GetName
@@ -52,6 +53,11 @@ public:
      * @par Returns the content of the HeaderAttribute as bits as an array
      */
     QVector<quint8> getContentAsArray() const;
+
+    void setContent(QVector<quint8> content);
+
+    quint64 getContentAsInt64(int size) const;
+
 
 
 private:

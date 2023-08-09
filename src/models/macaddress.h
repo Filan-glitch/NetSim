@@ -14,7 +14,9 @@ private:
 public:
     MACAddress(const QVector<quint8> &address);
 
-    MACAddress(){};
+    MACAddress(){
+        address << 0 << 0 << 0 << 0 << 0 << 0;
+    };
 
     QString getAddressAsString() const;
     QVector<quint8> getAddressAsArray() const;
@@ -24,6 +26,10 @@ public:
 
     bool operator<(const MACAddress& other) const{
         return getAddressAsInt() < other.getAddressAsInt();
+    }
+
+    bool operator==(const MACAddress& other) const{
+        return this->getAddressAsInt() == other.getAddressAsInt();
     }
 };
 

@@ -25,6 +25,9 @@ private:
 
     //Layout
     QVBoxLayout* m_layout;
+
+public slots:
+    void httpRequest();
 };
 
 #endif // CLIENTWIDGET_H

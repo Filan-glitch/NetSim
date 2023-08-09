@@ -6,13 +6,15 @@
 class Client : public Host
 {
 private:
-    QMap<QString, IPAddress> domainTable;
 
 public:
     Client(const NetworkCard &networkCard);
-    QMap<QString, IPAddress> getDomainTable() const;
 
-
+    IPAddress execDomainResolution(const QString &domain);
+    void execHandShake(const IPAddress &address);
+    void execHTTPRequest(const IPAddress &address, const QString &uri);
+    void execCloseConnection(const IPAddress &address);
+    void receivePackage(Package &data) override;
 };
 
 #endif // CLIENT_H
