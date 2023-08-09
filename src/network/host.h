@@ -32,7 +32,7 @@ public:
     NetworkCard getNetworkCard() const;
     Router* getRouterByMACAddress(MACAddress destinationAddress);
     void sendPackage(Package &data, MACAddress destinationAddress);
-    virtual void receivePackage(const Package &data);
+    virtual void receivePackage(Package &data) = 0;
     void addIPAddress(const IPAddress &ipAddress, const MACAddress &macAddress);
     void addMACAddress(const MACAddress &macAddress, Router* router);
     void addDomain(const QString &domain, const IPAddress &ipAddress);

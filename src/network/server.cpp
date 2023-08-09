@@ -21,7 +21,7 @@ void Server::sendResponse()
 
 }
 
-void Server::receivePackage(const Package &data){
+void Server::receivePackage(Package &data){
     if(HeaderUtil::getTCPFlag(data,TCPFlag::SYN) == "Set"){
         //TODO send SYN ACK Package
         //Package ackPackage = this->

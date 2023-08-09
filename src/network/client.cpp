@@ -38,7 +38,7 @@ void Client::execHTTPRequest(){
 
 }
 
-void receivePackage(const Package &data){
+void Client::receivePackage(Package &data){
     //TODO TCP ACK
     //TODO Connection close
     //TODO Add to package List

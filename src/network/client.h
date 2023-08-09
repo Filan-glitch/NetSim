@@ -14,8 +14,7 @@ public:
     void execHandShake(const QString &domain);
     void execHTTPRequest();
     void execCloseConnection();
-
-    virtual void receivePackage(const Package &data);
+    void receivePackage(Package &data) override;
 };
 
 #endif // CLIENT_H

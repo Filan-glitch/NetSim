@@ -16,7 +16,7 @@ public:
     void getRequest();
     void sendResponse();
 
-    virtual void receivePackage(const Package &data);
+    void receivePackage(Package &data) override;
 };
 
 #endif // SERVER_H

@@ -34,11 +34,6 @@ void Host::sendPackage(Package &data, MACAddress destinationAddress){
     cables[destinationAddress]->receivePackage(data);
 }
 
-void Host::receivePackage(const Package &data){
-    //TODO ADD PACKAGE TO DATABASE
-    PackageDatabase::instance()->packageList()->append(data);
-}
-
 void Host::addIPAddress(const IPAddress &ipAddress, const MACAddress &macAddress)
 {
     hostTable[ipAddress] = macAddress;
