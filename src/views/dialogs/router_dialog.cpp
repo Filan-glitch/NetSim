@@ -26,6 +26,10 @@ Router_Dialog::Router_Dialog(RouterWidget* router, QWidget *parent) :
     for(auto& cable : router->router()->getRouterCable().keys()) {
         ui->cablesList->addItem("Cable to " + cable.toString());
     }
+
+    QRect rect = this->geometry();
+    rect.setHeight(0);
+    this->setGeometry(rect);
 }
 
 Router_Dialog::~Router_Dialog()

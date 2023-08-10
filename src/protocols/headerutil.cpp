@@ -1050,11 +1050,6 @@ QString HeaderUtil::getDNSAnswer(const Package &data, int index, const RRAttribu
     unsigned int i = 0;
 
     while(attribute[i] != 0x00){
-        if(attribute[i] < 0x20) {
-                name.append('.');
-                i++;
-                continue;
-        }
         name.append(static_cast<char>(attribute[i++]));
     }
     i++;
@@ -1136,7 +1131,7 @@ IPAddress HeaderUtil::getDNSAnswerIPAddress(const Package &data, int index) {
         header = getHeaderByType(HeaderType::DNS, data);
     }
     catch(HeaderNotFoundException hnfe){
-        qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getDNSQuestions";
+        qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getDNSAnswerIPAddress";
         return IPAddress();
     }
 
@@ -1145,17 +1140,13 @@ IPAddress HeaderUtil::getDNSAnswerIPAddress(const Package &data, int index) {
         attribute = getHeaderAttributeByName("Answer " + QString::number(index), header).getContentAsArray();
     }
     catch(HeaderAttributeNotFoundException hanfe){
-        qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getDNSQuestions";
+        qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getDNSAnswerIPAddress";
         return IPAddress();
     }
 
     unsigned int i = 0;
 
     while(attribute[i] != 0x00){
-        if(attribute[i] < 0x20) {
-                i++;
-                continue;
-        }
         i++;
     }
     i += 11;

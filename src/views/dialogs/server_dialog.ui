@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>474</width>
-    <height>370</height>
+    <width>570</width>
+    <height>518</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -451,20 +451,6 @@ QListWidget {
    </item>
    <item>
     <layout class="QFormLayout" name="formLayout">
-     <item row="2" column="0">
-      <widget class="QLabel" name="macAddressLabel">
-       <property name="text">
-        <string>MAC-Address:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="ipAddressLabel">
-       <property name="text">
-        <string>IP-Address:</string>
-       </property>
-      </widget>
-     </item>
      <item row="0" column="0">
       <widget class="QLabel" name="domainNameLabel">
        <property name="text">
@@ -479,10 +465,24 @@ QListWidget {
        </property>
       </widget>
      </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="ipAddressLabel">
+       <property name="text">
+        <string>IP-Address:</string>
+       </property>
+      </widget>
+     </item>
      <item row="1" column="1">
       <widget class="QLabel" name="ipLabel">
        <property name="text">
         <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="macAddressLabel">
+       <property name="text">
+        <string>MAC-Address:</string>
        </property>
       </widget>
      </item>
@@ -500,28 +500,38 @@ QListWidget {
        </property>
       </widget>
      </item>
-     <item row="4" column="0">
+     <item row="3" column="1">
+      <widget class="QListWidget" name="processesList"/>
+     </item>
+     <item row="5" column="0">
       <widget class="QLabel" name="connectionsLabel">
        <property name="text">
         <string>Connections:</string>
        </property>
       </widget>
      </item>
-     <item row="5" column="0">
+     <item row="5" column="1">
+      <widget class="QListWidget" name="connectionsList"/>
+     </item>
+     <item row="6" column="0">
       <widget class="QLabel" name="cablesLabel">
        <property name="text">
         <string>Cables:</string>
        </property>
       </widget>
      </item>
-     <item row="3" column="1">
-      <widget class="QListWidget" name="processesList"/>
+     <item row="6" column="1">
+      <widget class="QListWidget" name="cablesList"/>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="domainsLabel">
+       <property name="text">
+        <string>Domains:</string>
+       </property>
+      </widget>
      </item>
      <item row="4" column="1">
-      <widget class="QListWidget" name="connectionsList"/>
-     </item>
-     <item row="5" column="1">
-      <widget class="QListWidget" name="cablesList"/>
+      <widget class="QListWidget" name="domainsList"/>
      </item>
     </layout>
    </item>

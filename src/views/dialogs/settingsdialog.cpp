@@ -58,6 +58,8 @@ void SettingsDialog::setServerAmount(int amount)
         ui->domainLineEdit_4->setVisible(false);
         ui->domainLabel_5->setVisible(false);
         ui->domainLineEdit_5->setVisible(false);
+
+        //Size of Dialog
         rect = static_cast<QWidget*>(this->parent())->geometry();
         rect.setX(this->geometry().x());
         rect.setY(this->geometry().y());
@@ -73,6 +75,7 @@ void SettingsDialog::setServerAmount(int amount)
         ui->domainLineEdit_4->setVisible(false);
         ui->domainLabel_5->setVisible(false);
         ui->domainLineEdit_5->setVisible(false);
+
         rect = static_cast<QWidget*>(this->parent())->geometry();
         rect.setX(this->geometry().x());
         rect.setY(this->geometry().y());
@@ -88,11 +91,13 @@ void SettingsDialog::setServerAmount(int amount)
         ui->domainLineEdit_4->setVisible(false);
         ui->domainLabel_5->setVisible(false);
         ui->domainLineEdit_5->setVisible(false);
+
         rect = static_cast<QWidget*>(this->parent())->geometry();
         rect.setX(this->geometry().x());
         rect.setY(this->geometry().y());
         rect.setHeight(0);
         this->setGeometry(rect);
+
         break;
     case 4:
         ui->domainLabel_2->setVisible(true);
@@ -103,11 +108,13 @@ void SettingsDialog::setServerAmount(int amount)
         ui->domainLineEdit_4->setVisible(true);
         ui->domainLabel_5->setVisible(false);
         ui->domainLineEdit_5->setVisible(false);
+
         rect = static_cast<QWidget*>(this->parent())->geometry();
         rect.setX(this->geometry().x());
         rect.setY(this->geometry().y());
         rect.setHeight(0);
         this->setGeometry(rect);
+
         break;
     case 5:
         ui->domainLabel_2->setVisible(true);
@@ -118,6 +125,7 @@ void SettingsDialog::setServerAmount(int amount)
         ui->domainLineEdit_4->setVisible(true);
         ui->domainLabel_5->setVisible(true);
         ui->domainLineEdit_5->setVisible(true);
+
         rect = static_cast<QWidget*>(this->parent())->geometry();
         rect.setX(this->geometry().x());
         rect.setY(this->geometry().y());
@@ -157,6 +165,7 @@ void SettingsDialog::textChanged1(const QString &data)
 
 void SettingsDialog::textChanged2(const QString &data)
 {
+    m_domain2 = data;
     if(allVisibleLineEditsFilled()){
         ui->startPushButton->setEnabled(true);
     }
@@ -167,6 +176,7 @@ void SettingsDialog::textChanged2(const QString &data)
 
 void SettingsDialog::textChanged3(const QString &data)
 {
+    m_domain3 = data;
     if(allVisibleLineEditsFilled()){
         ui->startPushButton->setEnabled(true);
     }
@@ -177,6 +187,7 @@ void SettingsDialog::textChanged3(const QString &data)
 
 void SettingsDialog::textChanged4(const QString &data)
 {
+    m_domain4 = data;
     if(allVisibleLineEditsFilled()){
         ui->startPushButton->setEnabled(true);
     }
@@ -187,6 +198,7 @@ void SettingsDialog::textChanged4(const QString &data)
 
 void SettingsDialog::textChanged5(const QString &data)
 {
+    m_domain5 = data;
     if(allVisibleLineEditsFilled()){
         ui->startPushButton->setEnabled(true);
     }
