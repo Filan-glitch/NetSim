@@ -14,10 +14,12 @@ class Router_Dialog : public QDialog
 
 public:
     explicit Router_Dialog(RouterWidget *router, QWidget *parent = nullptr);
+
     ~Router_Dialog();
 
 private:
     Ui::Router_Dialog *ui;
+
     RouterWidget *router;
 };
 

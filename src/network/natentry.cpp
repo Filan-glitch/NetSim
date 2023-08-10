@@ -10,6 +10,10 @@ IPAddress NATEntry::getIPAddress(){
     return address;
 }
 
+bool NATEntry::operator<(const NATEntry &entry) const{
+    return this->portNumber.getPortNumber() < entry.portNumber.getPortNumber();
+}
+
 Port NATEntry::getPortNumber(){
     return portNumber;
 }

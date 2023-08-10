@@ -14,10 +14,12 @@ class Server_Dialog : public QDialog
 
 public:
     explicit Server_Dialog(ServerWidget *server, QWidget *parent = nullptr);
+
     ~Server_Dialog();
 
 private:
     Ui::Server_Dialog *ui;
+
     ServerWidget* server;
 };
 

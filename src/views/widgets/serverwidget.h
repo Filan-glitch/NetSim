@@ -11,6 +11,7 @@ class ServerWidget : public QWidget
     Q_OBJECT
 public:
     explicit ServerWidget(Server* server, QWidget *parent = nullptr);
+
     Server* server();
 
     QPushButton *button() const;
@@ -18,13 +19,14 @@ public:
 private:
     Server* m_server;
 
-    //Widgets
     QPushButton* m_button;
+
     QLabel* m_domainLabel;
+
     QLabel* m_ipLabel;
+
     QLabel* m_macLabel;
 
-    //Layout
     QVBoxLayout* m_layout;
 
 private slots:

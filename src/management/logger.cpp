@@ -4,6 +4,7 @@
 #include <QDateTime>
 
 QFile* Logger::logFile = Q_NULLPTR;
+
 bool Logger::isInit = false;
 
 QHash<QtMsgType, QString> Logger::contextNames = {

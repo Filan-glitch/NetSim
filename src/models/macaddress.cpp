@@ -3,6 +3,10 @@
 MACAddress::MACAddress(const QVector<quint8> &address) : address(address)
 {}
 
+MACAddress::MACAddress(){
+    address << 0 << 0 << 0 << 0 << 0 << 0;
+}
+
 
 QString MACAddress::toString() const {
     return QString::number(static_cast<int>(address[0]), 16).toLower() + ":" + QString::number(static_cast<int>(address[1]), 16).toLower() + ":" + QString::number(static_cast<int>(address[2]), 16).toLower() + ":" + QString::number(static_cast<int>(address[3]), 16).toLower() + ":" + QString::number(static_cast<int>(address[4]), 16).toLower() + ":" + QString::number(static_cast<int>(address[5]), 16).toLower();
@@ -29,4 +33,12 @@ MACAddress MACAddress::getRandomAddress() {
         addressArray.append(generator->generate() % 256);
     }
     return MACAddress(addressArray);
+}
+
+bool MACAddress::operator<(const MACAddress &other) const{
+    return getAddressAsInt() < other.getAddressAsInt();
+}
+
+bool MACAddress::operator==(const MACAddress &other) const{
+    return this->getAddressAsInt() == other.getAddressAsInt();
 }

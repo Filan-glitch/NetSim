@@ -17,12 +17,11 @@ public:
 
     IPAddress getIPAddress();
 
-    bool operator<(const NATEntry& entry)const{
-        return this->portNumber.getPortNumber() < entry.portNumber.getPortNumber();
-    }
+    bool operator<(const NATEntry& entry)const;
 
 private:
     Port portNumber;
+
     IPAddress address;
 };
 

@@ -14,32 +14,14 @@ enum IPFlag
     DF = 1
 };
 
-/**
- * @brief The IPv4 class
- * @par This class represents the IPv4 Protocol
- */
 class IPv4
 {
 public:
-    /**
-     * @brief initHeader
-     * @param id
-     * @param flags
-     * @param fragmentOffset
-     * @param ttl
-     * @param protocol
-     * @param sourceAdress
-     * @param destinationAdress
-     * @param options
-     * @param data
-     * @param dataLength
-     * @par adds a IPv4 Header to a package
-     */
     static void initHeader(quint16 id, bool DF, bool MF, quint16 fragmentOffset, quint8 ttl, quint8 protocol, const IPAddress &sourceAddress, const IPAddress &destinationAdress, Package& data);
-
 
 private:
     static quint16 getIPv4Checksum(quint16 totalLength, quint16 id, quint8 flags, quint16 fragOffset, quint8 ttl, quint8 protocol, const QVector<quint8> &srcAddress, const QVector<quint8> &destAddress, const char* data, quint16 dataLength);
+
     static void setFlag(quint8 *flags, bool set, quint8 position);
 };
 

@@ -11,6 +11,7 @@ class RouterWidget : public QWidget
     Q_OBJECT
 public:
     explicit RouterWidget(Router* router, QWidget *parent = nullptr);
+
     Router* router();
 
     QPushButton *button() const;
@@ -18,13 +19,14 @@ public:
 private:
     Router* m_router;
 
-    //Widgets
     QPushButton* m_button;
+
     QLabel* m_localIpLabel;
+
     QLabel* m_globalIpLabel;
+
     QLabel* m_macLabel;
 
-    //Layout
     QVBoxLayout* m_layout;
 
 private slots:

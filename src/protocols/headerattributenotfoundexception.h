@@ -3,8 +3,6 @@
 
 #include <QString>
 
-
-
 class HeaderAttributeNotFoundException
 {
 public:
