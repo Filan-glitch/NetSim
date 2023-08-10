@@ -37,7 +37,7 @@ public:
      */
     static void initHeader(quint16 id, bool DF, bool MF, quint16 fragmentOffset, quint8 ttl, quint8 protocol, const IPAddress &sourceAddress, const IPAddress &destinationAdress, Package& data);
 
-    static QList<Package> fragmentPackage(const Package &package, quint32 mtu);
+
 private:
     static quint16 getIPv4Checksum(quint16 totalLength, quint16 id, quint8 flags, quint16 fragOffset, quint8 ttl, quint8 protocol, const QVector<quint8> &srcAddress, const QVector<quint8> &destAddress, const char* data, quint16 dataLength);
     static void setFlag(quint8 *flags, bool set, quint8 position);
