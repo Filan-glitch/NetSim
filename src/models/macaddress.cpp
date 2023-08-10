@@ -4,7 +4,7 @@ MACAddress::MACAddress(const QVector<quint8> &address) : address(address)
 {}
 
 
-QString MACAddress::getAddressAsString() const {
+QString MACAddress::toString() const {
     return QString::number(static_cast<int>(address[0]), 16).toLower() + ":" + QString::number(static_cast<int>(address[1]), 16).toLower() + ":" + QString::number(static_cast<int>(address[2]), 16).toLower() + ":" + QString::number(static_cast<int>(address[3]), 16).toLower() + ":" + QString::number(static_cast<int>(address[4]), 16).toLower() + ":" + QString::number(static_cast<int>(address[5]), 16).toLower();
 }
 

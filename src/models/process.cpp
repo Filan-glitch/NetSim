@@ -95,7 +95,7 @@ Package Process::getHandShakePackage(const IPAddress &address, bool initiate, bo
 
 Package Process::getHTTPResponse(const IPAddress &destination, const Port &destPort, const int &messageCode){
     //Creating package
-    Package data("HTTP Response to: " + destination.getAddressAsDecString());
+    Package data("HTTP Response to: " + destination.toString());
 
     //Adding HTTP Data
     if(messageCode == 200){

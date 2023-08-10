@@ -15,15 +15,15 @@ RouterWidget::RouterWidget(Router* router, QWidget *parent)
     m_button->setFixedSize(QSize(64, 64));
 
     //Set the label
-    m_localIpLabel->setText("Lokale IP-Adresse: " + m_router->getNetworkCard().getNetworkAddress().getAddressAsDecString());
+    m_localIpLabel->setText("Lokale IP-Adresse: " + m_router->getNetworkCard().getNetworkAddress().toString());
     m_localIpLabel->setStyleSheet("QLabel { color: #a9b7c6; background-color : #1e1d23; }");
     m_localIpLabel->setGeometry(m_localIpLabel->geometry().x(), m_localIpLabel->geometry().y(), 0, 0);
     m_localIpLabel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-    m_globalIpLabel->setText("Global IP-Adresse: " + m_router->getGlobalIpAddress().getAddressAsDecString());
+    m_globalIpLabel->setText("Global IP-Adresse: " + m_router->getGlobalIpAddress().toString());
     m_globalIpLabel->setStyleSheet("QLabel { color: #a9b7c6; background-color : #1e1d23; }");
     m_globalIpLabel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     m_globalIpLabel->setGeometry(m_globalIpLabel->geometry().x(), m_globalIpLabel->geometry().y(), 0, 0);
-    m_macLabel->setText("MAC-Adresse: " + m_router->getNetworkCard().getPhysicalAddress().getAddressAsString());
+    m_macLabel->setText("MAC-Adresse: " + m_router->getNetworkCard().getPhysicalAddress().toString());
     m_macLabel->setStyleSheet("QLabel { color: #a9b7c6; background-color : #1e1d23; }");
     m_macLabel->setGeometry(m_macLabel->geometry().x(), m_macLabel->geometry().y(), 0, 0);
     m_macLabel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);

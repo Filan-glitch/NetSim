@@ -8,7 +8,7 @@ IPAddress::IPAddress(const QVector<quint8> &address) : address(address) {
 
 }
 
-QString IPAddress::getAddressAsDecString() const {
+QString IPAddress::toString() const {
     return QString::number(static_cast<int>(address[0])) + "." + QString::number(static_cast<int>(address[1])) + "." + QString::number(static_cast<int>(address[2])) + "." + QString::number(static_cast<int>(address[3]));
 }
 

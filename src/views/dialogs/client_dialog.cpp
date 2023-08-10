@@ -8,19 +8,19 @@ Client_Dialog::Client_Dialog(ClientWidget* client, QWidget *parent) :
 {
     ui->setupUi(this);
     ui->nameLabel->setText(client->name());
-    ui->ipLabel->setText(client->client()->getNetworkCard().getNetworkAddress().getAddressAsDecString());
-    ui->macLabel->setText(client->client()->getNetworkCard().getPhysicalAddress().getAddressAsString());
+    ui->ipLabel->setText(client->client()->getNetworkCard().getNetworkAddress().toString());
+    ui->macLabel->setText(client->client()->getNetworkCard().getPhysicalAddress().toString());
     for(auto& process : client->client()->getProcessTable()) {
         ui->processesList->addItem(process.toString());
     }
     for(auto& domain : client->client()->getDomainTable().keys()) {
-        ui->domainsList->addItem(domain + " (" + client->client()->getDomainTable().value(domain).getAddressAsDecString() + ")");
+        ui->domainsList->addItem(domain + " (" + client->client()->getDomainTable().value(domain).toString() + ")");
     }
     for(auto& ipAddress : client->client()->getHostTable().keys()) {
-        ui->connectionsList->addItem(ipAddress.getAddressAsDecString() + " -> " + client->client()->getHostTable().value(ipAddress).getAddressAsString());
+        ui->connectionsList->addItem(ipAddress.toString() + " -> " + client->client()->getHostTable().value(ipAddress).toString());
     }
     for(auto& cable : client->client()->getCables().keys()) {
-        ui->cablesList->addItem("Cable to " + cable.getAddressAsString());
+        ui->cablesList->addItem("Cable to " + cable.toString());
     }
 }
 

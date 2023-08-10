@@ -19,7 +19,7 @@ QString Server::getHtmlFile()const{
 }
 
 void Server::receivePackage(Package data){
-    qInfo() << "Server: " << this->getNetworkCard().getNetworkAddress().getAddressAsDecString() << " received a Package: " << data.getInfo();
+    qInfo() << "Server: " << this->getNetworkCard().getNetworkAddress().toString() << " received a Package: " << data.getInfo();
     getPackages()->addPackage(data);
 
     //Receives a DNS Request Package
@@ -53,7 +53,7 @@ void Server::receivePackage(Package data){
         }
 
         //Sending package to local Router
-        qInfo() << "Server: " << this->getNetworkCard().getNetworkAddress().getAddressAsDecString() << " sends DNSResponse to Router: " << router->getNetworkCard().getPhysicalAddress().getAddressAsString();
+        qInfo() << "Server: " << this->getNetworkCard().getNetworkAddress().toString() << " sends DNSResponse to Router: " << router->getNetworkCard().getPhysicalAddress().toString();
         router->receivePackage(dnsResponse);
         return;
 
@@ -90,7 +90,7 @@ void Server::receivePackage(Package data){
         }
 
         //Sending package to local Router
-        qInfo() << "Server: " << this->getNetworkCard().getNetworkAddress().getAddressAsDecString() << " sends SYNACK Package to Router: " << router->getNetworkCard().getPhysicalAddress().getAddressAsString();
+        qInfo() << "Server: " << this->getNetworkCard().getNetworkAddress().toString() << " sends SYNACK Package to Router: " << router->getNetworkCard().getPhysicalAddress().toString();
         router->receivePackage(synAckPackage);
         return;
     }
@@ -126,7 +126,7 @@ void Server::receivePackage(Package data){
         }
 
         //Sending package to local Router
-        qInfo() << "Server: " << this->getNetworkCard().getNetworkAddress().getAddressAsDecString() << " sends FINACK Package to router: " << router->getNetworkCard().getPhysicalAddress().getAddressAsString();
+        qInfo() << "Server: " << this->getNetworkCard().getNetworkAddress().toString() << " sends FINACK Package to router: " << router->getNetworkCard().getPhysicalAddress().toString();
         router->receivePackage(synAckPackage);
         return;
     }
@@ -167,7 +167,7 @@ void Server::receivePackage(Package data){
         }
 
         //Sending package to local Router
-        qInfo() << "Server: " << this->getNetworkCard().getNetworkAddress().getAddressAsDecString() << " sends HTTP Response to router: " << router->getNetworkCard().getPhysicalAddress().getAddressAsString();
+        qInfo() << "Server: " << this->getNetworkCard().getNetworkAddress().toString() << " sends HTTP Response to router: " << router->getNetworkCard().getPhysicalAddress().toString();
         router->receivePackage(httpResponse);
         return;
     }

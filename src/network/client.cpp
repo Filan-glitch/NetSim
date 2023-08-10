@@ -10,10 +10,10 @@ Client::Client(const NetworkCard &networkCard) : Host(networkCard)
 }
 
 void Client::execDomainResolution(const QString &domain){
-    qInfo() << "Executing: Client::execDomainResolution" << " Client: " << this->getNetworkCard().getNetworkAddress().getAddressAsDecString();
+    qInfo() << "Executing: Client::execDomainResolution" << " Client: " << this->getNetworkCard().getNetworkAddress().toString();
 
     if(getDomainTable().contains(domain)) {
-        qInfo() << "Client: " << this->getNetworkCard().getNetworkAddress().getAddressAsDecString() << " already has IPAddress to Domain: " << domain;
+        qInfo() << "Client: " << this->getNetworkCard().getNetworkAddress().toString() << " already has IPAddress to Domain: " << domain;
         return;
     }
 
@@ -38,12 +38,12 @@ void Client::execDomainResolution(const QString &domain){
         return;
     }
 
-    qInfo() << "Client: " << this->getNetworkCard().getNetworkAddress().getAddressAsDecString() <<  " sends DNSRequest to Router: " << router->getNetworkCard().getPhysicalAddress().getAddressAsString();
+    qInfo() << "Client: " << this->getNetworkCard().getNetworkAddress().toString() <<  " sends DNSRequest to Router: " << router->getNetworkCard().getPhysicalAddress().toString();
     router->receivePackage(dnsRequest);
 }
 
 void Client::execHandShake(const IPAddress &address){
-    qInfo() << "Executing: Client::execHandShake" << " Client: " << this->getNetworkCard().getNetworkAddress().getAddressAsDecString();
+    qInfo() << "Executing: Client::execHandShake" << " Client: " << this->getNetworkCard().getNetworkAddress().toString();
 
     MACAddress routerMAC = this->getHostTable().value(address);
     Router* router;
@@ -69,12 +69,12 @@ void Client::execHandShake(const IPAddress &address){
         return;
     }
 
-    qInfo() << "Client: " << this->getNetworkCard().getNetworkAddress().getAddressAsDecString() << "sends TCP Handshake Package to Router: " << router->getNetworkCard().getPhysicalAddress().getAddressAsString();
+    qInfo() << "Client: " << this->getNetworkCard().getNetworkAddress().toString() << "sends TCP Handshake Package to Router: " << router->getNetworkCard().getPhysicalAddress().toString();
     router->receivePackage(httpProcess.getHandShakePackage(address,true,true));
 }
 
 void Client::execHTTPRequest(const IPAddress &address, const QString &uri){
-    qInfo() << "Executing: Client::execHTTPRequest" << " Client: " << this->getNetworkCard().getNetworkAddress().getAddressAsDecString();
+    qInfo() << "Executing: Client::execHTTPRequest" << " Client: " << this->getNetworkCard().getNetworkAddress().toString();
 
     MACAddress routerMAC = this->getHostTable().value(address);
     Router* router;
@@ -98,12 +98,12 @@ void Client::execHTTPRequest(const IPAddress &address, const QString &uri){
         return;
     }
 
-    qInfo() << "Client: " << this->getNetworkCard().getNetworkAddress().getAddressAsDecString() <<" sends HTTPRequest Package to Router: " << router->getNetworkCard().getPhysicalAddress().getAddressAsString();
+    qInfo() << "Client: " << this->getNetworkCard().getNetworkAddress().toString() <<" sends HTTPRequest Package to Router: " << router->getNetworkCard().getPhysicalAddress().toString();
     router->receivePackage(httpProcess.getHTTPRequest(uri,address));
 }
 
 void Client::execCloseConnection(const IPAddress &address){
-    qInfo() << "Executing: Client::execCloseConnection" << " Client: " << this->getNetworkCard().getNetworkAddress().getAddressAsDecString();
+    qInfo() << "Executing: Client::execCloseConnection" << " Client: " << this->getNetworkCard().getNetworkAddress().toString();
 
     MACAddress routerMAC = this->getHostTable().value(address);
     Router* router;
@@ -127,14 +127,14 @@ void Client::execCloseConnection(const IPAddress &address){
         return;
     }
 
-    qInfo() << "Client sends close connection Package to router: " << router->getNetworkCard().getPhysicalAddress().getAddressAsString();
+    qInfo() << "Client sends close connection Package to router: " << router->getNetworkCard().getPhysicalAddress().toString();
     router->receivePackage(httpProcess.getCloseConnectionPackage(address,true,true));
 }
 
 void Client::receivePackage(Package data){
     //Adds Package to packageDatabase
     getPackages()->addPackage(data);
-    qInfo() << "Client: " << this->getNetworkCard().getNetworkAddress().getAddressAsDecString() << " received Package: " << data.getInfo() <<" Client: " << this->getNetworkCard().getNetworkAddress().getAddressAsDecString();
+    qInfo() << "Client: " << this->getNetworkCard().getNetworkAddress().toString() << " received Package: " << data.getInfo() <<" Client: " << this->getNetworkCard().getNetworkAddress().toString();
 
     //Receives a DNS Response Package from Server
     if(HeaderUtil::getApplicationProtocol(data) == HeaderType::DNS) {
@@ -168,7 +168,7 @@ void Client::receivePackage(Package data){
             return;
         }
 
-        qInfo() << "Client: " << this->getNetworkCard().getNetworkAddress().getAddressAsDecString() << " sends 3. Handshake Package to router: " << router->getNetworkCard().getPhysicalAddress().getAddressAsString();
+        qInfo() << "Client: " << this->getNetworkCard().getNetworkAddress().toString() << " sends 3. Handshake Package to router: " << router->getNetworkCard().getPhysicalAddress().toString();
         router->receivePackage(httpProcess.getHandShakePackage(HeaderUtil::getIPAddressAsIPAddress(data,true),false,true));
     }
 
@@ -194,7 +194,7 @@ void Client::receivePackage(Package data){
             qDebug() << "Could not find Process HTTP in Client::receivePackage receiving a closing package from Server";
             return;
         }
-        qInfo() << "Client: " << this->getNetworkCard().getNetworkAddress().getAddressAsDecString() << " sends 3. Handshake Package to router: " << router->getNetworkCard().getPhysicalAddress().getAddressAsString();
+        qInfo() << "Client: " << this->getNetworkCard().getNetworkAddress().toString() << " sends 3. Handshake Package to router: " << router->getNetworkCard().getPhysicalAddress().toString();
         router->receivePackage(httpProcess.getCloseConnectionPackage(HeaderUtil::getIPAddressAsIPAddress(data,true),false,true));
     }
 }

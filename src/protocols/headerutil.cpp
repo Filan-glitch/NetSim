@@ -41,7 +41,7 @@ QString HeaderUtil::getMacAddress(const Package &data, bool src){
     }
 
     MACAddress address(attribute);
-    return address.getAddressAsString();
+    return address.toString();
 }
 
 QString HeaderUtil::getEtherType(const Package &data){
@@ -112,7 +112,7 @@ QString HeaderUtil::getIPAddress(const Package &data, bool src){
     }
     //Creating the IP Address
     IPAddress address(attribute);
-    return address.getAddressAsDecString();
+    return address.toString();
 }
 
 QString HeaderUtil::getIPFlags(const Package &data){
@@ -1112,7 +1112,7 @@ QString HeaderUtil::getDNSAnswer(const Package &data, int index, const RRAttribu
 
     switch (attr) {
     case RRAttribute::FULL_DATA:
-        return name + ": type " + type + ", class " + _class + ", addr " + ip.getAddressAsDecString();
+        return name + ": type " + type + ", class " + _class + ", addr " + ip.toString();
     case RRAttribute::NAME:
         return name;
     case RRAttribute::TYPE:
@@ -1124,7 +1124,7 @@ QString HeaderUtil::getDNSAnswer(const Package &data, int index, const RRAttribu
     case RRAttribute::DATA_LENGTH:
         return dataLength;
     case RRAttribute::DATA:
-        return ip.getAddressAsDecString();
+        return ip.toString();
     default:
         return "";
     }
