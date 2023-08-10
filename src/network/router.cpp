@@ -72,7 +72,7 @@ Router::Router() :
 
 void Router::receivePackage(Package data)
 {
-    qInfo() << "Router: " << this->getNetworkCard().getPhysicalAddress().getAddressAsString() << " received a Package: " << data.getInfo();
+    qInfo() << "Router: " << this->getNetworkCard().getPhysicalAddress().toString() << " received a Package: " << data.getInfo();
     //Getting the macAddress
     IPAddress destIP = HeaderUtil::getIPAddressAsIPAddress(data, false);
     MACAddress destMAC = this->macTable[destIP];
@@ -101,18 +101,18 @@ void Router::receivePackage(Package data)
     if(nextRouter == nullptr){
         Host* destHost = this->hostCable[destMAC];
         if(destHost == nullptr){
-            QString error = QString("Couldn't find a connection to MACAddress: %1").arg(destMAC.getAddressAsString());
+            QString error = QString("Couldn't find a connection to MACAddress: %1").arg(destMAC.toString());
             qFatal("%s", error.toStdString().c_str());
             throw CableNotFoundException(error);
         }
         for(const auto& element : fragments){
-            qInfo() << "Router: " << this->getNetworkCard().getPhysicalAddress().getAddressAsString() << " sends Package to Host: " << destHost->getNetworkCard().getNetworkAddress().getAddressAsDecString();
+            qInfo() << "Router: " << this->getNetworkCard().getPhysicalAddress().toString() << " sends Package to Host: " << destHost->getNetworkCard().getNetworkAddress().toString();
             destHost->receivePackage(element);
         }
     }
     else{
         for(const auto& element : fragments){
-            qInfo() << "Router: " << this->getNetworkCard().getPhysicalAddress().getAddressAsString() << " sends Package to Router: " << nextRouter->networkCard.getPhysicalAddress().getAddressAsString();
+            qInfo() << "Router: " << this->getNetworkCard().getPhysicalAddress().toString() << " sends Package to Router: " << nextRouter->networkCard.getPhysicalAddress().toString();
             nextRouter->receivePackage(element);
         }
     }

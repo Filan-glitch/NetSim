@@ -18,11 +18,11 @@ ClientWidget::ClientWidget(Client* client, const QString &name, QWidget *parent)
     m_nameLabel->setStyleSheet("QLabel { color: #a9b7c6; background-color : #1e1d23; }");
     m_nameLabel->setGeometry(m_nameLabel->geometry().x(), m_nameLabel->geometry().y(), 0, 0);
     m_nameLabel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-    m_ipLabel->setText("IP-Adresse: " + m_client->getNetworkCard().getNetworkAddress().getAddressAsDecString());
+    m_ipLabel->setText("IP-Adresse: " + m_client->getNetworkCard().getNetworkAddress().toString());
     m_ipLabel->setStyleSheet("QLabel { color: #a9b7c6; background-color : #1e1d23; }");
     m_ipLabel->setGeometry(m_ipLabel->geometry().x(), m_ipLabel->geometry().y(), 0, 0);
     m_ipLabel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-    m_macLabel->setText("MAC-Adresse: " + m_client->getNetworkCard().getPhysicalAddress().getAddressAsString());
+    m_macLabel->setText("MAC-Adresse: " + m_client->getNetworkCard().getPhysicalAddress().toString());
     m_macLabel->setStyleSheet("QLabel { color: #a9b7c6; background-color : #1e1d23; }");
     m_macLabel->setGeometry(m_macLabel->geometry().x(), m_macLabel->geometry().y(), 0, 0);
     m_macLabel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);

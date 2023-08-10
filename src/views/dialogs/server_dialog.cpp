@@ -8,16 +8,16 @@ Server_Dialog::Server_Dialog(ServerWidget *server, QWidget *parent) :
 {
     ui->setupUi(this);
     ui->domainLabel->setText(server->server()->domain());
-    ui->ipLabel->setText(server->server()->getNetworkCard().getNetworkAddress().getAddressAsDecString());
-    ui->macLabel->setText(server->server()->getNetworkCard().getPhysicalAddress().getAddressAsString());
+    ui->ipLabel->setText(server->server()->getNetworkCard().getNetworkAddress().toString());
+    ui->macLabel->setText(server->server()->getNetworkCard().getPhysicalAddress().toString());
     for(auto& process : server->server()->getProcessTable()) {
         ui->processesList->addItem(process.toString());
     }
     for(auto& ipAddress : server->server()->getHostTable().keys()) {
-        ui->connectionsList->addItem(ipAddress.getAddressAsDecString() + " -> " + server->server()->getHostTable().value(ipAddress).getAddressAsString());
+        ui->connectionsList->addItem(ipAddress.toString() + " -> " + server->server()->getHostTable().value(ipAddress).toString());
     }
     for(auto& cable : server->server()->getCables().keys()) {
-        ui->cablesList->addItem("Cable to " + cable.getAddressAsString());
+        ui->cablesList->addItem("Cable to " + cable.toString());
     }
 }
 

@@ -18,7 +18,7 @@ public:
         address << 0 << 0 << 0 << 0 << 0 << 0;
     };
 
-    QString getAddressAsString() const;
+    QString toString() const;
     QVector<quint8> getAddressAsArray() const;
     quint64 getAddressAsInt() const;
 

@@ -21,7 +21,7 @@ public:
 
     Package getHTTPRequest(const QString &uri,const IPAddress &destination);
 
-    Package getHTTPResponse(const IPAddress &destination, const Port &destPort);
+    Package getHTTPResponse(const IPAddress &destination, const Port &destPort, const int &messageCode);
 
     Package getHandShakePackage(const IPAddress &address, bool initiate, bool client);
 

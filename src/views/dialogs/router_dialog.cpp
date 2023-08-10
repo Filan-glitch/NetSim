@@ -7,24 +7,24 @@ Router_Dialog::Router_Dialog(RouterWidget* router, QWidget *parent) :
     router(router)
 {
     ui->setupUi(this);
-    ui->globalIPLabel->setText(router->router()->getGlobalIpAddress().getAddressAsDecString());
-    ui->localIPLabel->setText(router->router()->getNetworkCard().getNetworkAddress().getAddressAsDecString());
-    ui->macLabel->setText(router->router()->getNetworkCard().getPhysicalAddress().getAddressAsString());
+    ui->globalIPLabel->setText(router->router()->getGlobalIpAddress().toString());
+    ui->localIPLabel->setText(router->router()->getNetworkCard().getNetworkAddress().toString());
+    ui->macLabel->setText(router->router()->getNetworkCard().getPhysicalAddress().toString());
 
     for(auto& port : router->router()->getNAT().keys()) {
-        ui->natList->addItem(router->router()->getGlobalIpAddress().getAddressAsDecString() + " (" + QString::number(port.getPortNumber()) + ") <-> " + router->router()->getNAT().value(port).getIPAddress().getAddressAsDecString() + " (" + QString::number(router->router()->getNAT().value(port).getPortNumber().getPortNumber()) + ")");
+        ui->natList->addItem(router->router()->getGlobalIpAddress().toString() + " (" + QString::number(port.getPortNumber()) + ") <-> " + router->router()->getNAT().value(port).getIPAddress().toString() + " (" + QString::number(router->router()->getNAT().value(port).getPortNumber().getPortNumber()) + ")");
     }
     for(auto& nat : router->router()->getNAT2Port().keys()) {
-        ui->natList->addItem(nat.getIPAddress().getAddressAsDecString() + " (" + QString::number(nat.getPortNumber().getPortNumber()) + ")" + " <-> " + router->router()->getGlobalIpAddress().getAddressAsDecString() + " (" + QString::number(router->router()->getNAT2Port().value(nat).getPortNumber()) + ")");
+        ui->natList->addItem(nat.getIPAddress().toString() + " (" + QString::number(nat.getPortNumber().getPortNumber()) + ")" + " <-> " + router->router()->getGlobalIpAddress().toString() + " (" + QString::number(router->router()->getNAT2Port().value(nat).getPortNumber()) + ")");
     }
     for(auto& ipAddress : router->router()->getMacTable().keys()) {
-        ui->connectionsList->addItem(ipAddress.getAddressAsDecString() + " -> " + router->router()->getMacTable().value(ipAddress).getAddressAsString());
+        ui->connectionsList->addItem(ipAddress.toString() + " -> " + router->router()->getMacTable().value(ipAddress).toString());
     }
     for(auto& cable : router->router()->getHostCable().keys()) {
-        ui->cablesList->addItem("Cable to " + cable.getAddressAsString());
+        ui->cablesList->addItem("Cable to " + cable.toString());
     }
     for(auto& cable : router->router()->getRouterCable().keys()) {
-        ui->cablesList->addItem("Cable to " + cable.getAddressAsString());
+        ui->cablesList->addItem("Cable to " + cable.toString());
     }
 }
 
