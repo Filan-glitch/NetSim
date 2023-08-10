@@ -60,6 +60,5 @@ quint16 UDP::getChecksum(const char* data, quint16 length, quint16 sourcePort, q
     }
 
     //Returns the inverse
-    qInfo() << "UDP Checksum: " << ~checksum;
     return ~checksum;
 }

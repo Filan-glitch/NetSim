@@ -1,5 +1,6 @@
 #include "server.h"
 #include "router.h"
+#include "cablenotfoundexception.h"
 
 #include <src/protocols/headerutil.h>
 
@@ -18,19 +19,33 @@ QString Server::getHtmlFile()const{
 }
 
 void Server::receivePackage(Package data){
+    qInfo() << "Server: " << this->getNetworkCard().getNetworkAddress().getAddressAsDecString() << " received a Package: " << data.getInfo();
     getPackages()->addPackage(data);
 
     //Receives a DNS Request Package
     if(HeaderUtil::getApplicationProtocol(data) == HeaderType::DNS) {
         //Getting the DNS process
-        Process dnsProcess = getProcessByName("DNS");
+        Process dnsProcess;
+        try{
+            dnsProcess = getProcessByName("DNS");
+        }catch(std::runtime_error re){
+            qDebug() << "Could not find Process DNS in Server::receivePackage DNS Request Package";
+            return;
+        }
+
 
         //Creating the response package for dns request
         Package dnsResponse = dnsProcess.getDNSResponse(HeaderUtil::getIPAddressAsIPAddress(data, true), HeaderUtil::getDNSQuery(data, 0, RRAttribute::NAME), HeaderUtil::getPortAsPort(data, true));
 
         //Getting the local Router
         MACAddress routerMAC = this->getHostTable().value(HeaderUtil::getIPAddressAsIPAddress(data, true));
-        Router* router = this->getRouterByMACAddress(routerMAC);
+        Router* router;
+        try{
+            router = this->getRouterByMACAddress(routerMAC);
+        }catch(CableNotFoundException cnfe){
+            qDebug() << cnfe.getErrorMessage() << " in Server::receivePackage creating DNS Response";
+            return;
+        }
 
         if(router == nullptr){
             qDebug() << "Router is nullptr in Server::receivePackage";
@@ -38,6 +53,7 @@ void Server::receivePackage(Package data){
         }
 
         //Sending package to local Router
+        qInfo() << "Server: " << this->getNetworkCard().getNetworkAddress().getAddressAsDecString() << " sends DNSResponse to Router: " << router->getNetworkCard().getPhysicalAddress().getAddressAsString();
         router->receivePackage(dnsResponse);
         return;
 
@@ -46,7 +62,13 @@ void Server::receivePackage(Package data){
     //Receives a TCP Handshake Package
     if(HeaderUtil::getTCPFlag(data,TCPFlag::SYN) == "Set"){
         //Getting the HTTP Process
-        Process httpProcess = getProcessByName("HTTP");
+        Process httpProcess;
+        try{
+            httpProcess = getProcessByName("HTTP");
+        }catch(std::runtime_error re){
+            qDebug() << "Could not find HTTP Process in Server::receivePackage TCP Handshake Package";
+        }
+
         httpProcess.getSocket().setDestinationPort(HeaderUtil::getPortAsPort(data, false));
 
         //Creating the response Package for TCP Handshake
@@ -54,7 +76,13 @@ void Server::receivePackage(Package data){
 
         //Getting the local Router
         MACAddress routerMAC = this->getHostTable().value(HeaderUtil::getIPAddressAsIPAddress(data, true));
-        Router* router = this->getRouterByMACAddress(routerMAC);
+        Router* router;
+        try{
+            router = this->getRouterByMACAddress(routerMAC);
+        }catch(CableNotFoundException cnfe){
+            qDebug() << cnfe.getErrorMessage() << " in Server::receivePackage receiving TCP Handshakepackage";
+            return;
+        }
 
         if(router == nullptr){
             qDebug() << "Router is nullptr in Server::receivePackage";
@@ -62,21 +90,35 @@ void Server::receivePackage(Package data){
         }
 
         //Sending package to local Router
+        qInfo() << "Server: " << this->getNetworkCard().getNetworkAddress().getAddressAsDecString() << " sends SYNACK Package to Router: " << router->getNetworkCard().getPhysicalAddress().getAddressAsString();
         router->receivePackage(synAckPackage);
         return;
     }
 
-    //TODO Connection close returnen nicht vergessen!!!!
+    //Connection close
     if(HeaderUtil::getTCPFlag(data,TCPFlag::FIN) == "Set"){
         //Getting the HTTP Process
-        Process httpProcess = getProcessByName("HTTP");
+        Process httpProcess;
+        try{
+            httpProcess = getProcessByName("HTTP");
+        }catch(std::runtime_error re){
+            qDebug() << "Process HTTP not found in: Server::receivePackage connection close";
+            return;
+        }
+
 
         //Creating the response Package for close connection
         Package synAckPackage = httpProcess.getCloseConnectionPackage(HeaderUtil::getIPAddressAsIPAddress(data,true),false,false);
 
         //Getting the local Router
         MACAddress routerMAC = this->getHostTable().value(HeaderUtil::getIPAddressAsIPAddress(data, true));
-        Router* router = this->getRouterByMACAddress(routerMAC);
+        Router* router;
+        try{
+            router = this->getRouterByMACAddress(routerMAC);
+        }catch(CableNotFoundException cnfe){
+            qDebug() << cnfe.getErrorMessage() << " in Server::receivePackage creating the closeConnection Response";
+            return;
+        }
 
         if(router == nullptr){
             qDebug() << "Router is nullptr in Server::receivePackage";
@@ -84,6 +126,7 @@ void Server::receivePackage(Package data){
         }
 
         //Sending package to local Router
+        qInfo() << "Server: " << this->getNetworkCard().getNetworkAddress().getAddressAsDecString() << " sends FINACK Package to router: " << router->getNetworkCard().getPhysicalAddress().getAddressAsString();
         router->receivePackage(synAckPackage);
         return;
     }
@@ -91,14 +134,27 @@ void Server::receivePackage(Package data){
     //HTTP Response Message
     if(HeaderUtil::getHTTPIsRequest(data)){
         //Getting the HTTP Process
-        Process httpProcess = getProcessByName("HTTP");
+        Process httpProcess;
+        try{
+            httpProcess = getProcessByName("HTTP");
+        }catch(std::runtime_error re){
+            qDebug() << "Could not find Process HTTP in: HeaderUtil::getHTTPIsRequest";
+            return;
+        }
+
 
         //Creating the HTTP Response Package
         Package httpResponse = httpProcess.getHTTPResponse(HeaderUtil::getIPAddressAsIPAddress(data,true), HeaderUtil::getPortAsPort(data, true));
 
         //Getting the local Router
         MACAddress routerMAC = this->getHostTable().value(HeaderUtil::getIPAddressAsIPAddress(data, true));
-        Router* router = this->getRouterByMACAddress(routerMAC);
+        Router* router;
+        try{
+            router = this->getRouterByMACAddress(routerMAC);
+        }catch(CableNotFoundException cnfe){
+            qDebug() << cnfe.getErrorMessage() << " in Server::receivePackage creating HTTP Response";
+            return;
+        }
 
         if(router == nullptr){
             qDebug() << "Router is nullptr in Server::receivePackage";
@@ -106,6 +162,7 @@ void Server::receivePackage(Package data){
         }
 
         //Sending package to local Router
+        qInfo() << "Server: " << this->getNetworkCard().getNetworkAddress().getAddressAsDecString() << " sends HTTP Response to router: " << router->getNetworkCard().getPhysicalAddress().getAddressAsString();
         router->receivePackage(httpResponse);
         return;
     }

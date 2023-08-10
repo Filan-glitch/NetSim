@@ -1,3 +1,4 @@
+#include "cablenotfoundexception.h"
 #include "host.h"
 #include "router.h"
 
@@ -67,7 +68,12 @@ Host::Host(const NetworkCard &networkCard) :
 }
 
 Router* Host::getRouterByMACAddress(const MACAddress &destinationAddress){
-    return cables[destinationAddress];
+    if(cables[destinationAddress] != nullptr){
+        return cables[destinationAddress];
+    }else{
+        throw CableNotFoundException("Cable not found in: Host::getRouterByMACAddress");
+    }
+
 }
 
 void Host::sendPackage(Package &data, const MACAddress &destinationAddress){

@@ -176,7 +176,6 @@ quint16 IPv4::getIPv4Checksum(quint16 totalLength, quint16 id, quint8 flags, qui
 
      quint16 finalChecksum = static_cast<quint16>(~checksum); //Converting back to qint16 -> Checksum is 16Bit in IPv4
 
-    qInfo() << "IPv4 Checksum: " << ~finalChecksum;
     return ~finalChecksum;
 }
 

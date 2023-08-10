@@ -49,12 +49,12 @@ void Package::changePortAndIP(const Port &number, const IPAddress &address, bool
         try {
             (*this)[HeaderType::TCP]["Source Port"].setContent(srcPort.getContentAsArray());
         } catch (HeaderNotFoundException e) {
-            qDebug() << "Package is not a TCP Package. Could not change the Port.";
+            qDebug() << e.getErrorMessage() << " Package is not a TCP Package. Could not change the Source Port.";
         }
         try {
             (*this)[HeaderType::UDP]["Source Port"].setContent(srcPort.getContentAsArray());
         } catch (HeaderNotFoundException e) {
-            qDebug() << "Package is not a UDP Package. Could not change the Port.";
+            qDebug()<< e.getErrorMessage() << " Package is not a UDP Package. Could not change the Source Port.";
         }
     }
     else{
@@ -62,22 +62,31 @@ void Package::changePortAndIP(const Port &number, const IPAddress &address, bool
         try {
             (*this)[HeaderType::TCP]["Destination Port"].setContent(destPort.getContentAsArray());
         } catch (HeaderNotFoundException e) {
-            qDebug() << "Package is not a TCP Package. Could not change the Port.";
+            qDebug()<< e.getErrorMessage() << " Package is not a TCP Package. Could not change the Destination Port.";
         }
         try {
             (*this)[HeaderType::UDP]["Destination Port"].setContent(destPort.getContentAsArray());
         } catch (HeaderNotFoundException e) {
-            qDebug() << "Package is not a UDP Package. Could not change the Port.";
+            qDebug()<< e.getErrorMessage() << " Package is not a UDP Package. Could not change the Destination Port.";
         }
     }
 
     //TODO recalc Checksum
 
     if(src){
-        (*this)[HeaderType::IP]["Source Address"].setContent(address.getAddressAsArray());
+        try{
+            (*this)[HeaderType::IP]["Source Address"].setContent(address.getAddressAsArray());
+        } catch(HeaderNotFoundException e){
+            qDebug()<< e.getErrorMessage() << " Package is not an IP Package. Could not change the Source Address.";
+        }
+
     }
     else{
-         (*this)[HeaderType::IP]["Destination Address"].setContent(address.getAddressAsArray());
+        try{
+            (*this)[HeaderType::IP]["Destination Address"].setContent(address.getAddressAsArray());
+        } catch(HeaderNotFoundException e){
+            qDebug() << e.getErrorMessage() << " Package is not an IP Package. Could not change the Destination Address.";
+        }
     }
 
     //TODO Recalc Checksum
@@ -86,9 +95,17 @@ void Package::changePortAndIP(const Port &number, const IPAddress &address, bool
 void Package::changeEthernetHeader(const MACAddress &srcAddress, const MACAddress &destAddress){
 
     //Changing MAC Addresses
-     (*this)[HeaderType::MAC]["Destination MAC Address"].setContent(destAddress.getAddressAsArray());
+    try{
+        (*this)[HeaderType::MAC]["Destination MAC Address"].setContent(destAddress.getAddressAsArray());
+    }catch(HeaderNotFoundException e){
+        qDebug() << e.getErrorMessage() << " Package is not a MAC Package. Could not change the Destination MAC Address.";
+    }
 
+    try{
      (*this)[HeaderType::MAC]["Source MAC Address"].setContent(srcAddress.getAddressAsArray());
+    }catch(HeaderNotFoundException e){
+        qDebug() << e.getErrorMessage() << " Package is not a MAC Package. Could not change the Source MAC Address.";
+    }
 }
 
 Header &Package::operator[](const HeaderType &type)

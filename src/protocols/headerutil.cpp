@@ -4,6 +4,7 @@
 #include "src/models/ipaddress.h"
 #include "src/models/macaddress.h"
 #include <QDebug>
+#include <QException>
 
 // Ethernet
 
@@ -1097,6 +1098,7 @@ IPAddress HeaderUtil::getDNSAnswerIPAddress(const Package &data, int index) {
     ipData.append(attribute[i++]);
     ipData.append(attribute[i++]);
     ipData.append(attribute[i]);
+
     return IPAddress(ipData);
 }
 

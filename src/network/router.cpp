@@ -67,6 +67,7 @@ Router::Router() :
 
 void Router::receivePackage(Package data)
 {
+    qInfo() << "Router: " << this->getNetworkCard().getPhysicalAddress().getAddressAsString() << " received a Package: " << data.getInfo();
     //Getting the macAddress
     IPAddress destIP = HeaderUtil::getIPAddressAsIPAddress(data, false);
     MACAddress destMAC = this->macTable[destIP];
@@ -100,11 +101,13 @@ void Router::receivePackage(Package data)
             throw CableNotFoundException(error);
         }
         for(const auto& element : fragments){
+            qInfo() << "Router: " << this->getNetworkCard().getPhysicalAddress().getAddressAsString() << " sends Package to Host: " << destHost->getNetworkCard().getNetworkAddress().getAddressAsDecString();
             destHost->receivePackage(element);
         }
     }
     else{
         for(const auto& element : fragments){
+            qInfo() << "Router: " << this->getNetworkCard().getPhysicalAddress().getAddressAsString() << " sends Package to Router: " << nextRouter->networkCard.getPhysicalAddress().getAddressAsString();
             nextRouter->receivePackage(element);
         }
     }

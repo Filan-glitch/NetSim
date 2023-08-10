@@ -100,7 +100,6 @@ quint16 TCP::getTCPChecksum(const QVector<quint8> &sourceAddress, const QVector<
 
     quint16 finalChecksum = (checksum >> 16) + (checksum & 0xFFFF);
 
-    qInfo() << "TCP Checksum: " << ~finalChecksum;
     return ~finalChecksum;
 }
 
