@@ -5,8 +5,9 @@
 #include <src/protocols/headerutil.h>
 
 
-Server::Server(const NetworkCard &networkCard, const QString &domain) : Host(networkCard), m_domain(domain)
+Server::Server(const NetworkCard &networkCard, const QString &domain, const QString &html) : Host(networkCard), m_domain(domain)
 {
+    this->htmlFile = html;
 }
 
 QString Server::domain() const

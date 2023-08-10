@@ -42,7 +42,6 @@ quint16 Package::getLength() const {
 void Package::changePortAndIP(const Port &number, const IPAddress &address, bool src){
     //Getting the right Header
 
-
     //Changing the Ports
     if(src){
         HeaderAttribute srcPort("Source Port", 16, number.getPortNumber());
@@ -71,8 +70,6 @@ void Package::changePortAndIP(const Port &number, const IPAddress &address, bool
         }
     }
 
-    //TODO recalc Checksum
-
     if(src){
         try{
             (*this)[HeaderType::IP]["Source Address"].setContent(address.getAddressAsArray());
@@ -88,8 +85,6 @@ void Package::changePortAndIP(const Port &number, const IPAddress &address, bool
             qDebug() << e.getErrorMessage() << " Package is not an IP Package. Could not change the Destination Address.";
         }
     }
-
-    //TODO Recalc Checksum
 }
 
 void Package::changeEthernetHeader(const MACAddress &srcAddress, const MACAddress &destAddress){

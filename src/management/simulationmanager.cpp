@@ -9,7 +9,7 @@ SimulationManager::SimulationManager(quint8 clientAmount, quint8 serverAmount, Q
     }
 
     //DNS Server
-    server.append(Server(NetworkCard(IPAddress::getRandomAddress(), MACAddress::getRandomAddress()), "dns.beispiel.de"));
+    server.append(Server(NetworkCard(IPAddress::getRandomAddress(), MACAddress::getRandomAddress()), "dns.beispiel.de",""));
 
     //Erstelle die Clients
     for (quint8 i = 0; i < clientAmount; i++)
@@ -21,11 +21,12 @@ SimulationManager::SimulationManager(quint8 clientAmount, quint8 serverAmount, Q
     }
 
     //Erstelle die Server
+    const QString html = "<!DOCTYPE html>\n<html>\n\t<header len=\"de\">\n\t\t<meta charset=\"utf.8\">\n\t</head>\n\t<body>\n\t\t<a>r.mtdv.me/videos/exampleVideo</a>\n\t</body>\n</html>";
     for (auto i = 0; i < serverAmount; i++)
     {
         QVector<quint8> routerAddress = routers[i+1].getNetworkCard().getNetworkAddress().getAddressAsArray();
         routerAddress[3] = 2;
-        server.append(Server(NetworkCard(IPAddress(routerAddress), MACAddress::getRandomAddress()), domains[i]));
+        server.append(Server(NetworkCard(IPAddress(routerAddress), MACAddress::getRandomAddress()), domains[i],html));
     }
 
     //Cables erstellen
