@@ -144,7 +144,12 @@ void Server::receivePackage(Package data){
 
 
         //Creating the HTTP Response Package
-        Package httpResponse = httpProcess.getHTTPResponse(HeaderUtil::getIPAddressAsIPAddress(data,true), HeaderUtil::getPortAsPort(data, true));
+        Package httpResponse;
+        if(HeaderUtil::getHTTPAttribute(data,"URI") == "/index.html"){
+            httpResponse = httpProcess.getHTTPResponse(HeaderUtil::getIPAddressAsIPAddress(data,true), HeaderUtil::getPortAsPort(data, true),200);
+        }else{
+            httpResponse = httpProcess.getHTTPResponse(HeaderUtil::getIPAddressAsIPAddress(data,true), HeaderUtil::getPortAsPort(data, true),404);
+        }
 
         //Getting the local Router
         MACAddress routerMAC = this->getHostTable().value(HeaderUtil::getIPAddressAsIPAddress(data, true));

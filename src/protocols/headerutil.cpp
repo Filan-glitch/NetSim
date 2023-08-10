@@ -1284,5 +1284,3 @@ Port HeaderUtil::getPortAsPort(const Package &data, bool src){
 
     return Port(port);
 }
-
-

@@ -93,12 +93,21 @@ Package Process::getHandShakePackage(const IPAddress &address, bool initiate, bo
     return Package();
 }
 
-Package Process::getHTTPResponse(const IPAddress &destination, const Port &destPort){
+Package Process::getHTTPResponse(const IPAddress &destination, const Port &destPort, const int &messageCode){
     //Creating package
     Package data("HTTP Response to: " + destination.getAddressAsDecString());
 
     //Adding HTTP Data
-    HTTP::initHTTPResponse("HTTP/1.1",200,"OK",data,static_cast<Server *>(host)->getHtmlFile());
+    if(messageCode == 200){
+        HTTP::initHTTPResponse("HTTP/1.1",messageCode,"OK",data,static_cast<Server *>(host)->getHtmlFile());
+    }
+    else if(messageCode == 404){
+        HTTP::initHTTPResponse("HTTP/1.1",messageCode,"Not Found",data,static_cast<Server *>(host)->getHtmlFile());
+    }
+    else{
+        qDebug() << "No valid messageCode in Process::getHTTPResponse messageCode: " << messageCode;
+        return Package();
+    }
 
     //Adding TCP Data
     socket.setDestinationPort(destPort);
