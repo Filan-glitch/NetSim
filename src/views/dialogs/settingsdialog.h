@@ -1,8 +1,6 @@
 #ifndef SETTINGSDIALOG_H
 #define SETTINGSDIALOG_H
 
-#include "qlabel.h"
-#include "qlineedit.h"
 #include <QDialog>
 
 namespace Ui {
@@ -27,15 +25,12 @@ private slots:
     void setClientsAmount(int amount);
     void setServerAmount(int amount);
 
-    void on_domainLineEdit_1_textChanged(const QString &arg1);
+    void textChanged1(const QString &data);
+    void textChanged2(const QString &data);
+    void textChanged3(const QString &data);
+    void textChanged4(const QString &data);
+    void textChanged5(const QString &data);
 
-    void on_domainLineEdit_2_textChanged(const QString &arg1);
-
-    void on_domainLineEdit_3_textChanged(const QString &arg1);
-
-    void on_domainLineEdit_4_textChanged(const QString &arg1);
-
-    void on_domainLineEdit_5_textChanged(const QString &arg1);
 
 private:
     Ui::SettingsDialog *ui;

@@ -1,6 +1,5 @@
 #include "process.h"
 #include "package.h"
-#include "src/network/client.h"
 #include "src/protocols/http.h"
 #include "src/network/host.h"
 #include "src/protocols/dns.h"

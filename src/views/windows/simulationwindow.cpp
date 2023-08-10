@@ -271,9 +271,9 @@ void SimulationWindow::clientDialog(ClientWidget *client)
     if(clientDialog.exec() == QDialog::Accepted) {
         client->client()->execDomainResolution(clientDialog.getDomain());
         if(client->client()->getDomainTable().contains(clientDialog.getDomain())) {
-            //client->client()->execHandShake(client->client()->getDomainTable().value(clientDialog.getDomain()));
+            client->client()->execHandShake(client->client()->getDomainTable().value(clientDialog.getDomain()));
             client->client()->execHTTPRequest(client->client()->getDomainTable().value(clientDialog.getDomain()), clientDialog.getURI());
-            //client->client()->execCloseConnection(client->client()->getDomainTable().value(clientDialog.getDomain()));
+            client->client()->execCloseConnection(client->client()->getDomainTable().value(clientDialog.getDomain()));
             qInfo() << "All package transfers were successful.";
             QMessageBox box(this);
             box.setText("All packages were sent. Please check the packages tab for more information.");
