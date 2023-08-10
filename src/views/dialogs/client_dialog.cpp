@@ -23,6 +23,10 @@ Client_Dialog::Client_Dialog(ClientWidget* client, QWidget *parent) :
         ui->cablesList->addItem("Cable to " + cable.toString());
     }
 
+    QRect rect = this->geometry();
+    rect.setHeight(0);
+    this->setGeometry(rect);
+
     connect(ui->serverDomainLineEdit, &QLineEdit::textChanged, this, &Client_Dialog::textChanged);
     connect(ui->pathLineEdit, &QLineEdit::textChanged, this, &Client_Dialog::textChanged);
 }

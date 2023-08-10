@@ -70,7 +70,8 @@ void Client::execHandShake(const IPAddress &address){
     }
 
     qInfo() << "Client: " << this->getNetworkCard().getNetworkAddress().toString() << "sends TCP Handshake Package to Router: " << router->getNetworkCard().getPhysicalAddress().toString();
-    router->receivePackage(httpProcess.getHandShakePackage(address,true,true));
+    Package package = httpProcess.getHandShakePackage(address,true,true);
+    router->receivePackage(package);
 }
 
 void Client::execHTTPRequest(const IPAddress &address, const QString &uri){

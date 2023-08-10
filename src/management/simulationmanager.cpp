@@ -69,6 +69,7 @@ SimulationManager::SimulationManager(quint8 clientAmount, quint8 serverAmount, Q
         router.addMACAddress(routers[0].getNetworkCard().getPhysicalAddress(), &routers[0]);
         router.addMACAddress(server[i].getNetworkCard().getPhysicalAddress(), &server[i]);
         server[0].addDomain(domains[i-1], router.getGlobalIpAddress());
+        i++;
     }
 
     routers[0].addIPAddress(server[0].getNetworkCard().getNetworkAddress(), server[0].getNetworkCard().getPhysicalAddress());
@@ -83,6 +84,7 @@ SimulationManager::SimulationManager(quint8 clientAmount, quint8 serverAmount, Q
         }
         router.addNATEntry(NATEntry(server[i].getNetworkCard().getNetworkAddress(), server[i].getProcessByName("HTTP").getSocket().getSourcePort()), Port(80));
         router.addNATEntry(NATEntry(server[i].getNetworkCard().getNetworkAddress(), server[i].getProcessByName("DNS").getSocket().getSourcePort()), Port(53));
+        i++;
     }
 
     i = 0;
