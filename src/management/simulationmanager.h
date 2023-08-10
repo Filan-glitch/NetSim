@@ -18,6 +18,8 @@ public:
     QList<Client>* getClients();
     QList<Router>* getRouters();
 
+    void setPackages(PackageTableModel* packages);
+
 private:
     QList<Server> server;
     QList<Client> clients;

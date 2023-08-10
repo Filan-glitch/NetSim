@@ -3,6 +3,7 @@
 
 #include <QList>
 #include "headerAttribute.h"
+#include <QDebug>
 
 /**
  * @brief The HeaderType enum
@@ -45,14 +46,7 @@ public:
 
     quint16 getHeaderLength() const;
 
-    HeaderAttribute* operator[](const QString &name){
-        for(int i = 0; i < headerList.size(); i++){
-            if(headerList.at(i).getName() == name){
-                return &headerList[i];
-            }
-        }
-        return nullptr;
-    }
+    HeaderAttribute &operator[](const QString &name);
 };
 
 #endif // HEADER_H

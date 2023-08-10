@@ -33,3 +33,12 @@ IPAddress IPAddress::getRandomAddress(bool isLocal) {
     if(isLocal) addressArray[3] = 1;
     return IPAddress(addressArray);
 }
+
+bool IPAddress::operator<(const IPAddress &other) const{
+    return getAddressAsInt() < other.getAddressAsInt();
+}
+
+bool IPAddress::operator==(const IPAddress &other){
+    quint32 otherAddressInt = other.getAddressAsInt();
+    return otherAddressInt == getAddressAsInt();
+}

@@ -10,9 +10,31 @@ Client_Dialog::Client_Dialog(ClientWidget* client, QWidget *parent) :
     ui->nameLabel->setText(client->name());
     ui->ipLabel->setText(client->client()->getNetworkCard().getNetworkAddress().getAddressAsDecString());
     ui->macLabel->setText(client->client()->getNetworkCard().getPhysicalAddress().getAddressAsString());
+    for(auto& process : client->client()->getProcessTable()) {
+        ui->processesList->addItem(process.toString());
+    }
+    for(auto& domain : client->client()->getDomainTable().keys()) {
+        ui->domainsList->addItem(domain + " (" + client->client()->getDomainTable().value(domain).getAddressAsDecString() + ")");
+    }
+    for(auto& ipAddress : client->client()->getHostTable().keys()) {
+        ui->connectionsList->addItem(ipAddress.getAddressAsDecString() + " -> " + client->client()->getHostTable().value(ipAddress).getAddressAsString());
+    }
+    for(auto& cable : client->client()->getCables().keys()) {
+        ui->cablesList->addItem("Cable to " + cable.getAddressAsString());
+    }
 }
 
 Client_Dialog::~Client_Dialog()
 {
     delete ui;
+}
+
+QString Client_Dialog::getURI() const
+{
+    return ui->pathLineEdit->text();
+}
+
+QString Client_Dialog::getDomain() const
+{
+    return ui->serverDomainLineEdit->text();
 }

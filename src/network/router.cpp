@@ -1,7 +1,6 @@
 #include "cablenotfoundexception.h"
 #include "router.h"
-
-#include <src/protocols/headerutil.h>
+#include "src/protocols/headerutil.h"
 
 IPAddress Router::getGlobalIpAddress() const
 {
@@ -11,6 +10,26 @@ IPAddress Router::getGlobalIpAddress() const
 NetworkCard Router::getNetworkCard() const
 {
     return networkCard;
+}
+
+QMap<IPAddress, MACAddress> Router::getMacTable() const
+{
+    return macTable;
+}
+
+QMap<MACAddress, Router *> Router::getRouterCable() const
+{
+    return routerCable;
+}
+
+QMap<MACAddress, Host *> Router::getHostCable() const
+{
+    return hostCable;
+}
+
+QMap<Port, NATEntry> Router::getNAT() const
+{
+    return portToNAT;
 }
 
 void Router::addIPAddress(const IPAddress &ipAddress, const MACAddress &macaddress)
@@ -28,14 +47,22 @@ void Router::addMACAddress(const MACAddress &macAddress, Host *host)
     hostCable[macAddress] = host;
 }
 
-Router::Router() : networkCard(NetworkCard(IPAddress::getRandomAddress(true), MACAddress::getRandomAddress())), globalIpAddress(IPAddress::getRandomAddress(false))
+void Router::addNATEntry(const NATEntry &entry, const Port &port)
 {
-    networkCard.getNetworkAddress().getAddressAsArray()[3] = 1;
+    portToNAT[port] = entry;
+    natToPort[entry] = port;
 }
 
-bool Router::initializeServerConnection()
+Router::Router() :
+    macTable(QMap<IPAddress, MACAddress>()),
+    routerCable(QMap<MACAddress, Router*>()),
+    hostCable(QMap<MACAddress, Host*>()),
+    portToNAT(QMap<Port, NATEntry>()),
+    natToPort(QMap<NATEntry, Port>()),
+    networkCard(NetworkCard(IPAddress::getRandomAddress(true), MACAddress::getRandomAddress())),
+    globalIpAddress(IPAddress::getRandomAddress(false))
 {
-    return false;
+    networkCard.getNetworkAddress().getAddressAsArray()[3] = 1;
 }
 
 void Router::receivePackage(Package data)
@@ -45,43 +72,39 @@ void Router::receivePackage(Package data)
     MACAddress destMAC = this->macTable[destIP];
 
     //NAT (PAT Port address Translation)
-    if(destIP.getAddressAsInt() == this->globalIpAddress.getAddressAsInt()){
+    if(destIP == this->globalIpAddress){
         NATEntry entry = portToNAT[HeaderUtil::getPortAsPort(data,false)];
         data.changePortAndIP(entry.getPortNumber(),entry.getIPAddress(),false);
         destMAC = this->macTable[entry.getIPAddress()];
     }
     else if(this->networkCard.getNetworkAddress().getAddressAsInt() != 0){
         NATEntry entry(HeaderUtil::getIPAddressAsIPAddress(data,true),HeaderUtil::getPortAsPort(data,true));
-        int port = 50000 + natToPort.size();
-        if(!natToPort.contains(entry) && !portToNAT.contains(port)){
-            natToPort[entry] = port;
-            portToNAT[port] = entry;
-        }
         data.changePortAndIP(natToPort[entry].getPortNumber(),this->globalIpAddress, true);
     }
 
     //Changing the Ethernet II Header
-     data.changeEthernetHeader(this->networkCard.getPhysicalAddress(),destMAC);
+    data.changeEthernetHeader(this->networkCard.getPhysicalAddress(),destMAC);
 
-     //Fragmenting the Package
-     QList<Package> fragments = IPv4::fragmentPackage(data,1500);
+    //Fragmenting the Package
+    //QList<Package> fragments = IPv4::fragmentPackage(data,1500);
+    QList<Package> fragments;
+    fragments.append(data);
 
     //Getting the router/Host
     Router* nextRouter = this->routerCable[destMAC];
     if(nextRouter == nullptr){
         Host* destHost = this->hostCable[destMAC];
         if(destHost == nullptr){
-            QString error = "Couldn't find a connection to MACAddress: ";
-            error.append(destMAC.getAddressAsString());
-            qDebug() << error;
+            QString error = QString("Couldn't find a connection to MACAddress: %1").arg(destMAC.getAddressAsString());
+            qFatal("%s", error.toStdString().c_str());
             throw CableNotFoundException(error);
         }
-        for(auto& element : fragments){
+        for(const auto& element : fragments){
             destHost->receivePackage(element);
         }
     }
     else{
-        for(auto& element : fragments){
+        for(const auto& element : fragments){
             nextRouter->receivePackage(element);
         }
     }

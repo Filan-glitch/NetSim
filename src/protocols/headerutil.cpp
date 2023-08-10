@@ -83,6 +83,7 @@ QString HeaderUtil::getIPAddress(const Package &data, bool src){
     }
 
     QVector<quint8> attribute;
+    attribute << 0 << 0 << 0 << 0;
     //Getting the source or destination address
     if(src){
            try{
@@ -688,17 +689,7 @@ bool HeaderUtil::getHTTPIsResponse(const Package &data) {
         return false;
     }
 
-    //Getting the attribute
-    QVector<quint8> attribute;
-    try{
-        attribute = getHeaderAttributeByName("Code", header).getContentAsArray();
-    }
-    catch(HeaderAttributeNotFoundException hanfe){
-        qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getAttributeAsString";
-        return false;
-    }
-
-    return true;
+    return header.getHeaderList().size() == 4;
 }
 
 bool HeaderUtil::getHTTPIsRequest(const Package &data) {
@@ -712,17 +703,7 @@ bool HeaderUtil::getHTTPIsRequest(const Package &data) {
         return false;
     }
 
-    //Getting the attribute
-    QVector<quint8> attribute;
-    try{
-        attribute = getHeaderAttributeByName("Method", header).getContentAsArray();
-    }
-    catch(HeaderAttributeNotFoundException hanfe){
-        qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getAttributeAsString";
-        return false;
-    }
-
-    return true;
+    return header.getHeaderList().size() == 3;
 }
 
 // DNS
@@ -1083,6 +1064,42 @@ QString HeaderUtil::getDNSAnswer(const Package &data, int index, const RRAttribu
     }
 }
 
+IPAddress HeaderUtil::getDNSAnswerIPAddress(const Package &data, int index) {
+    Header header;
+    try{
+        header = getHeaderByType(HeaderType::DNS, data);
+    }
+    catch(HeaderNotFoundException hnfe){
+        qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getDNSQuestions";
+    }
+
+    QVector<quint8> attribute;
+    try{
+        attribute = getHeaderAttributeByName("Answer " + QString::number(index), header).getContentAsArray();
+    }
+    catch(HeaderAttributeNotFoundException hanfe){
+        qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getDNSQuestions";
+    }
+
+    unsigned int i = 0;
+
+    while(attribute[i] != 0x00){
+        if(attribute[i] < 0x20) {
+                i++;
+                continue;
+        }
+        i++;
+    }
+    i += 11;
+
+    QVector<quint8> ipData;
+    ipData.append(attribute[i++]);
+    ipData.append(attribute[i++]);
+    ipData.append(attribute[i++]);
+    ipData.append(attribute[i]);
+    return IPAddress(ipData);
+}
+
 // Allrounder
 
 QString HeaderUtil::getPackageLength(const Package &package) {
@@ -1151,7 +1168,7 @@ IPAddress HeaderUtil::getIPAddressAsIPAddress(const Package &data, bool src){
         }
     }
 
-    return attribute;
+    return IPAddress(attribute);
 }
 
 Port HeaderUtil::getPortAsPort(const Package &data, bool src){

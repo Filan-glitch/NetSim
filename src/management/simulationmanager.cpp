@@ -8,16 +8,17 @@ SimulationManager::SimulationManager(quint8 clientAmount, quint8 serverAmount, Q
         routers.append(Router());
     }
 
+    //DNS Server
+    server.append(Server(NetworkCard(IPAddress::getRandomAddress(), MACAddress::getRandomAddress()), "dns.beispiel.de"));
+
     //Erstelle die Clients
     for (quint8 i = 0; i < clientAmount; i++)
     {
         QVector<quint8> routerAddress = routers[0].getNetworkCard().getNetworkAddress().getAddressAsArray();
         routerAddress[3] = i+2;
         clients.append(Client(NetworkCard(IPAddress(routerAddress), MACAddress::getRandomAddress())));
+        clients[i].addDomain("dns.beispiel.de", server.constFirst().getNetworkCard().getNetworkAddress());
     }
-
-    //DNS Server
-    server.append(Server(NetworkCard(IPAddress::getRandomAddress(), MACAddress::getRandomAddress()), "dns.beispiel.de"));
 
     //Erstelle die Server
     for (auto i = 0; i < serverAmount; i++)
@@ -25,53 +26,77 @@ SimulationManager::SimulationManager(quint8 clientAmount, quint8 serverAmount, Q
         QVector<quint8> routerAddress = routers[i+1].getNetworkCard().getNetworkAddress().getAddressAsArray();
         routerAddress[3] = 2;
         server.append(Server(NetworkCard(IPAddress(routerAddress), MACAddress::getRandomAddress()), domains[i]));
-        server[0].addDomain(domains[i], server[i + 1].getNetworkCard().getNetworkAddress());
     }
 
-
     //Cables erstellen
+    int i = 0;
     for (auto& client : clients)
     {
         for (auto& router : routers) {
-            client.addIPAddress(router.getNetworkCard().getNetworkAddress(), router.getNetworkCard().getPhysicalAddress());
+            if(i == 0) {
+                i++;
+                continue;
+            }
+            client.addIPAddress(router.getGlobalIpAddress(), routers[0].getNetworkCard().getPhysicalAddress());
+            i++;
         }
-        client.addMACAddress(routers[0].getNetworkCard().getPhysicalAddress(), &routers[0]);
+        client.addIPAddress(server[0].getNetworkCard().getNetworkAddress(), routers[0].getNetworkCard().getPhysicalAddress());
+        client.addMACAddress(routers.constFirst().getNetworkCard().getPhysicalAddress(), &routers[0]);
+        routers[0].addIPAddress(client.getNetworkCard().getNetworkAddress(), client.getNetworkCard().getPhysicalAddress());
+        routers[0].addMACAddress(client.getNetworkCard().getPhysicalAddress(), &client);
     }
 
-    for (int i{0}; auto& server : server)
+    i = 0;
+    for (auto& server : server)
     {
-        for (auto& router : routers) {
-            server.addIPAddress(router.getNetworkCard().getNetworkAddress(), router.getNetworkCard().getPhysicalAddress());
-        }
+        server.addIPAddress(routers[0].getGlobalIpAddress(), routers[i].getNetworkCard().getPhysicalAddress());
         server.addMACAddress(routers[i].getNetworkCard().getPhysicalAddress(), &routers[i]);
+        i++;
     }
 
-    for (auto& router : routers) {
-        routers[0].addIPAddress(router.getNetworkCard().getNetworkAddress(), router.getNetworkCard().getPhysicalAddress());
+    i = 0;
+    for(auto& router : routers) {
+        if (i == 0) {
+            i++;
+            continue;
+        }
+
+        routers[0].addIPAddress(router.getGlobalIpAddress(), router.getNetworkCard().getPhysicalAddress());
+        routers[0].addMACAddress(router.getNetworkCard().getPhysicalAddress(), &router);
+        router.addIPAddress(routers[0].getGlobalIpAddress(), routers[0].getNetworkCard().getPhysicalAddress());
+        router.addIPAddress(server[i].getNetworkCard().getNetworkAddress(), server[i].getNetworkCard().getPhysicalAddress());
+        router.addMACAddress(routers[0].getNetworkCard().getPhysicalAddress(), &routers[0]);
+        router.addMACAddress(server[i].getNetworkCard().getPhysicalAddress(), &server[i]);
+        server[0].addDomain(domains[i-1], router.getGlobalIpAddress());
     }
 
     routers[0].addIPAddress(server[0].getNetworkCard().getNetworkAddress(), server[0].getNetworkCard().getPhysicalAddress());
     routers[0].addMACAddress(server[0].getNetworkCard().getPhysicalAddress(), &server[0]);
 
-    for (auto i = 0; i < clientAmount; i++) {
-        routers[0].addMACAddress(clients[i].getNetworkCard().getPhysicalAddress(), &clients[i]);
-    }
-
-    for (auto i = 0; i < serverAmount; i++) {
-        routers[0].addMACAddress(routers[i + 1].getNetworkCard().getPhysicalAddress(), &server[i + 1]);
-    }
-
-    for (int i{0}; auto& router : routers)
-    {
+    //NAT Tables
+    i = 0;
+    for (auto& router : routers) {
         if (i == 0) {
             i++;
             continue;
         }
-        for (auto& router2 : routers) {
-            router.addIPAddress(router2.getNetworkCard().getNetworkAddress(), router2.getNetworkCard().getPhysicalAddress());
-        }
-        router.addMACAddress(routers[0].getNetworkCard().getPhysicalAddress(), &routers[0]);
-        router.addMACAddress(server[i].getNetworkCard().getPhysicalAddress(), &server[i]);
+        router.addNATEntry(NATEntry(server[i].getNetworkCard().getNetworkAddress(), server[i].getProcessByName("HTTP").getSocket().getSourcePort()), Port(80));
+        router.addNATEntry(NATEntry(server[i].getNetworkCard().getNetworkAddress(), server[i].getProcessByName("DNS").getSocket().getSourcePort()), Port(53));
+    }
+
+    i = 0;
+    for (auto& client : clients) {
+        routers[0].addNATEntry(NATEntry(client.getNetworkCard().getNetworkAddress(), client.getProcessByName("HTTP").getSocket().getSourcePort()), Port(50000 + i++));
+        routers[0].addNATEntry(NATEntry(client.getNetworkCard().getNetworkAddress(), client.getProcessByName("DNS").getSocket().getSourcePort()), Port(50000 + i++));
+    }
+
+    //Host Pointer
+    for(int i = 0; i < clients.size(); i++) {
+        clients[i].setHostOfProcesses(&clients[i]);
+    }
+
+    for(int i = 0; i < server.size(); i++) {
+        server[i].setHostOfProcesses(&server[i]);
     }
 }
 
@@ -98,5 +123,17 @@ QList<Client>* SimulationManager::getClients()
 QList<Router>* SimulationManager::getRouters()
 {
     return &routers;
+}
+
+void SimulationManager::setPackages(PackageTableModel *packages)
+{
+    for(auto& client : clients)
+    {
+        client.setPackages(packages);
+    }
+    for(auto& server : server)
+    {
+        server.setPackages(packages);
+    }
 }
 

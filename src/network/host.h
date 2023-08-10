@@ -2,6 +2,7 @@
 #define HOST_H
 
 #include <QString>
+#include "src/management/packagetablemodel.h"
 #include "src/models/process.h"
 #include "src/models/ipaddress.h"
 #include "src/models/macaddress.h"
@@ -23,19 +24,26 @@ private:
     QMap<QString, IPAddress> domainTable;
     QMap<MACAddress, Router*> cables;
     NetworkCard networkCard;
+    PackageTableModel* packages;
 
 public:
     Host(const NetworkCard &networkCard);
     QMap<Port, Process> getProcessTable() const;
     QMap<IPAddress, MACAddress> getHostTable() const;
     QMap<QString, IPAddress> getDomainTable() const;
+    QMap<MACAddress, Router*> getCables() const;
     NetworkCard getNetworkCard() const;
-    Router* getRouterByMACAddress(MACAddress destinationAddress);
-    void sendPackage(Package &data, MACAddress destinationAddress);
-    virtual void receivePackage(Package &data) = 0;
+    Router* getRouterByMACAddress(const MACAddress &destinationAddress);
+    void sendPackage(Package &data, const MACAddress &destinationAddress);
+    virtual void receivePackage(Package data) = 0;
+    void addProcess(const Port &port, const Process &process);
     void addIPAddress(const IPAddress &ipAddress, const MACAddress &macAddress);
     void addMACAddress(const MACAddress &macAddress, Router* router);
     void addDomain(const QString &domain, const IPAddress &ipAddress);
+    PackageTableModel *getPackages() const;
+    void setPackages(PackageTableModel *packages);
+    Process& getProcessByName(const QString &name);
+    void setHostOfProcesses(Host* host);
 };
 
 #endif // HOST_H

@@ -263,6 +263,8 @@ public:
      */
     static QString getDNSAnswer(const Package &data, int index, const RRAttribute &attr = RRAttribute::FULL_DATA);
 
+    static IPAddress getDNSAnswerIPAddress(const Package &data, int index);
+
     /**
      * @brief getDNSName
      * @param data

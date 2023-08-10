@@ -1,6 +1,5 @@
 #include "host.h"
 #include "router.h"
-#include "src/management/packagedatabase.h"
 
 QMap<Port, Process> Host::getProcessTable() const
 {
@@ -17,26 +16,67 @@ QMap<QString, IPAddress> Host::getDomainTable() const
     return domainTable;
 }
 
+QMap<MACAddress, Router *> Host::getCables() const
+{
+    return cables;
+}
+
 NetworkCard Host::getNetworkCard() const
 {
     return networkCard;
 }
 
+PackageTableModel *Host::getPackages() const
+{
+    return packages;
+}
+
+void Host::setPackages(PackageTableModel *packages)
+{
+    this->packages = packages;
+}
+
+Process &Host::getProcessByName(const QString &name)
+{
+    for(auto& process : processTable) {
+        if(process.getName() == name) {
+            return process;
+        }
+    }
+    throw std::runtime_error("Process not found");
+}
+
+void Host::setHostOfProcesses(Host *host)
+{
+    for(auto& process : processTable) {
+        process.setHost(host);
+    }
+}
+
 Host::Host(const NetworkCard &networkCard) :
+    processTable(QMap<Port, Process>()),
+    hostTable(QMap<IPAddress, MACAddress>()),
+    domainTable(QMap<QString, IPAddress>()),
+    cables(QMap<MACAddress, Router*>()),
     networkCard(networkCard)
 {
-    Process http(this,80);
-    Process dns(this, 53);
-    processTable[http.getSocket().getSourcePort().getPortNumber()] = http;
-    processTable[dns.getSocket().getSourcePort().getPortNumber()] = dns;
+    Process http(80, "HTTP");
+    Process dns(53, "DNS");
+    addProcess(http.getSocket().getSourcePort().getPortNumber(), http);
+    addProcess(dns.getSocket().getSourcePort().getPortNumber(), dns);
 }
 
-Router* Host::getRouterByMACAddress(MACAddress destinationAddress){
-    return this->cables[destinationAddress];
+Router* Host::getRouterByMACAddress(const MACAddress &destinationAddress){
+    return cables[destinationAddress];
 }
 
-void Host::sendPackage(Package &data, MACAddress destinationAddress){
+void Host::sendPackage(Package &data, const MACAddress &destinationAddress){
     cables[destinationAddress]->receivePackage(data);
+}
+
+void Host::addProcess(const Port &port, const Process &process)
+{
+    processTable[port] = process;
 }
 
 void Host::addIPAddress(const IPAddress &ipAddress, const MACAddress &macAddress)

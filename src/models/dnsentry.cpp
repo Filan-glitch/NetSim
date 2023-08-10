@@ -30,10 +30,10 @@ QVector<quint8> DNSEntry::getData() const
     return data;
 }
 
-DNSEntry::DNSEntry(const QString &name, quint16 type, quint16 dnsClass, quint32 ttl, quint16 dataLength, const QVector<quint8> &data) : name(name),
+DNSEntry::DNSEntry(const QString &name, quint16 type, quint16 dnsClass, quint32 ttl, const QVector<quint8> &data) : name(name),
     type(std::move(type)),
     dnsClass(std::move(dnsClass)),
     ttl(std::move(ttl)),
-    dataLength(std::move(dataLength)),
+    dataLength(data.size()),
     data(data)
 {}

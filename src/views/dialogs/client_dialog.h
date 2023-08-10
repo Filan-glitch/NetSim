@@ -15,6 +15,8 @@ class Client_Dialog : public QDialog
 public:
     explicit Client_Dialog(ClientWidget *client, QWidget *parent = nullptr);
     ~Client_Dialog();
+    QString getURI() const;
+    QString getDomain() const;
 
 private:
     Ui::Client_Dialog *ui;
