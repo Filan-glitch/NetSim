@@ -38,3 +38,25 @@ QString Client_Dialog::getDomain() const
 {
     return ui->serverDomainLineEdit->text();
 }
+
+void Client_Dialog::on_serverDomainLineEdit_textChanged(const QString &arg1)
+{
+    if(ui->serverDomainLineEdit->text().size() > 0 && ui->pathLineEdit->text().size() > 0){
+        ui->sendPushButton->setEnabled(true);
+    }
+    else{
+        ui->sendPushButton->setEnabled(false);
+    }
+}
+
+
+void Client_Dialog::on_pathLineEdit_textChanged(const QString &arg1)
+{
+    if(ui->serverDomainLineEdit->text().size() > 0 && ui->pathLineEdit->text().size() > 0){
+        ui->sendPushButton->setEnabled(true);
+    }
+    else{
+        ui->sendPushButton->setEnabled(false);
+    }
+}
+

@@ -118,6 +118,13 @@ void SettingsDialog::setServerAmount(int amount)
         this->setGeometry(rect);
         break;
     }
+
+    if(allVisibleLineEditsFilled()){
+        ui->buttonBox->setEnabled(true);
+    }
+    else{
+        ui->buttonBox->setEnabled(false);
+    }
 }
 
 quint8 SettingsDialog::getClientsAmount() const
@@ -133,26 +140,61 @@ quint8 SettingsDialog::getServerAmount() const
 void SettingsDialog::on_domainLineEdit_1_textChanged(const QString &arg1)
 {
     m_domain1 = arg1;
+
+    if(allVisibleLineEditsFilled()){
+        ui->buttonBox->setEnabled(true);
+    }
+    else{
+        ui->buttonBox->setEnabled(false);
+    }
 }
 
 void SettingsDialog::on_domainLineEdit_2_textChanged(const QString &arg1)
 {
     m_domain2 = arg1;
+
+    if(allVisibleLineEditsFilled()){
+        ui->buttonBox->setEnabled(true);
+    }
+    else{
+        ui->buttonBox->setEnabled(false);
+    }
 }
 
 void SettingsDialog::on_domainLineEdit_3_textChanged(const QString &arg1)
 {
     m_domain3 = arg1;
+
+    if(allVisibleLineEditsFilled()){
+        ui->buttonBox->setEnabled(true);
+    }
+    else{
+        ui->buttonBox->setEnabled(false);
+    }
 }
 
 void SettingsDialog::on_domainLineEdit_4_textChanged(const QString &arg1)
 {
     m_domain4 = arg1;
+
+    if(allVisibleLineEditsFilled()){
+        ui->buttonBox->setEnabled(true);
+    }
+    else{
+        ui->buttonBox->setEnabled(false);
+    }
 }
 
 void SettingsDialog::on_domainLineEdit_5_textChanged(const QString &arg1)
 {
     m_domain5 = arg1;
+
+    if(allVisibleLineEditsFilled()){
+        ui->buttonBox->setEnabled(true);
+    }
+    else{
+        ui->buttonBox->setEnabled(false);
+    }
 }
 
 QList<QString> SettingsDialog::domains() const {
@@ -171,3 +213,29 @@ QList<QString> SettingsDialog::domains() const {
         return QList<QString>() << m_domain1;
     }
 }
+
+bool SettingsDialog::allVisibleLineEditsFilled(){
+    int amountVisible = 0;
+    ui->domainLineEdit_1->isVisible() ? amountVisible++ : amountVisible += 0;
+    ui->domainLineEdit_2->isVisible() ? amountVisible++ : amountVisible += 0;
+    ui->domainLineEdit_3->isVisible() ? amountVisible++ : amountVisible += 0;
+    ui->domainLineEdit_4->isVisible() ? amountVisible++ : amountVisible += 0;
+    ui->domainLineEdit_5->isVisible() ? amountVisible++ : amountVisible += 0;
+
+    switch(amountVisible){
+    case 0:
+        return false;
+    case 1:
+        return ui->domainLineEdit_1->text().size() > 0;
+    case 2:
+        return (ui->domainLineEdit_1->text().size() > 0) && (ui->domainLineEdit_2->text().size() > 0);
+    case 3:
+        return (ui->domainLineEdit_1->text().size() > 0) && (ui->domainLineEdit_2->text().size() > 0) && (ui->domainLineEdit_3->text().size() > 0);
+    case 4:
+        return (ui->domainLineEdit_1->text().size() > 0) && (ui->domainLineEdit_2->text().size() > 0) && (ui->domainLineEdit_3->text().size() > 0) && (ui->domainLineEdit_4->text().size() > 0);
+    case 5:
+        return (ui->domainLineEdit_1->text().size() > 0) && (ui->domainLineEdit_2->text().size() > 0) && (ui->domainLineEdit_3->text().size() > 0) && (ui->domainLineEdit_4->text().size() > 0) && (ui->domainLineEdit_5->text().size() > 0);
+    }
+    return false;
+}
+

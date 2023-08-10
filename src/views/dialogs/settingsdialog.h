@@ -46,6 +46,7 @@ private:
     QString m_domain3;
     QString m_domain4;
     QString m_domain5;
+    bool allVisibleLineEditsFilled();
 };
 
 #endif // SETTINGSDIALOG_H
