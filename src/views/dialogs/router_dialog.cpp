@@ -15,7 +15,7 @@ Router_Dialog::Router_Dialog(RouterWidget* router, QWidget *parent) :
         ui->natList->addItem(router->router()->getGlobalIpAddress().toString() + " (" + QString::number(port.getPortNumber()) + ") <-> " + router->router()->getNAT().value(port).getIPAddress().toString() + " (" + QString::number(router->router()->getNAT().value(port).getPortNumber().getPortNumber()) + ")");
     }
     for(auto& nat : router->router()->getNAT2Port().keys()) {
-        ui->natList->addItem(nat.getIPAddress().getAddressAsDecString() + " (" + QString::number(nat.getPortNumber().getPortNumber()) + ")" + " <-> " + router->router()->getGlobalIpAddress().getAddressAsDecString() + " (" + QString::number(router->router()->getNAT2Port().value(nat).getPortNumber()) + ")");
+        ui->natList->addItem(nat.getIPAddress().toString() + " (" + QString::number(nat.getPortNumber().getPortNumber()) + ")" + " <-> " + router->router()->getGlobalIpAddress().toString() + " (" + QString::number(router->router()->getNAT2Port().value(nat).getPortNumber()) + ")");
     }
     for(auto& ipAddress : router->router()->getMacTable().keys()) {
         ui->connectionsList->addItem(ipAddress.toString() + " -> " + router->router()->getMacTable().value(ipAddress).toString());
