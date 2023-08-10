@@ -102,7 +102,7 @@ Package Process::getHTTPResponse(const IPAddress &destination, const Port &destP
         HTTP::initHTTPResponse("HTTP/1.1",messageCode,"OK",data,static_cast<Server *>(host)->getHtmlFile());
     }
     else if(messageCode == 404){
-        HTTP::initHTTPResponse("HTTP/1.1",messageCode,"Not Found",data,static_cast<Server *>(host)->getHtmlFile());
+        HTTP::initHTTPResponse("HTTP/1.1",messageCode,"Not Found",data,"");
     }
     else{
         qDebug() << "No valid messageCode in Process::getHTTPResponse messageCode: " << messageCode;
