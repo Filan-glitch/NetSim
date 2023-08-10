@@ -19,9 +19,7 @@ public:
     QString getDomain() const;
 
 private slots:
-    void on_serverDomainLineEdit_textChanged(const QString &arg1);
-
-    void on_pathLineEdit_textChanged(const QString &arg1);
+    void textChanged();
 
 private:
     Ui::Client_Dialog *ui;

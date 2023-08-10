@@ -137,7 +137,7 @@ void Client::receivePackage(Package data){
     qInfo() << "Client: " << this->getNetworkCard().getNetworkAddress().getAddressAsDecString() << " received Package: " << data.getInfo() <<" Client: " << this->getNetworkCard().getNetworkAddress().getAddressAsDecString();
 
     //Receives a DNS Response Package from Server
-    if(HeaderUtil::getApplicationProtocol(data) == HeaderType::DNS) {
+    if(HeaderUtil::getTopProtocol(data) == HeaderType::DNS) {
         for(auto i = 0; i < HeaderUtil::getDNSAnswerRRs(data).toInt(); i++) {
             addDomain(HeaderUtil::getDNSAnswer(data, i, RRAttribute::NAME), HeaderUtil::getDNSAnswerIPAddress(data, i));
         }

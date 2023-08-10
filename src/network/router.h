@@ -31,6 +31,7 @@ public:
     QMap<MACAddress, Router*> getRouterCable() const;
     QMap<MACAddress, Host*> getHostCable() const;
     QMap<Port, NATEntry> getNAT() const;
+    QMap<NATEntry, Port> getNAT2Port() const;
     void addIPAddress(const IPAddress &ipAddress, const MACAddress &macaddress);
     void addMACAddress(const MACAddress &macAddress, Router *router);
     void addMACAddress(const MACAddress &macAddress, Host *host);
