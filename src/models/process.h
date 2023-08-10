@@ -13,21 +13,32 @@ class Process
 public:
     Process(){};
 
-    Process(Host* host, const Port &destinationPort);
+    Process(const Port &destinationPort, const QString &name);
 
-    Socket getSocket();
+    Socket& getSocket();
 
     void openSocket(const Port &destinationPort);
 
     Package getHTTPRequest(const QString &uri,const IPAddress &destination);
 
-    Package getHTTPResponse(const IPAddress &destination);
+    Package getHTTPResponse(const IPAddress &destination, const Port &destPort);
 
     Package getHandShakePackage(const IPAddress &address, bool initiate, bool client);
 
     Package getCloseConnectionPackage(const IPAddress &address, bool initiate, bool client);
 
+    Package getDNSRequest(const QString& domain);
+
+    Package getDNSResponse(const IPAddress& destination, const QString& domain, const Port& destPort);
+
+    QString getName() const;
+
+    void setHost(Host* host);
+
+    QString toString() const;
+
 private:
+    QString name;
     Socket socket;
     Host* host;
 };

@@ -40,7 +40,7 @@ void Logger::clean() {
 }
 
 void Logger::messageOutput(QtMsgType type, const QMessageLogContext& context, const QString& msg) {
-    QString log = QObject::tr("[%1] [%2] [%3] [%4] %5")
+    QString log = QObject::tr("[%1] [%2] [%3] [%4] %5\n")
                       .arg(QDateTime::currentDateTime().toString("hh:mm:ss:msmsms"))
                       .arg(Logger::contextNames.value(type))
                       .arg(QString(context.file).section('\\', -1))

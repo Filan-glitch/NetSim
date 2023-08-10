@@ -4,7 +4,7 @@
 
 
 
-void Socket::addTCPHeader(Package &data, IPAddress srcAddress, IPAddress destAddress, bool ack, bool psh, bool syn, bool fin)
+void Socket::addTCPHeader(Package &data, const IPAddress &srcAddress, const IPAddress &destAddress, bool ack, bool psh, bool syn, bool fin)
 {
     TCP::initHeader(srcAddress, destAddress, this->sourcePort, this->destinationPort,startSeq+amountReceivedData,serverSeq+amountReceivedData, ack, psh, syn, fin,512,data);
 }
@@ -22,22 +22,25 @@ Socket::Socket() : sourcePort(Port(0)), destinationPort(Port(0)) {
 
 }
 
-Port Socket::getSourcePort(){
+Port Socket::getSourcePort() const{
     return sourcePort;
 }
-void Socket::setSourcePort(Port sourcePort){
+void Socket::setSourcePort(const Port &sourcePort){
     this->sourcePort = sourcePort;
 }
-Port Socket::getDestinationPort(){
+Port Socket::getDestinationPort() const{
     return destinationPort;
 }
+void Socket::setDestinationPort(const Port &destinationPort){
+    this->destinationPort = destinationPort;
+}
 
-quint32 Socket::getStartSeq(){
+quint32 Socket::getStartSeq() const{
     return startSeq;
 }
-quint32 Socket::getServerSeq(){
+quint32 Socket::getServerSeq() const{
     return serverSeq;
 }
-quint32 Socket::getAmountReceivedData(){
+quint32 Socket::getAmountReceivedData() const{
     return amountReceivedData;
 }

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>311</width>
-    <height>142</height>
+    <width>474</width>
+    <height>370</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -488,6 +488,36 @@ QTreeWidget::branch:open:has-children:has-siblings {
         <string/>
        </property>
       </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="processesLabel">
+       <property name="text">
+        <string>Processes:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="connectionsLabel">
+       <property name="text">
+        <string>Connections:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="0">
+      <widget class="QLabel" name="cablesLabel">
+       <property name="text">
+        <string>Cables:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QListWidget" name="processesList"/>
+     </item>
+     <item row="4" column="1">
+      <widget class="QListWidget" name="connectionsList"/>
+     </item>
+     <item row="5" column="1">
+      <widget class="QListWidget" name="cablesList"/>
      </item>
     </layout>
    </item>

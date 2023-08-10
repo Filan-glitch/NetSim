@@ -1,13 +1,14 @@
 #include "packagedatabase.h"
-#include "src/protocols/http.h"
-#include "src/protocols/tcp.h"
-#include "src/protocols/ipv4.h"
-#include "src/protocols/mac.h"
-#include "src/protocols/dns.h"
-#include "src/protocols/udp.h"
+//#include "src/protocols/http.h"
+//#include "src/protocols/tcp.h"
+//#include "src/protocols/ipv4.h"
+//#include "src/protocols/mac.h"
+//#include "src/protocols/dns.h"
+//#include "src/protocols/udp.h"
 
 PackageDatabase::PackageDatabase()
 {
+    /*
     Package package("HTTP Test Request");
     HTTP::initHTTPRequest("GET", "/test/index.html", "HTTP/1.1", package);
     IPAddress src = IPAddress::getRandomAddress(false);
@@ -25,7 +26,7 @@ PackageDatabase::PackageDatabase()
     ip.append(22);
     ip.append(99);
     ip.append(2);
-    answerList.append(DNSEntry("beispiel.de", 1, 1, 21600, 4, ip));
+    answerList.append(DNSEntry("beispiel.de", 1, 1, 21600, ip));
     DNS::initDNSResponse(package2, queryList, answerList);
     UDP::initHeader(Port(2048), Port(53), package2);
     IPAddress src2 = IPAddress::getRandomAddress(false);
@@ -42,6 +43,7 @@ PackageDatabase::PackageDatabase()
     m_packageList.append(package2);
     m_packageList.append(package);
     m_packageList.append(package3);
+    */
 }
 
 QList<Package>* PackageDatabase::packageList()

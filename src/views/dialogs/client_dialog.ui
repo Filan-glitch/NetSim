@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>530</width>
-    <height>194</height>
+    <width>655</width>
+    <height>587</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -475,39 +475,79 @@ QTreeWidget::branch:open:has-children:has-siblings {
        </property>
       </widget>
      </item>
-     <item row="2" column="0">
+     <item row="6" column="0">
       <widget class="QLabel" name="serverDomainLabel">
        <property name="text">
         <string>Server Domain:</string>
        </property>
       </widget>
      </item>
-     <item row="2" column="1">
-      <widget class="QLineEdit" name="serverDomainlineEdit"/>
+     <item row="6" column="1">
+      <widget class="QLineEdit" name="serverDomainLineEdit"/>
      </item>
-     <item row="3" column="0">
+     <item row="7" column="0">
       <widget class="QLabel" name="pathLabel">
        <property name="text">
         <string>Path to HTML:</string>
        </property>
       </widget>
      </item>
-     <item row="3" column="1">
+     <item row="7" column="1">
       <widget class="QLineEdit" name="pathLineEdit"/>
      </item>
-     <item row="4" column="0">
+     <item row="8" column="0">
       <widget class="QLabel" name="disclaimerLabel">
        <property name="text">
         <string>Disclaimer:</string>
        </property>
       </widget>
      </item>
-     <item row="4" column="1">
-      <widget class="QLabel" name="label">
+     <item row="8" column="1">
+      <widget class="QLabel" name="disclaimerTextlabel">
        <property name="text">
         <string>Standard HTML is at /index.html, for Error 404 Response insert wrong path.</string>
        </property>
       </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="processesLabel">
+       <property name="text">
+        <string>Processes:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="domainsLabel">
+       <property name="text">
+        <string>Domains:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="connectionsLabel">
+       <property name="text">
+        <string>Connections:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="0">
+      <widget class="QLabel" name="cablesLabel">
+       <property name="text">
+        <string>Cables:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QListWidget" name="processesList"/>
+     </item>
+     <item row="3" column="1">
+      <widget class="QListWidget" name="domainsList"/>
+     </item>
+     <item row="4" column="1">
+      <widget class="QListWidget" name="connectionsList"/>
+     </item>
+     <item row="5" column="1">
+      <widget class="QListWidget" name="cablesList"/>
      </item>
     </layout>
    </item>
@@ -531,6 +571,9 @@ QTreeWidget::branch:open:has-children:has-siblings {
      </item>
      <item>
       <widget class="QPushButton" name="sendPushButton">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>Send Request</string>
        </property>
@@ -557,6 +600,22 @@ QTreeWidget::branch:open:has-children:has-siblings {
    <hints>
     <hint type="sourcelabel">
      <x>498</x>
+     <y>172</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>264</x>
+     <y>96</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>sendPushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>Client_Dialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>433</x>
      <y>172</y>
     </hint>
     <hint type="destinationlabel">

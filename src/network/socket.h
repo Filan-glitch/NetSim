@@ -13,14 +13,15 @@ public:
     Socket();
     Socket(const Port &sourcePort, const Port &destinationPort);
 
-    void addTCPHeader(Package &data, IPAddress srcAddress, IPAddress destAddress, bool ack, bool psh, bool syn, bool fin);
+    void addTCPHeader(Package &data, const IPAddress &srcAddress, const IPAddress &destAddress, bool ack, bool psh, bool syn, bool fin);
     void addUDPHeader(Package& data);
-    Port getSourcePort();
-    void setSourcePort(Port sourcePort);
-    Port getDestinationPort();
-    quint32 getStartSeq();
-    quint32 getServerSeq();
-    quint32 getAmountReceivedData();
+    Port getSourcePort() const;
+    void setSourcePort(const Port &sourcePort);
+    Port getDestinationPort() const;
+    void setDestinationPort(const Port &destinationPort);
+    quint32 getStartSeq() const;
+    quint32 getServerSeq() const;
+    quint32 getAmountReceivedData() const;
 private:
     Port sourcePort;
     Port destinationPort;

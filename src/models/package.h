@@ -10,9 +10,9 @@
 class Package
 {
 private:
-    Header& getHeaderByType(HeaderType type);
-    void deleteHeaderByType(HeaderType type);
-    HeaderAttribute getHeaderAttributeByName(Header header, QString name);
+    Header& getHeaderByType(const HeaderType &type);
+    void deleteHeaderByType(const HeaderType &type);
+    HeaderAttribute getHeaderAttributeByName(const Header &header, const QString &name) const;
 
     QList<Header> headers;
     QString info;
@@ -27,15 +27,17 @@ public:
     QList<Header> getHeaders() const;
 
     void addHeader(const Header &header);
-    void setContent(QString content);
+    void setContent(const QString &content);
 
     QString getInfo() const;
 
     quint16 getLength() const;
 
-    void changePortAndIP(Port number, IPAddress address, bool src);
+    void changePortAndIP(const Port &number, const IPAddress &address, bool src);
 
-    void changeEthernetHeader(MACAddress srcAddress, MACAddress destAddress);
+    void changeEthernetHeader(const MACAddress &srcAddress, const MACAddress &destAddress);
+
+    Header &operator[](const HeaderType &type);
     
 };
 

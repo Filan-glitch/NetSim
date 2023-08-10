@@ -16,6 +16,7 @@
 #include <QGuiApplication>
 #include <QGridLayout>
 #include <QStringList>
+#include <QMessageBox>
 
 SimulationWindow::SimulationWindow(SimulationManager *manager, QWidget *parent) :
     QMainWindow(parent),
@@ -29,6 +30,7 @@ SimulationWindow::SimulationWindow(SimulationManager *manager, QWidget *parent) 
 
     //Model Initialization
     m_packageModel = new PackageTableModel(PackageDatabase::instance()->packageList(), this);
+    manager->setPackages(m_packageModel);
     ui->packagesTableView->setModel(m_packageModel);
     ui->packagesTableView->horizontalHeader()->setDefaultAlignment(Qt::AlignLeft);
     ui->packagesTableView->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
@@ -266,9 +268,27 @@ void SimulationWindow::about() {
 void SimulationWindow::clientDialog(ClientWidget *client)
 {
     Client_Dialog clientDialog(client, this);
-    clientDialog.exec();
-
-    //TODO: Initiate Request
+    if(clientDialog.exec() == QDialog::Accepted) {
+        client->client()->execDomainResolution(clientDialog.getDomain());
+        if(client->client()->getDomainTable().contains(clientDialog.getDomain())) {
+            //client->client()->execHandShake(client->client()->getDomainTable().value(clientDialog.getDomain()));
+            client->client()->execHTTPRequest(client->client()->getDomainTable().value(clientDialog.getDomain()), clientDialog.getURI());
+            //client->client()->execCloseConnection(client->client()->getDomainTable().value(clientDialog.getDomain()));
+            qInfo() << "All package transfers were successful.";
+            QMessageBox box(this);
+            box.setText("All packages were sent. Please check the packages tab for more information.");
+            box.setIcon(QMessageBox::Information);
+            box.addButton(QMessageBox::Ok);
+            box.exec();
+        } else {
+            qDebug() << "DNS resolution failed.";
+            QMessageBox box(this);
+            box.setText("DNS resolution failed. Please check the domain name and try again.");
+            box.setIcon(QMessageBox::Warning);
+            box.addButton("OK", QMessageBox::AcceptRole);
+            box.exec();
+        }
+    }
 }
 
 void SimulationWindow::routerDialog(RouterWidget *router)

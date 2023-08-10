@@ -2,7 +2,7 @@
 #include "headerAttribute.h"
 
 
-void TCP::initHeader(const IPAddress &srcAdress, const IPAddress &destAdress, const Port &sourcePort, const Port &destinationPort, quint32 seqNumber, quint32 ackNumber, bool ack, bool rst, bool syn, bool fin, quint16 window, Package& data){
+void TCP::initHeader(const IPAddress &srcAdress, const IPAddress &destAdress, const Port &sourcePort, const Port &destinationPort, quint32 seqNumber, quint32 ackNumber, bool ack, bool psh, bool syn, bool fin, quint16 window, Package& data){
     HeaderAttribute srcPort("Source Port",16,sourcePort.getPortNumber());
     HeaderAttribute dstPort("Destination Port",16,destinationPort.getPortNumber());
     HeaderAttribute sequenceNumber("Sequence Number",32,seqNumber);
@@ -12,7 +12,7 @@ void TCP::initHeader(const IPAddress &srcAdress, const IPAddress &destAdress, co
     //Sets the flags for the TCP Header Urgent and Push flag are always 0
     quint16 flags = 0;
     setFlag(&flags,ack,4);
-    setFlag(&flags,rst,2);
+    setFlag(&flags,psh,3);
     setFlag(&flags,syn,1);
     setFlag(&flags,fin,0);
 
@@ -100,7 +100,6 @@ quint16 TCP::getTCPChecksum(const QVector<quint8> &sourceAddress, const QVector<
 
     quint16 finalChecksum = (checksum >> 16) + (checksum & 0xFFFF);
 
-    qInfo() << "TCP Checksum: " << ~finalChecksum;
     return ~finalChecksum;
 }
 

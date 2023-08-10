@@ -15,6 +15,13 @@ class Client_Dialog : public QDialog
 public:
     explicit Client_Dialog(ClientWidget *client, QWidget *parent = nullptr);
     ~Client_Dialog();
+    QString getURI() const;
+    QString getDomain() const;
+
+private slots:
+    void on_serverDomainLineEdit_textChanged(const QString &arg1);
+
+    void on_pathLineEdit_textChanged(const QString &arg1);
 
 private:
     Ui::Client_Dialog *ui;

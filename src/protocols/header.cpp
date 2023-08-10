@@ -1,4 +1,5 @@
 #include "header.h"
+#include "src/protocols/headerattributenotfoundexception.h"
 
 Header::Header() {}
 
@@ -27,4 +28,14 @@ quint16 Header::getHeaderLength() const {
         length += headerAttribute.getSizeInBit();
     }
     return length / 8;
+}
+
+HeaderAttribute &Header::operator[](const QString &name){
+    for(int i = 0; i < headerList.size(); i++){
+        if(headerList.at(i).getName() == name){
+            return headerList[i];
+        }
+    }
+    qDebug() << "HeaderAttribute not found: " << name;
+    throw HeaderAttributeNotFoundException(name);
 }

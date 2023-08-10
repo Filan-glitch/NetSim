@@ -22,9 +22,9 @@ void NetworkCard::addIPHeader(Package &data, quint8 protocol,const IPAddress &de
         data);
 }
 
-void NetworkCard::addMACHeader(Package &data, MACAddress destinationMACAddress, quint16 dataLength)
+void NetworkCard::addMACHeader(Package &data, MACAddress destinationMACAddress, quint16 etherType)
 {
-    MAC::initHeader(data, destinationMACAddress, this->getPhysicalAddress(), dataLength);
+    MAC::initHeader(data, destinationMACAddress, this->getPhysicalAddress(), etherType);
 }
 
 Package NetworkCard::sentToRouter(Package &data)

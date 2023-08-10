@@ -14,12 +14,9 @@ public:
 
     QString domain() const;
 
-    void getRequest();
-    void sendResponse();
+    void receivePackage(Package data) override;
 
-    void receivePackage(Package &data) override;
-
-    QString getHtmlFile()const;
+    QString getHtmlFile() const;
 };
 
 #endif // SERVER_H

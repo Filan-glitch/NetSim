@@ -24,14 +24,17 @@ private:
 public:
     Router();
 
-    void addDomain(const QString &domain, const IPAddress &ipAddress);
-    bool initializeServerConnection();
     void receivePackage(Package data);
     IPAddress getGlobalIpAddress() const;
     NetworkCard getNetworkCard() const;
+    QMap<IPAddress, MACAddress> getMacTable() const;
+    QMap<MACAddress, Router*> getRouterCable() const;
+    QMap<MACAddress, Host*> getHostCable() const;
+    QMap<Port, NATEntry> getNAT() const;
     void addIPAddress(const IPAddress &ipAddress, const MACAddress &macaddress);
     void addMACAddress(const MACAddress &macAddress, Router *router);
     void addMACAddress(const MACAddress &macAddress, Host *host);
+    void addNATEntry(const NATEntry &entry, const Port &port);
 };
 
 #endif // ROUTER_H

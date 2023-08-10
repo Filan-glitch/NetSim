@@ -23,9 +23,9 @@ public:
 
     static IPAddress getRandomAddress(bool isLocal = false);
 
-    bool operator<(const IPAddress& other)const{
-        return getAddressAsInt() < other.getAddressAsInt();
-    }
+    bool operator<(const IPAddress& other)const;
+
+    bool operator==(const IPAddress& other);
 };
 
 #endif // IPADDRESS_H

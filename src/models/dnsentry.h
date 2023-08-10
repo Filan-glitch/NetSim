@@ -25,7 +25,7 @@ private:
     quint16 dataLength;
     QVector<quint8> data;
 public:
-    DNSEntry(const QString &name, quint16 type, quint16 dnsClass, quint32 ttl = 0, quint16 dataLength = 0, const QVector<quint8> &data = QVector<quint8>());
+    DNSEntry(const QString &name, quint16 type, quint16 dnsClass, quint32 ttl = 0, const QVector<quint8> &data = QVector<quint8>());
     QString getName() const;
     quint16 getType() const;
     quint16 getDnsClass() const;
