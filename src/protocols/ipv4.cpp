@@ -59,26 +59,6 @@ void IPv4::initHeader(quint16 id, bool DF, bool MF, quint16 fragmentOffset, quin
     data.addHeader(ipHeader);
 }
 
-QList<Package> IPv4::fragmentPackage(const Package &package, quint32 mtu)
-{
-    QList<Package> returnList = QList<Package>();
-    auto packageAmount = package.getContent().length()/mtu + 1;
-    auto data = package.getContent();
-    for(auto i = 0; i < packageAmount; i++) {
-        //Daten aufsplitten
-        Package packageFragment;
-        if(i != packageAmount - 1) {
-            auto packageFragment = Package("IP Fragment No. " + QString::number(i), data.first(1500));
-            data = data.last(data.size() - 1500);
-        } else {
-            auto packageFragment = Package("IP Fragment No. " + QString::number(i), data);
-        }
-
-        returnList.append(packageFragment);
-    }
-    return returnList;
-}
-
 void IPv4::setFlag(quint8* flags, bool set, quint8 position){
     if (set) {
         // sets the bit at position

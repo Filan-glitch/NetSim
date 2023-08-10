@@ -91,10 +91,6 @@ void Router::receivePackage(Package data)
     //Changing the Ethernet II Header
     data.changeEthernetHeader(this->networkCard.getPhysicalAddress(),destMAC);
 
-    //Fragmenting the Package
-    //QList<Package> fragments = IPv4::fragmentPackage(data,1500);
-    QList<Package> fragments;
-    fragments.append(data);
 
     //Getting the router/Host
     Router* nextRouter = this->routerCable[destMAC];
@@ -105,15 +101,11 @@ void Router::receivePackage(Package data)
             qFatal("%s", error.toStdString().c_str());
             throw CableNotFoundException(error);
         }
-        for(const auto& element : fragments){
-            qInfo() << "Router: " << this->getNetworkCard().getPhysicalAddress().toString() << " sends Package to Host: " << destHost->getNetworkCard().getNetworkAddress().toString();
-            destHost->receivePackage(element);
-        }
+        qInfo() << "Router: " << this->getNetworkCard().getPhysicalAddress().toString() << " sends Package to Host: " << destHost->getNetworkCard().getNetworkAddress().toString();
+        destHost->receivePackage(data);
     }
     else{
-        for(const auto& element : fragments){
-            qInfo() << "Router: " << this->getNetworkCard().getPhysicalAddress().toString() << " sends Package to Router: " << nextRouter->networkCard.getPhysicalAddress().toString();
-            nextRouter->receivePackage(element);
-        }
+        qInfo() << "Router: " << this->getNetworkCard().getPhysicalAddress().toString() << " sends Package to Router: " << nextRouter->networkCard.getPhysicalAddress().toString();
+        nextRouter->receivePackage(data);
     }
 }
