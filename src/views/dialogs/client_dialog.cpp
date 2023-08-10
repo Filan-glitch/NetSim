@@ -22,6 +22,9 @@ Client_Dialog::Client_Dialog(ClientWidget* client, QWidget *parent) :
     for(auto& cable : client->client()->getCables().keys()) {
         ui->cablesList->addItem("Cable to " + cable.toString());
     }
+
+    connect(ui->serverDomainLineEdit, &QLineEdit::textChanged, this, &Client_Dialog::textChanged);
+    connect(ui->pathLineEdit, &QLineEdit::textChanged, this, &Client_Dialog::textChanged);
 }
 
 Client_Dialog::~Client_Dialog()
@@ -39,7 +42,7 @@ QString Client_Dialog::getDomain() const
     return ui->serverDomainLineEdit->text();
 }
 
-void Client_Dialog::on_serverDomainLineEdit_textChanged(const QString &arg1)
+void Client_Dialog::textChanged()
 {
     if(ui->serverDomainLineEdit->text().size() > 0 && ui->pathLineEdit->text().size() > 0){
         ui->sendPushButton->setEnabled(true);
@@ -50,13 +53,4 @@ void Client_Dialog::on_serverDomainLineEdit_textChanged(const QString &arg1)
 }
 
 
-void Client_Dialog::on_pathLineEdit_textChanged(const QString &arg1)
-{
-    if(ui->serverDomainLineEdit->text().size() > 0 && ui->pathLineEdit->text().size() > 0){
-        ui->sendPushButton->setEnabled(true);
-    }
-    else{
-        ui->sendPushButton->setEnabled(false);
-    }
-}
 

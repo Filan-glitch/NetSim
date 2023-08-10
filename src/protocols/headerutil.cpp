@@ -1175,15 +1175,8 @@ QString HeaderUtil::getPackageLength(const Package &package) {
     return QString::number(package.getLength());
 }
 
-HeaderType HeaderUtil::getApplicationProtocol(const Package &data){
-    if (data.getHeaders().size() < 4) {
-        return HeaderType::UNKNOWN;
-    }
-    if (data.getHeaders().at(0).getType() == HeaderType::HTTP) {
-        return HeaderType::HTTP;
-    } else {
-        return HeaderType::DNS;
-    }
+HeaderType HeaderUtil::getTopProtocol(const Package &data){
+    return data.getHeaders().constFirst().getType();
 }
 
 Header HeaderUtil::getHeaderByType(const HeaderType &type, const Package &data){

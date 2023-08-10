@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Router</string>
   </property>
   <property name="styleSheet">
    <string notr="true">/*
@@ -429,6 +429,10 @@ QTreeWidget::branch:closed:has-children:has-siblings {
 QTreeWidget::branch:open:has-children:!has-siblings,
 QTreeWidget::branch:open:has-children:has-siblings {
     image: url(:/ellapsed.svg);
+}
+QListWidget {
+	color: #a9b7c6; 
+	background-color : #1e1d23; 
 }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">

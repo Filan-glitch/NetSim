@@ -23,7 +23,7 @@ void Server::receivePackage(Package data){
     getPackages()->addPackage(data);
 
     //Receives a DNS Request Package
-    if(HeaderUtil::getApplicationProtocol(data) == HeaderType::DNS) {
+    if(HeaderUtil::getTopProtocol(data) == HeaderType::DNS) {
         //Getting the DNS process
         Process dnsProcess;
         try{
@@ -69,7 +69,7 @@ void Server::receivePackage(Package data){
             qDebug() << "Could not find HTTP Process in Server::receivePackage TCP Handshake Package";
         }
 
-        httpProcess.getSocket().setDestinationPort(HeaderUtil::getPortAsPort(data, false));
+        httpProcess.getSocket().setDestinationPort(HeaderUtil::getPortAsPort(data, true));
 
         //Creating the response Package for TCP Handshake
         Package synAckPackage = httpProcess.getHandShakePackage(HeaderUtil::getIPAddressAsIPAddress(data,true),false,false);
@@ -106,9 +106,10 @@ void Server::receivePackage(Package data){
             return;
         }
 
+        httpProcess.getSocket().setDestinationPort(HeaderUtil::getPortAsPort(data, true));
 
         //Creating the response Package for close connection
-        Package synAckPackage = httpProcess.getCloseConnectionPackage(HeaderUtil::getIPAddressAsIPAddress(data,true),false,false);
+        Package finAckPackage = httpProcess.getCloseConnectionPackage(HeaderUtil::getIPAddressAsIPAddress(data,true),false,false);
 
         //Getting the local Router
         MACAddress routerMAC = this->getHostTable().value(HeaderUtil::getIPAddressAsIPAddress(data, true));
@@ -127,7 +128,7 @@ void Server::receivePackage(Package data){
 
         //Sending package to local Router
         qInfo() << "Server: " << this->getNetworkCard().getNetworkAddress().toString() << " sends FINACK Package to router: " << router->getNetworkCard().getPhysicalAddress().toString();
-        router->receivePackage(synAckPackage);
+        router->receivePackage(finAckPackage);
         return;
     }
 

@@ -32,6 +32,11 @@ QMap<Port, NATEntry> Router::getNAT() const
     return portToNAT;
 }
 
+QMap<NATEntry, Port> Router::getNAT2Port() const
+{
+    return natToPort;
+}
+
 void Router::addIPAddress(const IPAddress &ipAddress, const MACAddress &macaddress)
 {
     macTable[ipAddress] = macaddress;

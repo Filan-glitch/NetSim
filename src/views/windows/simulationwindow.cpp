@@ -191,7 +191,7 @@ void SimulationWindow::updateTreeWidget(const QModelIndex &index)
     this->m_treeWidget->addTopLevelItem(transportHeader);
 
     // Application Header (if existant)
-    if(HeaderUtil::getApplicationProtocol(package) == HeaderType::HTTP) {
+    if(HeaderUtil::getTopProtocol(package) == HeaderType::HTTP) {
         if(HeaderUtil::getHTTPIsResponse(package)) {
             QTreeWidgetItem* applicationHeader = new QTreeWidgetItem(static_cast<QTreeWidget *>(nullptr), QStringList(QString("Hypertext Transfer Protocol")));
             applicationHeader->addChild(new QTreeWidgetItem(applicationHeader, QStringList(QString("Response Version: %1").arg(HeaderUtil::getHTTPAttribute(package, "Version")))));
@@ -212,8 +212,8 @@ void SimulationWindow::updateTreeWidget(const QModelIndex &index)
 
             this->m_treeWidget->addTopLevelItem(applicationHeader);
         }
-
-    } else if (HeaderUtil::getApplicationProtocol(package) == HeaderType::DNS) {
+        
+    } else if (HeaderUtil::getTopProtocol(package) == HeaderType::DNS) {
         QTreeWidgetItem* applicationHeader = new QTreeWidgetItem(static_cast<QTreeWidget *>(nullptr), QStringList(QString("Domain Name System")));
         applicationHeader->addChild(new QTreeWidgetItem(applicationHeader, QStringList(QString("Transaction ID: %1").arg(HeaderUtil::getDNSID(package)))));
         QTreeWidgetItem* dnsFlags = new QTreeWidgetItem(applicationHeader, QStringList(QString("Flags: %1").arg(HeaderUtil::getDNSFlags(package))));
@@ -271,9 +271,9 @@ void SimulationWindow::clientDialog(ClientWidget *client)
     if(clientDialog.exec() == QDialog::Accepted) {
         client->client()->execDomainResolution(clientDialog.getDomain());
         if(client->client()->getDomainTable().contains(clientDialog.getDomain())) {
-            //client->client()->execHandShake(client->client()->getDomainTable().value(clientDialog.getDomain()));
+            client->client()->execHandShake(client->client()->getDomainTable().value(clientDialog.getDomain()));
             client->client()->execHTTPRequest(client->client()->getDomainTable().value(clientDialog.getDomain()), clientDialog.getURI());
-            //client->client()->execCloseConnection(client->client()->getDomainTable().value(clientDialog.getDomain()));
+            client->client()->execCloseConnection(client->client()->getDomainTable().value(clientDialog.getDomain()));
             qInfo() << "All package transfers were successful.";
             QMessageBox box(this);
             box.setText("All packages were sent. Please check the packages tab for more information.");

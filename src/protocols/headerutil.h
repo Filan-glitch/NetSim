@@ -278,7 +278,7 @@ public:
      * @param data
      * @return Returns the HeaderType of the Application Protocol
      */
-    static HeaderType getApplicationProtocol(const Package &data);
+    static HeaderType getTopProtocol(const Package &data);
 
 
      static IPAddress getIPAddressAsIPAddress(const Package &data, bool src);

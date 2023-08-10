@@ -19,11 +19,18 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     ui->domainLineEdit_4->setVisible(false);
     ui->domainLabel_5->setVisible(false);
     ui->domainLineEdit_5->setVisible(false);
+    ui->startPushButton->setEnabled(false);
     QRect rect = parent->geometry();
     rect.setHeight(0);
     this->setGeometry(rect);
     this->setFixedSize(size());
     setWindowFlags(Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint);
+
+    connect(ui->domainLineEdit_1, &QLineEdit::textChanged, this, &SettingsDialog::textChanged1);
+    connect(ui->domainLineEdit_2, &QLineEdit::textChanged, this, &SettingsDialog::textChanged2);
+    connect(ui->domainLineEdit_3, &QLineEdit::textChanged, this, &SettingsDialog::textChanged3);
+    connect(ui->domainLineEdit_4, &QLineEdit::textChanged, this, &SettingsDialog::textChanged4);
+    connect(ui->domainLineEdit_5, &QLineEdit::textChanged, this, &SettingsDialog::textChanged5);
 }
 
 
@@ -120,10 +127,10 @@ void SettingsDialog::setServerAmount(int amount)
     }
 
     if(allVisibleLineEditsFilled()){
-        ui->buttonBox->setEnabled(true);
+        ui->startPushButton->setEnabled(true);
     }
     else{
-        ui->buttonBox->setEnabled(false);
+        ui->startPushButton->setEnabled(false);
     }
 }
 
@@ -137,65 +144,57 @@ quint8 SettingsDialog::getServerAmount() const
     return serverAmount;
 }
 
-void SettingsDialog::on_domainLineEdit_1_textChanged(const QString &arg1)
+void SettingsDialog::textChanged1(const QString &data)
 {
-    m_domain1 = arg1;
-
+    m_domain1 = data;
     if(allVisibleLineEditsFilled()){
-        ui->buttonBox->setEnabled(true);
+        ui->startPushButton->setEnabled(true);
     }
     else{
-        ui->buttonBox->setEnabled(false);
+        ui->startPushButton->setEnabled(false);
     }
 }
 
-void SettingsDialog::on_domainLineEdit_2_textChanged(const QString &arg1)
+void SettingsDialog::textChanged2(const QString &data)
 {
-    m_domain2 = arg1;
-
     if(allVisibleLineEditsFilled()){
-        ui->buttonBox->setEnabled(true);
+        ui->startPushButton->setEnabled(true);
     }
     else{
-        ui->buttonBox->setEnabled(false);
+        ui->startPushButton->setEnabled(false);
     }
 }
 
-void SettingsDialog::on_domainLineEdit_3_textChanged(const QString &arg1)
+void SettingsDialog::textChanged3(const QString &data)
 {
-    m_domain3 = arg1;
-
     if(allVisibleLineEditsFilled()){
-        ui->buttonBox->setEnabled(true);
+        ui->startPushButton->setEnabled(true);
     }
     else{
-        ui->buttonBox->setEnabled(false);
+        ui->startPushButton->setEnabled(false);
     }
 }
 
-void SettingsDialog::on_domainLineEdit_4_textChanged(const QString &arg1)
+void SettingsDialog::textChanged4(const QString &data)
 {
-    m_domain4 = arg1;
-
     if(allVisibleLineEditsFilled()){
-        ui->buttonBox->setEnabled(true);
+        ui->startPushButton->setEnabled(true);
     }
     else{
-        ui->buttonBox->setEnabled(false);
+        ui->startPushButton->setEnabled(false);
     }
 }
 
-void SettingsDialog::on_domainLineEdit_5_textChanged(const QString &arg1)
+void SettingsDialog::textChanged5(const QString &data)
 {
-    m_domain5 = arg1;
-
     if(allVisibleLineEditsFilled()){
-        ui->buttonBox->setEnabled(true);
+        ui->startPushButton->setEnabled(true);
     }
     else{
-        ui->buttonBox->setEnabled(false);
+        ui->startPushButton->setEnabled(false);
     }
 }
+
 
 QList<QString> SettingsDialog::domains() const {
     switch(serverAmount) {
@@ -215,14 +214,7 @@ QList<QString> SettingsDialog::domains() const {
 }
 
 bool SettingsDialog::allVisibleLineEditsFilled(){
-    int amountVisible = 0;
-    ui->domainLineEdit_1->isVisible() ? amountVisible++ : amountVisible += 0;
-    ui->domainLineEdit_2->isVisible() ? amountVisible++ : amountVisible += 0;
-    ui->domainLineEdit_3->isVisible() ? amountVisible++ : amountVisible += 0;
-    ui->domainLineEdit_4->isVisible() ? amountVisible++ : amountVisible += 0;
-    ui->domainLineEdit_5->isVisible() ? amountVisible++ : amountVisible += 0;
-
-    switch(amountVisible){
+    switch(serverAmount){
     case 0:
         return false;
     case 1:
