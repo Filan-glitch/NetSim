@@ -23,7 +23,7 @@ void Server::receivePackage(Package data){
     getPackages()->addPackage(data);
 
     //Receives a DNS Request Package
-    if(HeaderUtil::getApplicationProtocol(data) == HeaderType::DNS) {
+    if(HeaderUtil::getTopProtocol(data) == HeaderType::DNS) {
         //Getting the DNS process
         Process dnsProcess;
         try{

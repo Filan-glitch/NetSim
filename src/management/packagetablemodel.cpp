@@ -59,8 +59,31 @@ QVariant PackageTableModel::data(const QModelIndex &index, int role) const
             return HeaderUtil::getIPAddress(package, true);
         case 1:
             return HeaderUtil::getIPAddress(package, false);
-        case 2:
-            return HeaderUtil::getApplicationProtocol(package) ? "DNS" : "HTTP";
+        case 2: {
+            switch (HeaderUtil::getTopProtocol(package)) {
+            case HeaderType::DNS:
+                return "DNS";
+                break;
+            case HeaderType::HTTP:
+                return "HTTP";
+                break;
+            case HeaderType::TCP:
+                return "TCP";
+                break;
+            case HeaderType::UDP:
+                return "UDP";
+                break;
+            case HeaderType::IP:
+                return "IP";
+                break;
+            case HeaderType::MAC:
+                return "MAC";
+                break;
+            default:
+                return "Unknown";
+                break;
+            }
+        }
         case 3:
             return HeaderUtil::getPackageLength(package);
         case 4:
