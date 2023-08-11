@@ -1,4 +1,14 @@
+# NetSim - The educational Network Simulation
+
 <p align="center">
+  <img src="./assets/full_logo.svg" alt="Alt Text" width="350">
+</p>
+
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/c040d5aae28c4d82846cc95cce931988)](https://app.codacy.com/gh/Filan-glitch/NetSim/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+
+🌐 **Net**work **Sim**ulation is a C++ based project using the Qt framework that represents a simulation of a network. The project aims to model and simulate basic network structures such as hosts, routers, processes, and network layers with their protocols. It provides a visual graphical user interface (GUI) to visualize the network topology and allows interaction with the simulated network components.
+
+## Project Features
   <img src="./assets/full_logo.svg" alt="Alt Text" width="350">
 </p>
 
