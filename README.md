@@ -30,7 +30,7 @@
 
 1. **Data Packet Simulation**: The project enables the simulation of data traffic between network components. Users can send data packets from one host to another and trace the path the packet takes through the network.
 
-1. **Protocol Support**: It implements basic network protocols such as IP (Internet Protocol), TCP (Transmission Control Protocol), and UDP (User Datagram Protocol). This allows the use of different protocols for communication between network components.
+1.   **Protocol Support**: It implements basic network protocols such as IP (Internet Protocol), TCP (Transmission Control Protocol), and UDP (User Datagram Protocol). This allows the use of different protocols for communication between network components.
 
 1. **Logging and Error Handling**: The project provides logging functionality to capture events and errors during the network simulation. This facilitates error handling and debugging.
 
