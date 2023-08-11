@@ -1,5 +1,23 @@
 # NetSim - The educational Network Simulation
 
+<p align="center">
+  <p align="center">
+    <img src="assets/full_logo.svg" alt="Alt Text" width="350">
+  </p>
+</p>
+
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/c040d5aae28c4d82846cc95cce931988)](https://app.codacy.com/gh/Filan-glitch/NetSim/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+
+🌐 **Net**work **Sim**ulation is a C++ based project using the Qt framework that represents a simulation of a network. The project aims to model and simulate basic network structures such as hosts, routers, processes, and network layers with their protocols. It provides a visual graphical user interface (GUI) to visualize the network topology and allows interaction with the simulated network components.
+
+## Project Features
+  <img src="./assets/full_logo.svg" alt="Alt Text" width="350">
+</p>
+
+# NetSim - The educational Network Simulation
+
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/c040d5aae28c4d82846cc95cce931988)](https://app.codacy.com/gh/Filan-glitch/NetSim/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+
 🌐 **Net**work **Sim**ulation is a C++ based project using the Qt framework that represents a simulation of a network. The project aims to model and simulate basic network structures such as hosts, routers, processes, and network layers with their protocols. It provides a visual graphical user interface (GUI) to visualize the network topology and allows interaction with the simulated network components.
 
 ## Project Features
@@ -8,13 +26,13 @@
 
 1. **Visualization of Network Topology**: The project visualizes the network topology in a graphical user interface where hosts, routers, and their connections are represented visually. This provides a clear representation of the simulated network.
 
-2. **Creation and Configuration of Network Components**: It provides functions to add, remove, and configure hosts, routers, and processes within the network. Users can set parameters such as IP addresses, hostnames, port numbers, etc.
+1. **Creation and Configuration of Network Components**: It provides functions to add, remove, and configure hosts, routers, and processes within the network. Users can set parameters such as IP addresses, hostnames, port numbers, etc.
 
-3. **Data Packet Simulation**: The project enables the simulation of data traffic between network components. Users can send data packets from one host to another and trace the path the packet takes through the network.
+1. **Data Packet Simulation**: The project enables the simulation of data traffic between network components. Users can send data packets from one host to another and trace the path the packet takes through the network.
 
-4. **Protocol Support**: It implements basic network protocols such as IP (Internet Protocol), TCP (Transmission Control Protocol), and UDP (User Datagram Protocol). This allows the use of different protocols for communication between network components.
+1.   **Protocol Support**: It implements basic network protocols such as IP (Internet Protocol), TCP (Transmission Control Protocol), and UDP (User Datagram Protocol). This allows the use of different protocols for communication between network components.
 
-5. **Logging and Error Handling**: The project provides logging functionality to capture events and errors during the network simulation. This facilitates error handling and debugging.
+1. **Logging and Error Handling**: The project provides logging functionality to capture events and errors during the network simulation. This facilitates error handling and debugging.
 
 ## Technologies Used
 
@@ -33,11 +51,11 @@
    git clone https://github.com/Filan-glitch/NetSim.git
    ```
 
-2. Install any required dependencies and configurations as instructed in the project documentation.
+1. Install any required dependencies and configurations as instructed in the project documentation.
 
-3. Build the project using the appropriate build tool (e.g., CMake or qmake).
+1. Build the project using the QMake.
 
-4. Launch the application and start simulating the network.
+1. Launch the application and start simulating the network.
 
 ## Contribution and Feedback
 
@@ -48,5 +66,4 @@
 📚 Here are some useful resources related to network simulation:
 
 - [Qt Documentation](https://doc.qt.io/): Official documentation for the Qt framework.
-- [Computernetzwerke : Der Top-Down-Ansatz](): Literature resource explaining the network structure and important protocols.
-
+- [Computernetzwerke : Der Top-Down-Ansatz](https://books.google.de/books?id=36vPdcV78YkC&printsec=copyright&hl=de#v=onepage&q&f=false): Literature resource explaining the network structure and important protocols.

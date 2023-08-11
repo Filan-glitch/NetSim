@@ -5,7 +5,7 @@
 #include "src/protocols/dns.h"
 #include "src/network/server.h"
 
-Process::Process(const Port &destinationPort, const QString &name) : name(name)
+Process::Process(const Port &destinationPort, const QString &name) : name(name), host(nullptr)
 {
     openSocket(destinationPort);
 }

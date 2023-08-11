@@ -14,7 +14,7 @@ QString HeaderUtil::getMacAddress(const Package &data, bool src){
     try{
         header = getHeaderByType(HeaderType::MAC, data);
     }
-    catch(HeaderNotFoundException hnfe){
+    catch(const HeaderNotFoundException &hnfe){
         qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getMacAddress";
         return "";
     }
@@ -25,7 +25,7 @@ QString HeaderUtil::getMacAddress(const Package &data, bool src){
         try{
             attribute = getHeaderAttributeByName("Source MAC Address", header).getContentAsArray();
         }
-        catch(HeaderAttributeNotFoundException hanfe){
+        catch(const HeaderAttributeNotFoundException &hanfe){
             qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getMacAddress";
             return "";
         }
@@ -34,7 +34,7 @@ QString HeaderUtil::getMacAddress(const Package &data, bool src){
         try{
             attribute = getHeaderAttributeByName("Destination MAC Address", header).getContentAsArray();
         }
-        catch(HeaderAttributeNotFoundException hanfe){
+        catch(const HeaderAttributeNotFoundException &hanfe){
             qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getMacAddress";
             return "";
         }
@@ -50,7 +50,7 @@ QString HeaderUtil::getEtherType(const Package &data){
     try{
         header = getHeaderByType(HeaderType::MAC, data);
     }
-    catch(HeaderNotFoundException hnfe){
+    catch(const HeaderNotFoundException &hnfe){
         qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getMacAddress";
         return "";
     }
@@ -59,7 +59,7 @@ QString HeaderUtil::getEtherType(const Package &data){
     try{
         attribute = getHeaderAttributeByName("EtherType", header).getContentAsArray();
     }
-    catch(HeaderAttributeNotFoundException hanfe){
+    catch(const HeaderAttributeNotFoundException &hanfe){
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getEtherType";
         return "";
     }
@@ -84,7 +84,7 @@ QString HeaderUtil::getIPAddress(const Package &data, bool src){
     try{
            header = getHeaderByType(HeaderType::IP, data);
     }
-    catch(HeaderNotFoundException hnfe){
+    catch(const HeaderNotFoundException &hnfe){
            qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getIPAddress";
            return "";
     }
@@ -96,7 +96,7 @@ QString HeaderUtil::getIPAddress(const Package &data, bool src){
            try{
             attribute = getHeaderAttributeByName("Source Address", header).getContentAsArray();
            }
-           catch(HeaderAttributeNotFoundException hanfe){
+           catch(const HeaderAttributeNotFoundException &hanfe){
             qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getTCPFlag";
             return "";
            }
@@ -105,7 +105,7 @@ QString HeaderUtil::getIPAddress(const Package &data, bool src){
            try{
             attribute = getHeaderAttributeByName("Destination Address", header).getContentAsArray();
            }
-           catch(HeaderAttributeNotFoundException hanfe){
+           catch(const HeaderAttributeNotFoundException &hanfe){
             qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getTCPFlag";
             return "";
            }
@@ -121,7 +121,7 @@ QString HeaderUtil::getIPFlags(const Package &data){
     try{
            header = getHeaderByType(HeaderType::IP, data);
     }
-    catch(HeaderNotFoundException hnfe){
+    catch(const HeaderNotFoundException &hnfe){
            qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getIPAddress";
            return "";
     }
@@ -130,7 +130,7 @@ QString HeaderUtil::getIPFlags(const Package &data){
     try{
            attribute = getHeaderAttributeByName("Flags", header).getContentAsArray();
     }
-    catch(HeaderAttributeNotFoundException hanfe){
+    catch(const HeaderAttributeNotFoundException &hanfe){
            qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getIPFlag";
            return "";
     }
@@ -144,7 +144,7 @@ QString HeaderUtil::getIPFlag(const Package &data, const IPFlag &flagName){
     try{
            header = getHeaderByType(HeaderType::IP, data);
     }
-    catch(HeaderNotFoundException hnfe){
+    catch(const HeaderNotFoundException &hnfe){
            qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getIPAddress";
            return "";
     }
@@ -153,7 +153,7 @@ QString HeaderUtil::getIPFlag(const Package &data, const IPFlag &flagName){
     try{
            attribute = getHeaderAttributeByName("Flags", header).getContentAsArray();
     }
-    catch(HeaderAttributeNotFoundException hanfe){
+    catch(const HeaderAttributeNotFoundException &hanfe){
           qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getIPFlag";
            return "";
     }
@@ -181,7 +181,7 @@ QString HeaderUtil::getIPNextProtocol(const Package &data){
     try{
         header = getHeaderByType(HeaderType::IP, data);
     }
-    catch(HeaderNotFoundException hnfe){
+    catch(const HeaderNotFoundException &hnfe){
         qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getIPAddress";
         return "";
     }
@@ -190,7 +190,7 @@ QString HeaderUtil::getIPNextProtocol(const Package &data){
     try{
         attribute = getHeaderAttributeByName("Protocol", header).getContentAsArray();
     }
-    catch(HeaderAttributeNotFoundException hanfe){
+    catch(const HeaderAttributeNotFoundException &hanfe){
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getIPNextProtocol";
         return "";
     }
@@ -214,7 +214,7 @@ QString HeaderUtil::getIPHeaderLength(const Package &data) {
     try{
         header = getHeaderByType(HeaderType::IP, data);
     }
-    catch(HeaderNotFoundException hnfe){
+    catch(const HeaderNotFoundException &hnfe){
         qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getIPAddress";
         return "";
     }
@@ -224,7 +224,7 @@ QString HeaderUtil::getIPHeaderLength(const Package &data) {
     try{
         attribute = getHeaderAttributeByName("Header Length", header).getContentAsArray();
     }
-    catch(HeaderAttributeNotFoundException hanfe){
+    catch(const HeaderAttributeNotFoundException &hanfe){
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getIPNextProtocol";
         return "";
     }
@@ -237,7 +237,7 @@ QString HeaderUtil::getIPTOS(const Package &data) {
     try{
         header = getHeaderByType(HeaderType::IP, data);
     }
-    catch(HeaderNotFoundException hnfe){
+    catch(const HeaderNotFoundException &hnfe){
         qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getIPAddress";
         return "";
     }
@@ -247,7 +247,7 @@ QString HeaderUtil::getIPTOS(const Package &data) {
     try{
         attribute = getHeaderAttributeByName("Type Of Service", header).getContentAsArray();
     }
-    catch(HeaderAttributeNotFoundException hanfe){
+    catch(const HeaderAttributeNotFoundException &hanfe){
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getIPNextProtocol";
         return "";
     }
@@ -260,7 +260,7 @@ QString HeaderUtil::getIPTotalLength(const Package &data) {
     try{
         header = getHeaderByType(HeaderType::IP, data);
     }
-    catch(HeaderNotFoundException hnfe){
+    catch(const HeaderNotFoundException &hnfe){
         qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getIPAddress";
         return "";
     }
@@ -270,7 +270,7 @@ QString HeaderUtil::getIPTotalLength(const Package &data) {
     try{
         attribute = getHeaderAttributeByName("Total Length", header).getContentAsArray();
     }
-    catch(HeaderAttributeNotFoundException hanfe){
+    catch(const HeaderAttributeNotFoundException &hanfe){
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getIPNextProtocol";
         return "";
     }
@@ -285,7 +285,7 @@ QString HeaderUtil::getIPIdentification(const Package &data) {
     try{
         header = getHeaderByType(HeaderType::IP, data);
     }
-    catch(HeaderNotFoundException hnfe){
+    catch(const HeaderNotFoundException &hnfe){
         qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getIPAddress";
         return "";
     }
@@ -295,7 +295,7 @@ QString HeaderUtil::getIPIdentification(const Package &data) {
     try{
         attribute = getHeaderAttributeByName("Identification", header).getContentAsArray();
     }
-    catch(HeaderAttributeNotFoundException hanfe){
+    catch(const HeaderAttributeNotFoundException &hanfe){
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getIPNextProtocol";
         return "";
     }
@@ -310,7 +310,7 @@ QString HeaderUtil::getIPTTL(const Package &data) {
     try{
         header = getHeaderByType(HeaderType::IP, data);
     }
-    catch(HeaderNotFoundException hnfe){
+    catch(const HeaderNotFoundException &hnfe){
         qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getIPAddress";
         return "";
     }
@@ -320,7 +320,7 @@ QString HeaderUtil::getIPTTL(const Package &data) {
     try{
         attribute = getHeaderAttributeByName("Time To Live", header).getContentAsArray();
     }
-    catch(HeaderAttributeNotFoundException hanfe){
+    catch(const HeaderAttributeNotFoundException &hanfe){
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getIPNextProtocol";
         return "";
     }
@@ -333,7 +333,7 @@ QString HeaderUtil::getIPChecksum(const Package& data) {
     try{
         header = getHeaderByType(HeaderType::IP, data);
     }
-    catch(HeaderNotFoundException hnfe){
+    catch(const HeaderNotFoundException &hnfe){
         qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getIPAddress";
         return "";
     }
@@ -343,7 +343,7 @@ QString HeaderUtil::getIPChecksum(const Package& data) {
     try{
         attribute = getHeaderAttributeByName("Checksum", header).getContentAsArray();
     }
-    catch(HeaderAttributeNotFoundException hanfe){
+    catch(const HeaderAttributeNotFoundException &hanfe){
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getIPNextProtocol";
         return "";
     }
@@ -358,7 +358,7 @@ QString HeaderUtil::getIPFragmentOffset(const Package& data) {
     try{
         header = getHeaderByType(HeaderType::IP, data);
     }
-    catch(HeaderNotFoundException hnfe){
+    catch(const HeaderNotFoundException &hnfe){
         qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getIPAddress";
         return "";
     }
@@ -368,7 +368,7 @@ QString HeaderUtil::getIPFragmentOffset(const Package& data) {
     try{
         attribute = getHeaderAttributeByName("Fragment Offset", header).getContentAsArray();
     }
-    catch(HeaderAttributeNotFoundException hanfe){
+    catch(const HeaderAttributeNotFoundException &hanfe){
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getIPNextProtocol";
         return "";
     }
@@ -386,11 +386,11 @@ QString HeaderUtil::getPort(const Package &data, bool src){
     try{
         header = getHeaderByType(HeaderType::TCP, data);
     }
-    catch(HeaderNotFoundException hnfe){
+    catch(const HeaderNotFoundException &hnfe){
         try{
             header = getHeaderByType(HeaderType::UDP,data);
         }
-        catch(HeaderNotFoundException hnfe){
+        catch(const HeaderNotFoundException &hnfe){
             qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getPort";
             return "";
         }
@@ -402,7 +402,7 @@ QString HeaderUtil::getPort(const Package &data, bool src){
         try{
             attribute = getHeaderAttributeByName("Source Port", header).getContentAsArray();
         }
-        catch(HeaderAttributeNotFoundException hanfe){
+        catch(const HeaderAttributeNotFoundException &hanfe){
             qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getPort";
             return "";
         }
@@ -411,7 +411,7 @@ QString HeaderUtil::getPort(const Package &data, bool src){
         try{
             attribute = getHeaderAttributeByName("Destination Port", header).getContentAsArray();
         }
-        catch(HeaderAttributeNotFoundException hanfe){
+        catch(const HeaderAttributeNotFoundException &hanfe){
             qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getPort";
             return "";
         }
@@ -428,7 +428,7 @@ QString HeaderUtil::getTCPFlags(const Package &data) {
     try{
         header = getHeaderByType(HeaderType::TCP, data);
     }
-    catch(HeaderNotFoundException hnfe){
+    catch(const HeaderNotFoundException &hnfe){
         qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getTCPFlag";
         return "";
     }
@@ -438,7 +438,7 @@ QString HeaderUtil::getTCPFlags(const Package &data) {
     try{
         attribute = getHeaderAttributeByName("Flags", header).getContentAsArray();
     }
-    catch(HeaderAttributeNotFoundException hanfe){
+    catch(const HeaderAttributeNotFoundException &hanfe){
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getTCPFlag";
         return "";
     }
@@ -452,7 +452,7 @@ QString HeaderUtil::getTCPFlag(const Package &data, const TCPFlag &flagName){
     try{
         header = getHeaderByType(HeaderType::TCP, data);
     }
-    catch(HeaderNotFoundException hnfe){
+    catch(const HeaderNotFoundException &hnfe){
         qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getTCPFlag";
         return "";
     }
@@ -462,7 +462,7 @@ QString HeaderUtil::getTCPFlag(const Package &data, const TCPFlag &flagName){
     try{
         attribute = getHeaderAttributeByName("Flags", header).getContentAsArray();
     }
-    catch(HeaderAttributeNotFoundException hanfe){
+    catch(const HeaderAttributeNotFoundException &hanfe){
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getTCPFlag";
         return "";
     }
@@ -513,7 +513,7 @@ QString HeaderUtil::getTCPSequenceNumber(const Package &data) {
     try{
         header = getHeaderByType(HeaderType::TCP, data);
     }
-    catch(HeaderNotFoundException hnfe){
+    catch(const HeaderNotFoundException &hnfe){
         qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getTCPFlag";
         return "";
     }
@@ -523,7 +523,7 @@ QString HeaderUtil::getTCPSequenceNumber(const Package &data) {
     try{
         attribute = getHeaderAttributeByName("Sequence Number", header).getContentAsArray();
     }
-    catch(HeaderAttributeNotFoundException hanfe){
+    catch(const HeaderAttributeNotFoundException &hanfe){
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getTCPFlag";
         return "";
     }
@@ -538,7 +538,7 @@ QString HeaderUtil::getTCPAcknowledgementNumber(const Package &data) {
     try{
         header = getHeaderByType(HeaderType::TCP, data);
     }
-    catch(HeaderNotFoundException hnfe){
+    catch(const HeaderNotFoundException &hnfe){
         qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getTCPFlag";
         return "";
     }
@@ -548,7 +548,7 @@ QString HeaderUtil::getTCPAcknowledgementNumber(const Package &data) {
     try{
         attribute = getHeaderAttributeByName("Acknowledgment Number", header).getContentAsArray();
     }
-    catch(HeaderAttributeNotFoundException hanfe){
+    catch(const HeaderAttributeNotFoundException &hanfe){
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getTCPFlag";
         return "";
     }
@@ -564,7 +564,7 @@ QString HeaderUtil::getTCPHeaderLength(const Package &data) {
     try{
         header = getHeaderByType(HeaderType::TCP, data);
     }
-    catch(HeaderNotFoundException hnfe){
+    catch(const HeaderNotFoundException &hnfe){
         qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getTCPFlag";
         return "";
     }
@@ -574,7 +574,7 @@ QString HeaderUtil::getTCPHeaderLength(const Package &data) {
     try{
         attribute = getHeaderAttributeByName("Header Length", header).getContentAsArray();
     }
-    catch(HeaderAttributeNotFoundException hanfe){
+    catch(const HeaderAttributeNotFoundException &hanfe){
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getTCPFlag";
         return "";
     }
@@ -588,7 +588,7 @@ QString HeaderUtil::getTCPWindow(const Package &data) {
     try{
         header = getHeaderByType(HeaderType::TCP, data);
     }
-    catch(HeaderNotFoundException hnfe){
+    catch(const HeaderNotFoundException &hnfe){
         qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getTCPFlag";
         return "";
     }
@@ -598,7 +598,7 @@ QString HeaderUtil::getTCPWindow(const Package &data) {
     try{
         attribute = getHeaderAttributeByName("Window", header).getContentAsArray();
     }
-    catch(HeaderAttributeNotFoundException hanfe){
+    catch(const HeaderAttributeNotFoundException &hanfe){
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getTCPFlag";
         return "";
     }
@@ -611,7 +611,7 @@ QString HeaderUtil::getTCPChecksum(const Package &data) {
     Header header;
     try {
         header = getHeaderByType(HeaderType::TCP, data);
-    } catch (HeaderNotFoundException hnfe) {
+    } catch(const HeaderNotFoundException &hnfe) {
         qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getTCPChecksum";
         return "";
     }
@@ -620,7 +620,7 @@ QString HeaderUtil::getTCPChecksum(const Package &data) {
     QVector<quint8> attribute;
     try {
         attribute = getHeaderAttributeByName("Checksum", header).getContentAsArray();
-    } catch (HeaderAttributeNotFoundException hanfe) {
+    } catch (const HeaderAttributeNotFoundException &hanfe) {
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getTCPChecksum";
         return "";
     }
@@ -633,7 +633,7 @@ QString HeaderUtil::getTCPUrgentPointer(const Package &data) {
     Header header;
     try {
         header = getHeaderByType(HeaderType::TCP, data);
-    } catch (HeaderNotFoundException hnfe) {
+    } catch (const HeaderNotFoundException &hnfe) {
         qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getTCPUrgentPointer";
         return "";
     }
@@ -642,7 +642,7 @@ QString HeaderUtil::getTCPUrgentPointer(const Package &data) {
     QVector<quint8> attribute;
     try {
         attribute = getHeaderAttributeByName("Urgent Pointer", header).getContentAsArray();
-    } catch (HeaderAttributeNotFoundException hanfe) {
+    } catch (const HeaderAttributeNotFoundException &hanfe) {
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getTCPUrgentPointer";
         return "";
     }
@@ -657,7 +657,7 @@ QString HeaderUtil::getUDPChecksum(const Package &data) {
     Header header;
     try {
         header = getHeaderByType(HeaderType::UDP, data);
-    } catch (HeaderNotFoundException hnfe) {
+    } catch (const HeaderNotFoundException &hnfe) {
         qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getUDPChecksum";
         return "";
     }
@@ -665,7 +665,7 @@ QString HeaderUtil::getUDPChecksum(const Package &data) {
     QVector<quint8> attribute;
     try {
         attribute = getHeaderAttributeByName("Checksum", header).getContentAsArray();
-    } catch (HeaderAttributeNotFoundException hanfe) {
+    } catch (const HeaderAttributeNotFoundException &hanfe) {
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getUDPChecksum";
         return "";
     }
@@ -679,7 +679,7 @@ QString HeaderUtil::getUDPLength(const Package &data) {
     Header header;
     try {
         header = getHeaderByType(HeaderType::UDP, data);
-    } catch (HeaderNotFoundException hnfe) {
+    } catch (const HeaderNotFoundException &hnfe) {
         qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getUDPLength";
         return "";
     }
@@ -687,7 +687,7 @@ QString HeaderUtil::getUDPLength(const Package &data) {
     QVector<quint8> attribute;
     try {
         attribute = getHeaderAttributeByName("Length", header).getContentAsArray();
-    } catch (HeaderAttributeNotFoundException hanfe) {
+    } catch (const HeaderAttributeNotFoundException &hanfe) {
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getUDPLength";
         return "";
     }
@@ -705,7 +705,7 @@ QString HeaderUtil::getHTTPAttribute(const Package &data, const QString &attribu
     try{
         header = getHeaderByType(HeaderType::HTTP, data);
     }
-    catch(HeaderNotFoundException hnfe){
+    catch(const HeaderNotFoundException &hnfe){
         qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::ggetAttributeAsString";
         return "";
     }
@@ -717,7 +717,7 @@ QString HeaderUtil::getHTTPAttribute(const Package &data, const QString &attribu
         attribute = getHeaderAttributeByName(attributeName, header).getContentAsArray();
         attributeSize = getHeaderAttributeByName(attributeName, header).getSizeInBit();
     }
-    catch(HeaderAttributeNotFoundException hanfe){
+    catch(const HeaderAttributeNotFoundException &hanfe){
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getAttributeAsString";
         return "";
     }
@@ -736,7 +736,7 @@ bool HeaderUtil::getHTTPIsResponse(const Package &data) {
     try{
         header = getHeaderByType(HeaderType::HTTP, data);
     }
-    catch(HeaderNotFoundException hnfe){
+    catch(const HeaderNotFoundException &hnfe){
         qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::ggetAttributeAsString";
         return false;
     }
@@ -750,7 +750,7 @@ bool HeaderUtil::getHTTPIsRequest(const Package &data) {
     try{
         header = getHeaderByType(HeaderType::HTTP, data);
     }
-    catch(HeaderNotFoundException hnfe){
+    catch(const HeaderNotFoundException &hnfe){
         qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::ggetAttributeAsString";
         return false;
     }
@@ -766,7 +766,7 @@ QString HeaderUtil::getDNSID(const Package &data)
     try{
         header = getHeaderByType(HeaderType::DNS, data);
     }
-    catch(HeaderNotFoundException hnfe){
+    catch(const HeaderNotFoundException &hnfe){
         qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getDNSID";
         return "";
     }
@@ -775,7 +775,7 @@ QString HeaderUtil::getDNSID(const Package &data)
     try{
         attribute = getHeaderAttributeByName("Transaction ID", header).getContentAsArray();
     }
-    catch(HeaderAttributeNotFoundException hanfe){
+    catch(const HeaderAttributeNotFoundException &hanfe){
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getDNSID";
         return "";
     }
@@ -791,7 +791,7 @@ QString HeaderUtil::getDNSFlags(const Package &data)
     try{
         header = getHeaderByType(HeaderType::DNS, data);
     }
-    catch(HeaderNotFoundException hnfe){
+    catch(const HeaderNotFoundException &hnfe){
         qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getDNSFlag";
         return "";
     }
@@ -800,7 +800,7 @@ QString HeaderUtil::getDNSFlags(const Package &data)
     try{
         attribute = getHeaderAttributeByName("Flags", header).getContentAsArray();
     }
-    catch(HeaderAttributeNotFoundException hanfe){
+    catch(const HeaderAttributeNotFoundException &hanfe){
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getDNSFlag";
         return "";
     }
@@ -815,7 +815,7 @@ QString HeaderUtil::getDNSFlag(const Package &data, const DNSFlag &flagName) {
     try{
         header = getHeaderByType(HeaderType::DNS, data);
     }
-    catch(HeaderNotFoundException hnfe){
+    catch(const HeaderNotFoundException &hnfe){
         qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getDNSFlag";
         return "";
     }
@@ -824,7 +824,7 @@ QString HeaderUtil::getDNSFlag(const Package &data, const DNSFlag &flagName) {
     try{
         attribute = getHeaderAttributeByName("Flags", header).getContentAsArray();
     }
-    catch(HeaderAttributeNotFoundException hanfe){
+    catch(const HeaderAttributeNotFoundException &hanfe){
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getDNSFlag";
         return "";
     }
@@ -893,7 +893,7 @@ QString HeaderUtil::getDNSQuestions(const Package &data)
     try{
         header = getHeaderByType(HeaderType::DNS, data);
     }
-    catch(HeaderNotFoundException hnfe){
+    catch(const HeaderNotFoundException &hnfe){
         qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getDNSQuestions";
         return "";
     }
@@ -904,7 +904,7 @@ QString HeaderUtil::getDNSQuestions(const Package &data)
         attribute = getHeaderAttributeByName("Questions", header).getContentAsArray();
         dnsQuestions = attribute[0] << 8 | attribute[1];
     }
-    catch(HeaderAttributeNotFoundException hanfe){
+    catch(const HeaderAttributeNotFoundException &hanfe){
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getDNSQuestions";
         return "";
     }
@@ -918,7 +918,7 @@ QString HeaderUtil::getDNSAnswerRRs(const Package &data)
     try{
         header = getHeaderByType(HeaderType::DNS, data);
     }
-    catch(HeaderNotFoundException hnfe){
+    catch(const HeaderNotFoundException &hnfe){
         qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getDNSQuestions";
         return "";
     }
@@ -927,7 +927,7 @@ QString HeaderUtil::getDNSAnswerRRs(const Package &data)
     try{
         attribute = getHeaderAttributeByName("Answer RRs", header).getContentAsArray();
     }
-    catch(HeaderAttributeNotFoundException hanfe){
+    catch(const HeaderAttributeNotFoundException &hanfe){
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getDNSQuestions";
         return "";
     }
@@ -943,7 +943,7 @@ QString HeaderUtil::getDNSQuery(const Package &data, int index, const RRAttribut
     try{
         header = getHeaderByType(HeaderType::DNS, data);
     }
-    catch(HeaderNotFoundException hnfe){
+    catch(const HeaderNotFoundException &hnfe){
         qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getDNSQuestions";
         return "";
     }
@@ -952,7 +952,7 @@ QString HeaderUtil::getDNSQuery(const Package &data, int index, const RRAttribut
     try{
         attribute = getHeaderAttributeByName("Query " + QString::number(index), header).getContentAsArray();
     }
-    catch(HeaderAttributeNotFoundException hanfe){
+    catch(const HeaderAttributeNotFoundException &hanfe){
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getDNSQuestions";
         return "";
     }
@@ -1027,7 +1027,7 @@ QString HeaderUtil::getDNSAnswer(const Package &data, int index, const RRAttribu
     try{
         header = getHeaderByType(HeaderType::DNS, data);
     }
-    catch(HeaderNotFoundException hnfe){
+    catch(const HeaderNotFoundException &hnfe){
         qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getDNSQuestions";
         return "";
     }
@@ -1036,7 +1036,7 @@ QString HeaderUtil::getDNSAnswer(const Package &data, int index, const RRAttribu
     try{
         attribute = getHeaderAttributeByName("Answer " + QString::number(index), header).getContentAsArray();
     }
-    catch(HeaderAttributeNotFoundException hanfe){
+    catch(const HeaderAttributeNotFoundException &hanfe){
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getDNSQuestions";
         return "";
     }
@@ -1130,7 +1130,7 @@ IPAddress HeaderUtil::getDNSAnswerIPAddress(const Package &data, int index) {
     try{
         header = getHeaderByType(HeaderType::DNS, data);
     }
-    catch(HeaderNotFoundException hnfe){
+    catch(const HeaderNotFoundException &hnfe){
         qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getDNSAnswerIPAddress";
         return IPAddress();
     }
@@ -1139,7 +1139,7 @@ IPAddress HeaderUtil::getDNSAnswerIPAddress(const Package &data, int index) {
     try{
         attribute = getHeaderAttributeByName("Answer " + QString::number(index), header).getContentAsArray();
     }
-    catch(HeaderAttributeNotFoundException hanfe){
+    catch(const HeaderAttributeNotFoundException &hanfe){
         qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getDNSAnswerIPAddress";
         return IPAddress();
     }
@@ -1198,7 +1198,7 @@ IPAddress HeaderUtil::getIPAddressAsIPAddress(const Package &data, bool src){
     try{
         header = getHeaderByType(HeaderType::IP, data);
     }
-    catch(HeaderNotFoundException hnfe){
+    catch(const HeaderNotFoundException &hnfe){
         qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getIPAddressAsIPAddress";
         return IPAddress();
     }
@@ -1209,7 +1209,7 @@ IPAddress HeaderUtil::getIPAddressAsIPAddress(const Package &data, bool src){
         try{
             attribute = getHeaderAttributeByName("Source Address", header).getContentAsArray();
         }
-        catch(HeaderAttributeNotFoundException hanfe){
+        catch(const HeaderAttributeNotFoundException &hanfe){
             qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getIPAddressAsIPAddress";
             return IPAddress();
         }
@@ -1218,7 +1218,7 @@ IPAddress HeaderUtil::getIPAddressAsIPAddress(const Package &data, bool src){
         try{
             attribute = getHeaderAttributeByName("Destination Address", header).getContentAsArray();
         }
-        catch(HeaderAttributeNotFoundException hanfe){
+        catch(const HeaderAttributeNotFoundException &hanfe){
             qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getIPAddressAsIPAddress";
             return IPAddress();
         }
@@ -1233,11 +1233,11 @@ Port HeaderUtil::getPortAsPort(const Package &data, bool src){
     try{
         header = getHeaderByType(HeaderType::TCP, data);
     }
-    catch(HeaderNotFoundException hnfe){
+    catch(const HeaderNotFoundException &hnfe){
         try{
             header = getHeaderByType(HeaderType::UDP,data);
         }
-        catch(HeaderNotFoundException hnfe){
+        catch(const HeaderNotFoundException &hnfe){
             qDebug() << hnfe.getErrorMessage() << " in HeaderUtil::getPortAsPort";
             return Port();
         }
@@ -1249,7 +1249,7 @@ Port HeaderUtil::getPortAsPort(const Package &data, bool src){
         try{
             attribute = getHeaderAttributeByName("Source Port", header).getContentAsArray();
         }
-        catch(HeaderAttributeNotFoundException hanfe){
+        catch(const HeaderAttributeNotFoundException &hanfe){
             qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getPortAsPort";
             return Port();
         }
@@ -1258,7 +1258,7 @@ Port HeaderUtil::getPortAsPort(const Package &data, bool src){
         try{
             attribute = getHeaderAttributeByName("Destination Port", header).getContentAsArray();
         }
-        catch(HeaderAttributeNotFoundException hanfe){
+        catch(const HeaderAttributeNotFoundException &hanfe){
             qDebug() << hanfe.getErrorMessage() << " in HeaderUtil::getPortAsPort";
             return Port();
         }

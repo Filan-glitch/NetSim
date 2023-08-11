@@ -52,7 +52,7 @@ quint16 UDP::getChecksum(const char* data, quint16 length, quint16 sourcePort, q
     //In case data length is uneven
     if(length % 2 != 0){
         //adds the 0 Byte
-        quint16 lastWord = (data[length-1] << 8) | 0x00;
+        quint16 lastWord = (data[length-1] << 8);
         checksum += lastWord;
 
         //Overflow handling

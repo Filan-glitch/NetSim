@@ -59,7 +59,8 @@ Host::Host(const NetworkCard &networkCard) :
     hostTable(QMap<IPAddress, MACAddress>()),
     domainTable(QMap<QString, IPAddress>()),
     cables(QMap<MACAddress, Router*>()),
-    networkCard(networkCard)
+    networkCard(networkCard),
+    packages(nullptr)
 {
     Process http(80, "HTTP");
     Process dns(53, "DNS");
