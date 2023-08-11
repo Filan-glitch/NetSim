@@ -62,11 +62,11 @@ void Package::changePortAndIP(const Port &number, const IPAddress &address, bool
         try {
             (*this)[HeaderType::TCP]["Destination Port"].setContent(destPort.getContentAsArray());
             qInfo() << "Successfully changed the TCP Destination Port to: " << QString::number(number.getPortNumber());
-        } catch (HeaderNotFoundException e) {
+        } catch (const HeaderNotFoundException &e) {
             try {
                 (*this)[HeaderType::UDP]["Destination Port"].setContent(destPort.getContentAsArray());
                 qInfo() << "Successfully changed the UDP Destination Port to: " << QString::number(number.getPortNumber());
-            } catch (HeaderNotFoundException e) {
+            } catch (const HeaderNotFoundException &e) {
                 qDebug()<< e.getErrorMessage() << " Package is neither a TCP nor a UDP Package. Could not change the Destination Port.";
             }
         }
@@ -76,7 +76,7 @@ void Package::changePortAndIP(const Port &number, const IPAddress &address, bool
         try{
             (*this)[HeaderType::IP]["Source Address"].setContent(address.getAddressAsArray());
             qInfo() << "Successfully changed the Source IP Address to: " << address.toString();
-        } catch(HeaderNotFoundException e){
+        } catch(const HeaderNotFoundException &e){
             qDebug()<< e.getErrorMessage() << " Package is not an IP Package. Could not change the Source Address.";
         }
 
@@ -85,7 +85,7 @@ void Package::changePortAndIP(const Port &number, const IPAddress &address, bool
         try{
             (*this)[HeaderType::IP]["Destination Address"].setContent(address.getAddressAsArray());
             qInfo() << "Successfully changed the Destination IP Address to: " << address.toString();
-        } catch(HeaderNotFoundException e){
+        } catch(const HeaderNotFoundException &e){
             qDebug() << e.getErrorMessage() << " Package is not an IP Package. Could not change the Destination Address.";
         }
     }
@@ -97,14 +97,14 @@ void Package::changeEthernetHeader(const MACAddress &srcAddress, const MACAddres
     try{
         (*this)[HeaderType::MAC]["Destination MAC Address"].setContent(destAddress.getAddressAsArray());
         qInfo() << "Successfully changed the Destination MAC Address to: " << destAddress.toString();
-    }catch(HeaderNotFoundException e){
+    }catch(const HeaderNotFoundException &e){
         qDebug() << e.getErrorMessage() << " Package is not a MAC Package. Could not change the Destination MAC Address.";
     }
 
     try{
         (*this)[HeaderType::MAC]["Source MAC Address"].setContent(srcAddress.getAddressAsArray());
         qInfo() << "Successfully changed the Source MAC Address to: " << srcAddress.toString();
-    }catch(HeaderNotFoundException e){
+    }catch(const HeaderNotFoundException &e){
         qDebug() << e.getErrorMessage() << " Package is not a MAC Package. Could not change the Source MAC Address.";
     }
 }
