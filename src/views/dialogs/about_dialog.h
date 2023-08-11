@@ -7,17 +7,16 @@ namespace Ui {
 class About_Dialog;
 }
 
-class About_Dialog : public QDialog
-{
-    Q_OBJECT
+class About_Dialog : public QDialog {
+  Q_OBJECT
 
 public:
-    explicit About_Dialog(QWidget *parent = nullptr);
+  explicit About_Dialog(QWidget *parent = nullptr);
 
-    ~About_Dialog();
+  ~About_Dialog();
 
 private:
-    Ui::About_Dialog *ui;
+  Ui::About_Dialog *ui;
 };
 
 #endif // ABOUT_DIALOG_H

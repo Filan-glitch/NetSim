@@ -7,55 +7,53 @@ namespace Ui {
 class SettingsDialog;
 }
 
-class SettingsDialog : public QDialog
-{
-    Q_OBJECT
+class SettingsDialog : public QDialog {
+  Q_OBJECT
 
 public:
-    explicit SettingsDialog(QWidget *parent = nullptr);
+  explicit SettingsDialog(QWidget *parent = nullptr);
 
-    ~SettingsDialog();
+  ~SettingsDialog();
 
-    quint8 getClientsAmount() const;
+  quint8 clientsAmount() const;
 
-    quint8 getServerAmount() const;
+  quint8 serversAmount() const;
 
-    QList<QString> domains() const;
+  QList<QString> domains() const;
 
 private slots:
-    void setClientsAmount(int amount);
+  void setClientsAmount(int amount);
 
-    void setServerAmount(int amount);
+  void setServerAmount(int amount);
 
-    void textChanged1(const QString &data);
+  void textChanged1(const QString &data);
 
-    void textChanged2(const QString &data);
+  void textChanged2(const QString &data);
 
-    void textChanged3(const QString &data);
+  void textChanged3(const QString &data);
 
-    void textChanged4(const QString &data);
+  void textChanged4(const QString &data);
 
-    void textChanged5(const QString &data);
-
+  void textChanged5(const QString &data);
 
 private:
-    Ui::SettingsDialog *ui;
+  Ui::SettingsDialog *ui;
 
-    quint8 clientsAmount = 1;
+  quint8 m_clientsAmount{1};
 
-    quint8 serverAmount = 1;
+  quint8 m_serverAmount{1};
 
-    QString m_domain1;
+  QString m_domain1;
 
-    QString m_domain2;
+  QString m_domain2;
 
-    QString m_domain3;
+  QString m_domain3;
 
-    QString m_domain4;
+  QString m_domain4;
 
-    QString m_domain5;
+  QString m_domain5;
 
-    bool allVisibleLineEditsFilled();
+  bool allVisibleLineEditsFilled();
 };
 
 #endif // SETTINGSDIALOG_H

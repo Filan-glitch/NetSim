@@ -4,26 +4,27 @@
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class WelcomeWindow; }
+namespace Ui {
+class WelcomeWindow;
+}
 QT_END_NAMESPACE
 
-class WelcomeWindow : public QMainWindow
-{
-    Q_OBJECT
+class WelcomeWindow : public QMainWindow {
+  Q_OBJECT
 
 public:
-    WelcomeWindow(QWidget *parent = nullptr);
+  WelcomeWindow(QWidget *parent = nullptr);
 
-    ~WelcomeWindow();
+  ~WelcomeWindow();
 
 private:
-    Ui::WelcomeWindow *ui;
+  Ui::WelcomeWindow *ui;
 
-    void startSimulation();
+  void startSimulation();
 
 private slots:
-    void openDocumentation();
+  void openDocumentation();
 
-    void about();
+  void about();
 };
 #endif // WELCOMEWINDOW_H

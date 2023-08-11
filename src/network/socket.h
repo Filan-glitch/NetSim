@@ -1,47 +1,52 @@
 #ifndef SOCKET_H
 #define SOCKET_H
 
-#include "src/models/package.h"
 #include "src/models/ipaddress.h"
+#include "src/models/package.h"
 #include "src/models/port.h"
+
+namespace NetSim {
+class Socket;
+}
 
 class Port;
 
-class Socket
-{
+class Socket {
 public:
-    Socket();
+  Socket();
 
-    Socket(const Port &sourcePort, const Port &destinationPort);
+  Socket(const Port &sourcePort, const Port &destinationPort);
 
-    void addTCPHeader(Package &data, const IPAddress &srcAddress, const IPAddress &destAddress, bool ack, bool psh, bool syn, bool fin);
+  void addTCPHeader(Package &data, const IPAddress &srcAddress,
+                    const IPAddress &destAddress, bool ack, bool psh, bool syn,
+                    bool fin);
 
-    void addUDPHeader(Package& data);
+  void addUDPHeader(Package &data);
 
-    Port getSourcePort() const;
+  Port sourcePort() const;
 
-    void setSourcePort(const Port &sourcePort);
+  void setSourcePort(const Port &sourcePort);
 
-    Port getDestinationPort() const;
+  Port destinationPort() const;
 
-    void setDestinationPort(const Port &destinationPort);
+  void setDestinationPort(const Port &destinationPort);
 
-    quint32 getStartSeq() const;
+  quint32 startSeq() const;
 
-    quint32 getServerSeq() const;
+  quint32 serverSeq() const;
 
-    quint32 getAmountReceivedData() const;
+  quint32 amountReceivedData() const;
 
 private:
-    Port sourcePort;
+  Port m_sourcePort;
 
-    Port destinationPort;
+  Port m_destinationPort;
 
-    quint32 startSeq = 100;
+  quint32 m_startSeq{100};
 
-    quint32 serverSeq;
+  quint32 m_serverSeq;
 
-    quint32 amountReceivedData = 0;
+  quint32 m_amountReceivedData{0};
 };
 
 #endif // SOCKET_H

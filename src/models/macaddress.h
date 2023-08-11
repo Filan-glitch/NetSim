@@ -1,34 +1,34 @@
 #ifndef MACADDRESS_H
 #define MACADDRESS_H
 
-#include <QString>
 #include <QRandomGenerator>
+#include <QString>
 #include <QVector>
 
-using namespace Qt;
+namespace NetSim {
+class MACAddress;
+}
 
-class MACAddress
-{
-private:
-    QVector<quint8> address;
+class MACAddress {
 public:
-    MACAddress(const QVector<quint8> &address);
+  MACAddress(const QVector<quint8> &address);
 
-    MACAddress();;
+  MACAddress();
 
-    QString toString() const;
+  QString toString() const;
 
-    QVector<quint8> getAddressAsArray() const;
+  QVector<quint8> toArray() const;
 
-    quint64 getAddressAsInt() const;
+  quint64 toInt() const;
 
-    static MACAddress getRandomAddress();
+  static MACAddress getRandomAddress();
 
-    bool operator<(const MACAddress& other) const;
+  bool operator<(const MACAddress &other) const;
 
-    bool operator==(const MACAddress& other) const;
+  bool operator==(const MACAddress &other) const;
+
+private:
+  QVector<quint8> m_address;
 };
-
-
 
 #endif // MACADDRESS_H

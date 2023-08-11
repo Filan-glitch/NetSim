@@ -3,23 +3,26 @@
 
 #include <QString>
 
-class Port
-{
-private:
-    quint16 portNumber;
+namespace NetSim {
+class Port;
+}
 
+class Port {
 public:
-    Port(quint16 portNumber);
+  Port();
 
-    Port(){};
+  Port(quint16 portNumber);
 
-    quint16 getPortNumber() const;
+  quint16 portNumber() const;
 
-    QVector<quint8> toArray() const;
+  QVector<quint8> toArray() const;
 
-    static Port getRandomPort();
+  static Port getRandomPort();
 
-    bool operator<(const Port& other)const;
+  bool operator<(const Port &other) const;
+
+private:
+  quint16 m_portNumber;
 };
 
 #endif // PORT_H

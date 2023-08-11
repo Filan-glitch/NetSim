@@ -3,15 +3,18 @@
 
 #include <QString>
 
-class CableNotFoundException
-{
-public:
-    CableNotFoundException(const QString &errorMessage);
+namespace NetSim {
+class CableNotFoundException;
+}
 
-    QString getErrorMessage() const;
+class CableNotFoundException {
+public:
+  CableNotFoundException(const QString &errorMessage);
+
+  QString errorMessage() const;
 
 private:
-     QString errorMessage;
+  QString m_errorMessage;
 };
 
 #endif // CABLENOTFOUNDEXCEPTION_H

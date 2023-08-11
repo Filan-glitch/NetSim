@@ -1,59 +1,60 @@
 #ifndef ROUTER_H
 #define ROUTER_H
 
-#include <QString>
-#include <QStack>
-#include <QHash>
 #include "host.h"
 #include "natentry.h"
 #include "src/models/ipaddress.h"
 #include "src/network/networkcard.h"
+#include <QHash>
+#include <QStack>
+#include <QString>
+
+namespace NetSim {
+class Router;
+}
 
 class Host;
 
-class Router
-{
-private:
-    QMap<IPAddress, MACAddress> macTable;
-
-    QMap<MACAddress, Router*> routerCable;
-
-    QMap<MACAddress, Host*> hostCable;
-
-    QMap<Port,NATEntry> portToNAT;
-
-    QMap<NATEntry, Port> natToPort;
-
-    NetworkCard networkCard;
-
-    IPAddress globalIpAddress;
-
+class Router {
 public:
-    Router();
+  Router();
 
-    void receivePackage(Package data);
+  void receivePackage(Package data);
 
-    IPAddress getGlobalIpAddress() const;
+  IPAddress globalIpAddress() const;
 
-    NetworkCard getNetworkCard() const;
+  NetworkCard networkCard() const;
 
-    QMap<IPAddress, MACAddress> getMacTable() const;
+  QMap<IPAddress, MACAddress> macTable() const;
 
-    QMap<MACAddress, Router*> getRouterCable() const;
+  QMap<MACAddress, Router *> routerCable() const;
 
-    QMap<MACAddress, Host*> getHostCable() const;
+  QMap<MACAddress, Host *> hostCable() const;
 
-    QMap<Port, NATEntry> getNAT() const;
+  QMap<Port, NATEntry> NAT() const;
 
-    QMap<NATEntry, Port> getNAT2Port() const;
+  void addIPAddress(const IPAddress &ipAddress, const MACAddress &macaddress);
 
-    void addIPAddress(const IPAddress &ipAddress, const MACAddress &macaddress);
+  void addMACAddress(const MACAddress &macAddress, Router *router);
 
-    void addMACAddress(const MACAddress &macAddress, Router *router);
+  void addMACAddress(const MACAddress &macAddress, Host *host);
 
-    void addMACAddress(const MACAddress &macAddress, Host *host);
+  void addNATEntry(const NATEntry &entry, const Port &port);
 
-    void addNATEntry(const NATEntry &entry, const Port &port);
+private:
+  QMap<IPAddress, MACAddress> m_macTable;
+
+  QMap<MACAddress, Router *> m_routerCable;
+
+  QMap<MACAddress, Host *> m_hostCable;
+
+  QMap<Port, NATEntry> m_portToNAT;
+
+  QMap<NATEntry, Port> m_natToPort;
+
+  NetworkCard m_networkCard;
+
+  IPAddress m_globalIpAddress;
 };
 
 #endif // ROUTER_H

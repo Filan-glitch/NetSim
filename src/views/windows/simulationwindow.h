@@ -6,49 +6,48 @@
 #include "src/views/widgets/clientwidget.h"
 #include "src/views/widgets/routerwidget.h"
 #include "src/views/widgets/serverwidget.h"
-#include <QMainWindow>
 #include <QKeyEvent>
+#include <QMainWindow>
 #include <QTreeWidget>
 
 namespace Ui {
 class SimulationWindow;
 }
 
-class SimulationWindow : public QMainWindow
-{
-    Q_OBJECT
+class SimulationWindow : public QMainWindow {
+  Q_OBJECT
 
 public:
-    explicit SimulationWindow(SimulationManager* manager, QWidget *parent = nullptr);
+  explicit SimulationWindow(SimulationManager *manager,
+                            QWidget *parent = nullptr);
 
-    ~SimulationWindow();
+  ~SimulationWindow();
 
-    void keyPressEvent(QKeyEvent *event) override;
+  void keyPressEvent(QKeyEvent *event) override;
 
 private:
-    Ui::SimulationWindow* ui;
+  Ui::SimulationWindow *ui;
 
-    SimulationManager* manager;
+  SimulationManager *m_manager;
 
-    PackageTableModel* m_packageModel;
+  PackageTableModel *m_packageModel;
 
-    QTreeWidget* m_treeWidget;
+  QTreeWidget *m_treeWidget;
 
-    void setupNetwork();
+  void setupNetwork();
 
 private slots:
-    void openDocumentation();
+  void openDocumentation();
 
-    void updateTreeWidget(const QModelIndex& index);
+  void updateTreeWidget(const QModelIndex &index);
 
-    void about();
+  void about();
 
-    void clientDialog(ClientWidget* client);
+  void clientDialog(ClientWidget *client);
 
-    void routerDialog(RouterWidget* router);
+  void routerDialog(RouterWidget *router);
 
-    void serverDialog(ServerWidget* server);
-
+  void serverDialog(ServerWidget *server);
 };
 
 #endif // SIMULATIONWINDOW_H

@@ -1,10 +1,10 @@
 #include "headerattributenotfoundexception.h"
 
-HeaderAttributeNotFoundException::HeaderAttributeNotFoundException(const QString &errorMessage)
-{
-    this->errorMessage = errorMessage;
+HeaderAttributeNotFoundException::HeaderAttributeNotFoundException(
+    const QString &errorMessage) {
+  this->m_errorMessage = errorMessage;
 }
 
-QString HeaderAttributeNotFoundException::getErrorMessage() const {
-    return errorMessage;
+QString HeaderAttributeNotFoundException::errorMessage() const {
+  return m_errorMessage;
 }

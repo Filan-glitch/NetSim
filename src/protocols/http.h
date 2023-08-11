@@ -1,15 +1,21 @@
 #ifndef HTTP_H
 #define HTTP_H
 
-#include <QString>
 #include "src/models/package.h"
+#include <QString>
 
-class HTTP
-{
+namespace NetSim {
+class HTTP;
+}
+
+class HTTP {
 public:
-    static void initHTTPRequest(const QString &requestType, const QString &uri, const QString &version, Package& data);
+  static void initHTTPRequest(const QString &requestType, const QString &uri,
+                              const QString &version, Package &data);
 
-    static void initHTTPResponse(const QString &version, quint16 messageCode, const QString &messageText, Package& data,const QString &htmlFile);
+  static void initHTTPResponse(const QString &version, quint16 messageCode,
+                               const QString &messageText, Package &data,
+                               const QString &htmlFile);
 };
 
 #endif // HTTP_H

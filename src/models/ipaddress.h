@@ -6,27 +6,30 @@
 #include <QTextStream>
 #include <QVector>
 
-class IPAddress
-{
-private:
-    QVector<quint8> address;
+namespace NetSim {
+class IPAddress;
+}
 
+class IPAddress {
 public:
-    IPAddress();
+  IPAddress();
 
-    IPAddress(const QVector<quint8> &address);
+  IPAddress(const QVector<quint8> &address);
 
-    QString toString() const;
+  QString toString() const;
 
-    QVector<quint8> getAddressAsArray() const;
+  QVector<quint8> toArray() const;
 
-    quint32 getAddressAsInt() const;
+  quint32 toInt() const;
 
-    static IPAddress getRandomAddress(bool isLocal = false);
+  static IPAddress getRandomAddress(bool isLocal = false);
 
-    bool operator<(const IPAddress& other)const;
+  bool operator<(const IPAddress &other) const;
 
-    bool operator==(const IPAddress& other);
+  bool operator==(const IPAddress &other) const;
+
+private:
+  QVector<quint8> m_address;
 };
 
 #endif // IPADDRESS_H

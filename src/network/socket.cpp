@@ -2,45 +2,33 @@
 #include "src/protocols/tcp.h"
 #include "src/protocols/udp.h"
 
-
-
-void Socket::addTCPHeader(Package &data, const IPAddress &srcAddress, const IPAddress &destAddress, bool ack, bool psh, bool syn, bool fin)
-{
-    TCP::initHeader(srcAddress, destAddress, this->sourcePort, this->destinationPort,startSeq+amountReceivedData,serverSeq+amountReceivedData, ack, psh, syn, fin,512,data);
+void Socket::addTCPHeader(Package &data, const IPAddress &srcAddress,
+                          const IPAddress &destAddress, bool ack, bool psh,
+                          bool syn, bool fin) {
+  TCP::initHeader(srcAddress, destAddress, this->m_sourcePort,
+                  this->m_destinationPort, m_startSeq + m_amountReceivedData,
+                  m_serverSeq + m_amountReceivedData, ack, psh, syn, fin, 512,
+                  data);
 }
 
-void Socket::addUDPHeader(Package &data)
-{
-    UDP::initHeader(this->sourcePort, this->destinationPort,data);
+void Socket::addUDPHeader(Package &data) {
+  UDP::initHeader(this->m_sourcePort, this->m_destinationPort, data);
 }
 
-Socket::Socket(const Port &sourcePort, const Port &destinationPort) : sourcePort(sourcePort),
-    destinationPort(destinationPort)
-{}
+Socket::Socket(const Port &sourcePort, const Port &destinationPort)
+    : m_sourcePort(sourcePort), m_destinationPort(destinationPort) {}
 
-Socket::Socket() : sourcePort(Port(0)), destinationPort(Port(0)) {
+Socket::Socket() : m_sourcePort(Port(0)), m_destinationPort(Port(0)) {}
 
+Port Socket::sourcePort() const { return m_sourcePort; }
+void Socket::setSourcePort(const Port &sourcePort) {
+  this->m_sourcePort = sourcePort;
 }
-
-Port Socket::getSourcePort() const{
-    return sourcePort;
-}
-void Socket::setSourcePort(const Port &sourcePort){
-    this->sourcePort = sourcePort;
-}
-Port Socket::getDestinationPort() const{
-    return destinationPort;
-}
-void Socket::setDestinationPort(const Port &destinationPort){
-    this->destinationPort = destinationPort;
+Port Socket::destinationPort() const { return m_destinationPort; }
+void Socket::setDestinationPort(const Port &destinationPort) {
+  this->m_destinationPort = destinationPort;
 }
 
-quint32 Socket::getStartSeq() const{
-    return startSeq;
-}
-quint32 Socket::getServerSeq() const{
-    return serverSeq;
-}
-quint32 Socket::getAmountReceivedData() const{
-    return amountReceivedData;
-}
+quint32 Socket::startSeq() const { return m_startSeq; }
+quint32 Socket::serverSeq() const { return m_serverSeq; }
+quint32 Socket::amountReceivedData() const { return m_amountReceivedData; }

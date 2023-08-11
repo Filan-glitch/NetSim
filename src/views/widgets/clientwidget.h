@@ -2,40 +2,44 @@
 #define CLIENTWIDGET_H
 
 #include "src/network/client.h"
-#include <QPushButton>
 #include <QLabel>
+#include <QPushButton>
 #include <QVBoxLayout>
 
-class ClientWidget : public QWidget
-{
-    Q_OBJECT
+namespace NetSim {
+class ClientWidget;
+}
+
+class ClientWidget : public QWidget {
+  Q_OBJECT
 public:
-    explicit ClientWidget(Client* client, const QString &name, QWidget *parent = nullptr);
+  explicit ClientWidget(Client *client, const QString &name,
+                        QWidget *parent = nullptr);
 
-    Client* client();
+  Client *client();
 
-    QPushButton *button() const;
+  QPushButton *button() const;
 
-    QString name() const;
+  QString name() const;
 
 private:
-    Client* m_client;
+  Client *m_client;
 
-    QPushButton* m_button;
+  QPushButton *m_button;
 
-    QLabel* m_nameLabel;
+  QLabel *m_nameLabel;
 
-    QLabel* m_ipLabel;
+  QLabel *m_ipLabel;
 
-    QLabel* m_macLabel;
+  QLabel *m_macLabel;
 
-    QVBoxLayout* m_layout;
+  QVBoxLayout *m_layout;
 
 private slots:
-    void onButtonClicked();
+  void onButtonClicked();
 
 signals:
-    void clicked(ClientWidget* client);
+  void clicked(ClientWidget *client);
 };
 
 #endif // CLIENTWIDGET_H

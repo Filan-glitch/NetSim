@@ -1,28 +1,29 @@
 #ifndef NATENTRY_H
 #define NATENTRY_H
 
-#include <src/models/port.h>
 #include "src/models/ipaddress.h"
+#include "src/models/port.h"
 
+namespace NetSim {
+class NATEntry;
+}
 
-
-class NATEntry
-{
+class NATEntry {
 public:
-    NATEntry(const IPAddress &address, const Port &port);
+  NATEntry(const IPAddress &address, const Port &port);
 
-    NATEntry(){};
+  NATEntry();
 
-    Port getPortNumber() const;
+  Port port() const;
 
-    IPAddress getIPAddress() const;
+  IPAddress address() const;
 
-    bool operator<(const NATEntry& entry)const;
+  bool operator<(const NATEntry &entry) const;
 
 private:
-    Port portNumber;
+  Port m_port;
 
-    IPAddress address;
+  IPAddress m_address;
 };
 
 #endif // NATENTRY_H

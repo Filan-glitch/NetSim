@@ -3,15 +3,18 @@
 
 #include <QString>
 
-class HeaderAttributeNotFoundException
-{
-public:
-    HeaderAttributeNotFoundException(const QString &errorMessage);
+namespace NetSim {
+class HeaderAttributeNotFoundException;
+}
 
-    QString getErrorMessage() const;
+class HeaderAttributeNotFoundException {
+public:
+  HeaderAttributeNotFoundException(const QString &errorMessage);
+
+  QString errorMessage() const;
 
 private:
-    QString errorMessage;
+  QString m_errorMessage;
 };
 
 #endif // HEADERATTRIBUTENOTFOUNDEXCEPTION_H

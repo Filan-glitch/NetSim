@@ -3,39 +3,36 @@
 
 Header::Header() {}
 
-Header::Header(const HeaderType &headerType, const QList<HeaderAttribute> &headerList) : headerType(headerType), headerList(headerList) {}
+Header::Header(const NetSim::HeaderType &headerType,
+               const QList<HeaderAttribute> &headerList)
+    : m_headerType(headerType), m_headerList(headerList) {}
 
-
-void Header::addHeaderAttribute(const HeaderAttribute &headerAttribute){
-    headerList.append(headerAttribute);
+void Header::addHeaderAttribute(const HeaderAttribute &headerAttribute) {
+  m_headerList.append(headerAttribute);
 }
 
-void Header::setHeaderType(const HeaderType &headerType){
-    this->headerType = headerType;
+void Header::setHeaderType(const NetSim::HeaderType &headerType) {
+  this->m_headerType = headerType;
 }
 
-QList<HeaderAttribute> Header::getHeaderList() const {
-    return headerList;
+QList<HeaderAttribute> Header::headerList() const { return m_headerList; }
+
+NetSim::HeaderType Header::type() const { return m_headerType; }
+
+quint16 Header::size() const {
+  quint16 length = 0;
+  for (const HeaderAttribute &headerAttribute : m_headerList) {
+    length += headerAttribute.size();
+  }
+  return length / 8;
 }
 
-HeaderType Header::getType() const {
-    return headerType;
-}
-
-quint16 Header::getHeaderLength() const {
-    quint16 length = 0;
-    for(const HeaderAttribute &headerAttribute : headerList){
-        length += headerAttribute.getSizeInBit();
+HeaderAttribute &Header::operator[](const QString &name) {
+  for (int i = 0; i < m_headerList.size(); i++) {
+    if (m_headerList.at(i).name() == name) {
+      return m_headerList[i];
     }
-    return length / 8;
-}
-
-HeaderAttribute &Header::operator[](const QString &name){
-    for(int i = 0; i < headerList.size(); i++){
-        if(headerList.at(i).getName() == name){
-            return headerList[i];
-        }
-    }
-    qDebug() << "HeaderAttribute not found: " << name;
-    throw HeaderAttributeNotFoundException(name);
+  }
+  qDebug() << "HeaderAttribute not found: " << name;
+  throw HeaderAttributeNotFoundException(name);
 }

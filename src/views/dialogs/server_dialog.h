@@ -8,19 +8,18 @@ namespace Ui {
 class Server_Dialog;
 }
 
-class Server_Dialog : public QDialog
-{
-    Q_OBJECT
+class Server_Dialog : public QDialog {
+  Q_OBJECT
 
 public:
-    explicit Server_Dialog(ServerWidget *server, QWidget *parent = nullptr);
+  explicit Server_Dialog(ServerWidget *server, QWidget *parent = nullptr);
 
-    ~Server_Dialog();
+  ~Server_Dialog();
 
 private:
-    Ui::Server_Dialog *ui;
+  Ui::Server_Dialog *ui;
 
-    ServerWidget* server;
+  ServerWidget *m_server;
 };
 
 #endif // SERVER_DIALOG_H

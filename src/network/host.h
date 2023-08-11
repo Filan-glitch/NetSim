@@ -1,70 +1,68 @@
 #ifndef HOST_H
 #define HOST_H
 
-#include <QString>
 #include "src/management/packagetablemodel.h"
-#include "src/models/process.h"
 #include "src/models/ipaddress.h"
 #include "src/models/macaddress.h"
+#include "src/models/process.h"
 #include "src/network/networkcard.h"
 #include <QMap>
+#include <QString>
 
-/**
- * This class represents the superclass host in a network simulation. It can either be implemented as a client or a server.
- * @brief The Host class represents a network host.
- */
+namespace NetSim {
+class Host;
+}
 
 class Router;
 
-class Host
-{
-private:
-    QMap<Port, Process> processTable;
-
-    QMap<IPAddress, MACAddress> hostTable;
-
-    QMap<QString, IPAddress> domainTable;
-
-    QMap<MACAddress, Router*> cables;
-
-    NetworkCard networkCard;
-
-    PackageTableModel* packages;
-
+class Host {
 public:
-    Host(const NetworkCard &networkCard);
+  Host(const NetworkCard &networkCard);
 
-    QMap<Port, Process> getProcessTable() const;
+  QMap<Port, Process> processTable() const;
 
-    QMap<IPAddress, MACAddress> getHostTable() const;
+  QMap<IPAddress, MACAddress> hostTable() const;
 
-    QMap<QString, IPAddress> getDomainTable() const;
+  QMap<QString, IPAddress> domainTable() const;
 
-    QMap<MACAddress, Router*> getCables() const;
+  QMap<MACAddress, Router *> cables() const;
 
-    NetworkCard getNetworkCard() const;
+  NetworkCard networkCard() const;
 
-    Router* getRouterByMACAddress(const MACAddress &destinationAddress);
+  Router *getRouterByMACAddress(const MACAddress &destinationAddress);
 
-    void sendPackage(Package &data, const MACAddress &destinationAddress);
+  void sendPackage(Package &data, const MACAddress &destinationAddress);
 
-    virtual void receivePackage(Package data) = 0;
+  virtual void receivePackage(Package data) = 0;
 
-    void addProcess(const Port &port, const Process &process);
+  void addProcess(const Port &port, const Process &process);
 
-    void addIPAddress(const IPAddress &ipAddress, const MACAddress &macAddress);
+  void addIPAddress(const IPAddress &ipAddress, const MACAddress &macAddress);
 
-    void addMACAddress(const MACAddress &macAddress, Router* router);
+  void addMACAddress(const MACAddress &macAddress, Router *router);
 
-    void addDomain(const QString &domain, const IPAddress &ipAddress);
+  void addDomain(const QString &domain, const IPAddress &ipAddress);
 
-    PackageTableModel *getPackages() const;
+  PackageTableModel *packages() const;
 
-    void setPackages(PackageTableModel *packages);
+  void setPackages(PackageTableModel *packages);
 
-    Process& getProcessByName(const QString &name);
+  Process &getProcessByName(const QString &name);
 
-    void setHostOfProcesses(Host* host);
+  void setHostOfProcesses(Host *host);
+
+private:
+  QMap<Port, Process> m_processTable;
+
+  QMap<IPAddress, MACAddress> m_hostTable;
+
+  QMap<QString, IPAddress> m_domainTable;
+
+  QMap<MACAddress, Router *> m_cables;
+
+  NetworkCard m_networkCard;
+
+  PackageTableModel *m_packages;
 };
 
 #endif // HOST_H

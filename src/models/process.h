@@ -1,48 +1,57 @@
 #ifndef PROCESS_H
 #define PROCESS_H
 
-#include "src/network/socket.h"
 #include "ipaddress.h"
-
+#include "src/network/socket.h"
 #include <QString>
+
+namespace NetSim {
+class Process;
+}
 
 class Host;
 
-class Process
-{
+class Process {
 public:
-    Process(){};
+  Process(){};
 
-    Process(const Port &destinationPort, const QString &name);
+  Process(const Port &destinationPort, const QString &name);
 
-    Socket& getSocket();
+  Socket &getSocket();
 
-    void openSocket(const Port &destinationPort);
+  void openSocket(const Port &destinationPort);
 
-    Package getHTTPRequest(const QString &uri,const IPAddress &destination);
+  Package generateHTTPRequestPackage(const QString &uri,
+                                     const IPAddress &destination);
 
-    Package getHTTPResponse(const IPAddress &destination, const Port &destPort, const int &messageCode);
+  Package generateHTTPResponsePackage(const IPAddress &destination,
+                                      const Port &destPort,
+                                      const int &messageCode);
 
-    Package getHandShakePackage(const IPAddress &address, bool initiate, bool client);
+  Package generateHandShakePackage(const IPAddress &address, bool initiate,
+                                   bool client);
 
-    Package getCloseConnectionPackage(const IPAddress &address, bool initiate, bool client);
+  Package generateCloseConnectionPackage(const IPAddress &address,
+                                         bool initiate, bool client);
 
-    Package getDNSRequest(const QString& domain);
+  Package generateDNSRequestPackage(const QString &domain);
 
-    Package getDNSResponse(const IPAddress& destination, const QString& domain, const Port& destPort);
+  Package generateDNSResponsePackage(const IPAddress &destination,
+                                     const QString &domain,
+                                     const Port &destPort);
 
-    QString getName() const;
+  QString name() const;
 
-    void setHost(Host* host);
+  void setHost(Host *host);
 
-    QString toString() const;
+  QString toString() const;
 
 private:
-    QString name;
+  QString m_name;
 
-    Socket socket;
+  Socket m_socket;
 
-    Host* host;
+  Host *m_host;
 };
 
 #endif // PROCESS_H

@@ -2,24 +2,23 @@
 #include <QRandomGenerator>
 #include <QVector>
 
-Port::Port(quint16 portNumber) : portNumber(portNumber) {}
+Port::Port(quint16 portNumber) : m_portNumber(portNumber) {}
 
-quint16 Port::getPortNumber() const {
-    return portNumber;
-}
+Port::Port(){};
 
-QVector<quint8> Port::toArray() const
-{
-    QVector<quint8> portArray;
-    portArray.append(portNumber >> 8);
-    portArray.append(portNumber & 0x00FF);
-    return portArray;
+quint16 Port::portNumber() const { return m_portNumber; }
+
+QVector<quint8> Port::toArray() const {
+  QVector<quint8> portArray;
+  portArray.append(m_portNumber >> 8);
+  portArray.append(m_portNumber & 0x00FF);
+  return portArray;
 }
 
 Port Port::getRandomPort() {
-    return Port(QRandomGenerator::global()->generate() % 65535);
+  return Port(QRandomGenerator::global()->generate() % 65535);
 }
 
-bool Port::operator<(const Port &other) const{
-    return this->portNumber < other.portNumber;
+bool Port::operator<(const Port &other) const {
+  return this->m_portNumber < other.m_portNumber;
 }

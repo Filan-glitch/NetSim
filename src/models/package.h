@@ -1,51 +1,56 @@
 #ifndef PACKAGE_H
 #define PACKAGE_H
 
-#include <QList>
-#include "src/protocols/header.h"
 #include "ipaddress.h"
 #include "macaddress.h"
 #include "port.h"
+#include "src/protocols/header.h"
+#include <QList>
 
-class Package
-{
-private:
-    Header& getHeaderByType(const HeaderType &type);
+namespace NetSim {
+class Package;
+}
 
-    void deleteHeaderByType(const HeaderType &type);
-
-    HeaderAttribute getHeaderAttributeByName(const Header &header, const QString &name) const;
-
-    QList<Header> headers;
-
-    QString info;
-
-    QString content;
-
+class Package {
 public:
-    Package();
+  Package();
 
-    Package(const QString& info);
+  Package(const QString &info);
 
-    Package(const QString& info, const QString& content);
+  Package(const QString &info, const QString &content);
 
-    QString getContent() const;
+  QString content() const;
 
-    QList<Header> getHeaders() const;
+  QList<Header> headers() const;
 
-    void addHeader(const Header &header);
+  QString info() const;
 
-    void setContent(const QString &content);
+  quint16 size() const;
 
-    QString getInfo() const;
+  void addHeader(const Header &header);
 
-    quint16 getLength() const;
+  void setContent(const QString &content);
 
-    void changePortAndIP(const Port &number, const IPAddress &address, bool src);
+  void changePortAndIP(const Port &number, const IPAddress &address, bool src);
 
-    void changeEthernetHeader(const MACAddress &srcAddress, const MACAddress &destAddress);
+  void changeEthernetHeader(const MACAddress &srcAddress,
+                            const MACAddress &destAddress);
 
-    Header &operator[](const HeaderType &type);
+  Header &operator[](const NetSim::HeaderType &type);
+
+  Header operator[](const NetSim::HeaderType &type) const;
+
+private:
+  QList<Header> m_headers;
+
+  QString m_info;
+
+  QString m_content;
+
+  void deleteHeaderByType(const NetSim::HeaderType &type);
+
+  HeaderAttribute getHeaderAttributeByName(const Header &header,
+                                           const QString &name) const;
 };
 
 #endif // PACKAGE_H

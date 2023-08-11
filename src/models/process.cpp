@@ -1,230 +1,189 @@
 #include "process.h"
 #include "package.h"
-#include "src/protocols/http.h"
 #include "src/network/host.h"
-#include "src/protocols/dns.h"
 #include "src/network/server.h"
+#include "src/protocols/dns.h"
+#include "src/protocols/http.h"
 
-Process::Process(const Port &destinationPort, const QString &name) : name(name), host(nullptr)
-{
-    openSocket(destinationPort);
+Process::Process(const Port &destinationPort, const QString &name)
+    : m_name(name), m_host(nullptr) {
+  openSocket(destinationPort);
 }
 
-void Process::openSocket(const Port &destinationPort){
-    this->socket = Socket(0, destinationPort);
-    socket.setSourcePort(Port::getRandomPort());
+void Process::openSocket(const Port &destinationPort) {
+  this->m_socket = Socket(0, destinationPort);
+  m_socket.setSourcePort(Port::getRandomPort());
 }
 
-Package Process::getHTTPRequest(const QString &uri,const IPAddress &destination){
-    Package data("Request HTML of " + uri);
-    //Adding HTTP Header
-    HTTP::initHTTPRequest("GET",uri,"HTTP/1.1",data);
+Package Process::generateHTTPRequestPackage(const QString &uri,
+                                            const IPAddress &destination) {
+  Package data("Request HTML of " + uri);
 
-    //Adding TCP Header
-    socket.addTCPHeader(data,
-                        host->getNetworkCard().getNetworkAddress(),
-                        destination,
-                        true,
-                        true,
-                        false,
-                        false);
+  HTTP::initHTTPRequest("GET", uri, "HTTP/1.1", data);
 
-    //Adding IP Header
-    host->getNetworkCard().addIPHeader(data,6,destination);
+  m_socket.addTCPHeader(data, m_host->networkCard().networkAddress(),
+                        destination, true, true, false, false);
 
-    //Adding Ethernet II Header
-    host->getNetworkCard().addMACHeader(data,host->getHostTable().value(destination), 2048);
-    return data;
+  m_host->networkCard().addIPHeader(data, 6, destination);
+
+  m_host->networkCard().addMACHeader(
+      data, m_host->hostTable().value(destination), 2048);
+  return data;
 }
 
-Package Process::getHandShakePackage(const IPAddress &address, bool initiate, bool client){
-    //Client Handshakepackages
-    if(initiate && client){
-        Package tcpSynPackage("TCP Handshake [SYN]");
+Package Process::generateHandShakePackage(const IPAddress &address,
+                                          bool initiate, bool client) {
+  if (initiate && client) {
+    Package tcpSynPackage("TCP Handshake [SYN]");
 
-        //Adding TCP Header
-        socket.addTCPHeader(tcpSynPackage,
-                            host->getNetworkCard().getNetworkAddress(),
-                            address,
-                            false,
-                            false,
-                            true,
-                            false);
+    m_socket.addTCPHeader(tcpSynPackage, m_host->networkCard().networkAddress(),
+                          address, false, false, true, false);
 
-        //Adding IP Header
-        host->getNetworkCard().addIPHeader(tcpSynPackage,6,address);
+    m_host->networkCard().addIPHeader(tcpSynPackage, 6, address);
 
-        //Adding Ethernet II Header
-        host->getNetworkCard().addMACHeader(tcpSynPackage,host->getHostTable().value(address), 2048);
-        return tcpSynPackage;
-    }
-    //Client 3. Handshakepackage
-    else if(!initiate && client){
-        Package tcpACKPackage("TCP Handshake [ACK]");
-        socket.addTCPHeader(tcpACKPackage,
-                            host->getNetworkCard().getNetworkAddress(),
-                            address,
-                            true,
-                            false,
-                            false,
-                            false);
+    m_host->networkCard().addMACHeader(
+        tcpSynPackage, m_host->hostTable().value(address), 2048);
+    return tcpSynPackage;
+  } else if (!initiate && client) {
+    Package tcpACKPackage("TCP Handshake [ACK]");
+    m_socket.addTCPHeader(tcpACKPackage, m_host->networkCard().networkAddress(),
+                          address, true, false, false, false);
 
-        host->getNetworkCard().addIPHeader(tcpACKPackage,6,address);
-        host->getNetworkCard().addMACHeader(tcpACKPackage,host->getHostTable().value(address), 2048);
-        return tcpACKPackage;
-    }
+    m_host->networkCard().addIPHeader(tcpACKPackage, 6, address);
+    m_host->networkCard().addMACHeader(
+        tcpACKPackage, m_host->hostTable().value(address), 2048);
+    return tcpACKPackage;
+  }
 
-    //Server Handshake Package
-    if(!client){
-        Package synAckPackage("TCP Handshake [SYN, ACK]");
-        socket.addTCPHeader(synAckPackage,
-                            host->getNetworkCard().getNetworkAddress(),
-                            address,
-                            true,
-                            false,
-                            true,
-                            false);
-        host->getNetworkCard().addIPHeader(synAckPackage,6,address);
-        host->getNetworkCard().addMACHeader(synAckPackage,host->getHostTable().value(address), 2048);
-        return synAckPackage;
-    }
+  if (!client) {
+    Package synAckPackage("TCP Handshake [SYN, ACK]");
+    m_socket.addTCPHeader(synAckPackage, m_host->networkCard().networkAddress(),
+                          address, true, false, true, false);
+    m_host->networkCard().addIPHeader(synAckPackage, 6, address);
+    m_host->networkCard().addMACHeader(
+        synAckPackage, m_host->hostTable().value(address), 2048);
+    return synAckPackage;
+  }
 
+  return Package();
+}
+
+Package Process::generateHTTPResponsePackage(const IPAddress &destination,
+                                             const Port &destPort,
+                                             const int &messageCode) {
+  Package data("HTTP Response to: " + destination.toString());
+
+  if (messageCode == 200) {
+    HTTP::initHTTPResponse("HTTP/1.1", messageCode, "OK", data,
+                           static_cast<Server *>(m_host)->htmlFile());
+  } else if (messageCode == 404) {
+    HTTP::initHTTPResponse("HTTP/1.1", messageCode, "Not Found", data, "");
+  } else {
+    qDebug() << "No valid messageCode in Process::getHTTPResponse messageCode: "
+             << messageCode;
     return Package();
+  }
+
+  m_socket.setDestinationPort(destPort);
+  m_socket.addTCPHeader(data, m_host->networkCard().networkAddress(),
+                        destination, true, true, false, false);
+
+  m_host->networkCard().addIPHeader(data, 6, destination);
+
+  m_host->networkCard().addMACHeader(
+      data, m_host->hostTable().value(destination), 2048);
+  return data;
 }
 
-Package Process::getHTTPResponse(const IPAddress &destination, const Port &destPort, const int &messageCode){
-    //Creating package
-    Package data("HTTP Response to: " + destination.toString());
+Package Process::generateCloseConnectionPackage(const IPAddress &address,
+                                                bool initiate, bool client) {
+  if (initiate && client) {
+    Package tcpFinPackage("TCP Connection Close [FIN]");
 
-    //Adding HTTP Data
-    if(messageCode == 200){
-        HTTP::initHTTPResponse("HTTP/1.1",messageCode,"OK",data,static_cast<Server *>(host)->getHtmlFile());
-    }
-    else if(messageCode == 404){
-        HTTP::initHTTPResponse("HTTP/1.1",messageCode,"Not Found",data,"");
-    }
-    else{
-        qDebug() << "No valid messageCode in Process::getHTTPResponse messageCode: " << messageCode;
-        return Package();
-    }
+    m_socket.addTCPHeader(tcpFinPackage, m_host->networkCard().networkAddress(),
+                          address, false, false, false, true);
 
-    //Adding TCP Data
-    socket.setDestinationPort(destPort);
-    socket.addTCPHeader(data,host->getNetworkCard().getNetworkAddress(),destination,true,true,false,false);
+    m_host->networkCard().addIPHeader(tcpFinPackage, 6, address);
 
-    //Adding IP Data
-    host->getNetworkCard().addIPHeader(data,6,destination);
+    m_host->networkCard().addMACHeader(
+        tcpFinPackage, m_host->hostTable().value(address), 2048);
+    return tcpFinPackage;
+  } else if (!initiate && client) {
+    Package tcpACKPackage("TCP Connection Close [ACK]");
+    m_socket.addTCPHeader(tcpACKPackage, m_host->networkCard().networkAddress(),
+                          address, true, false, false, false);
 
-    //Adding Ethernet II Data
-    host->getNetworkCard().addMACHeader(data,host->getHostTable().value(destination), 2048);
-    return data;
+    m_host->networkCard().addIPHeader(tcpACKPackage, 6, address);
+    m_host->networkCard().addMACHeader(
+        tcpACKPackage, m_host->hostTable().value(address), 2048);
+    return tcpACKPackage;
+  }
+
+  if (!client) {
+    Package finAckPackage("TCP Connection Close [FIN, ACK]");
+    m_socket.addTCPHeader(finAckPackage, m_host->networkCard().networkAddress(),
+                          address, true, false, false, true);
+    m_host->networkCard().addIPHeader(finAckPackage, 6, address);
+    m_host->networkCard().addMACHeader(
+        finAckPackage, m_host->hostTable().value(address), 2048);
+    return finAckPackage;
+  }
+
+  return Package();
 }
 
-Package Process::getCloseConnectionPackage(const IPAddress &address, bool initiate, bool client){
-    //Client Close Connection
-    if(initiate && client){
-        Package tcpFinPackage("TCP Connection Close [FIN]");
+Package Process::generateDNSRequestPackage(const QString &domain) {
+  Package package("DNS Request of domain: " + domain);
 
-        //Adding TCP Header
-        socket.addTCPHeader(tcpFinPackage,
-                            host->getNetworkCard().getNetworkAddress(),
-                            address,
-                            false,
-                            false,
-                            false,
-                            true);
+  DNS::initDNSRequest(package, QList<DNSEntry>() << DNSEntry(domain, 1, 1));
 
-        //Adding IP Header
-        host->getNetworkCard().addIPHeader(tcpFinPackage,6,address);
+  m_socket.addUDPHeader(package);
 
-        //Adding Ethernet II Header
-        host->getNetworkCard().addMACHeader(tcpFinPackage,host->getHostTable().value(address), 2048);
-        return tcpFinPackage;
-    }
-    //Client 3. Handshakepackage
-    else if(!initiate && client){
-        Package tcpACKPackage("TCP Connection Close [ACK]");
-        socket.addTCPHeader(tcpACKPackage,
-                            host->getNetworkCard().getNetworkAddress(),
-                            address,
-                            true,
-                            false,
-                            false,
-                            false);
+  IPAddress dnsServer = m_host->domainTable().value(QString("dns.beispiel.de"));
+  m_host->networkCard().addIPHeader(package, 17, dnsServer);
 
-        host->getNetworkCard().addIPHeader(tcpACKPackage,6,address);
-        host->getNetworkCard().addMACHeader(tcpACKPackage,host->getHostTable().value(address), 2048);
-        return tcpACKPackage;
-    }
+  m_host->networkCard().addMACHeader(
+      package, m_host->hostTable().value(dnsServer), 2048);
 
-    //Server Handshake Package
-    if(!client){
-        Package finAckPackage("TCP Connection Close [FIN, ACK]");
-        socket.addTCPHeader(finAckPackage,
-                            host->getNetworkCard().getNetworkAddress(),
-                            address,
-                            true,
-                            false,
-                            false,
-                            true);
-        host->getNetworkCard().addIPHeader(finAckPackage,6,address);
-        host->getNetworkCard().addMACHeader(finAckPackage,host->getHostTable().value(address), 2048);
-        return finAckPackage;
-    }
-
-    return Package();
+  return package;
 }
 
-Package Process::getDNSRequest(const QString& domain) {
-    Package package("DNS Request of domain: " + domain);
+Package Process::generateDNSResponsePackage(const IPAddress &address,
+                                            const QString &domain,
+                                            const Port &destPort) {
+  Package package("DNS Response of domain: " + domain);
+  bool nxDomain = !m_host->domainTable().contains(domain);
+  if (nxDomain) {
+    DNS::initDNSResponse(package, QList<DNSEntry>() << DNSEntry(domain, 1, 1),
+                         QList<DNSEntry>(), nxDomain);
 
-    DNS::initDNSRequest(package, QList<DNSEntry>() << DNSEntry(domain, 1, 1));
+  } else {
+    DNS::initDNSResponse(
+        package, QList<DNSEntry>() << DNSEntry(domain, 1, 1),
+        QList<DNSEntry>() << DNSEntry(
+            domain, 1, 1, 5600, m_host->domainTable().value(domain).toArray()),
+        nxDomain);
+  }
 
-    socket.addUDPHeader(package);
+  m_socket.setDestinationPort(destPort);
+  m_socket.addUDPHeader(package);
 
-    IPAddress dnsServer = host->getDomainTable().value(QString("dns.beispiel.de"));
-    host->getNetworkCard().addIPHeader(package, 17, dnsServer);
+  m_host->networkCard().addIPHeader(package, 17, address);
 
-    host->getNetworkCard().addMACHeader(package, host->getHostTable().value(dnsServer), 2048);
+  m_host->networkCard().addMACHeader(package,
+                                     m_host->hostTable().value(address), 2048);
 
-    return package;
+  return package;
 }
 
-Package Process::getDNSResponse(const IPAddress& address, const QString& domain, const Port &destPort) {
-    Package package("DNS Response of domain: " + domain);
-    bool nxDomain = !host->getDomainTable().contains(domain);
-    if(nxDomain) {
-        DNS::initDNSResponse(package, QList<DNSEntry>() << DNSEntry(domain, 1, 1), QList<DNSEntry>(), nxDomain);
+QString Process::name() const { return m_name; }
 
-    } else {
-        DNS::initDNSResponse(package, QList<DNSEntry>() << DNSEntry(domain, 1, 1), QList<DNSEntry>() << DNSEntry(domain, 1, 1, 5600, host->getDomainTable().value(domain).getAddressAsArray()), nxDomain);
-    }
+void Process::setHost(Host *host) { this->m_host = host; }
 
-    socket.setDestinationPort(destPort);
-    socket.addUDPHeader(package);
-
-    host->getNetworkCard().addIPHeader(package, 17, address);
-
-    host->getNetworkCard().addMACHeader(package, host->getHostTable().value(address), 2048);
-
-    return package;
+QString Process::toString() const {
+  return QString("Name: %1 Port: %2")
+      .arg(m_name)
+      .arg(m_socket.sourcePort().portNumber());
 }
 
-QString Process::getName() const
-{
-    return name;
-}
-
-void Process::setHost(Host *host)
-{
-    this->host = host;
-}
-
-QString Process::toString() const
-{
-    return QString("Name: %1 Port: %2").arg(name).arg(socket.getSourcePort().getPortNumber());
-}
-
-Socket& Process::getSocket(){
-    return socket;
-}
+Socket &Process::getSocket() { return m_socket; }

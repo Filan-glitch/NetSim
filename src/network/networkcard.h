@@ -5,27 +5,29 @@
 #include "src/models/macaddress.h"
 #include "src/models/package.h"
 
+namespace NetSim {
+class NetworkCard;
+}
 
-
-class NetworkCard
-{
+class NetworkCard {
 public:
-    NetworkCard(const IPAddress &networkAddress, const MACAddress &physicalAddress);;
+  NetworkCard(const IPAddress &networkAddress,
+              const MACAddress &physicalAddress);
 
-    void addIPHeader(Package &data, quint8 protocol,const IPAddress &destinationAddress);
+  void addIPHeader(Package &data, quint8 protocol,
+                   const IPAddress &destinationAddress);
 
-    void addMACHeader(Package &data, MACAddress destinationMACAddress, quint16 dataLength);
+  void addMACHeader(Package &data, MACAddress destinationMACAddress,
+                    quint16 dataLength);
 
-    Package sentToRouter(Package& data);
+  IPAddress networkAddress() const;
 
-    IPAddress getNetworkAddress() const;
-
-    MACAddress getPhysicalAddress() const;
+  MACAddress physicalAddress() const;
 
 private:
-    IPAddress networkAddress;
+  IPAddress m_networkAddress;
 
-    MACAddress physicalAddress;
+  MACAddress m_physicalAddress;
 };
 
 #endif // NETWORKCARD_H

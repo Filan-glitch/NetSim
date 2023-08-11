@@ -4,17 +4,20 @@
 #include "src/models/package.h"
 #include <QList>
 
-class PackageDatabase
-{
-private:
-    PackageDatabase();
+namespace NetSim {
+class PackageDatabase;
+}
 
-    QList<Package> m_packageList;
-
+class PackageDatabase {
 public:
-    QList<Package>* packageList();
+  QList<Package> *packageList();
 
-    static PackageDatabase* instance();
+  static PackageDatabase *instance();
+
+private:
+  PackageDatabase();
+
+  QList<Package> m_packageList;
 };
 
 #endif // PACKAGEDATABASE_H

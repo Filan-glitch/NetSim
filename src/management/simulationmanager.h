@@ -6,30 +6,34 @@
 #include "src/network/server.h"
 #include <QString>
 
-class SimulationManager
-{
+namespace NetSim {
+class SimulationManager;
+}
+
+class SimulationManager {
 
 public:
-    explicit SimulationManager(quint8 clientAmount, quint8 serverAmount, QList<QString> domains);
+  explicit SimulationManager(quint8 clientAmount, quint8 serverAmount,
+                             QList<QString> domains);
 
-    quint8 getClientsAmount() const;
+  quint8 clientsAmount() const;
 
-    quint8 getServerAmount() const;
+  quint8 serversAmount() const;
 
-    QList<Server>* getServer();
+  QList<Server> *servers();
 
-    QList<Client>* getClients();
+  QList<Client> *clients();
 
-    QList<Router>* getRouters();
+  QList<Router> *routers();
 
-    void setPackages(PackageTableModel* packages);
+  void setPackages(PackageTableModel *packages);
 
 private:
-    QList<Server> server;
+  QList<Server> m_servers;
 
-    QList<Client> clients;
+  QList<Client> m_clients;
 
-    QList<Router> routers;
+  QList<Router> m_routers;
 };
 
 #endif // SIMULATIONMANAGER_H

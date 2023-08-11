@@ -1,10 +1,7 @@
 #include "cablenotfoundexception.h"
 
-CableNotFoundException::CableNotFoundException(const QString &errorMessage)
-{
-    this->errorMessage = errorMessage;
+CableNotFoundException::CableNotFoundException(const QString &errorMessage) {
+  this->m_errorMessage = errorMessage;
 }
 
-QString CableNotFoundException::getErrorMessage() const{
-    return errorMessage;
-}
+QString CableNotFoundException::errorMessage() const { return m_errorMessage; }

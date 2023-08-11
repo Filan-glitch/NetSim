@@ -8,19 +8,18 @@ namespace Ui {
 class Router_Dialog;
 }
 
-class Router_Dialog : public QDialog
-{
-    Q_OBJECT
+class Router_Dialog : public QDialog {
+  Q_OBJECT
 
 public:
-    explicit Router_Dialog(RouterWidget *router, QWidget *parent = nullptr);
+  explicit Router_Dialog(RouterWidget *router, QWidget *parent = nullptr);
 
-    ~Router_Dialog();
+  ~Router_Dialog();
 
 private:
-    Ui::Router_Dialog *ui;
+  Ui::Router_Dialog *ui;
 
-    RouterWidget *router;
+  RouterWidget *m_router;
 };
 
 #endif // ROUTER_DIALOG_H
