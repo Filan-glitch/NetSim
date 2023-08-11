@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/full_logo.svg" alt="Logo">
+  <img src="./assets/full_logo.svg" alt="Alt Text" width="350">
 </p>
 
 # NetSim - The educational Network Simulation
