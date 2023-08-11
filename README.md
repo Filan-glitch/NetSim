@@ -1,7 +1,9 @@
 # NetSim - The educational Network Simulation
 
 <p align="center">
-  <img src="./assets/full_logo.svg" alt="Alt Text" width="350">
+  <p align="center">
+    <img src="assets/full_logo.svg" alt="Alt Text" width="350">
+  </p>
 </p>
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/c040d5aae28c4d82846cc95cce931988)](https://app.codacy.com/gh/Filan-glitch/NetSim/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
