@@ -13,15 +13,24 @@ Client_Dialog::Client_Dialog(ClientWidget* client, QWidget *parent) :
     for(auto& process : client->client()->getProcessTable()) {
         ui->processesList->addItem(process.toString());
     }
-    for(auto& domain : client->client()->getDomainTable().keys()) {
-        ui->domainsList->addItem(domain + " (" + client->client()->getDomainTable().value(domain).toString() + ")");
+    const auto& domainTable = client->client()->getDomainTable();
+    for (auto it = domainTable.constBegin(); it != domainTable.constEnd(); ++it) {
+        QString domain = it.key();
+        QString value = it.value().toString();
+        ui->domainsList->addItem(domain + " (" + value + ")");
     }
-    for(auto& ipAddress : client->client()->getHostTable().keys()) {
-        ui->connectionsList->addItem(ipAddress.toString() + " -> " + client->client()->getHostTable().value(ipAddress).toString());
+    const auto& hostTable = client->client()->getHostTable();
+    for (auto it = hostTable.constBegin(); it != hostTable.constEnd(); ++it) {
+        QString ipAddress = it.key().toString();
+        QString value = it.value().toString();
+        ui->connectionsList->addItem(ipAddress + " -> " + value);
     }
-    for(auto& cable : client->client()->getCables().keys()) {
-        ui->cablesList->addItem("Cable to " + cable.toString());
+    const auto& cables = client->client()->getCables();
+    for (auto it = cables.constBegin(); it != cables.constEnd(); ++it) {
+        QString cable = it.key().toString();
+        ui->cablesList->addItem("Cable to " + cable);
     }
+
 
     QRect rect = this->geometry();
     rect.setHeight(0);

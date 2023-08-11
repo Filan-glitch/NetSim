@@ -8,7 +8,9 @@ class Server : public Host
 {
 private:
     QString m_domain;
+
     QString htmlFile;
+
 public:
     Server(const NetworkCard &networkCard, const QString &domain, const QString &html);
 

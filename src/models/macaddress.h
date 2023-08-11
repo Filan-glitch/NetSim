@@ -14,23 +14,19 @@ private:
 public:
     MACAddress(const QVector<quint8> &address);
 
-    MACAddress(){
-        address << 0 << 0 << 0 << 0 << 0 << 0;
-    };
+    MACAddress();;
 
     QString toString() const;
+
     QVector<quint8> getAddressAsArray() const;
+
     quint64 getAddressAsInt() const;
 
     static MACAddress getRandomAddress();
 
-    bool operator<(const MACAddress& other) const{
-        return getAddressAsInt() < other.getAddressAsInt();
-    }
+    bool operator<(const MACAddress& other) const;
 
-    bool operator==(const MACAddress& other) const{
-        return this->getAddressAsInt() == other.getAddressAsInt();
-    }
+    bool operator==(const MACAddress& other) const;
 };
 
 

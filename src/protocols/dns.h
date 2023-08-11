@@ -21,10 +21,12 @@ class DNS
 {
 public:
     static void initDNSRequest(Package& data, const QList<DNSEntry> queries);
-    static void initDNSResponse(Package& data, const QList<DNSEntry> queries, const QList<DNSEntry> answers);
+
+    static void initDNSResponse(Package& data, const QList<DNSEntry> queries, const QList<DNSEntry> answers, bool nxDomain);
 
 private:
     static void setFlag(quint16* flags, bool set, quint8 position);
+
     static QVector<quint8> stringToArray(const QString &string);
 };
 

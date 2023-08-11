@@ -13,6 +13,7 @@ class About_Dialog : public QDialog
 
 public:
     explicit About_Dialog(QWidget *parent = nullptr);
+
     ~About_Dialog();
 
 private:

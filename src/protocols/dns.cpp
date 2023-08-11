@@ -35,7 +35,7 @@ void DNS::initDNSRequest(Package &data, const QList<DNSEntry> queries)
     data.addHeader(dnsHeader);
 }
 
-void DNS::initDNSResponse(Package &data, const QList<DNSEntry> queries, const QList<DNSEntry> answers)
+void DNS::initDNSResponse(Package &data, const QList<DNSEntry> queries, const QList<DNSEntry> answers, bool nxDomain)
 {
     HeaderAttribute transactionID("Transaction ID", 16, static_cast<quint16>(QRandomGenerator::global()->generate() % 0xFFFF));
 
@@ -44,6 +44,10 @@ void DNS::initDNSResponse(Package &data, const QList<DNSEntry> queries, const QL
 
     quint16 flagsVal = 0;
     setFlag(&flagsVal, true, 15);
+    if(nxDomain) {
+        setFlag(&flagsVal, true, 0);
+        setFlag(&flagsVal, true, 1);
+    }
     HeaderAttribute _flags("Flags", 16, flagsVal);
 
     QList<HeaderAttribute> headerList;

@@ -39,7 +39,9 @@ public:
 
 private:
     QString name;
+
     Socket socket;
+
     Host* host;
 };
 

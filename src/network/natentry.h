@@ -13,16 +13,15 @@ public:
 
     NATEntry(){};
 
-    Port getPortNumber();
+    Port getPortNumber() const;
 
-    IPAddress getIPAddress();
+    IPAddress getIPAddress() const;
 
-    bool operator<(const NATEntry& entry)const{
-        return this->portNumber.getPortNumber() < entry.portNumber.getPortNumber();
-    }
+    bool operator<(const NATEntry& entry)const;
 
 private:
     Port portNumber;
+
     IPAddress address;
 };
 

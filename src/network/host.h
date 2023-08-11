@@ -20,29 +20,50 @@ class Host
 {
 private:
     QMap<Port, Process> processTable;
+
     QMap<IPAddress, MACAddress> hostTable;
+
     QMap<QString, IPAddress> domainTable;
+
     QMap<MACAddress, Router*> cables;
+
     NetworkCard networkCard;
+
     PackageTableModel* packages;
 
 public:
     Host(const NetworkCard &networkCard);
+
     QMap<Port, Process> getProcessTable() const;
+
     QMap<IPAddress, MACAddress> getHostTable() const;
+
     QMap<QString, IPAddress> getDomainTable() const;
+
     QMap<MACAddress, Router*> getCables() const;
+
     NetworkCard getNetworkCard() const;
+
     Router* getRouterByMACAddress(const MACAddress &destinationAddress);
+
     void sendPackage(Package &data, const MACAddress &destinationAddress);
+
     virtual void receivePackage(Package data) = 0;
+
     void addProcess(const Port &port, const Process &process);
+
     void addIPAddress(const IPAddress &ipAddress, const MACAddress &macAddress);
+
     void addMACAddress(const MACAddress &macAddress, Router* router);
+
     void addDomain(const QString &domain, const IPAddress &ipAddress);
+
     PackageTableModel *getPackages() const;
+
     void setPackages(PackageTableModel *packages);
+
     Process& getProcessByName(const QString &name);
+
     void setHostOfProcesses(Host* host);
 };
 

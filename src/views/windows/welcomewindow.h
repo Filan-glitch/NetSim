@@ -13,14 +13,17 @@ class WelcomeWindow : public QMainWindow
 
 public:
     WelcomeWindow(QWidget *parent = nullptr);
+
     ~WelcomeWindow();
 
 private:
     Ui::WelcomeWindow *ui;
+
     void startSimulation();
 
 private slots:
     void openDocumentation();
+
     void about();
 };
 #endif // WELCOMEWINDOW_H

@@ -8,10 +8,12 @@ class PackageDatabase
 {
 private:
     PackageDatabase();
+
     QList<Package> m_packageList;
 
 public:
     QList<Package>* packageList();
+
     static PackageDatabase* instance();
 };
 

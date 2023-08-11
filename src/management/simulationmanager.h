@@ -11,18 +11,24 @@ class SimulationManager
 
 public:
     explicit SimulationManager(quint8 clientAmount, quint8 serverAmount, QList<QString> domains);
+
     quint8 getClientsAmount() const;
+
     quint8 getServerAmount() const;
 
     QList<Server>* getServer();
+
     QList<Client>* getClients();
+
     QList<Router>* getRouters();
 
     void setPackages(PackageTableModel* packages);
 
 private:
     QList<Server> server;
+
     QList<Client> clients;
+
     QList<Router> routers;
 };
 

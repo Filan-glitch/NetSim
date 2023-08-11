@@ -13,6 +13,7 @@ private:
 
 public:
     IPAddress();
+
     IPAddress(const QVector<quint8> &address);
 
     QString toString() const;

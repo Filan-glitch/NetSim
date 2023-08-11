@@ -4,6 +4,7 @@
 #include <QDateTime>
 
 QFile* Logger::logFile = Q_NULLPTR;
+
 bool Logger::isInit = false;
 
 QHash<QtMsgType, QString> Logger::contextNames = {
@@ -41,11 +42,11 @@ void Logger::clean() {
 
 void Logger::messageOutput(QtMsgType type, const QMessageLogContext& context, const QString& msg) {
     QString log = QObject::tr("[%1] [%2] [%3] [%4] %5\n")
-                      .arg(QDateTime::currentDateTime().toString("hh:mm:ss:msmsms"))
-                      .arg(Logger::contextNames.value(type))
-                      .arg(QString(context.file).section('\\', -1))
-                      .arg(context.line)
-                      .arg(msg);
+                      .arg(QDateTime::currentDateTime().toString("hh:mm:ss:msmsms"),
+                           Logger::contextNames.value(type),
+                           QString(context.file).section('\\', -1),
+                           QString::number(context.line),
+                           msg);
     logFile->write(log.toUtf8());
     logFile->flush();
 }
