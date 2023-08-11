@@ -192,8 +192,13 @@ Package Process::getDNSRequest(const QString& domain) {
 
 Package Process::getDNSResponse(const IPAddress& address, const QString& domain, const Port &destPort) {
     Package package("DNS Response of domain: " + domain);
+    bool nxDomain = !host->getDomainTable().contains(domain);
+    if(nxDomain) {
+        DNS::initDNSResponse(package, QList<DNSEntry>() << DNSEntry(domain, 1, 1), QList<DNSEntry>(), nxDomain);
 
-    DNS::initDNSResponse(package, QList<DNSEntry>() << DNSEntry(domain, 1, 1), QList<DNSEntry>() << DNSEntry(domain, 1, 1, 5600, host->getDomainTable().value(domain).getAddressAsArray()));
+    } else {
+        DNS::initDNSResponse(package, QList<DNSEntry>() << DNSEntry(domain, 1, 1), QList<DNSEntry>() << DNSEntry(domain, 1, 1, 5600, host->getDomainTable().value(domain).getAddressAsArray()), nxDomain);
+    }
 
     socket.setDestinationPort(destPort);
     socket.addUDPHeader(package);

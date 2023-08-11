@@ -230,16 +230,22 @@ bool SettingsDialog::allVisibleLineEditsFilled(){
     case 0:
         return false;
     case 1:
-        return ui->domainLineEdit_1->text().size() > 0;
+        return (ui->domainLineEdit_1->text().size() > 0);
     case 2:
-        return (ui->domainLineEdit_1->text().size() > 0) && (ui->domainLineEdit_2->text().size() > 0);
+        return (ui->domainLineEdit_1->text().size() > 0) && (ui->domainLineEdit_2->text().size() > 0)
+               && (ui->domainLineEdit_1->text() != ui->domainLineEdit_2->text());
     case 3:
-        return (ui->domainLineEdit_1->text().size() > 0) && (ui->domainLineEdit_2->text().size() > 0) && (ui->domainLineEdit_3->text().size() > 0);
+        return (ui->domainLineEdit_1->text().size() > 0) && (ui->domainLineEdit_2->text().size() > 0) && (ui->domainLineEdit_3->text().size() > 0)
+               && (ui->domainLineEdit_1->text() != ui->domainLineEdit_2->text()) && (ui->domainLineEdit_1->text() != ui->domainLineEdit_3->text()) && (ui->domainLineEdit_2->text() != ui->domainLineEdit_3->text());
     case 4:
-        return (ui->domainLineEdit_1->text().size() > 0) && (ui->domainLineEdit_2->text().size() > 0) && (ui->domainLineEdit_3->text().size() > 0) && (ui->domainLineEdit_4->text().size() > 0);
+        return (ui->domainLineEdit_1->text().size() > 0) && (ui->domainLineEdit_2->text().size() > 0) && (ui->domainLineEdit_3->text().size() > 0) && (ui->domainLineEdit_4->text().size() > 0)
+               && (ui->domainLineEdit_1->text() != ui->domainLineEdit_2->text()) && (ui->domainLineEdit_1->text() != ui->domainLineEdit_3->text()) && (ui->domainLineEdit_1->text() != ui->domainLineEdit_4->text())
+               && (ui->domainLineEdit_2->text() != ui->domainLineEdit_3->text()) && (ui->domainLineEdit_2->text() != ui->domainLineEdit_4->text()) && (ui->domainLineEdit_3->text() != ui->domainLineEdit_4->text());
     case 5:
-        return (ui->domainLineEdit_1->text().size() > 0) && (ui->domainLineEdit_2->text().size() > 0) && (ui->domainLineEdit_3->text().size() > 0) && (ui->domainLineEdit_4->text().size() > 0) && (ui->domainLineEdit_5->text().size() > 0);
+        return (ui->domainLineEdit_1->text().size() > 0) && (ui->domainLineEdit_2->text().size() > 0) && (ui->domainLineEdit_3->text().size() > 0) && (ui->domainLineEdit_4->text().size() > 0) && (ui->domainLineEdit_5->text().size() > 0)
+               && (ui->domainLineEdit_1->text() != ui->domainLineEdit_2->text()) && (ui->domainLineEdit_1->text() != ui->domainLineEdit_3->text()) && (ui->domainLineEdit_1->text() != ui->domainLineEdit_4->text()) && (ui->domainLineEdit_1->text() != ui->domainLineEdit_5->text())
+               && (ui->domainLineEdit_2->text() != ui->domainLineEdit_3->text()) && (ui->domainLineEdit_2->text() != ui->domainLineEdit_4->text()) && (ui->domainLineEdit_2->text() != ui->domainLineEdit_5->text())
+               && (ui->domainLineEdit_3->text() != ui->domainLineEdit_4->text()) && (ui->domainLineEdit_3->text() != ui->domainLineEdit_5->text()) && (ui->domainLineEdit_4->text() != ui->domainLineEdit_5->text());
     }
     return false;
 }
-

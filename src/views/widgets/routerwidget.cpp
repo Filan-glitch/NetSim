@@ -31,8 +31,8 @@ RouterWidget::RouterWidget(Router* router, QWidget *parent)
     //Erstelle das Layout
     m_layout = new QVBoxLayout(this);
     m_layout->addWidget(m_button);
-    m_layout->addWidget(m_localIpLabel);
     m_layout->addWidget(m_globalIpLabel);
+    m_layout->addWidget(m_localIpLabel);
     m_layout->addWidget(m_macLabel);
 
     this->setFixedSize(QSize(256, 156));

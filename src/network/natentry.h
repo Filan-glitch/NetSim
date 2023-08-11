@@ -13,9 +13,9 @@ public:
 
     NATEntry(){};
 
-    Port getPortNumber();
+    Port getPortNumber() const;
 
-    IPAddress getIPAddress();
+    IPAddress getIPAddress() const;
 
     bool operator<(const NATEntry& entry)const;
 

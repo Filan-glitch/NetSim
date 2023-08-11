@@ -198,12 +198,13 @@ void SimulationWindow::updateTreeWidget(const QModelIndex &index)
             applicationHeader->addChild(new QTreeWidgetItem(applicationHeader, QStringList(QString("Status Code: %1").arg(HeaderUtil::getHTTPAttribute(package, "Code")))));
             applicationHeader->addChild(new QTreeWidgetItem(applicationHeader, QStringList(QString("Response Phrase: %1").arg(HeaderUtil::getHTTPAttribute(package, "Phrase")))));
             applicationHeader->addChild(new QTreeWidgetItem(applicationHeader, QStringList(QString("Content-Type: %1").arg(HeaderUtil::getHTTPAttribute(package, "Content-Type")))));
-
-            QTreeWidgetItem* contentHeader = new QTreeWidgetItem(static_cast<QTreeWidget *>(nullptr), QStringList(QString("Line-based text data: %1").arg(HeaderUtil::getHTTPAttribute(package, "Content-Type"))));
-            contentHeader->addChild(new QTreeWidgetItem(contentHeader, QStringList(package.getContent())));
-
             this->m_treeWidget->addTopLevelItem(applicationHeader);
-            this->m_treeWidget->addTopLevelItem(contentHeader);
+
+            if(HeaderUtil::getHTTPAttribute(package, "Code") == "200") {
+                QTreeWidgetItem* contentHeader = new QTreeWidgetItem(static_cast<QTreeWidget *>(nullptr), QStringList(QString("Line-based text data: %1").arg(HeaderUtil::getHTTPAttribute(package, "Content-Type"))));
+                contentHeader->addChild(new QTreeWidgetItem(contentHeader, QStringList(package.getContent())));
+                this->m_treeWidget->addTopLevelItem(contentHeader);
+            }
         } else {
             QTreeWidgetItem* applicationHeader = new QTreeWidgetItem(static_cast<QTreeWidget *>(nullptr), QStringList(QString("Hypertext Transfer Protocol")));
             applicationHeader->addChild(new QTreeWidgetItem(applicationHeader, QStringList(QString("Request Method: %1").arg(HeaderUtil::getHTTPAttribute(package, "Method")))));

@@ -11,21 +11,32 @@ Router_Dialog::Router_Dialog(RouterWidget* router, QWidget *parent) :
     ui->localIPLabel->setText(router->router()->getNetworkCard().getNetworkAddress().toString());
     ui->macLabel->setText(router->router()->getNetworkCard().getPhysicalAddress().toString());
 
-    for(auto& port : router->router()->getNAT().keys()) {
-        ui->natList->addItem(router->router()->getGlobalIpAddress().toString() + " (" + QString::number(port.getPortNumber()) + ") <-> " + router->router()->getNAT().value(port).getIPAddress().toString() + " (" + QString::number(router->router()->getNAT().value(port).getPortNumber().getPortNumber()) + ")");
+    const auto& natTable = router->router()->getNAT();
+    for (auto it = natTable.constBegin(); it != natTable.constEnd(); ++it) {
+        const auto& port = it.key();
+        const auto& entry = it.value();
+        ui->natList->addItem(router->router()->getGlobalIpAddress().toString() +
+                             " (" + QString::number(port.getPortNumber()) +
+                             ") <-> " + entry.getIPAddress().toString() +
+                             " (" + QString::number(entry.getPortNumber().getPortNumber()) + ")");
     }
-    for(auto& nat : router->router()->getNAT2Port().keys()) {
-        ui->natList->addItem(nat.getIPAddress().toString() + " (" + QString::number(nat.getPortNumber().getPortNumber()) + ")" + " <-> " + router->router()->getGlobalIpAddress().toString() + " (" + QString::number(router->router()->getNAT2Port().value(nat).getPortNumber()) + ")");
+    const auto& macTable = router->router()->getMacTable();
+    for (auto it = macTable.constBegin(); it != macTable.constEnd(); ++it) {
+        QString ipAddress = it.key().toString();
+        QString value = it.value().toString();
+        ui->connectionsList->addItem(ipAddress + " -> " + value);
     }
-    for(auto& ipAddress : router->router()->getMacTable().keys()) {
-        ui->connectionsList->addItem(ipAddress.toString() + " -> " + router->router()->getMacTable().value(ipAddress).toString());
+    const auto& hostCables = router->router()->getHostCable();
+    for (auto it = hostCables.constBegin(); it != hostCables.constEnd(); ++it) {
+        QString cable = it.key().toString();
+        ui->cablesList->addItem("Cable to " + cable);
     }
-    for(auto& cable : router->router()->getHostCable().keys()) {
-        ui->cablesList->addItem("Cable to " + cable.toString());
+    const auto& routerCables = router->router()->getRouterCable();
+    for (auto it = routerCables.constBegin(); it != routerCables.constEnd(); ++it) {
+        QString cable = it.key().toString();
+        ui->cablesList->addItem("Cable to " + cable);
     }
-    for(auto& cable : router->router()->getRouterCable().keys()) {
-        ui->cablesList->addItem("Cable to " + cable.toString());
-    }
+
 
     QRect rect = this->geometry();
     rect.setHeight(0);
