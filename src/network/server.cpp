@@ -29,7 +29,7 @@ void Server::receivePackage(Package data){
         Process dnsProcess;
         try{
             dnsProcess = getProcessByName("DNS");
-        }catch(std::runtime_error re){
+        }catch(const std::runtime_error &re){
             qDebug() << "Could not find Process DNS in Server::receivePackage DNS Request Package";
             return;
         }
@@ -43,7 +43,7 @@ void Server::receivePackage(Package data){
         Router* router;
         try{
             router = this->getRouterByMACAddress(routerMAC);
-        }catch(CableNotFoundException cnfe){
+        }catch(const CableNotFoundException &cnfe){
             qDebug() << cnfe.getErrorMessage() << " in Server::receivePackage creating DNS Response";
             return;
         }
@@ -66,7 +66,7 @@ void Server::receivePackage(Package data){
         Process httpProcess;
         try{
             httpProcess = getProcessByName("HTTP");
-        }catch(std::runtime_error re){
+        }catch(const std::runtime_error &re){
             qDebug() << "Could not find HTTP Process in Server::receivePackage TCP Handshake Package";
         }
 
@@ -80,7 +80,7 @@ void Server::receivePackage(Package data){
         Router* router;
         try{
             router = this->getRouterByMACAddress(routerMAC);
-        }catch(CableNotFoundException cnfe){
+        }catch(const CableNotFoundException &cnfe){
             qDebug() << cnfe.getErrorMessage() << " in Server::receivePackage receiving TCP Handshakepackage";
             return;
         }
@@ -102,7 +102,7 @@ void Server::receivePackage(Package data){
         Process httpProcess;
         try{
             httpProcess = getProcessByName("HTTP");
-        }catch(std::runtime_error re){
+        }catch(const std::runtime_error &re){
             qDebug() << "Process HTTP not found in: Server::receivePackage connection close";
             return;
         }
@@ -117,7 +117,7 @@ void Server::receivePackage(Package data){
         Router* router;
         try{
             router = this->getRouterByMACAddress(routerMAC);
-        }catch(CableNotFoundException cnfe){
+        }catch(const CableNotFoundException &cnfe){
             qDebug() << cnfe.getErrorMessage() << " in Server::receivePackage creating the closeConnection Response";
             return;
         }
@@ -139,7 +139,7 @@ void Server::receivePackage(Package data){
         Process httpProcess;
         try{
             httpProcess = getProcessByName("HTTP");
-        }catch(std::runtime_error re){
+        }catch(const std::runtime_error &re){
             qDebug() << "Could not find Process HTTP in: HeaderUtil::getHTTPIsRequest";
             return;
         }
@@ -158,7 +158,7 @@ void Server::receivePackage(Package data){
         Router* router;
         try{
             router = this->getRouterByMACAddress(routerMAC);
-        }catch(CableNotFoundException cnfe){
+        }catch(const CableNotFoundException &cnfe){
             qDebug() << cnfe.getErrorMessage() << " in Server::receivePackage creating HTTP Response";
             return;
         }
