@@ -5,8 +5,6 @@
 
 using namespace NetSim;
 
-DNSStrategy::~DNSStrategy() {}
-
 void NetSim::DNSStrategy::handle(Package package, Host *host) {
   Process dnsProcess;
   try {

@@ -1,13 +1,11 @@
-#include "tcpconnectionclosestrategy.h"
+#include "tcpserverconnectionclosestrategy.h"
 #include "src/network/cablenotfoundexception.h"
 #include "src/network/router.h"
 #include "src/protocols/headerutil.h"
 
 using namespace NetSim;
 
-TCPConnectionCloseStrategy::~TCPConnectionCloseStrategy() {}
-
-void TCPConnectionCloseStrategy::handle(Package package, Host *host) {
+void TCPServerConnectionCloseStrategy::handle(Package package, Host *host) {
   Process httpProcess;
   try {
     httpProcess = host->getProcessByName("HTTP");

@@ -13,6 +13,7 @@ int main(int argc, char *argv[]) {
   WelcomeWindow w;
   w.show();
   bool state = a.exec();
+  qInfo() << "Application finished";
 
   Logger::clean();
   return state;

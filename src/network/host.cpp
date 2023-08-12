@@ -35,12 +35,7 @@ void Host::setHostOfProcesses(Host *host) {
   }
 }
 
-Host::Host(const NetworkCard &networkCard)
-    : m_processTable(QMap<Port, Process>()),
-      m_hostTable(QMap<IPAddress, MACAddress>()),
-      m_domainTable(QMap<QString, IPAddress>()),
-      m_cables(QMap<MACAddress, Router *>()), m_networkCard(networkCard),
-      m_packages(nullptr) {
+Host::Host(const NetworkCard &networkCard) : m_networkCard(networkCard) {
   Process http(Port(80), "HTTP");
   Process dns(Port(53), "DNS");
   addProcess(http.getSocket().sourcePort(), http);

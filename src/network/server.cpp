@@ -2,8 +2,8 @@
 #include "src/models/strategies/dnsstrategy.h"
 #include "src/models/strategies/httpstrategy.h"
 #include "src/models/strategies/ipackagestrategy.h"
-#include "src/models/strategies/tcpconnectionclosestrategy.h"
-#include "src/models/strategies/tcphandshakestrategy.h"
+#include "src/models/strategies/tcpserverconnectionclosestrategy.h"
+#include "src/models/strategies/tcpserverhandshakestrategy.h"
 #include "src/protocols/headerutil.h"
 
 using namespace NetSim;
@@ -25,14 +25,14 @@ void Server::receivePackage(Package data) {
 
   IPackageStrategy *strategy = nullptr;
 
-  if (HeaderUtil::getTopProtocol(data) == HeaderType::DNS) {
+  if (HeaderUtil::getTopProtocol(data) == DNS) {
     strategy = new DNSStrategy();
   } else if (HeaderUtil::getHTTPIsRequest(data)) {
     strategy = new HTTPStrategy();
   } else if (HeaderUtil::getTCPFlag(data, TCPFlag::SYN) == "Set") {
-    strategy = new TCPHandshakeStrategy();
+    strategy = new TCPServerHandshakeStrategy();
   } else if (HeaderUtil::getTCPFlag(data, TCPFlag::FIN) == "Set") {
-    strategy = new TCPConnectionCloseStrategy();
+    strategy = new TCPServerConnectionCloseStrategy();
   }
 
   if (strategy) {

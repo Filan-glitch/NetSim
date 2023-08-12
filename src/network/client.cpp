@@ -1,5 +1,8 @@
 #include "client.h"
 #include "cablenotfoundexception.h"
+#include "src/models/strategies/ipackagestrategy.h"
+#include "src/models/strategies/tcpclientconnectionclosestrategy.h"
+#include "src/models/strategies/tcpclienthandshakestrategy.h"
 #include "src/network/router.h"
 #include "src/protocols/headerutil.h"
 #include "src/protocols/tcp.h"
@@ -147,8 +150,10 @@ void Client::receivePackage(Package data) {
           << " received Package: " << data.info()
           << " Client: " << this->networkCard().networkAddress().toString();
 
+  IPackageStrategy *strategy = nullptr;
+
   // Receives a DNS Response Package from Server
-  if (HeaderUtil::getTopProtocol(data) == HeaderType::DNS) {
+  if (HeaderUtil::getTopProtocol(data) == DNS) {
     for (auto i = 0; i < HeaderUtil::getDNSAnswerRRs(data).toInt(); i++) {
       addDomain(HeaderUtil::getDNSAnswer(data, i, RRAttribute::NAME),
                 HeaderUtil::getDNSAnswerIPAddress(data, i));
@@ -158,69 +163,18 @@ void Client::receivePackage(Package data) {
 
   if (HeaderUtil::getTCPFlag(data, TCPFlag::SYN) == "Set" &&
       HeaderUtil::getTCPFlag(data, TCPFlag::ACK) == "Set") {
-    MACAddress routerMAC = this->hostTable().value(
-        HeaderUtil::getIPAddressAsIPAddress(data, true));
-    Router *router;
-    try {
-      router = this->getRouterByMACAddress(routerMAC);
-    } catch (const CableNotFoundException &cnfe) {
-      qDebug()
-          << cnfe.errorMessage()
-          << " in Client::receivePackage getting the TCP Handshake Package";
-      return;
-    }
-
-    if (router == nullptr) {
-      qDebug() << "Router is nullptr in Client::receivePackage";
-      return;
-    }
-
-    Process httpProcess;
-    try {
-      httpProcess = getProcessByName("HTTP");
-    } catch (const std::runtime_error &re) {
-      qDebug() << "Could not find Process HTTP in Client::receivePackage "
-                  "receiving TCP Handshake Package from Server";
-      return;
-    }
-
-    qInfo() << "Client: " << this->networkCard().networkAddress().toString()
-            << " sends 3. Handshake Package to router: "
-            << router->networkCard().physicalAddress().toString();
-    router->receivePackage(httpProcess.generateHandShakePackage(
-        HeaderUtil::getIPAddressAsIPAddress(data, true), false, true));
+    strategy = new TCPClientHandshakeStrategy();
   }
 
   if (HeaderUtil::getTCPFlag(data, TCPFlag::FIN) == "Set" &&
       HeaderUtil::getTCPFlag(data, TCPFlag::ACK) == "Set") {
-    MACAddress routerMAC = this->hostTable().value(
-        HeaderUtil::getIPAddressAsIPAddress(data, true));
-    Router *router;
-    try {
-      router = this->getRouterByMACAddress(routerMAC);
-    } catch (const CableNotFoundException &cnfe) {
-      qDebug() << cnfe.errorMessage()
-               << " in Client::receivePackage receiving the closing Package "
-                  "from Server";
-      return;
-    }
-    if (router == nullptr) {
-      qDebug() << "Router is nullptr in Client::receivePackage";
-      return;
-    }
+    strategy = new TCPClientConnectionCloseStrategy();
+  }
 
-    Process httpProcess;
-    try {
-      httpProcess = getProcessByName("HTTP");
-    } catch (const std::runtime_error &re) {
-      qDebug() << "Could not find Process HTTP in Client::receivePackage "
-                  "receiving a closing package from Server";
-      return;
-    }
-    qInfo() << "Client: " << this->networkCard().networkAddress().toString()
-            << " sends 3. Handshake Package to router: "
-            << router->networkCard().physicalAddress().toString();
-    router->receivePackage(httpProcess.generateCloseConnectionPackage(
-        HeaderUtil::getIPAddressAsIPAddress(data, true), false, true));
+  if (strategy) {
+    strategy->handle(data, this);
+    delete strategy;
+  } else {
+    qDebug() << "Package has unknown format and cannot be processed.";
   }
 }
