@@ -23,6 +23,9 @@ namespace NetSim {
  */
 class Client : public Host {
 public:
+  //! @brief Default constructor.
+  Client() = default;
+
   /**
    * @brief Constructs a client with the provided network card.
    *

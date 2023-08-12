@@ -85,13 +85,13 @@ public:
 
 private:
   //! @brief A list storing all the `Server` objects in the simulation.
-  QList<Server> m_servers;
+  QList<Server> m_servers{};
 
   //! @brief A list storing all the `Client` objects in the simulation.
-  QList<Client> m_clients;
+  QList<Client> m_clients{};
 
   //! @brief A list storing all the `Router` objects in the simulation.
-  QList<Router> m_routers;
+  QList<Router> m_routers{};
 };
 } // namespace NetSim
 

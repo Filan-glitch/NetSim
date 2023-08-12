@@ -20,8 +20,6 @@ void Socket::addUDPHeader(Package &data) {
 Socket::Socket(const Port &sourcePort, const Port &destinationPort)
     : m_sourcePort(sourcePort), m_destinationPort(destinationPort) {}
 
-Socket::Socket() : m_sourcePort(Port(0)), m_destinationPort(Port(0)) {}
-
 Port Socket::sourcePort() const { return m_sourcePort; }
 void Socket::setSourcePort(const Port &sourcePort) {
   this->m_sourcePort = sourcePort;

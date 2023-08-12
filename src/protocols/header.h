@@ -10,26 +10,26 @@ enum HeaderType { HTTP, DNS, TCP, UDP, IP, MAC, UNKNOWN };
 
 class Header {
 public:
-  Header();
+  Header() = default;
 
-  Header(const NetSim::HeaderType &headerType,
+  Header(const HeaderType &headerType,
          const QList<HeaderAttribute> &headerList);
 
   void addHeaderAttribute(const HeaderAttribute &headerAttribute);
 
-  void setHeaderType(const NetSim::HeaderType &headerType);
+  void setHeaderType(const HeaderType &headerType);
 
   QList<HeaderAttribute> headerList() const;
 
-  NetSim::HeaderType type() const;
+  HeaderType type() const;
 
   quint16 size() const;
 
   HeaderAttribute &operator[](const QString &name);
 
 private:
-  NetSim::HeaderType m_headerType;
-  QList<HeaderAttribute> m_headerList;
+  HeaderType m_headerType{HeaderType::UNKNOWN};
+  QList<HeaderAttribute> m_headerList{};
 };
 } // namespace NetSim
 

@@ -50,6 +50,14 @@ ServerWidget::ServerWidget(Server *server, QWidget *parent)
           &ServerWidget::onButtonClicked);
 }
 
+ServerWidget::~ServerWidget() {
+  delete m_button;
+  delete m_domainLabel;
+  delete m_ipLabel;
+  delete m_macLabel;
+  delete m_layout;
+}
+
 Server *ServerWidget::server() { return m_server; }
 
 QPushButton *ServerWidget::button() const { return m_button; }

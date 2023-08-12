@@ -39,7 +39,7 @@ public:
 
 private:
   //! @brief Holds the description of the error.
-  QString m_errorMessage;
+  QString m_errorMessage{};
 };
 } // namespace NetSim
 

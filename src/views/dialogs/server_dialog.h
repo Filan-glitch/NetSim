@@ -23,7 +23,7 @@ public:
 private:
   Ui::Server_Dialog *ui;
 
-  ServerWidget *m_server;
+  ServerWidget *m_server{nullptr};
 };
 } // namespace NetSim
 

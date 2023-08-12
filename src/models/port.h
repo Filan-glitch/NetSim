@@ -24,7 +24,7 @@ namespace NetSim {
 class Port {
 public:
   //! @brief Default constructor.
-  Port();
+  Port() = default;
 
   //! @brief Constructs a port with a specified port number.
   explicit Port(quint16 portNumber);
@@ -43,7 +43,7 @@ public:
 
 private:
   //! @brief The port number.
-  quint16 m_portNumber;
+  quint16 m_portNumber{0};
 };
 } // namespace NetSim
 

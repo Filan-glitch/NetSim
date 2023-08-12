@@ -13,6 +13,8 @@ class RouterWidget : public QWidget {
 public:
   explicit RouterWidget(Router *router, QWidget *parent = nullptr);
 
+  ~RouterWidget();
+
   Router *router();
 
   QPushButton *button() const;

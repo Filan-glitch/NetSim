@@ -7,8 +7,6 @@ NATEntry::NATEntry(const IPAddress &address, const Port &port) {
   this->m_port = port;
 }
 
-NATEntry::NATEntry() {}
-
 IPAddress NATEntry::address() const { return m_address; }
 
 bool NATEntry::operator<(const NATEntry &entry) const {

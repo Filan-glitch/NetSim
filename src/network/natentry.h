@@ -34,7 +34,7 @@ public:
   NATEntry(const IPAddress &address, const Port &port);
 
   //! @brief Default constructor.
-  NATEntry();
+  NATEntry() = default;
 
   //! @brief Retrieves the port associated with this NAT entry.
   Port port() const;
@@ -52,9 +52,9 @@ public:
 
 private:
   //! @brief The port associated with this NAT entry.
-  Port m_port;
+  Port m_port{};
   //! @brief The IP address associated with this NAT entry.
-  IPAddress m_address;
+  IPAddress m_address{};
 };
 } // namespace NetSim
 

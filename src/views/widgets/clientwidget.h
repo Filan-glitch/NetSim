@@ -14,6 +14,8 @@ public:
   explicit ClientWidget(Client *client, const QString &name,
                         QWidget *parent = nullptr);
 
+  ~ClientWidget();
+
   Client *client();
 
   QPushButton *button() const;

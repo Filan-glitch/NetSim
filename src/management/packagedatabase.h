@@ -42,10 +42,10 @@ public:
 
 private:
   //! @brief Private constructor to ensure single instance creation.
-  PackageDatabase();
+  PackageDatabase() = default;
 
   //! @brief A list storing all the `Package` objects.
-  QList<Package> m_packageList;
+  QList<Package> m_packageList{};
 };
 } // namespace NetSim
 

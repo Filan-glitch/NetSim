@@ -26,6 +26,9 @@ namespace NetSim {
  */
 class NetworkCard {
 public:
+  //! @brief Default constructor.
+  NetworkCard() = default;
+
   /**
    * @brief Constructs a NetworkCard object with the given network and physical
    * addresses.
@@ -65,10 +68,10 @@ public:
 
 private:
   //! @brief IP address of the network card.
-  IPAddress m_networkAddress;
+  IPAddress m_networkAddress{};
 
   //! @brief MAC address of the network card.
-  MACAddress m_physicalAddress;
+  MACAddress m_physicalAddress{};
 };
 } // namespace NetSim
 

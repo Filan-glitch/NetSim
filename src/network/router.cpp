@@ -34,27 +34,25 @@ void Router::addNATEntry(const NATEntry &entry, const Port &port) {
   m_natToPort[entry] = port;
 }
 
-Router::Router()
-    : m_macTable(QMap<IPAddress, MACAddress>()),
-      m_routerCable(QMap<MACAddress, Router *>()),
-      m_hostCable(QMap<MACAddress, Host *>()),
-      m_portToNAT(QMap<Port, NATEntry>()), m_natToPort(QMap<NATEntry, Port>()),
-      m_networkCard(NetworkCard(IPAddress::getRandomAddress(true),
-                                MACAddress::getRandomAddress())),
-      m_globalIpAddress(IPAddress::getRandomAddress(false)) {
-  m_networkCard.networkAddress().toArray()[3] = 1;
-}
-
 void Router::receivePackage(Package data) {
   qInfo() << "Router: " << this->networkCard().physicalAddress().toString()
           << " received a Package: " << data.info();
   IPAddress destIP = HeaderUtil::getIPAddressAsIPAddress(data, false);
-  MACAddress destMAC = this->m_macTable[destIP];
-
+  MACAddress destMAC;
+  if (this->m_macTable.contains(destIP)) {
+    MACAddress destMAC = this->m_macTable[destIP];
+  } else {
+    qDebug() << "Router: " << this->networkCard().physicalAddress().toString()
+             << " could not find MAC address for IP address: "
+             << destIP.toString();
+    return;
+  }
   if (destIP == this->m_globalIpAddress) {
     NATEntry entry = m_portToNAT[HeaderUtil::getPortAsPort(data, false)];
     data.changePortAndIP(entry.port(), entry.address(), false);
-    destMAC = this->m_macTable[entry.address()];
+    if (this->m_macTable.contains(entry.address())) {
+      destMAC = this->m_macTable[entry.address()];
+    }
   } else if (this->m_networkCard.networkAddress().toInt() != 0) {
     NATEntry entry(HeaderUtil::getIPAddressAsIPAddress(data, true),
                    HeaderUtil::getPortAsPort(data, true));

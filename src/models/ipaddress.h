@@ -26,8 +26,8 @@ namespace NetSim {
  */
 class IPAddress {
 public:
-  //! @brief Default constructor initializing an empty IP address.
-  IPAddress();
+  //! @brief Default constructor.
+  IPAddress() = default;
 
   /**
    * @brief Constructs an IPAddress from a given byte array.
@@ -79,7 +79,7 @@ public:
 
 private:
   //! @brief A byte array representing the IP address.
-  QVector<quint8> m_address;
+  QVector<quint8> m_address{QVector<quint8>() << 0 << 0 << 0 << 0};
 };
 } // namespace NetSim
 

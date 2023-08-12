@@ -13,6 +13,8 @@ class ServerWidget : public QWidget {
 public:
   explicit ServerWidget(Server *server, QWidget *parent = nullptr);
 
+  ~ServerWidget();
+
   Server *server();
 
   QPushButton *button() const;

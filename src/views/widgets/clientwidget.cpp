@@ -49,6 +49,14 @@ ClientWidget::ClientWidget(Client *client, const QString &name, QWidget *parent)
           &ClientWidget::onButtonClicked);
 }
 
+ClientWidget::~ClientWidget() {
+  delete m_button;
+  delete m_nameLabel;
+  delete m_ipLabel;
+  delete m_macLabel;
+  delete m_layout;
+}
+
 Client *ClientWidget::client() { return m_client; }
 
 QPushButton *ClientWidget::button() const { return m_button; }

@@ -25,15 +25,15 @@ namespace NetSim {
  */
 class MACAddress {
 public:
+  //! @brief Default constructor initializing an empty MAC address.
+  MACAddress() = default;
+
   /**
    * @brief Constructs a MACAddress from a given byte array.
    *
    * @param address A byte array representing the MAC address.
    */
   explicit MACAddress(const QVector<quint8> &address);
-
-  //! @brief Default constructor initializing an empty MAC address.
-  MACAddress();
 
   //! @brief Converts the MAC address to a string format.
   QString toString() const;
@@ -70,7 +70,7 @@ public:
 
 private:
   //! @brief A byte array representing the MAC address.
-  QVector<quint8> m_address;
+  QVector<quint8> m_address{QVector<quint8>() << 0 << 0 << 0 << 0 << 0 << 0};
 };
 } // namespace NetSim
 
