@@ -4,23 +4,27 @@
 #include "src/views/widgets/serverwidget.h"
 #include <QDialog>
 
+QT_BEGIN_NAMESPACE
 namespace Ui {
 class Server_Dialog;
 }
+QT_END_NAMESPACE
 
-class Server_Dialog : public QDialog
-{
-    Q_OBJECT
+namespace NetSim {
+
+class Server_Dialog : public QDialog {
+  Q_OBJECT
 
 public:
-    explicit Server_Dialog(ServerWidget *server, QWidget *parent = nullptr);
+  explicit Server_Dialog(ServerWidget *server, QWidget *parent = nullptr);
 
-    ~Server_Dialog();
+  ~Server_Dialog();
 
 private:
-    Ui::Server_Dialog *ui;
+  Ui::Server_Dialog *ui;
 
-    ServerWidget* server;
+  ServerWidget *m_server;
 };
+} // namespace NetSim
 
 #endif // SERVER_DIALOG_H

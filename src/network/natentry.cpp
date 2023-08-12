@@ -1,19 +1,18 @@
 #include "natentry.h"
 
-NATEntry::NATEntry(const IPAddress &address, const Port &port)
-{
-    this->address = address;
-    this->portNumber = port;
+using namespace NetSim;
+
+NATEntry::NATEntry(const IPAddress &address, const Port &port) {
+  this->m_address = address;
+  this->m_port = port;
 }
 
-IPAddress NATEntry::getIPAddress() const {
-    return address;
+NATEntry::NATEntry() {}
+
+IPAddress NATEntry::address() const { return m_address; }
+
+bool NATEntry::operator<(const NATEntry &entry) const {
+  return this->m_port.portNumber() < entry.m_port.portNumber();
 }
 
-bool NATEntry::operator<(const NATEntry &entry) const{
-    return this->portNumber.getPortNumber() < entry.portNumber.getPortNumber();
-}
-
-Port NATEntry::getPortNumber() const {
-    return portNumber;
-}
+Port NATEntry::port() const { return m_port; }

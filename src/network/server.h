@@ -3,22 +3,24 @@
 
 #include "host.h"
 
+namespace NetSim {
 
-class Server : public Host
-{
-private:
-    QString m_domain;
-
-    QString htmlFile;
-
+class Server : public Host {
 public:
-    Server(const NetworkCard &networkCard, const QString &domain, const QString &html);
+  Server(const NetworkCard &networkCard, const QString &domain,
+         const QString &html);
 
-    QString domain() const;
+  QString domain() const;
 
-    void receivePackage(Package data) override;
+  void receivePackage(Package data) override;
 
-    QString getHtmlFile() const;
+  QString htmlFile() const;
+
+private:
+  QString m_domain;
+
+  QString m_htmlFile;
 };
+} // namespace NetSim
 
 #endif // SERVER_H

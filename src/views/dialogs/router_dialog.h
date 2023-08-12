@@ -4,23 +4,27 @@
 #include "src/views/widgets/routerwidget.h"
 #include <QDialog>
 
+QT_BEGIN_NAMESPACE
 namespace Ui {
 class Router_Dialog;
 }
+QT_END_NAMESPACE
 
-class Router_Dialog : public QDialog
-{
-    Q_OBJECT
+namespace NetSim {
+
+class Router_Dialog : public QDialog {
+  Q_OBJECT
 
 public:
-    explicit Router_Dialog(RouterWidget *router, QWidget *parent = nullptr);
+  explicit Router_Dialog(RouterWidget *router, QWidget *parent = nullptr);
 
-    ~Router_Dialog();
+  ~Router_Dialog();
 
 private:
-    Ui::Router_Dialog *ui;
+  Ui::Router_Dialog *ui;
 
-    RouterWidget *router;
+  RouterWidget *m_router;
 };
+} // namespace NetSim
 
 #endif // ROUTER_DIALOG_H

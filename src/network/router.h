@@ -1,59 +1,121 @@
 #ifndef ROUTER_H
 #define ROUTER_H
 
-#include <QString>
-#include <QStack>
-#include <QHash>
 #include "host.h"
 #include "natentry.h"
 #include "src/models/ipaddress.h"
 #include "src/network/networkcard.h"
+#include <QHash>
+#include <QStack>
+#include <QString>
+
+//! \file router.h
+//! \ingroup NetSimRouter
+//! \brief Contains the Router class definition.
+
+namespace NetSim {
 
 class Host;
 
-class Router
-{
-private:
-    QMap<IPAddress, MACAddress> macTable;
+//! \defgroup NetSimRouter NetSim Router
+//! \brief Provides functionalities related to routing packets between networks.
 
-    QMap<MACAddress, Router*> routerCable;
-
-    QMap<MACAddress, Host*> hostCable;
-
-    QMap<Port,NATEntry> portToNAT;
-
-    QMap<NATEntry, Port> natToPort;
-
-    NetworkCard networkCard;
-
-    IPAddress globalIpAddress;
-
+/**
+ * @class Router
+ * @ingroup NetSimRouter
+ * @brief Represents a virtual router with capability to forward packages.
+ *
+ * The Router class is responsible for simulating the behavior of a network
+ * router. It holds information about connected devices and routes packages
+ * accordingly.
+ */
+class Router {
 public:
-    Router();
+  /**
+   * @brief Constructs a Router object with default parameters.
+   */
+  Router();
 
-    void receivePackage(Package data);
+  /**
+   * @brief Receives a package and forwards it accordingly.
+   *
+   * @param data The data package to be processed and forwarded.
+   */
+  void receivePackage(Package data);
 
-    IPAddress getGlobalIpAddress() const;
+  //! Returns the global IP address of the router.
+  IPAddress globalIpAddress() const;
 
-    NetworkCard getNetworkCard() const;
+  //! Returns the network card associated with the router.
+  NetworkCard networkCard() const;
 
-    QMap<IPAddress, MACAddress> getMacTable() const;
+  //! Returns the MAC address table mapping IP addresses to MAC addresses.
+  QMap<IPAddress, MACAddress> macTable() const;
 
-    QMap<MACAddress, Router*> getRouterCable() const;
+  //! Returns the mapping between MAC addresses and connected routers.
+  QMap<MACAddress, Router *> routerCable() const;
 
-    QMap<MACAddress, Host*> getHostCable() const;
+  //! Returns the mapping between MAC addresses and connected hosts.
+  QMap<MACAddress, Host *> hostCable() const;
 
-    QMap<Port, NATEntry> getNAT() const;
+  //! Returns the mapping of NAT entries and associated ports.
+  QMap<Port, NATEntry> NAT() const;
 
-    QMap<NATEntry, Port> getNAT2Port() const;
+  /**
+   * @brief Adds an IP address and its associated MAC address to the router's
+   * table.
+   *
+   * @param ipAddress The IP address to be added.
+   * @param macaddress The associated MAC address.
+   */
+  void addIPAddress(const IPAddress &ipAddress, const MACAddress &macaddress);
 
-    void addIPAddress(const IPAddress &ipAddress, const MACAddress &macaddress);
+  /**
+   * @brief Adds a MAC address and its associated router to the router's table.
+   *
+   * @param macAddress The MAC address to be added.
+   * @param router The associated router.
+   */
+  void addMACAddress(const MACAddress &macAddress, Router *router);
 
-    void addMACAddress(const MACAddress &macAddress, Router *router);
+  /**
+   * @brief Adds a MAC address and its associated host to the router's table.
+   *
+   * @param macAddress The MAC address to be added.
+   * @param host The associated host.
+   */
+  void addMACAddress(const MACAddress &macAddress, Host *host);
 
-    void addMACAddress(const MACAddress &macAddress, Host *host);
+  /**
+   * @brief Adds a NAT entry and its associated port to the router's NAT table.
+   *
+   * @param entry The NAT entry to be added.
+   * @param port The associated port.
+   */
+  void addNATEntry(const NATEntry &entry, const Port &port);
 
-    void addNATEntry(const NATEntry &entry, const Port &port);
+private:
+  //! @brief Mapping of IP addresses to their associated MAC addresses.
+  QMap<IPAddress, MACAddress> m_macTable;
+
+  //! @brief Mapping of MAC addresses to connected routers.
+  QMap<MACAddress, Router *> m_routerCable;
+
+  //! @brief Mapping of MAC addresses to connected hosts.
+  QMap<MACAddress, Host *> m_hostCable;
+
+  //! @brief Mapping of ports to their associated NAT entries.
+  QMap<Port, NATEntry> m_portToNAT;
+
+  //! @brief Mapping of NAT entries to their associated ports.
+  QMap<NATEntry, Port> m_natToPort;
+
+  //! @brief The network card associated with the router.
+  NetworkCard m_networkCard;
+
+  //! @brief The global IP address of the router.
+  IPAddress m_globalIpAddress;
 };
+} // namespace NetSim
 
 #endif // ROUTER_H

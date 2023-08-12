@@ -1,18 +1,19 @@
 #include "views/windows/welcomewindow.h"
 
-#include <QApplication>
 #include "management/logger.h"
+#include <QApplication>
 
-int main(int argc, char *argv[])
-{
-    Logger::init();
+using namespace NetSim;
 
-    QApplication a(argc, argv);
-    qInfo() << "Application started";
-    WelcomeWindow w;
-    w.show();
-    bool state = a.exec();
+int main(int argc, char *argv[]) {
+  Logger::init();
 
-    Logger::clean();
-    return state;
+  QApplication a(argc, argv);
+  qInfo() << "Application started";
+  WelcomeWindow w;
+  w.show();
+  bool state = a.exec();
+
+  Logger::clean();
+  return state;
 }

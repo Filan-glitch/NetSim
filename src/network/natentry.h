@@ -1,28 +1,61 @@
 #ifndef NATENTRY_H
 #define NATENTRY_H
 
-#include <src/models/port.h>
 #include "src/models/ipaddress.h"
+#include "src/models/port.h"
 
+//! \file natentry.h
+//! \ingroup NetSimNAT
+//! \brief Contains the NATEntry class definition.
 
+namespace NetSim {
 
-class NATEntry
-{
+//! \defgroup NetSimNAT NetSim NAT
+//! \brief Provides the Network Address Translation (NAT) utilities for the
+//! NetSim project.
+
+/**
+ * @class NATEntry
+ * @ingroup NetSimNAT
+ * @brief Represents an entry in the NAT table with an IP address and associated
+ * port.
+ *
+ * The NATEntry class is a data structure representing a NAT table entry. It
+ * associates an IP address with a specific port and provides utility functions
+ * to access and compare them.
+ */
+class NATEntry {
 public:
-    NATEntry(const IPAddress &address, const Port &port);
+  /**
+   * @brief Constructs a NATEntry with a specified IP address and port.
+   * @param address The IP address associated with this NAT entry.
+   * @param port The port associated with this NAT entry.
+   */
+  NATEntry(const IPAddress &address, const Port &port);
 
-    NATEntry(){};
+  //! @brief Default constructor.
+  NATEntry();
 
-    Port getPortNumber() const;
+  //! @brief Retrieves the port associated with this NAT entry.
+  Port port() const;
 
-    IPAddress getIPAddress() const;
+  //! @brief Retrieves the IP address associated with this NAT entry.
+  IPAddress address() const;
 
-    bool operator<(const NATEntry& entry)const;
+  /**
+   * @brief Compares two NAT entries based on their port numbers.
+   * @param entry The NAT entry to compare with.
+   * @return True if the current entry's port number is less than the provided
+   * entry's port number.
+   */
+  bool operator<(const NATEntry &entry) const;
 
 private:
-    Port portNumber;
-
-    IPAddress address;
+  //! @brief The port associated with this NAT entry.
+  Port m_port;
+  //! @brief The IP address associated with this NAT entry.
+  IPAddress m_address;
 };
+} // namespace NetSim
 
 #endif // NATENTRY_H

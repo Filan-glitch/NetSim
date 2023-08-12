@@ -1,102 +1,78 @@
-#include "cablenotfoundexception.h"
 #include "host.h"
+#include "cablenotfoundexception.h"
 #include "router.h"
 
-QMap<Port, Process> Host::getProcessTable() const
-{
-    return processTable;
+using namespace NetSim;
+
+QMap<Port, Process> Host::processTable() const { return m_processTable; }
+
+QMap<IPAddress, MACAddress> Host::hostTable() const { return m_hostTable; }
+
+QMap<QString, IPAddress> Host::domainTable() const { return m_domainTable; }
+
+QMap<MACAddress, Router *> Host::cables() const { return m_cables; }
+
+NetworkCard Host::networkCard() const { return m_networkCard; }
+
+PackageTableModel *Host::packages() const { return m_packages; }
+
+void Host::setPackages(PackageTableModel *packages) {
+  this->m_packages = packages;
 }
 
-QMap<IPAddress, MACAddress> Host::getHostTable() const
-{
-    return hostTable;
-}
-
-QMap<QString, IPAddress> Host::getDomainTable() const
-{
-    return domainTable;
-}
-
-QMap<MACAddress, Router *> Host::getCables() const
-{
-    return cables;
-}
-
-NetworkCard Host::getNetworkCard() const
-{
-    return networkCard;
-}
-
-PackageTableModel *Host::getPackages() const
-{
-    return packages;
-}
-
-void Host::setPackages(PackageTableModel *packages)
-{
-    this->packages = packages;
-}
-
-Process &Host::getProcessByName(const QString &name)
-{
-    for(auto& process : processTable) {
-        if(process.getName() == name) {
-            return process;
-        }
+Process &Host::getProcessByName(const QString &name) {
+  for (auto &process : m_processTable) {
+    if (process.name() == name) {
+      return process;
     }
-    throw std::runtime_error("Process not found");
+  }
+  throw std::runtime_error("Process not found");
 }
 
-void Host::setHostOfProcesses(Host *host)
-{
-    for(auto& process : processTable) {
-        process.setHost(host);
-    }
+void Host::setHostOfProcesses(Host *host) {
+  for (auto &process : m_processTable) {
+    process.setHost(host);
+  }
 }
 
-Host::Host(const NetworkCard &networkCard) :
-    processTable(QMap<Port, Process>()),
-    hostTable(QMap<IPAddress, MACAddress>()),
-    domainTable(QMap<QString, IPAddress>()),
-    cables(QMap<MACAddress, Router*>()),
-    networkCard(networkCard),
-    packages(nullptr)
-{
-    Process http(80, "HTTP");
-    Process dns(53, "DNS");
-    addProcess(http.getSocket().getSourcePort().getPortNumber(), http);
-    addProcess(dns.getSocket().getSourcePort().getPortNumber(), dns);
+Host::Host(const NetworkCard &networkCard)
+    : m_processTable(QMap<Port, Process>()),
+      m_hostTable(QMap<IPAddress, MACAddress>()),
+      m_domainTable(QMap<QString, IPAddress>()),
+      m_cables(QMap<MACAddress, Router *>()), m_networkCard(networkCard),
+      m_packages(nullptr) {
+  Process http(Port(80), "HTTP");
+  Process dns(Port(53), "DNS");
+  addProcess(http.getSocket().sourcePort(), http);
+  addProcess(dns.getSocket().sourcePort(), dns);
 }
 
-Router* Host::getRouterByMACAddress(const MACAddress &destinationAddress){
-    if(cables[destinationAddress] != nullptr){
-        return cables[destinationAddress];
-    }else{
-        throw CableNotFoundException("Cable not found in: Host::getRouterByMACAddress");
-    }
-
+Router *Host::getRouterByMACAddress(const MACAddress &destinationAddress) {
+  if (m_cables[destinationAddress] != nullptr) {
+    return m_cables[destinationAddress];
+  } else {
+    throw CableNotFoundException(
+        "Cable not found in: Host::getRouterByMACAddress");
+  }
 }
 
-void Host::sendPackage(Package &data, const MACAddress &destinationAddress){
-    cables[destinationAddress]->receivePackage(data);
+void Host::sendPackage(Package &data, const MACAddress &destinationAddress) {
+  m_cables[destinationAddress]->receivePackage(data);
 }
 
-void Host::addProcess(const Port &port, const Process &process)
-{
-    processTable[port] = process;
+void Host::addProcess(const Port &port, const Process &process) {
+  m_processTable[port] = process;
 }
 
-void Host::addIPAddress(const IPAddress &ipAddress, const MACAddress &macAddress)
-{
-    hostTable[ipAddress] = macAddress;
+void Host::addIPAddress(const IPAddress &ipAddress,
+                        const MACAddress &macAddress) {
+  m_hostTable[ipAddress] = macAddress;
 }
 
-void Host::addMACAddress(const MACAddress &macAddress, Router *router)
-{
-    cables[macAddress] = router;
+void Host::addMACAddress(const MACAddress &macAddress, Router *router) {
+  m_cables[macAddress] = router;
 }
 
-void Host::addDomain(const QString &domain, const IPAddress &ipAddress)
-{
-    domainTable[domain] = ipAddress;
+void Host::addDomain(const QString &domain, const IPAddress &ipAddress) {
+  m_domainTable[domain] = ipAddress;
 }

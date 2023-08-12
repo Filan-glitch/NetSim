@@ -3,21 +3,25 @@
 
 #include <QDialog>
 
+QT_BEGIN_NAMESPACE
 namespace Ui {
 class About_Dialog;
 }
+QT_END_NAMESPACE
 
-class About_Dialog : public QDialog
-{
-    Q_OBJECT
+namespace NetSim {
+
+class About_Dialog : public QDialog {
+  Q_OBJECT
 
 public:
-    explicit About_Dialog(QWidget *parent = nullptr);
+  explicit About_Dialog(QWidget *parent = nullptr);
 
-    ~About_Dialog();
+  ~About_Dialog();
 
 private:
-    Ui::About_Dialog *ui;
+  Ui::About_Dialog *ui;
 };
+} // namespace NetSim
 
 #endif // ABOUT_DIALOG_H

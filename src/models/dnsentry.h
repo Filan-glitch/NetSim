@@ -4,45 +4,76 @@
 #include "src/models/ipaddress.h"
 #include <QString>
 
-enum RRAttribute {
-    FULL_DATA,
-    NAME,
-    TYPE,
-    CLASS,
-    TTL,
-    DATA_LENGTH,
-    DATA
-};
+//! \file dnsentry.h
+//! \ingroup NetSimDNSEntry
+//! \brief Contains the DNSEntry class definition.
 
-class DNSEntry
-{
-private:
-    QString name;
+namespace NetSim {
 
-    quint16 type;
+//! Enumeration to represent various Resource Record attributes.
+enum RRAttribute { FULL_DATA, NAME, TYPE, CLASS, TTL, DATA_LENGTH, DATA };
 
-    quint16 dnsClass;
+//! \defgroup NetSimDNSEntry NetSim DNS Entry
+//! \brief Represents a DNS Resource Record.
 
-    quint32 ttl;
-
-    quint16 dataLength;
-
-    QVector<quint8> data;
-
+/**
+ * @class DNSEntry
+ * @ingroup NetSimDNSEntry
+ * @brief Represents a DNS entry (Resource Record).
+ *
+ * This class provides a representation of a DNS entry or Resource Record (RR).
+ * A Resource Record contains data related to a specific domain name and can
+ * include the type of the record, its class, a time-to-live, and the data
+ * itself.
+ */
+class DNSEntry {
 public:
-    DNSEntry(const QString &name, quint16 type, quint16 dnsClass, quint32 ttl = 0, const QVector<quint8> &data = QVector<quint8>());
+  /**
+   * @brief Constructs a new DNSEntry.
+   *
+   * @param name Domain name.
+   * @param type Type of the DNS entry.
+   * @param dnsClass Class of the DNS entry.
+   * @param ttl Time-to-live value.
+   * @param data The data associated with the entry.
+   */
+  DNSEntry(const QString &name, quint16 type, quint16 dnsClass, quint32 ttl = 0,
+           const QVector<quint8> &data = QVector<quint8>());
 
-    QString getName() const;
+  //! @brief Returns the domain name.
+  QString name() const;
 
-    quint16 getType() const;
+  //! @brief Returns the type of the DNS entry.
+  quint16 type() const;
 
-    quint16 getDnsClass() const;
+  //! @brief Returns the class of the DNS entry.
+  quint16 dnsClass() const;
 
-    quint32 getTtl() const;
+  //! @brief Returns the time-to-live value.
+  quint32 ttl() const;
 
-    quint16 getDataLength() const;
+  //! @brief Returns the length of the data.
+  quint16 dataLength() const;
 
-    QVector<quint8> getData() const;
+  //! @brief Returns the data associated with the entry.
+  QVector<quint8> data() const;
+
+private:
+  //! @brief Domain name.
+  QString m_name;
+
+  //! @brief Type of the DNS entry.
+  quint16 m_type;
+
+  //! @brief Class of the DNS entry.
+  quint16 m_class;
+
+  //! @brief Time-to-live value.
+  quint32 m_ttl;
+
+  //! @brief The data associated with the entry.
+  QVector<quint8> m_data;
 };
+} // namespace NetSim
 
 #endif // DNSENTRY_H

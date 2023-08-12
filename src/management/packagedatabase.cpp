@@ -1,17 +1,12 @@
 #include "packagedatabase.h"
 
-PackageDatabase::PackageDatabase()
-{
+using namespace NetSim;
 
-}
+PackageDatabase::PackageDatabase() {}
 
-QList<Package>* PackageDatabase::packageList()
-{
-    return &m_packageList;
-}
+QList<Package> *PackageDatabase::packageList() { return &m_packageList; }
 
-PackageDatabase* PackageDatabase::instance()
-{
-    static PackageDatabase* model = new PackageDatabase();
-    return model;
+PackageDatabase *PackageDatabase::instance() {
+  static PackageDatabase *model = new PackageDatabase();
+  return model;
 }

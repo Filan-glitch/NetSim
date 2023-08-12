@@ -1,36 +1,36 @@
 #ifndef HEADER_H
 #define HEADER_H
 
-#include <QList>
 #include "headerAttribute.h"
 #include <QDebug>
+#include <QList>
 
-enum HeaderType {HTTP, DNS, TCP, UDP, IP, MAC, UNKNOWN};
+namespace NetSim {
+enum HeaderType { HTTP, DNS, TCP, UDP, IP, MAC, UNKNOWN };
 
-class Header
-{
-private:
-    HeaderType headerType;
-
-protected:
-    QList<HeaderAttribute> headerList;
-
+class Header {
 public:
-    Header();
+  Header();
 
-    Header(const HeaderType &headerType, const QList<HeaderAttribute> &headerList);
+  Header(const NetSim::HeaderType &headerType,
+         const QList<HeaderAttribute> &headerList);
 
-    void addHeaderAttribute(const HeaderAttribute &headerAttribute);
+  void addHeaderAttribute(const HeaderAttribute &headerAttribute);
 
-    void setHeaderType(const HeaderType& headerType);
+  void setHeaderType(const NetSim::HeaderType &headerType);
 
-    QList<HeaderAttribute> getHeaderList() const;
+  QList<HeaderAttribute> headerList() const;
 
-    HeaderType getType() const;
+  NetSim::HeaderType type() const;
 
-    quint16 getHeaderLength() const;
+  quint16 size() const;
 
-    HeaderAttribute &operator[](const QString &name);
+  HeaderAttribute &operator[](const QString &name);
+
+private:
+  NetSim::HeaderType m_headerType;
+  QList<HeaderAttribute> m_headerList;
 };
+} // namespace NetSim
 
 #endif // HEADER_H

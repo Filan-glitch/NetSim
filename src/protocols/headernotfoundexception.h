@@ -3,15 +3,17 @@
 
 #include <QString>
 
-class HeaderNotFoundException
-{
-public:
-    HeaderNotFoundException(const QString &errorMessage);
+namespace NetSim {
 
-    QString getErrorMessage() const;
+class HeaderNotFoundException {
+public:
+  HeaderNotFoundException(const QString &errorMessage);
+
+  QString errorMessage() const;
 
 private:
-    QString errorMessage;
+  QString m_errorMessage;
 };
+} // namespace NetSim
 
 #endif // HEADERNOTFOUNDEXCEPTION_H

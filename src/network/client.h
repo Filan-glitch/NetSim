@@ -3,20 +3,72 @@
 
 #include "host.h"
 
-class Client : public Host
-{
+//! \file client.h
+//! \ingroup NetSimClient
+//! \brief Contains the Client class definition
+
+namespace NetSim {
+
+//! \defgroup NetSimClient NetSim Client
+//! \brief Simulates a client in a network
+
+/**
+ * @class Client
+ * @ingroup NetSimClient
+ * @brief Represents a client in the network simulation.
+ *
+ * The Client class is responsible for initiating network requests such as DNS
+ * resolution, establishing TCP handshakes, making HTTP requests, and closing
+ * connections.
+ */
+class Client : public Host {
 public:
-    Client(const NetworkCard &networkCard);
+  /**
+   * @brief Constructs a client with the provided network card.
+   *
+   * @param networkCard Network interface card of the client.
+   */
+  Client(const NetworkCard &networkCard);
 
-    void execDomainResolution(const QString &domain);
+  /**
+   * @brief Initiates a domain name resolution.
+   *
+   * @param domain Domain name to be resolved.
+   */
+  void execDomainResolution(const QString &domain);
 
-    void execHandShake(const IPAddress &address);
+  /**
+   * @brief Initiates a TCP handshake to the specified IP address.
+   *
+   * @param address IP address to establish a connection.
+   */
+  void execHandShake(const IPAddress &address);
 
-    void execHTTPRequest(const IPAddress &address, const QString &uri);
+  /**
+   * @brief Sends an HTTP request to the specified IP address and URI.
+   *
+   * @param address IP address of the server to send the request.
+   * @param uri Requested Uniform Resource Identifier.
+   */
+  void execHTTPRequest(const IPAddress &address, const QString &uri);
 
-    void execCloseConnection(const IPAddress &address);
+  /**
+   * @brief Closes the connection to the specified IP address.
+   *
+   * @param address IP address to close the connection.
+   */
+  void execCloseConnection(const IPAddress &address);
 
-    void receivePackage(Package data) override;
+  /**
+   * @brief Receives a package and processes based on its type.
+   *
+   * The client can receive and process DNS Response, TCP Handshake, and TCP
+   * closing packages.
+   *
+   * @param data Package data received by the client.
+   */
+  void receivePackage(Package data) override;
 };
+} // namespace NetSim
 
 #endif // CLIENT_H

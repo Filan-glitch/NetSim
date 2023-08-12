@@ -6,34 +6,36 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 
-class RouterWidget : public QWidget
-{
-    Q_OBJECT
+namespace NetSim {
+
+class RouterWidget : public QWidget {
+  Q_OBJECT
 public:
-    explicit RouterWidget(Router* router, QWidget *parent = nullptr);
+  explicit RouterWidget(Router *router, QWidget *parent = nullptr);
 
-    Router* router();
+  Router *router();
 
-    QPushButton *button() const;
+  QPushButton *button() const;
 
 private:
-    Router* m_router;
+  Router *m_router;
 
-    QPushButton* m_button;
+  QPushButton *m_button;
 
-    QLabel* m_localIpLabel;
+  QLabel *m_localIpLabel;
 
-    QLabel* m_globalIpLabel;
+  QLabel *m_globalIpLabel;
 
-    QLabel* m_macLabel;
+  QLabel *m_macLabel;
 
-    QVBoxLayout* m_layout;
+  QVBoxLayout *m_layout;
 
 private slots:
-    void onButtonClicked();
+  void onButtonClicked();
 
 signals:
-    void clicked(RouterWidget* router);
+  void clicked(RouterWidget *router);
 };
+} // namespace NetSim
 
 #endif // ROUTERWIDGET_H

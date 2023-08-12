@@ -1,51 +1,89 @@
 #ifndef PACKAGE_H
 #define PACKAGE_H
 
-#include <QList>
-#include "src/protocols/header.h"
 #include "ipaddress.h"
 #include "macaddress.h"
 #include "port.h"
+#include "src/protocols/header.h"
+#include <QList>
 
-class Package
-{
-private:
-    Header& getHeaderByType(const HeaderType &type);
+//! \file package.h
+//! \ingroup NetSimPackage
+//! \brief Contains the Package class definition.
 
-    void deleteHeaderByType(const HeaderType &type);
+namespace NetSim {
 
-    HeaderAttribute getHeaderAttributeByName(const Header &header, const QString &name) const;
+//! \defgroup NetSimPackage NetSim Package
+//! \brief Represents a network package with multiple headers.
 
-    QList<Header> headers;
-
-    QString info;
-
-    QString content;
-
+/**
+ * @class Package
+ * @ingroup NetSimPackage
+ * @brief Represents a network package.
+ *
+ * This class provides functionalities to represent a network package,
+ * which can contain multiple headers and a payload. The package can
+ * be modified by adding/removing headers or changing its content.
+ */
+class Package {
 public:
-    Package();
+  //! @brief Default constructor.
+  Package();
 
-    Package(const QString& info);
+  //! @brief Constructs a package with information.
+  explicit Package(const QString &info);
 
-    Package(const QString& info, const QString& content);
+  //! @brief Constructs a package with information and content.
+  Package(const QString &info, const QString &content);
 
-    QString getContent() const;
+  //! @brief Returns the package's content.
+  QString content() const;
 
-    QList<Header> getHeaders() const;
+  //! @brief Returns the list of headers.
+  QList<Header> headers() const;
 
-    void addHeader(const Header &header);
+  //! @brief Returns the package's information.
+  QString info() const;
 
-    void setContent(const QString &content);
+  //! @brief Returns the total size of the package.
+  quint16 size() const;
 
-    QString getInfo() const;
+  //! @brief Adds a new header to the package.
+  void addHeader(const Header &header);
 
-    quint16 getLength() const;
+  //! @brief Sets the package's content.
+  void setContent(const QString &content);
 
-    void changePortAndIP(const Port &number, const IPAddress &address, bool src);
+  //! @brief Modifies the IP and port headers.
+  void changePortAndIP(const Port &number, const IPAddress &address, bool src);
 
-    void changeEthernetHeader(const MACAddress &srcAddress, const MACAddress &destAddress);
+  //! @brief Modifies the Ethernet header.
+  void changeEthernetHeader(const MACAddress &srcAddress,
+                            const MACAddress &destAddress);
 
-    Header &operator[](const HeaderType &type);
+  //! @brief Returns a reference to a specific header.
+  Header &operator[](const NetSim::HeaderType &type);
+
+  //! @brief Returns a specific header.
+  Header operator[](const NetSim::HeaderType &type) const;
+
+private:
+  //! @brief List of headers.
+  QList<Header> m_headers;
+
+  //! @brief Package's information.
+  QString m_info;
+
+  //! @brief Package's content.
+  QString m_content;
+
+  //! @brief Deletes a header of a specific type.
+  void deleteHeaderByType(const NetSim::HeaderType &type);
+
+  //! @brief Returns a header attribute by its name.
+  HeaderAttribute getHeaderAttributeByName(const Header &header,
+                                           const QString &name) const;
 };
+} // namespace NetSim
 
 #endif // PACKAGE_H

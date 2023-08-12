@@ -6,33 +6,35 @@
 #include "src/views/widgets/serverwidget.h"
 #include <QWidget>
 
-class NetworkTab : public QWidget
-{
-    Q_OBJECT
+namespace NetSim {
+
+class NetworkTab : public QWidget {
+  Q_OBJECT
 public:
-    explicit NetworkTab(QWidget *parent = nullptr);
+  explicit NetworkTab(QWidget *parent = nullptr);
 
-    void addRouter(RouterWidget* router);
+  void addRouter(RouterWidget *router);
 
-    void addServer(ServerWidget* server);
+  void addServer(ServerWidget *server);
 
-    void addClient(ClientWidget* client);
+  void addClient(ClientWidget *client);
 
-    QList<RouterWidget*> getRouters() const;
+  QList<RouterWidget *> routers() const;
 
-    QList<ServerWidget*> getServers() const;
+  QList<ServerWidget *> servers() const;
 
-    QList<ClientWidget*> getClients() const;
+  QList<ClientWidget *> clients() const;
 
 private:
-    QList<RouterWidget*> routers;
+  QList<RouterWidget *> m_routers;
 
-    QList<ServerWidget*> servers;
+  QList<ServerWidget *> m_servers;
 
-    QList<ClientWidget*> clients;
+  QList<ClientWidget *> m_clients;
 
 protected:
-    virtual void paintEvent(QPaintEvent *event) override;
+  virtual void paintEvent(QPaintEvent *event) override;
 };
+} // namespace NetSim
 
 #endif // NETWORKTAB_H

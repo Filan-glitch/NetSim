@@ -1,39 +1,20 @@
 #include "dnsentry.h"
 
-QString DNSEntry::getName() const
-{
-    return name;
-}
+using namespace NetSim;
 
-quint16 DNSEntry::getType() const
-{
-    return type;
-}
+QString DNSEntry::name() const { return m_name; }
 
-quint16 DNSEntry::getDnsClass() const
-{
-    return dnsClass;
-}
+quint16 DNSEntry::type() const { return m_type; }
 
-quint32 DNSEntry::getTtl() const
-{
-    return ttl;
-}
+quint16 DNSEntry::dnsClass() const { return m_class; }
 
-quint16 DNSEntry::getDataLength() const
-{
-    return dataLength;
-}
+quint32 DNSEntry::ttl() const { return m_ttl; }
 
-QVector<quint8> DNSEntry::getData() const
-{
-    return data;
-}
+quint16 DNSEntry::dataLength() const { return m_data.size(); }
 
-DNSEntry::DNSEntry(const QString &name, quint16 type, quint16 dnsClass, quint32 ttl, const QVector<quint8> &data) : name(name),
-    type(std::move(type)),
-    dnsClass(std::move(dnsClass)),
-    ttl(std::move(ttl)),
-    dataLength(data.size()),
-    data(data)
-{}
+QVector<quint8> DNSEntry::data() const { return m_data; }
+
+DNSEntry::DNSEntry(const QString &name, quint16 type, quint16 dnsClass,
+                   quint32 ttl, const QVector<quint8> &data)
+    : m_name(name), m_type(std::move(type)), m_class(std::move(dnsClass)),
+      m_ttl(std::move(ttl)), m_data(data) {}

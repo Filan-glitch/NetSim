@@ -4,41 +4,45 @@
 #include <QString>
 #include <QVector>
 
-class HeaderAttribute
-{
+namespace NetSim {
+
+class HeaderAttribute {
 public:
-    HeaderAttribute(const QString &name, quint32 sizeInBit, quint8 content);
+  HeaderAttribute(const QString &name, quint32 sizeInBit, quint8 content);
 
-    HeaderAttribute(const QString &name, quint32 sizeInBit, quint16 content);
+  HeaderAttribute(const QString &name, quint32 sizeInBit, quint16 content);
 
-    HeaderAttribute(const QString &name, quint32 sizeInBit, quint32 content);
+  HeaderAttribute(const QString &name, quint32 sizeInBit, quint32 content);
 
-    HeaderAttribute(const QString &name, quint32 sizeInBit, quint64 content);
+  HeaderAttribute(const QString &name, quint32 sizeInBit, quint64 content);
 
-    HeaderAttribute(const QString &name, quint32 sizeInBit, const QVector<quint8> &content);
+  HeaderAttribute(const QString &name, quint32 sizeInBit,
+                  const QVector<quint8> &content);
 
-    HeaderAttribute(const QString &name, quint32 sizeInBit, const QString &content);
+  HeaderAttribute(const QString &name, quint32 sizeInBit,
+                  const QString &content);
 
-    HeaderAttribute();
+  HeaderAttribute();
 
-    QString getName() const;
+  QString name() const;
 
-    quint32 getSizeInBit() const;
+  quint32 size() const;
 
-    quint64 getContentAsInt() const;
+  quint64 toInt() const;
 
-    QVector<quint8> getContentAsArray() const;
+  QVector<quint8> toArray() const;
 
-    void setContent(QVector<quint8> content);
+  void setContent(QVector<quint8> content);
 
-    quint64 getContentAsInt64(int size) const;
+  quint64 getContentAsInt64(int size) const;
 
 private:
-    QString name;
+  QString m_name;
 
-    quint32 sizeInBit;
+  quint32 m_sizeInBit;
 
-    QVector<quint8> content;
+  QVector<quint8> m_content;
 };
+} // namespace NetSim
 
 #endif // HEADERATTRIBUTE_H

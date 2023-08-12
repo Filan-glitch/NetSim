@@ -2,38 +2,40 @@
 #define SERVERWIDGET_H
 
 #include "src/network/server.h"
-#include <QPushButton>
 #include <QLabel>
+#include <QPushButton>
 #include <QVBoxLayout>
 
-class ServerWidget : public QWidget
-{
-    Q_OBJECT
+namespace NetSim {
+
+class ServerWidget : public QWidget {
+  Q_OBJECT
 public:
-    explicit ServerWidget(Server* server, QWidget *parent = nullptr);
+  explicit ServerWidget(Server *server, QWidget *parent = nullptr);
 
-    Server* server();
+  Server *server();
 
-    QPushButton *button() const;
+  QPushButton *button() const;
 
 private:
-    Server* m_server;
+  Server *m_server;
 
-    QPushButton* m_button;
+  QPushButton *m_button;
 
-    QLabel* m_domainLabel;
+  QLabel *m_domainLabel;
 
-    QLabel* m_ipLabel;
+  QLabel *m_ipLabel;
 
-    QLabel* m_macLabel;
+  QLabel *m_macLabel;
 
-    QVBoxLayout* m_layout;
+  QVBoxLayout *m_layout;
 
 private slots:
-    void onButtonClicked();
+  void onButtonClicked();
 
 signals:
-    void clicked(ServerWidget* server);
+  void clicked(ServerWidget *server);
 };
+} // namespace NetSim
 
 #endif // SERVERWIDGET_H
