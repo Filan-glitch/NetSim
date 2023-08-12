@@ -56,8 +56,7 @@ void Router::receivePackage(Package data) {
   } else if (this->m_networkCard.networkAddress().toInt() != 0) {
     NATEntry entry(HeaderUtil::getIPAddressAsIPAddress(data, true),
                    HeaderUtil::getPortAsPort(data, true));
-    data.changePortAndIP(m_natToPort[entry].portNumber(),
-                         this->m_globalIpAddress, true);
+    data.changePortAndIP(m_natToPort[entry], this->m_globalIpAddress, true);
   }
 
   data.changeEthernetHeader(this->m_networkCard.physicalAddress(), destMAC);

@@ -39,10 +39,10 @@ Host::Host(const NetworkCard &networkCard)
       m_domainTable(QMap<QString, IPAddress>()),
       m_cables(QMap<MACAddress, Router *>()), m_networkCard(networkCard),
       m_packages(nullptr) {
-  Process http(80, "HTTP");
-  Process dns(53, "DNS");
-  addProcess(http.getSocket().sourcePort().portNumber(), http);
-  addProcess(dns.getSocket().sourcePort().portNumber(), dns);
+  Process http(Port(80), "HTTP");
+  Process dns(Port(53), "DNS");
+  addProcess(http.getSocket().sourcePort(), http);
+  addProcess(dns.getSocket().sourcePort(), dns);
 }
 
 Router *Host::getRouterByMACAddress(const MACAddress &destinationAddress) {

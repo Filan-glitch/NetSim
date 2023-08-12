@@ -5,13 +5,15 @@
 #include "src/protocols/dns.h"
 #include "src/protocols/http.h"
 
+Process::Process() : m_name(""), m_host(nullptr){};
+
 Process::Process(const Port &destinationPort, const QString &name)
     : m_name(name), m_host(nullptr) {
   openSocket(destinationPort);
 }
 
 void Process::openSocket(const Port &destinationPort) {
-  this->m_socket = Socket(0, destinationPort);
+  this->m_socket = Socket(Port(0), destinationPort);
   m_socket.setSourcePort(Port::getRandomPort());
 }
 
