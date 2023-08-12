@@ -2,6 +2,8 @@
 #include <QRandomGenerator>
 #include <QVector>
 
+using namespace NetSim;
+
 Port::Port(quint16 portNumber) : m_portNumber(portNumber) {}
 
 Port::Port(){};

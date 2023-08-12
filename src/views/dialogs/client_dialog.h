@@ -4,9 +4,13 @@
 #include "src/views/widgets/clientwidget.h"
 #include <QDialog>
 
+QT_BEGIN_NAMESPACE
 namespace Ui {
 class Client_Dialog;
 }
+QT_END_NAMESPACE
+
+namespace NetSim {
 
 class Client_Dialog : public QDialog {
   Q_OBJECT
@@ -28,5 +32,6 @@ private:
 
   ClientWidget *m_client;
 };
+} // namespace NetSim
 
 #endif // CLIENT_DIALOG_H

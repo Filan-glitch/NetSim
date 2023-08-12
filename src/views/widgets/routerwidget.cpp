@@ -1,5 +1,7 @@
 #include "routerwidget.h"
 
+using namespace NetSim;
+
 RouterWidget::RouterWidget(Router *router, QWidget *parent)
     : QWidget{parent}, m_router{router} {
   // Erstelle die Widgets

@@ -1,8 +1,9 @@
 #include "server.h"
 #include "cablenotfoundexception.h"
 #include "router.h"
+#include "src/protocols/headerutil.h"
 
-#include <src/protocols/headerutil.h>
+using namespace NetSim;
 
 Server::Server(const NetworkCard &networkCard, const QString &domain,
                const QString &html)
@@ -19,7 +20,7 @@ void Server::receivePackage(Package data) {
           << " received a Package: " << data.info();
   packages()->addPackage(data);
 
-  if (HeaderUtil::getTopProtocol(data) == NetSim::HeaderType::DNS) {
+  if (HeaderUtil::getTopProtocol(data) == HeaderType::DNS) {
     Process dnsProcess;
     try {
       dnsProcess = getProcessByName("DNS");
@@ -31,7 +32,7 @@ void Server::receivePackage(Package data) {
 
     Package dnsResponse = dnsProcess.generateDNSResponsePackage(
         HeaderUtil::getIPAddressAsIPAddress(data, true),
-        HeaderUtil::getDNSQuery(data, 0, NetSim::RRAttribute::NAME),
+        HeaderUtil::getDNSQuery(data, 0, RRAttribute::NAME),
         HeaderUtil::getPortAsPort(data, true));
 
     MACAddress routerMAC = this->hostTable().value(
@@ -57,7 +58,7 @@ void Server::receivePackage(Package data) {
     return;
   }
 
-  if (HeaderUtil::getTCPFlag(data, NetSim::TCPFlag::SYN) == "Set") {
+  if (HeaderUtil::getTCPFlag(data, TCPFlag::SYN) == "Set") {
     Process httpProcess;
     try {
       httpProcess = getProcessByName("HTTP");
@@ -95,7 +96,7 @@ void Server::receivePackage(Package data) {
     return;
   }
 
-  if (HeaderUtil::getTCPFlag(data, NetSim::TCPFlag::FIN) == "Set") {
+  if (HeaderUtil::getTCPFlag(data, TCPFlag::FIN) == "Set") {
     Process httpProcess;
     try {
       httpProcess = getProcessByName("HTTP");

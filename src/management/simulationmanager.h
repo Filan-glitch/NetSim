@@ -11,8 +11,6 @@
 //! \brief Contains the SimulationManager class definition.
 
 namespace NetSim {
-class SimulationManager;
-}
 
 //! \defgroup NetSimSimulation NetSim Simulation Management
 //! \brief Provides utilities to manage and simulate a network with clients,
@@ -95,5 +93,6 @@ private:
   //! @brief A list storing all the `Router` objects in the simulation.
   QList<Router> m_routers;
 };
+} // namespace NetSim
 
 #endif // SIMULATIONMANAGER_H

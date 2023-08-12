@@ -8,8 +8,6 @@
 //! \brief Contains the CableNotFoundException class definition.
 
 namespace NetSim {
-class CableNotFoundException;
-}
 
 //! \defgroup NetSimCablenotFoundException NetSim CableNotFoundException
 //! \brief The NetSim CableNotFoundException class is used to throw an exception
@@ -43,5 +41,6 @@ private:
   //! @brief Holds the description of the error.
   QString m_errorMessage;
 };
+} // namespace NetSim
 
 #endif // CABLENOTFOUNDEXCEPTION_H

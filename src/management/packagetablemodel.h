@@ -9,8 +9,6 @@
 //! \brief Contains the PackageTableModel class definition.
 
 namespace NetSim {
-class PackageTableModel;
-}
 
 //! \defgroup NetSimPackageTable NetSim Package Table
 //! \brief Provides utilities to model a table view for `Package` objects.
@@ -88,5 +86,6 @@ private:
   //! @brief A list storing all the `Package` objects that the model represents.
   QList<Package> *m_packageList;
 };
+} // namespace NetSim
 
 #endif // PACKAGETABLEMODEL_H

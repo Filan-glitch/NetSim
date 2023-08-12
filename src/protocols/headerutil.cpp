@@ -6,13 +6,15 @@
 #include <QDebug>
 #include <QException>
 
+using namespace NetSim;
+
 // Ethernet
 
 QString HeaderUtil::getMacAddress(const Package &data, bool src) {
   // Getting the Ethernet II Header
   Header header;
   try {
-    header = data[NetSim::HeaderType::MAC];
+    header = data[HeaderType::MAC];
   } catch (const HeaderNotFoundException &hnfe) {
     qDebug() << hnfe.errorMessage() << " in HeaderUtil::getMacAddress";
     return "";
@@ -44,7 +46,7 @@ QString HeaderUtil::getEtherType(const Package &data) {
   // Getting the Ethernet II Header
   Header header;
   try {
-    header = data[NetSim::HeaderType::MAC];
+    header = data[HeaderType::MAC];
   } catch (const HeaderNotFoundException &hnfe) {
     qDebug() << hnfe.errorMessage() << " in HeaderUtil::getMacAddress";
     return "";
@@ -76,7 +78,7 @@ QString HeaderUtil::getIPAddress(const Package &data, bool src) {
   // Getting the IP Header
   Header header;
   try {
-    header = data[NetSim::HeaderType::IP];
+    header = data[HeaderType::IP];
   } catch (const HeaderNotFoundException &hnfe) {
     qDebug() << hnfe.errorMessage() << " in HeaderUtil::getIPAddress";
     return "";
@@ -108,7 +110,7 @@ QString HeaderUtil::getIPFlags(const Package &data) {
   // Getting the IP Header
   Header header;
   try {
-    header = data[NetSim::HeaderType::IP];
+    header = data[HeaderType::IP];
   } catch (const HeaderNotFoundException &hnfe) {
     qDebug() << hnfe.errorMessage() << " in HeaderUtil::getIPAddress";
     return "";
@@ -125,12 +127,11 @@ QString HeaderUtil::getIPFlags(const Package &data) {
   return QString("0x") + QString::number(attribute[0], 16);
 }
 
-QString HeaderUtil::getIPFlag(const Package &data,
-                              const NetSim::IPFlag &flagName) {
+QString HeaderUtil::getIPFlag(const Package &data, const IPFlag &flagName) {
   // Getting the IP Header
   Header header;
   try {
-    header = data[NetSim::HeaderType::IP];
+    header = data[HeaderType::IP];
   } catch (const HeaderNotFoundException &hnfe) {
     qDebug() << hnfe.errorMessage() << " in HeaderUtil::getIPAddress";
     return "";
@@ -148,11 +149,11 @@ QString HeaderUtil::getIPFlag(const Package &data,
   QString returnString;
 
   // Checking which flag
-  if (flagName == NetSim::IPFlag::DF) {
+  if (flagName == IPFlag::DF) {
     ((flags >> 1) & 1) != 0 ? returnString = "Set" : returnString = "Not Set";
     return returnString;
   }
-  if (flagName == NetSim::IPFlag::MF) {
+  if (flagName == IPFlag::MF) {
     ((flags >> 2) & 1) != 0 ? returnString = "Set" : returnString = "Not Set";
     return returnString;
   }
@@ -166,7 +167,7 @@ QString HeaderUtil::getIPNextProtocol(const Package &data) {
   // Getting the IP Header
   Header header;
   try {
-    header = data[NetSim::HeaderType::IP];
+    header = data[HeaderType::IP];
   } catch (const HeaderNotFoundException &hnfe) {
     qDebug() << hnfe.errorMessage() << " in HeaderUtil::getIPAddress";
     return "";
@@ -198,7 +199,7 @@ QString HeaderUtil::getIPNextProtocol(const Package &data) {
 QString HeaderUtil::getIPHeaderLength(const Package &data) {
   Header header;
   try {
-    header = data[NetSim::HeaderType::IP];
+    header = data[HeaderType::IP];
   } catch (const HeaderNotFoundException &hnfe) {
     qDebug() << hnfe.errorMessage() << " in HeaderUtil::getIPAddress";
     return "";
@@ -219,7 +220,7 @@ QString HeaderUtil::getIPHeaderLength(const Package &data) {
 QString HeaderUtil::getIPTOS(const Package &data) {
   Header header;
   try {
-    header = data[NetSim::HeaderType::IP];
+    header = data[HeaderType::IP];
   } catch (const HeaderNotFoundException &hnfe) {
     qDebug() << hnfe.errorMessage() << " in HeaderUtil::getIPAddress";
     return "";
@@ -241,7 +242,7 @@ QString HeaderUtil::getIPTOS(const Package &data) {
 QString HeaderUtil::getIPTotalLength(const Package &data) {
   Header header;
   try {
-    header = data[NetSim::HeaderType::IP];
+    header = data[HeaderType::IP];
   } catch (const HeaderNotFoundException &hnfe) {
     qDebug() << hnfe.errorMessage() << " in HeaderUtil::getIPAddress";
     return "";
@@ -264,7 +265,7 @@ QString HeaderUtil::getIPTotalLength(const Package &data) {
 QString HeaderUtil::getIPIdentification(const Package &data) {
   Header header;
   try {
-    header = data[NetSim::HeaderType::IP];
+    header = data[HeaderType::IP];
   } catch (const HeaderNotFoundException &hnfe) {
     qDebug() << hnfe.errorMessage() << " in HeaderUtil::getIPAddress";
     return "";
@@ -287,7 +288,7 @@ QString HeaderUtil::getIPIdentification(const Package &data) {
 QString HeaderUtil::getIPTTL(const Package &data) {
   Header header;
   try {
-    header = data[NetSim::HeaderType::IP];
+    header = data[HeaderType::IP];
   } catch (const HeaderNotFoundException &hnfe) {
     qDebug() << hnfe.errorMessage() << " in HeaderUtil::getIPAddress";
     return "";
@@ -308,7 +309,7 @@ QString HeaderUtil::getIPTTL(const Package &data) {
 QString HeaderUtil::getIPChecksum(const Package &data) {
   Header header;
   try {
-    header = data[NetSim::HeaderType::IP];
+    header = data[HeaderType::IP];
   } catch (const HeaderNotFoundException &hnfe) {
     qDebug() << hnfe.errorMessage() << " in HeaderUtil::getIPAddress";
     return "";
@@ -331,7 +332,7 @@ QString HeaderUtil::getIPChecksum(const Package &data) {
 QString HeaderUtil::getIPFragmentOffset(const Package &data) {
   Header header;
   try {
-    header = data[NetSim::HeaderType::IP];
+    header = data[HeaderType::IP];
   } catch (const HeaderNotFoundException &hnfe) {
     qDebug() << hnfe.errorMessage() << " in HeaderUtil::getIPAddress";
     return "";
@@ -357,10 +358,10 @@ QString HeaderUtil::getPort(const Package &data, bool src) {
   // Getting the right header
   Header header;
   try {
-    header = data[NetSim::HeaderType::TCP];
+    header = data[HeaderType::TCP];
   } catch (const HeaderNotFoundException &hnfe) {
     try {
-      header = data[NetSim::HeaderType::UDP];
+      header = data[HeaderType::UDP];
     } catch (const HeaderNotFoundException &hnfe) {
       qDebug() << hnfe.errorMessage() << " in HeaderUtil::getPort";
       return "";
@@ -394,7 +395,7 @@ QString HeaderUtil::getTCPFlags(const Package &data) {
   // Get header
   Header header;
   try {
-    header = data[NetSim::HeaderType::TCP];
+    header = data[HeaderType::TCP];
   } catch (const HeaderNotFoundException &hnfe) {
     qDebug() << hnfe.errorMessage() << " in HeaderUtil::getTCPFlag";
     return "";
@@ -413,12 +414,11 @@ QString HeaderUtil::getTCPFlags(const Package &data) {
          QString::number(attribute[0], 16).rightJustified(3, '0');
 }
 
-QString HeaderUtil::getTCPFlag(const Package &data,
-                               const NetSim::TCPFlag &flagName) {
+QString HeaderUtil::getTCPFlag(const Package &data, const TCPFlag &flagName) {
   // Get header
   Header header;
   try {
-    header = data[NetSim::HeaderType::TCP];
+    header = data[HeaderType::TCP];
   } catch (const HeaderNotFoundException &hnfe) {
     qDebug() << hnfe.errorMessage() << " in HeaderUtil::getTCPFlag";
     return "";
@@ -439,31 +439,31 @@ QString HeaderUtil::getTCPFlag(const Package &data,
 
   // checking ack flag
   switch (flagName) {
-  case NetSim::TCPFlag::NS:
+  case TCPFlag::NS:
     returnString = (flag & 0b1000'0000) ? "Set" : "Not Set";
     break;
-  case NetSim::TCPFlag::CWR:
+  case TCPFlag::CWR:
     returnString = (flag & 0b1000'0000) ? "Set" : "Not Set";
     break;
-  case NetSim::TCPFlag::ECE:
+  case TCPFlag::ECE:
     returnString = (flag & 0b100'0000) ? "Set" : "Not Set";
     break;
-  case NetSim::TCPFlag::URG:
+  case TCPFlag::URG:
     returnString = (flag & 0b10'0000) ? "Set" : "Not Set";
     break;
-  case NetSim::TCPFlag::ACK:
+  case TCPFlag::ACK:
     returnString = (flag & 0b1'0000) ? "Set" : "Not Set";
     break;
-  case NetSim::TCPFlag::PSH:
+  case TCPFlag::PSH:
     returnString = (flag & 0b1000) ? "Set" : "Not Set";
     break;
-  case NetSim::TCPFlag::RST:
+  case TCPFlag::RST:
     returnString = (flag & 0b100) ? "Set" : "Not Set";
     break;
-  case NetSim::TCPFlag::SYN:
+  case TCPFlag::SYN:
     returnString = (flag & 0b10) ? "Set" : "Not Set";
     break;
-  case NetSim::TCPFlag::FIN:
+  case TCPFlag::FIN:
     returnString = (flag & 0b1) ? "Set" : "Not Set";
     break;
   default:
@@ -477,7 +477,7 @@ QString HeaderUtil::getTCPSequenceNumber(const Package &data) {
   // Get header
   Header header;
   try {
-    header = data[NetSim::HeaderType::TCP];
+    header = data[HeaderType::TCP];
   } catch (const HeaderNotFoundException &hnfe) {
     qDebug() << hnfe.errorMessage() << " in HeaderUtil::getTCPFlag";
     return "";
@@ -501,7 +501,7 @@ QString HeaderUtil::getTCPAcknowledgementNumber(const Package &data) {
   // Get header
   Header header;
   try {
-    header = data[NetSim::HeaderType::TCP];
+    header = data[HeaderType::TCP];
   } catch (const HeaderNotFoundException &hnfe) {
     qDebug() << hnfe.errorMessage() << " in HeaderUtil::getTCPFlag";
     return "";
@@ -525,7 +525,7 @@ QString HeaderUtil::getTCPHeaderLength(const Package &data) {
   // Get header
   Header header;
   try {
-    header = data[NetSim::HeaderType::TCP];
+    header = data[HeaderType::TCP];
   } catch (const HeaderNotFoundException &hnfe) {
     qDebug() << hnfe.errorMessage() << " in HeaderUtil::getTCPFlag";
     return "";
@@ -547,7 +547,7 @@ QString HeaderUtil::getTCPWindow(const Package &data) {
   // Get header
   Header header;
   try {
-    header = data[NetSim::HeaderType::TCP];
+    header = data[HeaderType::TCP];
   } catch (const HeaderNotFoundException &hnfe) {
     qDebug() << hnfe.errorMessage() << " in HeaderUtil::getTCPFlag";
     return "";
@@ -569,7 +569,7 @@ QString HeaderUtil::getTCPWindow(const Package &data) {
 QString HeaderUtil::getTCPChecksum(const Package &data) {
   Header header;
   try {
-    header = data[NetSim::HeaderType::TCP];
+    header = data[HeaderType::TCP];
   } catch (const HeaderNotFoundException &hnfe) {
     qDebug() << hnfe.errorMessage() << " in HeaderUtil::getTCPChecksum";
     return "";
@@ -592,7 +592,7 @@ QString HeaderUtil::getTCPChecksum(const Package &data) {
 QString HeaderUtil::getTCPUrgentPointer(const Package &data) {
   Header header;
   try {
-    header = data[NetSim::HeaderType::TCP];
+    header = data[HeaderType::TCP];
   } catch (const HeaderNotFoundException &hnfe) {
     qDebug() << hnfe.errorMessage() << " in HeaderUtil::getTCPUrgentPointer";
     return "";
@@ -616,7 +616,7 @@ QString HeaderUtil::getTCPUrgentPointer(const Package &data) {
 QString HeaderUtil::getUDPChecksum(const Package &data) {
   Header header;
   try {
-    header = data[NetSim::HeaderType::UDP];
+    header = data[HeaderType::UDP];
   } catch (const HeaderNotFoundException &hnfe) {
     qDebug() << hnfe.errorMessage() << " in HeaderUtil::getUDPChecksum";
     return "";
@@ -639,7 +639,7 @@ QString HeaderUtil::getUDPChecksum(const Package &data) {
 QString HeaderUtil::getUDPLength(const Package &data) {
   Header header;
   try {
-    header = data[NetSim::HeaderType::UDP];
+    header = data[HeaderType::UDP];
   } catch (const HeaderNotFoundException &hnfe) {
     qDebug() << hnfe.errorMessage() << " in HeaderUtil::getUDPLength";
     return "";
@@ -665,7 +665,7 @@ QString HeaderUtil::getHTTPAttribute(const Package &data,
   // Getting the Header
   Header header;
   try {
-    header = data[NetSim::HeaderType::HTTP];
+    header = data[HeaderType::HTTP];
   } catch (const HeaderNotFoundException &hnfe) {
     qDebug() << hnfe.errorMessage() << " in HeaderUtil::ggetAttributeAsString";
     return "";
@@ -692,7 +692,7 @@ bool HeaderUtil::getHTTPIsResponse(const Package &data) {
   // Getting the Header
   Header header;
   try {
-    header = data[NetSim::HeaderType::HTTP];
+    header = data[HeaderType::HTTP];
   } catch (const HeaderNotFoundException &hnfe) {
     qDebug() << hnfe.errorMessage() << " in HeaderUtil::ggetAttributeAsString";
     return false;
@@ -705,7 +705,7 @@ bool HeaderUtil::getHTTPIsRequest(const Package &data) {
   // Getting the Header
   Header header;
   try {
-    header = data[NetSim::HeaderType::HTTP];
+    header = data[HeaderType::HTTP];
   } catch (const HeaderNotFoundException &hnfe) {
     qDebug() << hnfe.errorMessage() << " in HeaderUtil::ggetAttributeAsString";
     return false;
@@ -719,7 +719,7 @@ bool HeaderUtil::getHTTPIsRequest(const Package &data) {
 QString HeaderUtil::getDNSID(const Package &data) {
   Header header;
   try {
-    header = data[NetSim::HeaderType::DNS];
+    header = data[HeaderType::DNS];
   } catch (const HeaderNotFoundException &hnfe) {
     qDebug() << hnfe.errorMessage() << " in HeaderUtil::getDNSID";
     return "";
@@ -742,7 +742,7 @@ QString HeaderUtil::getDNSID(const Package &data) {
 QString HeaderUtil::getDNSFlags(const Package &data) {
   Header header;
   try {
-    header = data[NetSim::HeaderType::DNS];
+    header = data[HeaderType::DNS];
   } catch (const HeaderNotFoundException &hnfe) {
     qDebug() << hnfe.errorMessage() << " in HeaderUtil::getDNSFlag";
     return "";
@@ -761,11 +761,10 @@ QString HeaderUtil::getDNSFlags(const Package &data) {
   return QString("0x") + QString::number(dnsFlag, 16).rightJustified(4, '0');
 }
 
-QString HeaderUtil::getDNSFlag(const Package &data,
-                               const NetSim::DNSFlag &flagName) {
+QString HeaderUtil::getDNSFlag(const Package &data, const DNSFlag &flagName) {
   Header header;
   try {
-    header = data[NetSim::HeaderType::DNS];
+    header = data[HeaderType::DNS];
   } catch (const HeaderNotFoundException &hnfe) {
     qDebug() << hnfe.errorMessage() << " in HeaderUtil::getDNSFlag";
     return "";
@@ -782,10 +781,10 @@ QString HeaderUtil::getDNSFlag(const Package &data,
   quint16 dnsFlag = attribute[0] << 8 | attribute[1];
 
   switch (flagName) {
-  case NetSim::DNSFlag::RESPONSE:
+  case DNSFlag::RESPONSE:
     return dnsFlag & 0b1000'0000'0000'0000 ? "Message is a response"
                                            : "Message is a query";
-  case NetSim::DNSFlag::OPCODE: {
+  case DNSFlag::OPCODE: {
     switch (dnsFlag & 0b111'1000'0000'0000 >> 11) {
     case 0:
       return "Standard query (0)";
@@ -806,27 +805,27 @@ QString HeaderUtil::getDNSFlag(const Package &data,
              QString::number(dnsFlag & 0b111'1000'0000'0000 >> 11) + ")";
     }
   }
-  case NetSim::DNSFlag::AUTHORITATIVE:
+  case DNSFlag::AUTHORITATIVE:
     return dnsFlag & 0b0000'0100'0000'0000
                ? "Server is an authority for domain"
                : "Server is not an authority for domain";
-  case NetSim::DNSFlag::TRUNCATED:
+  case DNSFlag::TRUNCATED:
     return dnsFlag & 0b0000'0010'0000'0000 ? "Message is truncated"
                                            : "Message is not truncated";
-  case NetSim::DNSFlag::RECURSION_DESIRED:
+  case DNSFlag::RECURSION_DESIRED:
     return dnsFlag & 0b0000'0001'0000'0000 ? "Do query recursively"
                                            : "Do not query recursively";
-  case NetSim::DNSFlag::RECURSION_AVAILABLE:
+  case DNSFlag::RECURSION_AVAILABLE:
     return dnsFlag & 0b0000'0000'1000'0000
                ? "Server can do recursive queries"
                : "Server cannot do recursive queries";
-  case NetSim::DNSFlag::ANSWER_AUTHENTICATED:
+  case DNSFlag::ANSWER_AUTHENTICATED:
     return dnsFlag & 0b0000'0000'0100'0000
                ? "Answer/authority portion was authenticated by server"
                : "Answer/authority portion was not authenticated by server";
-  case NetSim::DNSFlag::NON_AUTHENTICATED_DATA:
+  case DNSFlag::NON_AUTHENTICATED_DATA:
     return dnsFlag & 0b0000'0000'0010'0000 ? "Acceptable" : "Unacceptable";
-  case NetSim::DNSFlag::REPLY_CODE: {
+  case DNSFlag::REPLY_CODE: {
     switch (dnsFlag & 0b1111) {
     case 0:
       return "No error (0)";
@@ -850,7 +849,7 @@ QString HeaderUtil::getDNSFlag(const Package &data,
 QString HeaderUtil::getDNSQuestions(const Package &data) {
   Header header;
   try {
-    header = data[NetSim::HeaderType::DNS];
+    header = data[HeaderType::DNS];
   } catch (const HeaderNotFoundException &hnfe) {
     qDebug() << hnfe.errorMessage() << " in HeaderUtil::getDNSQuestions";
     return "";
@@ -872,7 +871,7 @@ QString HeaderUtil::getDNSQuestions(const Package &data) {
 QString HeaderUtil::getDNSAnswerRRs(const Package &data) {
   Header header;
   try {
-    header = data[NetSim::HeaderType::DNS];
+    header = data[HeaderType::DNS];
   } catch (const HeaderNotFoundException &hnfe) {
     qDebug() << hnfe.errorMessage() << " in HeaderUtil::getDNSQuestions";
     return "";
@@ -892,10 +891,10 @@ QString HeaderUtil::getDNSAnswerRRs(const Package &data) {
 }
 
 QString HeaderUtil::getDNSQuery(const Package &data, int index,
-                                const NetSim::RRAttribute &attr) {
+                                const RRAttribute &attr) {
   Header header;
   try {
-    header = data[NetSim::HeaderType::DNS];
+    header = data[HeaderType::DNS];
   } catch (const HeaderNotFoundException &hnfe) {
     qDebug() << hnfe.errorMessage() << " in HeaderUtil::getDNSQuestions";
     return "";
@@ -953,13 +952,13 @@ QString HeaderUtil::getDNSQuery(const Package &data, int index,
   _class = (classNumber | attribute[i]) == 0x0001 ? "IN" : "Unknown";
 
   switch (attr) {
-  case NetSim::RRAttribute::FULL_DATA:
+  case RRAttribute::FULL_DATA:
     return name + ": type " + type + ", class " + _class;
-  case NetSim::RRAttribute::NAME:
+  case RRAttribute::NAME:
     return name;
-  case NetSim::RRAttribute::TYPE:
+  case RRAttribute::TYPE:
     return type;
-  case NetSim::RRAttribute::CLASS:
+  case RRAttribute::CLASS:
     return _class;
   default:
     return "";
@@ -967,10 +966,10 @@ QString HeaderUtil::getDNSQuery(const Package &data, int index,
 }
 
 QString HeaderUtil::getDNSAnswer(const Package &data, int index,
-                                 const NetSim::RRAttribute &attr) {
+                                 const RRAttribute &attr) {
   Header header;
   try {
-    header = data[NetSim::HeaderType::DNS];
+    header = data[HeaderType::DNS];
   } catch (const HeaderNotFoundException &hnfe) {
     qDebug() << hnfe.errorMessage() << " in HeaderUtil::getDNSQuestions";
     return "";
@@ -1049,20 +1048,20 @@ QString HeaderUtil::getDNSAnswer(const Package &data, int index,
   IPAddress ip(ipData);
 
   switch (attr) {
-  case NetSim::RRAttribute::FULL_DATA:
+  case RRAttribute::FULL_DATA:
     return name + ": type " + type + ", class " + _class + ", addr " +
            ip.toString();
-  case NetSim::RRAttribute::NAME:
+  case RRAttribute::NAME:
     return name;
-  case NetSim::RRAttribute::TYPE:
+  case RRAttribute::TYPE:
     return type;
-  case NetSim::RRAttribute::CLASS:
+  case RRAttribute::CLASS:
     return _class;
-  case NetSim::RRAttribute::TTL:
+  case RRAttribute::TTL:
     return ttl;
-  case NetSim::RRAttribute::DATA_LENGTH:
+  case RRAttribute::DATA_LENGTH:
     return dataLength;
-  case NetSim::RRAttribute::DATA:
+  case RRAttribute::DATA:
     return ip.toString();
   default:
     return "";
@@ -1072,7 +1071,7 @@ QString HeaderUtil::getDNSAnswer(const Package &data, int index,
 IPAddress HeaderUtil::getDNSAnswerIPAddress(const Package &data, int index) {
   Header header;
   try {
-    header = data[NetSim::HeaderType::DNS];
+    header = data[HeaderType::DNS];
   } catch (const HeaderNotFoundException &hnfe) {
     qDebug() << hnfe.errorMessage() << " in HeaderUtil::getDNSAnswerIPAddress";
     return IPAddress();
@@ -1108,7 +1107,7 @@ QString HeaderUtil::getPackageLength(const Package &package) {
   return QString::number(package.size());
 }
 
-NetSim::HeaderType HeaderUtil::getTopProtocol(const Package &data) {
+HeaderType HeaderUtil::getTopProtocol(const Package &data) {
   return data.headers().constFirst().type();
 }
 
@@ -1116,7 +1115,7 @@ IPAddress HeaderUtil::getIPAddressAsIPAddress(const Package &data, bool src) {
   // Getting the IP Header
   Header header;
   try {
-    header = data[NetSim::HeaderType::IP];
+    header = data[HeaderType::IP];
   } catch (const HeaderNotFoundException &hnfe) {
     qDebug() << hnfe.errorMessage()
              << " in HeaderUtil::getIPAddressAsIPAddress";
@@ -1150,10 +1149,10 @@ Port HeaderUtil::getPortAsPort(const Package &data, bool src) {
   // Getting the right header
   Header header;
   try {
-    header = data[NetSim::HeaderType::TCP];
+    header = data[HeaderType::TCP];
   } catch (const HeaderNotFoundException &hnfe) {
     try {
-      header = data[NetSim::HeaderType::UDP];
+      header = data[HeaderType::UDP];
     } catch (const HeaderNotFoundException &hnfe) {
       qDebug() << hnfe.errorMessage() << " in HeaderUtil::getPortAsPort";
       return Port();

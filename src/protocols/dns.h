@@ -16,8 +16,6 @@ enum DNSFlag {
   OPCODE = 11,
   RESPONSE = 15
 };
-class DNS;
-} // namespace NetSim
 
 class DNS {
 public:
@@ -31,5 +29,6 @@ private:
 
   static QVector<quint8> stringToArray(const QString &string);
 };
+} // namespace NetSim
 
 #endif // DNS_H

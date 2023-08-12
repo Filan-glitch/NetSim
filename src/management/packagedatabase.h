@@ -9,8 +9,6 @@
 //! \brief Contains the PackageDatabase class definition.
 
 namespace NetSim {
-class PackageDatabase;
-}
 
 //! \defgroup NetSimPackageDatabase NetSim Package Database
 //! \brief Provides utilities for managing a list of `Package` objects.
@@ -49,5 +47,6 @@ private:
   //! @brief A list storing all the `Package` objects.
   QList<Package> m_packageList;
 };
+} // namespace NetSim
 
 #endif // PACKAGEDATABASE_H

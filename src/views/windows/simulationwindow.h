@@ -10,9 +10,13 @@
 #include <QMainWindow>
 #include <QTreeWidget>
 
+QT_BEGIN_NAMESPACE
 namespace Ui {
 class SimulationWindow;
 }
+QT_END_NAMESPACE
+
+namespace NetSim {
 
 class SimulationWindow : public QMainWindow {
   Q_OBJECT
@@ -49,5 +53,6 @@ private slots:
 
   void serverDialog(ServerWidget *server);
 };
+} // namespace NetSim
 
 #endif // SIMULATIONWINDOW_H

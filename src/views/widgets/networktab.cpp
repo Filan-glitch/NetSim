@@ -1,6 +1,8 @@
 #include "networktab.h"
 #include <QPainter>
 
+using namespace NetSim;
+
 NetworkTab::NetworkTab(QWidget *parent) : QWidget{parent} {}
 
 void NetworkTab::addRouter(RouterWidget *router) { m_routers.append(router); }
@@ -24,8 +26,8 @@ void NetworkTab::paintEvent(QPaintEvent *event) {
   // Connections Server -> Router
   for (auto i = 1; i < m_servers.size(); ++i) {
     painter.drawLine(
-          m_servers[i]->mapTo(this, m_servers[i]->button()->rect().center()),
-          m_routers[i]->mapTo(this, m_routers[i]->button()->rect().center()));
+        m_servers[i]->mapTo(this, m_servers[i]->button()->rect().center()),
+        m_routers[i]->mapTo(this, m_routers[i]->button()->rect().center()));
   }
 
   // Connections Router -> Router

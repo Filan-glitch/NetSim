@@ -1,5 +1,7 @@
 #include "Headernotfoundexception.h"
 
+using namespace NetSim;
+
 HeaderNotFoundException::HeaderNotFoundException(const QString &errorMessage) {
   this->m_errorMessage = errorMessage;
 }

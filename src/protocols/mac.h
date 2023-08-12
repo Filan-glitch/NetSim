@@ -6,8 +6,6 @@
 #include <QString>
 
 namespace NetSim {
-class MAC;
-}
 
 class MAC {
 public:
@@ -21,5 +19,6 @@ private:
 
   static quint32 calculateCRC32(const QByteArray &data);
 };
+} // namespace NetSim
 
 #endif // MAC_H

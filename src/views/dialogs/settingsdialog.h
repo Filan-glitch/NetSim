@@ -3,9 +3,13 @@
 
 #include <QDialog>
 
+QT_BEGIN_NAMESPACE
 namespace Ui {
 class SettingsDialog;
 }
+QT_END_NAMESPACE
+
+namespace NetSim {
 
 class SettingsDialog : public QDialog {
   Q_OBJECT
@@ -55,5 +59,6 @@ private:
 
   bool allVisibleLineEditsFilled();
 };
+} // namespace NetSim
 
 #endif // SETTINGSDIALOG_H

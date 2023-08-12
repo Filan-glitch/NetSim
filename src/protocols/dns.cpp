@@ -1,5 +1,7 @@
 #include "dns.h"
 
+using namespace NetSim;
+
 void DNS::initDNSRequest(Package &data, const QList<DNSEntry> queries) {
   HeaderAttribute transactionID(
       "Transaction ID", 16,
@@ -34,7 +36,7 @@ void DNS::initDNSRequest(Package &data, const QList<DNSEntry> queries) {
     headerList.append(query);
   }
 
-  Header dnsHeader(NetSim::HeaderType::DNS, headerList);
+  Header dnsHeader(HeaderType::DNS, headerList);
   data.addHeader(dnsHeader);
 }
 
@@ -103,7 +105,7 @@ void DNS::initDNSResponse(Package &data, const QList<DNSEntry> queries,
     headerList.append(answer);
   }
 
-  Header dnsHeader(NetSim::HeaderType::DNS, headerList);
+  Header dnsHeader(HeaderType::DNS, headerList);
   data.addHeader(dnsHeader);
 }
 

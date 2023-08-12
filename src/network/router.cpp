@@ -2,6 +2,8 @@
 #include "cablenotfoundexception.h"
 #include "src/protocols/headerutil.h"
 
+using namespace NetSim;
+
 IPAddress Router::globalIpAddress() const { return m_globalIpAddress; }
 
 NetworkCard Router::networkCard() const { return m_networkCard; }

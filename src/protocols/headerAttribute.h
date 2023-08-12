@@ -5,8 +5,6 @@
 #include <QVector>
 
 namespace NetSim {
-class HeaderAttribute;
-}
 
 class HeaderAttribute {
 public:
@@ -45,5 +43,6 @@ private:
 
   QVector<quint8> m_content;
 };
+} // namespace NetSim
 
 #endif // HEADERATTRIBUTE_H

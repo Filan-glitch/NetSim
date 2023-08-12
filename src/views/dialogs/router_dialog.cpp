@@ -1,6 +1,8 @@
 #include "router_dialog.h"
 #include "ui_router_dialog.h"
 
+using namespace NetSim;
+
 Router_Dialog::Router_Dialog(RouterWidget *router, QWidget *parent)
     : QDialog(parent), ui(new Ui::Router_Dialog), m_router(router) {
   ui->setupUi(this);

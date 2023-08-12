@@ -3,6 +3,8 @@
 
 #include <QDebug>
 
+using namespace NetSim;
+
 void UDP::initHeader(const Port &sourcePort, const Port &destinationPort,
                      Package &data) {
   HeaderAttribute srcPort("Source Port", 16, sourcePort.portNumber());
@@ -16,7 +18,7 @@ void UDP::initHeader(const Port &sourcePort, const Port &destinationPort,
                                        destinationPort.portNumber()));
 
   Header udpHeader;
-  udpHeader.setHeaderType(NetSim::HeaderType::UDP);
+  udpHeader.setHeaderType(HeaderType::UDP);
   udpHeader.addHeaderAttribute(srcPort);
   udpHeader.addHeaderAttribute(dstPort);
   udpHeader.addHeaderAttribute(length);

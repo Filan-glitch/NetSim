@@ -1,6 +1,8 @@
 #include "packagetablemodel.h"
 #include "src/protocols/headerutil.h"
 
+using namespace NetSim;
+
 PackageTableModel::PackageTableModel(QList<Package> *packageList,
                                      QObject *parent)
     : QAbstractTableModel(parent), m_packageList(packageList) {}
@@ -57,22 +59,22 @@ QVariant PackageTableModel::data(const QModelIndex &index, int role) const {
       return HeaderUtil::getIPAddress(package, false);
     case 2: {
       switch (HeaderUtil::getTopProtocol(package)) {
-      case NetSim::HeaderType::DNS:
+      case HeaderType::DNS:
         return "DNS";
         break;
-      case NetSim::HeaderType::HTTP:
+      case HeaderType::HTTP:
         return "HTTP";
         break;
-      case NetSim::HeaderType::TCP:
+      case HeaderType::TCP:
         return "TCP";
         break;
-      case NetSim::HeaderType::UDP:
+      case HeaderType::UDP:
         return "UDP";
         break;
-      case NetSim::HeaderType::IP:
+      case HeaderType::IP:
         return "IP";
         break;
-      case NetSim::HeaderType::MAC:
+      case HeaderType::MAC:
         return "MAC";
         break;
       default:

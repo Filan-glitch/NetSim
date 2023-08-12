@@ -5,8 +5,6 @@
 #include <QString>
 
 namespace NetSim {
-class HTTP;
-}
 
 class HTTP {
 public:
@@ -17,5 +15,6 @@ public:
                                const QString &messageText, Package &data,
                                const QString &htmlFile);
 };
+} // namespace NetSim
 
 #endif // HTTP_H

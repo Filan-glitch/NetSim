@@ -1,5 +1,7 @@
 #include "clientwidget.h"
 
+using namespace NetSim;
+
 ClientWidget::ClientWidget(Client *client, const QString &name, QWidget *parent)
     : QWidget{parent}, m_client{client} {
   // Erstelle die Widgets

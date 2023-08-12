@@ -10,8 +10,6 @@
 
 namespace NetSim {
 enum IPFlag { MF = 0, DF = 1 };
-class IPv4;
-} // namespace NetSim
 
 class IPv4 {
 public:
@@ -30,5 +28,6 @@ private:
 
   static void setFlag(quint8 *flags, bool set, quint8 position);
 };
+} // namespace NetSim
 
 #endif // IPV4_H

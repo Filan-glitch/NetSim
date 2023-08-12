@@ -7,8 +7,6 @@
 #include <QWidget>
 
 namespace NetSim {
-class NetworkTab;
-}
 
 class NetworkTab : public QWidget {
   Q_OBJECT
@@ -37,5 +35,6 @@ private:
 protected:
   virtual void paintEvent(QPaintEvent *event) override;
 };
+} // namespace NetSim
 
 #endif // NETWORKTAB_H

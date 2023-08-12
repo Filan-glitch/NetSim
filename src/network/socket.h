@@ -6,8 +6,6 @@
 #include "src/models/port.h"
 
 namespace NetSim {
-class Socket;
-}
 
 class Port;
 
@@ -48,5 +46,6 @@ private:
 
   quint32 m_amountReceivedData{0};
 };
+} // namespace NetSim
 
 #endif // SOCKET_H

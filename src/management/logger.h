@@ -10,8 +10,6 @@
 //! \brief Contains the Logger class definition.
 
 namespace NetSim {
-class Logger;
-}
 
 //! \defgroup NetSimLogger NetSim Logger
 //! \brief Provides logging utilities for the NetSim project.
@@ -61,5 +59,6 @@ private:
   //! @brief Maps QtMsgTypes to their context names.
   static QHash<QtMsgType, QString> contextNames;
 };
+} // namespace NetSim
 
 #endif // LOGGER_H

@@ -8,8 +8,6 @@
 //! \brief Contains the Client class definition
 
 namespace NetSim {
-class Client;
-}
 
 //! \defgroup NetSimClient NetSim Client
 //! \brief Simulates a client in a network
@@ -71,5 +69,6 @@ public:
    */
   void receivePackage(Package data) override;
 };
+} // namespace NetSim
 
 #endif // CLIENT_H

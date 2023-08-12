@@ -11,9 +11,6 @@
 
 namespace NetSim {
 
-class MACAddress;
-} // namespace NetSim
-
 //! \defgroup NetSimMACAddress NetSim MAC Address
 //! \brief Represents a MAC address.
 
@@ -75,5 +72,6 @@ private:
   //! @brief A byte array representing the MAC address.
   QVector<quint8> m_address;
 };
+} // namespace NetSim
 
 #endif // MACADDRESS_H

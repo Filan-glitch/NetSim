@@ -1,6 +1,8 @@
 #include "server_dialog.h"
 #include "ui_server_dialog.h"
 
+using namespace NetSim;
+
 Server_Dialog::Server_Dialog(ServerWidget *server, QWidget *parent)
     : QDialog(parent), ui(new Ui::Server_Dialog), m_server(server) {
   ui->setupUi(this);

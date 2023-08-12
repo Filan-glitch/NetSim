@@ -3,6 +3,8 @@
 #include "management/logger.h"
 #include <QApplication>
 
+using namespace NetSim;
+
 int main(int argc, char *argv[]) {
   Logger::init();
 

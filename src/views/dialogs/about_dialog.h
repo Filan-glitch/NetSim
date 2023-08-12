@@ -3,9 +3,13 @@
 
 #include <QDialog>
 
+QT_BEGIN_NAMESPACE
 namespace Ui {
 class About_Dialog;
 }
+QT_END_NAMESPACE
+
+namespace NetSim {
 
 class About_Dialog : public QDialog {
   Q_OBJECT
@@ -18,5 +22,6 @@ public:
 private:
   Ui::About_Dialog *ui;
 };
+} // namespace NetSim
 
 #endif // ABOUT_DIALOG_H

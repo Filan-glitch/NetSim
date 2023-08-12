@@ -1,5 +1,7 @@
 #include "simulationmanager.h"
 
+using namespace NetSim;
+
 SimulationManager::SimulationManager(quint8 clientAmount, quint8 serverAmount,
                                      QList<QString> domains) {
   for (auto i = 0; i <= serverAmount; i++) {

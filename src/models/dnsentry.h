@@ -13,9 +13,6 @@ namespace NetSim {
 //! Enumeration to represent various Resource Record attributes.
 enum RRAttribute { FULL_DATA, NAME, TYPE, CLASS, TTL, DATA_LENGTH, DATA };
 
-class DNSEntry;
-} // namespace NetSim
-
 //! \defgroup NetSimDNSEntry NetSim DNS Entry
 //! \brief Represents a DNS Resource Record.
 
@@ -77,5 +74,6 @@ private:
   //! @brief The data associated with the entry.
   QVector<quint8> m_data;
 };
+} // namespace NetSim
 
 #endif // DNSENTRY_H

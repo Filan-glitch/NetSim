@@ -8,8 +8,6 @@
 #include <QString>
 
 namespace NetSim {
-class HeaderUtil;
-}
 
 class HeaderUtil {
 public:
@@ -43,7 +41,8 @@ public:
 
   static QString getTCPFlags(const Package &data);
 
-  static QString getTCPFlag(const Package &data, const NetSim::TCPFlag &flagName);
+  static QString getTCPFlag(const Package &data,
+                            const NetSim::TCPFlag &flagName);
 
   static QString getTCPSequenceNumber(const Package &data);
 
@@ -97,5 +96,6 @@ public:
 
   static Port getPortAsPort(const Package &data, bool src);
 };
+} // namespace NetSim
 
 #endif // HEADERUTIL_H

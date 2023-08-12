@@ -13,9 +13,6 @@
 
 namespace NetSim {
 
-class Package;
-} // namespace NetSim
-
 //! \defgroup NetSimPackage NetSim Package
 //! \brief Represents a network package with multiple headers.
 
@@ -87,5 +84,6 @@ private:
   HeaderAttribute getHeaderAttributeByName(const Header &header,
                                            const QString &name) const;
 };
+} // namespace NetSim
 
 #endif // PACKAGE_H

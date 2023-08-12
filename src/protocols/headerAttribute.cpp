@@ -1,5 +1,7 @@
 #include "headerAttribute.h"
 
+using namespace NetSim;
+
 HeaderAttribute::HeaderAttribute(const QString &name, quint32 sizeInBit,
                                  const QVector<quint8> &content)
     : m_name(name), m_sizeInBit(std::move(sizeInBit)), m_content(content) {}

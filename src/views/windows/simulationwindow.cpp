@@ -18,6 +18,8 @@
 #include <QMessageBox>
 #include <QStringList>
 
+using namespace NetSim;
+
 SimulationWindow::SimulationWindow(SimulationManager *manager, QWidget *parent)
     : QMainWindow(parent), ui(new Ui::SimulationWindow), m_manager(manager) {
   // Initial Setup

@@ -20,8 +20,6 @@ enum TCPFlag {
   CWR = 7,
   NS = 8
 };
-class TCP;
-} // namespace NetSim
 
 class TCP {
 public:
@@ -41,5 +39,6 @@ private:
                                 quint16 flags, const char *data,
                                 quint16 dataLength);
 };
+} // namespace NetSim
 
 #endif // TCP_H

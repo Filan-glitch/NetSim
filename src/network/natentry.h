@@ -9,8 +9,6 @@
 //! \brief Contains the NATEntry class definition.
 
 namespace NetSim {
-class NATEntry;
-}
 
 //! \defgroup NetSimNAT NetSim NAT
 //! \brief Provides the Network Address Translation (NAT) utilities for the
@@ -58,5 +56,6 @@ private:
   //! @brief The IP address associated with this NAT entry.
   IPAddress m_address;
 };
+} // namespace NetSim
 
 #endif // NATENTRY_H

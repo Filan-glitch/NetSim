@@ -7,8 +7,6 @@
 
 namespace NetSim {
 enum HeaderType { HTTP, DNS, TCP, UDP, IP, MAC, UNKNOWN };
-class Header;
-} // namespace NetSim
 
 class Header {
 public:
@@ -33,5 +31,6 @@ private:
   NetSim::HeaderType m_headerType;
   QList<HeaderAttribute> m_headerList;
 };
+} // namespace NetSim
 
 #endif // HEADER_H

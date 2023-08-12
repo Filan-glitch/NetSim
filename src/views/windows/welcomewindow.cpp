@@ -8,6 +8,8 @@
 #include <QLabel>
 #include <QPushButton>
 
+using namespace NetSim;
+
 WelcomeWindow::WelcomeWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::WelcomeWindow) {
   // Initial Setup
@@ -31,9 +33,8 @@ void WelcomeWindow::startSimulation() {
     close();
 
     // Manager initialisieren.
-    SimulationManager *manager =
-        new SimulationManager(settings.clientsAmount(),
-                                                       settings.serversAmount(), settings.domains());
+    SimulationManager *manager = new SimulationManager(
+        settings.clientsAmount(), settings.serversAmount(), settings.domains());
 
     // Öffne das Fenster für die Simulation.
     SimulationWindow *simWindow = new SimulationWindow(manager, this);

@@ -2,6 +2,8 @@
 #include "src/protocols/tcp.h"
 #include "src/protocols/udp.h"
 
+using namespace NetSim;
+
 void Socket::addTCPHeader(Package &data, const IPAddress &srcAddress,
                           const IPAddress &destAddress, bool ack, bool psh,
                           bool syn, bool fin) {

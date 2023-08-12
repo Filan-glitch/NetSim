@@ -1,6 +1,8 @@
 #include "client_dialog.h"
 #include "ui_client_dialog.h"
 
+using namespace NetSim;
+
 Client_Dialog::Client_Dialog(ClientWidget *client, QWidget *parent)
     : QDialog(parent), ui(new Ui::Client_Dialog), m_client(client) {
   ui->setupUi(this);

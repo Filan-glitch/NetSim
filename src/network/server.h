@@ -4,8 +4,6 @@
 #include "host.h"
 
 namespace NetSim {
-class Server;
-}
 
 class Server : public Host {
 public:
@@ -23,5 +21,6 @@ private:
 
   QString m_htmlFile;
 };
+} // namespace NetSim
 
 #endif // SERVER_H

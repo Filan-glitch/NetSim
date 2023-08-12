@@ -1,5 +1,7 @@
 #include "ipaddress.h"
 
+using namespace NetSim;
+
 IPAddress::IPAddress() : m_address(QVector<quint8>()) {}
 
 IPAddress::IPAddress(const QVector<quint8> &address) : m_address(address) {}

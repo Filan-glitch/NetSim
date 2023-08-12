@@ -12,9 +12,6 @@
 
 namespace NetSim {
 
-class IPAddress;
-} // namespace NetSim
-
 //! \defgroup NetSimIPAddress NetSim IP Address
 //! \brief Represents an IP address.
 
@@ -84,5 +81,6 @@ private:
   //! @brief A byte array representing the IP address.
   QVector<quint8> m_address;
 };
+} // namespace NetSim
 
 #endif // IPADDRESS_H

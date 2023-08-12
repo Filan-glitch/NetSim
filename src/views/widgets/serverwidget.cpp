@@ -1,5 +1,7 @@
 #include "serverwidget.h"
 
+using namespace NetSim;
+
 ServerWidget::ServerWidget(Server *server, QWidget *parent)
     : QWidget{parent}, m_server{server} {
   // Erstelle die Widgets

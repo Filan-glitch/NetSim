@@ -4,9 +4,13 @@
 #include "src/views/widgets/serverwidget.h"
 #include <QDialog>
 
+QT_BEGIN_NAMESPACE
 namespace Ui {
 class Server_Dialog;
 }
+QT_END_NAMESPACE
+
+namespace NetSim {
 
 class Server_Dialog : public QDialog {
   Q_OBJECT
@@ -21,5 +25,6 @@ private:
 
   ServerWidget *m_server;
 };
+} // namespace NetSim
 
 #endif // SERVER_DIALOG_H

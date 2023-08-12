@@ -10,8 +10,6 @@
 //! \brief Contains the Process class definition.
 
 namespace NetSim {
-class Process;
-} // namespace NetSim
 
 class Host;
 
@@ -77,5 +75,6 @@ private:
   Socket m_socket; //!< The associated socket.
   Host *m_host;    //!< The host associated with this process.
 };
+} // namespace NetSim
 
 #endif // PROCESS_H

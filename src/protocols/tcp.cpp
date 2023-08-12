@@ -1,6 +1,8 @@
 #include "tcp.h"
 #include "headerAttribute.h"
 
+using namespace NetSim;
+
 void TCP::initHeader(const IPAddress &srcAdress, const IPAddress &destAdress,
                      const Port &sourcePort, const Port &destinationPort,
                      quint32 seqNumber, quint32 ackNumber, bool ack, bool psh,
@@ -33,7 +35,7 @@ void TCP::initHeader(const IPAddress &srcAdress, const IPAddress &destAdress,
   HeaderAttribute options("Options", 0, static_cast<quint8>(0));
 
   Header tcpHeader;
-  tcpHeader.setHeaderType(NetSim::HeaderType::TCP);
+  tcpHeader.setHeaderType(HeaderType::TCP);
   tcpHeader.addHeaderAttribute(srcPort);
   tcpHeader.addHeaderAttribute(dstPort);
   tcpHeader.addHeaderAttribute(sequenceNumber);

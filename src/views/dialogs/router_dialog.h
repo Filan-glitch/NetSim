@@ -4,9 +4,13 @@
 #include "src/views/widgets/routerwidget.h"
 #include <QDialog>
 
+QT_BEGIN_NAMESPACE
 namespace Ui {
 class Router_Dialog;
 }
+QT_END_NAMESPACE
+
+namespace NetSim {
 
 class Router_Dialog : public QDialog {
   Q_OBJECT
@@ -21,5 +25,6 @@ private:
 
   RouterWidget *m_router;
 };
+} // namespace NetSim
 
 #endif // ROUTER_DIALOG_H

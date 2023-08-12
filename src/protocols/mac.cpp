@@ -1,6 +1,8 @@
 #include "mac.h"
 #include "headerAttribute.h"
-#include <QtCore>
+#include <QIODevice>
+
+using namespace NetSim;
 
 void MAC::initHeader(Package &data, const MACAddress &destMACAddress,
                      const MACAddress &srcMACAddress, quint16 etherType) {
@@ -18,7 +20,7 @@ void MAC::initHeader(Package &data, const MACAddress &destMACAddress,
                       getFCS(destMACAddress, srcMACAddress, etherType, data));
 
   Header macHeader;
-  macHeader.setHeaderType(NetSim::HeaderType::MAC);
+  macHeader.setHeaderType(HeaderType::MAC);
   macHeader.addHeaderAttribute(preamble);
   macHeader.addHeaderAttribute(sfd);
   macHeader.addHeaderAttribute(destinationMacAddress);

@@ -4,8 +4,6 @@
 #include <QString>
 
 namespace NetSim {
-class HeaderAttributeNotFoundException;
-}
 
 class HeaderAttributeNotFoundException {
 public:
@@ -16,5 +14,6 @@ public:
 private:
   QString m_errorMessage;
 };
+} // namespace NetSim
 
 #endif // HEADERATTRIBUTENOTFOUNDEXCEPTION_H

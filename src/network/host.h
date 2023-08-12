@@ -14,8 +14,6 @@
 //! \brief The Host class implements a host in the network.
 
 namespace NetSim {
-class Host;
-}
 
 //! \defgroup NetSimHost NetSim Host
 //! \brief
@@ -148,5 +146,6 @@ private:
   //! @brief A pointer to the table model to add incoming packages to the table.
   PackageTableModel *m_packages;
 };
+} // namespace NetSim
 
 #endif // HOST_H

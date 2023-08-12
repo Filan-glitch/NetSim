@@ -2,6 +2,8 @@
 #include "cablenotfoundexception.h"
 #include "router.h"
 
+using namespace NetSim;
+
 QMap<Port, Process> Host::processTable() const { return m_processTable; }
 
 QMap<IPAddress, MACAddress> Host::hostTable() const { return m_hostTable; }

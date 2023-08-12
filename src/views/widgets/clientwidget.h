@@ -7,8 +7,6 @@
 #include <QVBoxLayout>
 
 namespace NetSim {
-class ClientWidget;
-}
 
 class ClientWidget : public QWidget {
   Q_OBJECT
@@ -41,5 +39,6 @@ private slots:
 signals:
   void clicked(ClientWidget *client);
 };
+} // namespace NetSim
 
 #endif // CLIENTWIDGET_H

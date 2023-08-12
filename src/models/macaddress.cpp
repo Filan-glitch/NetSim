@@ -1,5 +1,7 @@
 #include "macaddress.h"
 
+using namespace NetSim;
+
 MACAddress::MACAddress(const QVector<quint8> &address) : m_address(address) {}
 
 MACAddress::MACAddress() { m_address << 0 << 0 << 0 << 0 << 0 << 0; }

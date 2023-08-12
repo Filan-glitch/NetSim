@@ -9,9 +9,6 @@
 
 namespace NetSim {
 
-class Port;
-} // namespace NetSim
-
 //! \defgroup NetSimPort NetSim Port
 //! \brief Represents a network port.
 
@@ -48,5 +45,6 @@ private:
   //! @brief The port number.
   quint16 m_portNumber;
 };
+} // namespace NetSim
 
 #endif // PORT_H

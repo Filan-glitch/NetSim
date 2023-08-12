@@ -1,5 +1,7 @@
 #include "dnsentry.h"
 
+using namespace NetSim;
+
 QString DNSEntry::name() const { return m_name; }
 
 quint16 DNSEntry::type() const { return m_type; }

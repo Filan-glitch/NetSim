@@ -9,6 +9,8 @@ class WelcomeWindow;
 }
 QT_END_NAMESPACE
 
+namespace NetSim {
+
 class WelcomeWindow : public QMainWindow {
   Q_OBJECT
 
@@ -27,4 +29,5 @@ private slots:
 
   void about();
 };
+} // namespace NetSim
 #endif // WELCOMEWINDOW_H

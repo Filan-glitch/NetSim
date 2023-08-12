@@ -1,6 +1,8 @@
 #include "about_dialog.h"
 #include "ui_about_dialog.h"
 
+using namespace NetSim;
+
 About_Dialog::About_Dialog(QWidget *parent)
     : QDialog(parent), ui(new Ui::About_Dialog) {
   ui->setupUi(this);

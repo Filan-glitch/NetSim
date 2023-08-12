@@ -1,6 +1,8 @@
 #include "ipv4.h"
 #include "headerAttribute.h"
 
+using namespace NetSim;
+
 void IPv4::initHeader(quint16 id, bool DF, bool MF, quint16 fragmentOffset,
                       quint8 ttl, quint8 protocol,
                       const IPAddress &sourceAddress,
@@ -35,7 +37,7 @@ void IPv4::initHeader(quint16 id, bool DF, bool MF, quint16 fragmentOffset,
                              destinationAdress.toArray());
 
   Header ipHeader;
-  ipHeader.setHeaderType(NetSim::HeaderType::IP);
+  ipHeader.setHeaderType(HeaderType::IP);
   ipHeader.addHeaderAttribute(version);
   ipHeader.addHeaderAttribute(IHL);
   ipHeader.addHeaderAttribute(TOS);

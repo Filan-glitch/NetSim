@@ -1,7 +1,8 @@
 #include "networkcard.h"
-#include "qdatetime.h"
 #include "src/protocols/ipv4.h"
 #include "src/protocols/mac.h"
+
+using namespace NetSim;
 
 NetworkCard::NetworkCard(const IPAddress &networkAddress,
                          const MACAddress &physicalAddress)
@@ -9,9 +10,7 @@ NetworkCard::NetworkCard(const IPAddress &networkAddress,
 
 void NetworkCard::addIPHeader(Package &data, quint8 protocol,
                               const IPAddress &destinationAddress) {
-  QTime seed;
-  QRandomGenerator rnd(seed.msecsSinceStartOfDay());
-  quint16 id = rnd.generate();
+  quint16 id = QRandomGenerator::global()->generate();
 
   IPv4::initHeader(id, false, false, 0, 4, protocol, networkAddress(),
                    destinationAddress, data);

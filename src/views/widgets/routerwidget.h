@@ -7,8 +7,6 @@
 #include <QVBoxLayout>
 
 namespace NetSim {
-class RouterWidget;
-}
 
 class RouterWidget : public QWidget {
   Q_OBJECT
@@ -38,5 +36,6 @@ private slots:
 signals:
   void clicked(RouterWidget *router);
 };
+} // namespace NetSim
 
 #endif // ROUTERWIDGET_H

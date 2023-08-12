@@ -3,6 +3,8 @@
 #include <QDateTime>
 #include <QDir>
 
+using namespace NetSim;
+
 QFile *Logger::logFile = Q_NULLPTR;
 
 bool Logger::isInit = false;

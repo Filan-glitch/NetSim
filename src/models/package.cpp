@@ -2,6 +2,8 @@
 #include "src/protocols/Headernotfoundexception.h"
 #include "src/protocols/headerattributenotfoundexception.h"
 
+using namespace NetSim;
+
 Package::Package() {}
 
 Package::Package(const QString &info)
@@ -33,14 +35,12 @@ void Package::changePortAndIP(const Port &number, const IPAddress &address,
   if (src) {
     HeaderAttribute srcPort("Source Port", 16, number.portNumber());
     try {
-      (*this)[NetSim::HeaderType::TCP]["Source Port"].setContent(
-          srcPort.toArray());
+      (*this)[HeaderType::TCP]["Source Port"].setContent(srcPort.toArray());
       qInfo() << "Successfully changed the TCP Source Port to: "
               << QString::number(number.portNumber());
     } catch (const HeaderNotFoundException &e) {
       try {
-        (*this)[NetSim::HeaderType::UDP]["Source Port"].setContent(
-            srcPort.toArray());
+        (*this)[HeaderType::UDP]["Source Port"].setContent(srcPort.toArray());
         qInfo() << "Successfully changed the UDP Source Port to: "
                 << QString::number(number.portNumber());
       } catch (const HeaderNotFoundException &e) {
@@ -52,13 +52,13 @@ void Package::changePortAndIP(const Port &number, const IPAddress &address,
   } else {
     HeaderAttribute destPort("Destination Port", 16, number.portNumber());
     try {
-      (*this)[NetSim::HeaderType::TCP]["Destination Port"].setContent(
+      (*this)[HeaderType::TCP]["Destination Port"].setContent(
           destPort.toArray());
       qInfo() << "Successfully changed the TCP Destination Port to: "
               << QString::number(number.portNumber());
     } catch (const HeaderNotFoundException &e) {
       try {
-        (*this)[NetSim::HeaderType::UDP]["Destination Port"].setContent(
+        (*this)[HeaderType::UDP]["Destination Port"].setContent(
             destPort.toArray());
         qInfo() << "Successfully changed the UDP Destination Port to: "
                 << QString::number(number.portNumber());
@@ -72,8 +72,7 @@ void Package::changePortAndIP(const Port &number, const IPAddress &address,
 
   if (src) {
     try {
-      (*this)[NetSim::HeaderType::IP]["Source Address"].setContent(
-          address.toArray());
+      (*this)[HeaderType::IP]["Source Address"].setContent(address.toArray());
       qInfo() << "Successfully changed the Source IP Address to: "
               << address.toString();
     } catch (const HeaderNotFoundException &e) {
@@ -84,7 +83,7 @@ void Package::changePortAndIP(const Port &number, const IPAddress &address,
 
   } else {
     try {
-      (*this)[NetSim::HeaderType::IP]["Destination Address"].setContent(
+      (*this)[HeaderType::IP]["Destination Address"].setContent(
           address.toArray());
       qInfo() << "Successfully changed the Destination IP Address to: "
               << address.toString();
@@ -99,7 +98,7 @@ void Package::changePortAndIP(const Port &number, const IPAddress &address,
 void Package::changeEthernetHeader(const MACAddress &srcAddress,
                                    const MACAddress &destAddress) {
   try {
-    (*this)[NetSim::HeaderType::MAC]["Destination MAC Address"].setContent(
+    (*this)[HeaderType::MAC]["Destination MAC Address"].setContent(
         destAddress.toArray());
     qInfo() << "Successfully changed the Destination MAC Address to: "
             << destAddress.toString();
@@ -110,7 +109,7 @@ void Package::changeEthernetHeader(const MACAddress &srcAddress,
   }
 
   try {
-    (*this)[NetSim::HeaderType::MAC]["Source MAC Address"].setContent(
+    (*this)[HeaderType::MAC]["Source MAC Address"].setContent(
         srcAddress.toArray());
     qInfo() << "Successfully changed the Source MAC Address to: "
             << srcAddress.toString();
@@ -121,7 +120,7 @@ void Package::changeEthernetHeader(const MACAddress &srcAddress,
   }
 }
 
-Header &Package::operator[](const NetSim::HeaderType &type) {
+Header &Package::operator[](const HeaderType &type) {
   for (int i = 0; i < m_headers.size(); i++) {
     if (type == m_headers[i].type()) {
       return m_headers[i];
@@ -131,7 +130,7 @@ Header &Package::operator[](const NetSim::HeaderType &type) {
                                 QString::number(type));
 }
 
-Header Package::operator[](const NetSim::HeaderType &type) const {
+Header Package::operator[](const HeaderType &type) const {
   for (int i = 0; i < m_headers.size(); i++) {
     if (type == m_headers[i].type()) {
       return m_headers[i];
@@ -141,7 +140,7 @@ Header Package::operator[](const NetSim::HeaderType &type) const {
                                 QString::number(type));
 }
 
-void Package::deleteHeaderByType(const NetSim::HeaderType &type) {
+void Package::deleteHeaderByType(const HeaderType &type) {
   for (int i = 0; i < this->m_headers.size(); i++) {
     if (m_headers.at(i).type() == type) {
       m_headers.removeAt(i);

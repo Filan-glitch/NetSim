@@ -1,5 +1,7 @@
 #include "http.h"
 
+using namespace NetSim;
+
 void HTTP::initHTTPRequest(const QString &method, const QString &uri,
                            const QString &version, Package &data) {
   HeaderAttribute requestMethod("Method", method.toLatin1().length() * 8,
@@ -13,7 +15,7 @@ void HTTP::initHTTPRequest(const QString &method, const QString &uri,
   headerList.append(URI);
   headerList.append(httpVersion);
 
-  Header httpHeader(NetSim::HeaderType::HTTP, headerList);
+  Header httpHeader(HeaderType::HTTP, headerList);
   data.addHeader(httpHeader);
 }
 
@@ -34,7 +36,7 @@ void HTTP::initHTTPResponse(const QString &version, quint16 messageCode,
   headerList.append(phrase);
   headerList.append(contentType);
 
-  Header httpHeader(NetSim::HeaderType::HTTP, headerList);
+  Header httpHeader(HeaderType::HTTP, headerList);
   data.addHeader(httpHeader);
   data.setContent(htmlFile);
 }

@@ -1,9 +1,11 @@
 #include "header.h"
 #include "src/protocols/headerattributenotfoundexception.h"
 
+using namespace NetSim;
+
 Header::Header() {}
 
-Header::Header(const NetSim::HeaderType &headerType,
+Header::Header(const HeaderType &headerType,
                const QList<HeaderAttribute> &headerList)
     : m_headerType(headerType), m_headerList(headerList) {}
 
@@ -11,13 +13,13 @@ void Header::addHeaderAttribute(const HeaderAttribute &headerAttribute) {
   m_headerList.append(headerAttribute);
 }
 
-void Header::setHeaderType(const NetSim::HeaderType &headerType) {
+void Header::setHeaderType(const HeaderType &headerType) {
   this->m_headerType = headerType;
 }
 
 QList<HeaderAttribute> Header::headerList() const { return m_headerList; }
 
-NetSim::HeaderType Header::type() const { return m_headerType; }
+HeaderType Header::type() const { return m_headerType; }
 
 quint16 Header::size() const {
   quint16 length = 0;

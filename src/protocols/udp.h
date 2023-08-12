@@ -6,8 +6,6 @@
 #include <QString>
 
 namespace NetSim {
-class UDP;
-}
 
 class UDP {
 public:
@@ -20,5 +18,6 @@ private:
 
   static quint16 overflowHandling(quint16 checksum);
 };
+} // namespace NetSim
 
 #endif // UDP_H

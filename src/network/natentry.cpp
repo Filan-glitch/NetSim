@@ -1,5 +1,7 @@
 #include "natentry.h"
 
+using namespace NetSim;
+
 NATEntry::NATEntry(const IPAddress &address, const Port &port) {
   this->m_address = address;
   this->m_port = port;

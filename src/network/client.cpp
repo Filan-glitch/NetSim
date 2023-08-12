@@ -4,6 +4,8 @@
 #include "src/protocols/headerutil.h"
 #include "src/protocols/tcp.h"
 
+using namespace NetSim;
+
 Client::Client(const NetworkCard &networkCard) : Host(networkCard) {}
 
 void Client::execDomainResolution(const QString &domain) {
@@ -146,16 +148,16 @@ void Client::receivePackage(Package data) {
           << " Client: " << this->networkCard().networkAddress().toString();
 
   // Receives a DNS Response Package from Server
-  if (HeaderUtil::getTopProtocol(data) == NetSim::HeaderType::DNS) {
+  if (HeaderUtil::getTopProtocol(data) == HeaderType::DNS) {
     for (auto i = 0; i < HeaderUtil::getDNSAnswerRRs(data).toInt(); i++) {
-      addDomain(HeaderUtil::getDNSAnswer(data, i, NetSim::RRAttribute::NAME),
+      addDomain(HeaderUtil::getDNSAnswer(data, i, RRAttribute::NAME),
                 HeaderUtil::getDNSAnswerIPAddress(data, i));
     }
     return;
   }
 
-  if (HeaderUtil::getTCPFlag(data, NetSim::TCPFlag::SYN) == "Set" &&
-      HeaderUtil::getTCPFlag(data, NetSim::TCPFlag::ACK) == "Set") {
+  if (HeaderUtil::getTCPFlag(data, TCPFlag::SYN) == "Set" &&
+      HeaderUtil::getTCPFlag(data, TCPFlag::ACK) == "Set") {
     MACAddress routerMAC = this->hostTable().value(
         HeaderUtil::getIPAddressAsIPAddress(data, true));
     Router *router;
@@ -189,8 +191,8 @@ void Client::receivePackage(Package data) {
         HeaderUtil::getIPAddressAsIPAddress(data, true), false, true));
   }
 
-  if (HeaderUtil::getTCPFlag(data, NetSim::TCPFlag::FIN) == "Set" &&
-      HeaderUtil::getTCPFlag(data, NetSim::TCPFlag::ACK) == "Set") {
+  if (HeaderUtil::getTCPFlag(data, TCPFlag::FIN) == "Set" &&
+      HeaderUtil::getTCPFlag(data, TCPFlag::ACK) == "Set") {
     MACAddress routerMAC = this->hostTable().value(
         HeaderUtil::getIPAddressAsIPAddress(data, true));
     Router *router;

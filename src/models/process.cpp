@@ -5,6 +5,8 @@
 #include "src/protocols/dns.h"
 #include "src/protocols/http.h"
 
+using namespace NetSim;
+
 Process::Process() : m_name(""), m_host(nullptr){};
 
 Process::Process(const Port &destinationPort, const QString &name)
