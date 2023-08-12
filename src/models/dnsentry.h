@@ -28,6 +28,9 @@ enum RRAttribute { FULL_DATA, NAME, TYPE, CLASS, TTL, DATA_LENGTH, DATA };
  */
 class DNSEntry {
 public:
+  //! @brief Default constructor.
+  DNSEntry() = default;
+
   /**
    * @brief Constructs a new DNSEntry.
    *
@@ -60,19 +63,19 @@ public:
 
 private:
   //! @brief Domain name.
-  QString m_name;
+  QString m_name{};
 
   //! @brief Type of the DNS entry.
-  quint16 m_type;
+  quint16 m_type{0};
 
   //! @brief Class of the DNS entry.
-  quint16 m_class;
+  quint16 m_class{0};
 
   //! @brief Time-to-live value.
-  quint32 m_ttl;
+  quint32 m_ttl{0};
 
   //! @brief The data associated with the entry.
-  QVector<quint8> m_data;
+  QVector<quint8> m_data{};
 };
 } // namespace NetSim
 

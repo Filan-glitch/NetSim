@@ -25,7 +25,7 @@ class Host;
 class Process {
 public:
   //! Default constructor.
-  Process();
+  Process() = default;
 
   //! Constructor initializing a process with a destination port and a name.
   Process(const Port &destinationPort, const QString &name);
@@ -71,9 +71,9 @@ public:
   QString toString() const;
 
 private:
-  QString m_name;  //!< The name of the process.
-  Socket m_socket; //!< The associated socket.
-  Host *m_host;    //!< The host associated with this process.
+  QString m_name{};      //!< The name of the process.
+  Socket m_socket{};     //!< The associated socket.
+  Host *m_host{nullptr}; //!< The host associated with this process.
 };
 } // namespace NetSim
 

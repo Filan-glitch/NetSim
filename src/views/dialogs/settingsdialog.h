@@ -47,15 +47,15 @@ private:
 
   quint8 m_serverAmount{1};
 
-  QString m_domain1;
+  QString m_domain1{};
 
-  QString m_domain2;
+  QString m_domain2{};
 
-  QString m_domain3;
+  QString m_domain3{};
 
-  QString m_domain4;
+  QString m_domain4{};
 
-  QString m_domain5;
+  QString m_domain5{};
 
   bool allVisibleLineEditsFilled();
 };

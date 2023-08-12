@@ -11,7 +11,7 @@ class Port;
 
 class Socket {
 public:
-  Socket();
+  Socket() = default;
 
   Socket(const Port &sourcePort, const Port &destinationPort);
 
@@ -36,13 +36,13 @@ public:
   quint32 amountReceivedData() const;
 
 private:
-  Port m_sourcePort;
+  Port m_sourcePort{};
 
-  Port m_destinationPort;
+  Port m_destinationPort{};
 
   quint32 m_startSeq{100};
 
-  quint32 m_serverSeq;
+  quint32 m_serverSeq{0};
 
   quint32 m_amountReceivedData{0};
 };

@@ -3,8 +3,6 @@
 
 using namespace NetSim;
 
-Header::Header() {}
-
 Header::Header(const HeaderType &headerType,
                const QList<HeaderAttribute> &headerList)
     : m_headerType(headerType), m_headerList(headerList) {}

@@ -52,6 +52,14 @@ RouterWidget::RouterWidget(Router *router, QWidget *parent)
           &RouterWidget::onButtonClicked);
 }
 
+RouterWidget::~RouterWidget() {
+  delete m_layout;
+  delete m_button;
+  delete m_globalIpLabel;
+  delete m_localIpLabel;
+  delete m_macLabel;
+}
+
 Router *RouterWidget::router() { return m_router; }
 
 QPushButton *RouterWidget::button() const { return m_button; }

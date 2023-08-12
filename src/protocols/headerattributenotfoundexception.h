@@ -12,7 +12,7 @@ public:
   QString errorMessage() const;
 
 private:
-  QString m_errorMessage;
+  QString m_errorMessage{};
 };
 } // namespace NetSim
 

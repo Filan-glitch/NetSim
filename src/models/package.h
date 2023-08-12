@@ -28,7 +28,7 @@ namespace NetSim {
 class Package {
 public:
   //! @brief Default constructor.
-  Package();
+  Package() = default;
 
   //! @brief Constructs a package with information.
   explicit Package(const QString &info);
@@ -69,20 +69,13 @@ public:
 
 private:
   //! @brief List of headers.
-  QList<Header> m_headers;
+  QList<Header> m_headers{};
 
   //! @brief Package's information.
-  QString m_info;
+  QString m_info{"Basic Description"};
 
   //! @brief Package's content.
-  QString m_content;
-
-  //! @brief Deletes a header of a specific type.
-  void deleteHeaderByType(const NetSim::HeaderType &type);
-
-  //! @brief Returns a header attribute by its name.
-  HeaderAttribute getHeaderAttributeByName(const Header &header,
-                                           const QString &name) const;
+  QString m_content{};
 };
 } // namespace NetSim
 

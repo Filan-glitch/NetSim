@@ -6,6 +6,9 @@ using namespace NetSim;
 Server_Dialog::Server_Dialog(ServerWidget *server, QWidget *parent)
     : QDialog(parent), ui(new Ui::Server_Dialog), m_server(server) {
   ui->setupUi(this);
+  if (!server) {
+    return;
+  }
   ui->domainLabel->setText(server->server()->domain());
   ui->ipLabel->setText(
       server->server()->networkCard().networkAddress().toString());

@@ -17,6 +17,11 @@ SOURCES += \
     src/models/dnsentry.cpp \
     src/models/package.cpp \
     src/models/process.cpp \
+    src/models/strategies/dnsstrategy.cpp \
+    src/models/strategies/httpstrategy.cpp \
+    src/models/strategies/ipackagestrategy.cpp \
+    src/models/strategies/tcpconnectionclosestrategy.cpp \
+    src/models/strategies/tcphandshakestrategy.cpp \
     src/network/cablenotfoundexception.cpp \
     src/network/client.cpp \
     src/network/host.cpp \
@@ -60,6 +65,11 @@ HEADERS += \
     src/models/dnsentry.h \
     src/models/package.h \
     src/models/process.h \
+    src/models/strategies/dnsstrategy.h \
+    src/models/strategies/httpstrategy.h \
+    src/models/strategies/ipackagestrategy.h \
+    src/models/strategies/tcpconnectionclosestrategy.h \
+    src/models/strategies/tcphandshakestrategy.h \
     src/network/cablenotfoundexception.h \
     src/network/client.h \
     src/network/host.h \

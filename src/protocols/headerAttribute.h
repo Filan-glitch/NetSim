@@ -22,7 +22,7 @@ public:
   HeaderAttribute(const QString &name, quint32 sizeInBit,
                   const QString &content);
 
-  HeaderAttribute();
+  HeaderAttribute() = default;
 
   QString name() const;
 
@@ -37,11 +37,11 @@ public:
   quint64 getContentAsInt64(int size) const;
 
 private:
-  QString m_name;
+  QString m_name{};
 
-  quint32 m_sizeInBit;
+  quint32 m_sizeInBit{0};
 
-  QVector<quint8> m_content;
+  QVector<quint8> m_content{};
 };
 } // namespace NetSim
 

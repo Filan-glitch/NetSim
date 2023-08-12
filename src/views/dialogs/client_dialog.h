@@ -30,7 +30,7 @@ private slots:
 private:
   Ui::Client_Dialog *ui;
 
-  ClientWidget *m_client;
+  ClientWidget *m_client{nullptr};
 };
 } // namespace NetSim
 

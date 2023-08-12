@@ -7,6 +7,7 @@ namespace NetSim {
 
 class Server : public Host {
 public:
+  Server() = default;
   Server(const NetworkCard &networkCard, const QString &domain,
          const QString &html);
 
@@ -17,9 +18,9 @@ public:
   QString htmlFile() const;
 
 private:
-  QString m_domain;
+  QString m_domain{};
 
-  QString m_htmlFile;
+  QString m_htmlFile{};
 };
 } // namespace NetSim
 

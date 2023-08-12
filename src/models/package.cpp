@@ -1,16 +1,13 @@
 #include "package.h"
 #include "src/protocols/Headernotfoundexception.h"
-#include "src/protocols/headerattributenotfoundexception.h"
 
 using namespace NetSim;
 
-Package::Package() {}
-
 Package::Package(const QString &info)
-    : m_headers(QList<Header>()), m_info(info), m_content(QString()) {}
+    : m_headers(), m_info(info), m_content() {}
 
 Package::Package(const QString &info, const QString &content)
-    : m_headers(QList<Header>()), m_info(info), m_content(content) {}
+    : m_headers(), m_info(info), m_content(content) {}
 
 QString Package::content() const { return m_content; }
 
@@ -138,23 +135,4 @@ Header Package::operator[](const HeaderType &type) const {
   }
   throw HeaderNotFoundException("Could not find Header with type " +
                                 QString::number(type));
-}
-
-void Package::deleteHeaderByType(const HeaderType &type) {
-  for (int i = 0; i < this->m_headers.size(); i++) {
-    if (m_headers.at(i).type() == type) {
-      m_headers.removeAt(i);
-    }
-  }
-  throw HeaderNotFoundException("Could not find Header");
-}
-
-HeaderAttribute Package::getHeaderAttributeByName(const Header &header,
-                                                  const QString &name) const {
-  for (HeaderAttribute attribute : header.headerList()) {
-    if (attribute.name() == name) {
-      return attribute;
-    }
-  }
-  throw HeaderAttributeNotFoundException("Could not find HeaderAttribute");
 }

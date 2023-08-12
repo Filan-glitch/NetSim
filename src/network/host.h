@@ -31,6 +31,9 @@ class Router;
  */
 class Host {
 public:
+  //! @brief The default constructor.
+  Host() = default;
+
   /**
    * @brief Constructor that initializes a host with a network card.
    * @param networkCard The network card associated with this host.
@@ -128,23 +131,23 @@ public:
 
 private:
   //! @brief The Map that maps ports to processes.
-  QMap<Port, Process> m_processTable;
+  QMap<Port, Process> m_processTable{};
 
   //! @brief The Map that maps IP addresses to MAC addresses.
-  QMap<IPAddress, MACAddress> m_hostTable;
+  QMap<IPAddress, MACAddress> m_hostTable{};
 
   //! @brief The Map that maps domain names to IP addresses.
-  QMap<QString, IPAddress> m_domainTable;
+  QMap<QString, IPAddress> m_domainTable{};
 
   //! @brief The Map that maps MAC addresses to routers pointer to call receive
   //! function
-  QMap<MACAddress, Router *> m_cables;
+  QMap<MACAddress, Router *> m_cables{};
 
   //! @brief The network card of the host.
-  NetworkCard m_networkCard;
+  NetworkCard m_networkCard{};
 
   //! @brief A pointer to the table model to add incoming packages to the table.
-  PackageTableModel *m_packages;
+  PackageTableModel *m_packages{nullptr};
 };
 } // namespace NetSim
 

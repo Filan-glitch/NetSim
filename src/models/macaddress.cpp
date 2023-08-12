@@ -4,8 +4,6 @@ using namespace NetSim;
 
 MACAddress::MACAddress(const QVector<quint8> &address) : m_address(address) {}
 
-MACAddress::MACAddress() { m_address << 0 << 0 << 0 << 0 << 0 << 0; }
-
 QString MACAddress::toString() const {
   return QString::number(static_cast<int>(m_address[0]), 16).toLower() + ":" +
          QString::number(static_cast<int>(m_address[1]), 16).toLower() + ":" +

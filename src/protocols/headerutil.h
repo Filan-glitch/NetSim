@@ -29,7 +29,7 @@ public:
 
   static QString getIPFlags(const Package &data);
 
-  static QString getIPFlag(const Package &data, const NetSim::IPFlag &flagName);
+  static QString getIPFlag(const Package &data, const IPFlag &flagName);
 
   static QString getIPNextProtocol(const Package &data);
 
@@ -41,8 +41,7 @@ public:
 
   static QString getTCPFlags(const Package &data);
 
-  static QString getTCPFlag(const Package &data,
-                            const NetSim::TCPFlag &flagName);
+  static QString getTCPFlag(const Package &data, const TCPFlag &flagName);
 
   static QString getTCPSequenceNumber(const Package &data);
 
@@ -71,26 +70,23 @@ public:
 
   static QString getDNSFlags(const Package &data);
 
-  static QString getDNSFlag(const Package &data,
-                            const NetSim::DNSFlag &flagName);
+  static QString getDNSFlag(const Package &data, const DNSFlag &flagName);
 
   static QString getDNSQuestions(const Package &data);
 
   static QString getDNSAnswerRRs(const Package &data);
 
-  static QString
-  getDNSQuery(const Package &data, int index,
-              const NetSim::RRAttribute &attr = NetSim::RRAttribute::FULL_DATA);
+  static QString getDNSQuery(const Package &data, int index,
+                             const RRAttribute &attr = RRAttribute::FULL_DATA);
 
-  static QString getDNSAnswer(
-      const Package &data, int index,
-      const NetSim::RRAttribute &attr = NetSim::RRAttribute::FULL_DATA);
+  static QString getDNSAnswer(const Package &data, int index,
+                              const RRAttribute &attr = RRAttribute::FULL_DATA);
 
   static IPAddress getDNSAnswerIPAddress(const Package &data, int index);
 
   static QString getPackageLength(const Package &data);
 
-  static NetSim::HeaderType getTopProtocol(const Package &data);
+  static HeaderType getTopProtocol(const Package &data);
 
   static IPAddress getIPAddressAsIPAddress(const Package &data, bool src);
 

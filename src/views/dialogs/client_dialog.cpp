@@ -6,6 +6,9 @@ using namespace NetSim;
 Client_Dialog::Client_Dialog(ClientWidget *client, QWidget *parent)
     : QDialog(parent), ui(new Ui::Client_Dialog), m_client(client) {
   ui->setupUi(this);
+  if (!client) {
+    return;
+  }
   ui->nameLabel->setText(client->name());
   ui->ipLabel->setText(
       client->client()->networkCard().networkAddress().toString());

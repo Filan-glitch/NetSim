@@ -6,6 +6,9 @@ using namespace NetSim;
 Router_Dialog::Router_Dialog(RouterWidget *router, QWidget *parent)
     : QDialog(parent), ui(new Ui::Router_Dialog), m_router(router) {
   ui->setupUi(this);
+  if (!router) {
+    return;
+  }
   ui->globalIPLabel->setText(router->router()->globalIpAddress().toString());
   ui->localIPLabel->setText(
       router->router()->networkCard().networkAddress().toString());

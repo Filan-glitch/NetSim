@@ -32,9 +32,9 @@ class Host;
 class Router {
 public:
   /**
-   * @brief Constructs a Router object with default parameters.
+   * @brief Default constructor.
    */
-  Router();
+  Router() = default;
 
   /**
    * @brief Receives a package and forwards it accordingly.
@@ -96,25 +96,26 @@ public:
 
 private:
   //! @brief Mapping of IP addresses to their associated MAC addresses.
-  QMap<IPAddress, MACAddress> m_macTable;
+  QMap<IPAddress, MACAddress> m_macTable{};
 
   //! @brief Mapping of MAC addresses to connected routers.
-  QMap<MACAddress, Router *> m_routerCable;
+  QMap<MACAddress, Router *> m_routerCable{};
 
   //! @brief Mapping of MAC addresses to connected hosts.
-  QMap<MACAddress, Host *> m_hostCable;
+  QMap<MACAddress, Host *> m_hostCable{};
 
   //! @brief Mapping of ports to their associated NAT entries.
-  QMap<Port, NATEntry> m_portToNAT;
+  QMap<Port, NATEntry> m_portToNAT{};
 
   //! @brief Mapping of NAT entries to their associated ports.
-  QMap<NATEntry, Port> m_natToPort;
+  QMap<NATEntry, Port> m_natToPort{};
 
   //! @brief The network card associated with the router.
-  NetworkCard m_networkCard;
+  NetworkCard m_networkCard{NetworkCard(IPAddress::getRandomAddress(true),
+                                        MACAddress::getRandomAddress())};
 
   //! @brief The global IP address of the router.
-  IPAddress m_globalIpAddress;
+  IPAddress m_globalIpAddress{IPAddress::getRandomAddress(false)};
 };
 } // namespace NetSim
 

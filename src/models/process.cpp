@@ -7,8 +7,6 @@
 
 using namespace NetSim;
 
-Process::Process() : m_name(""), m_host(nullptr){};
-
 Process::Process(const Port &destinationPort, const QString &name)
     : m_name(name), m_host(nullptr) {
   openSocket(destinationPort);

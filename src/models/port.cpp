@@ -6,8 +6,6 @@ using namespace NetSim;
 
 Port::Port(quint16 portNumber) : m_portNumber(portNumber) {}
 
-Port::Port(){};
-
 quint16 Port::portNumber() const { return m_portNumber; }
 
 QVector<quint8> Port::toArray() const {

@@ -84,7 +84,7 @@ public:
 
 private:
   //! @brief A list storing all the `Package` objects that the model represents.
-  QList<Package> *m_packageList;
+  QList<Package> *m_packageList{nullptr};
 };
 } // namespace NetSim
 

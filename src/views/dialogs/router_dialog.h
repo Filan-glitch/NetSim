@@ -23,7 +23,7 @@ public:
 private:
   Ui::Router_Dialog *ui;
 
-  RouterWidget *m_router;
+  RouterWidget *m_router{nullptr};
 };
 } // namespace NetSim
 
