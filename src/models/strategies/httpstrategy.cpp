@@ -5,8 +5,6 @@
 
 using namespace NetSim;
 
-HTTPStrategy::~HTTPStrategy() {}
-
 void HTTPStrategy::handle(Package package, Host *host) {
   Process httpProcess;
   try {

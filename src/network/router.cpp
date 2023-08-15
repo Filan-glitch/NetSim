@@ -38,15 +38,7 @@ void Router::receivePackage(Package data) {
   qInfo() << "Router: " << this->networkCard().physicalAddress().toString()
           << " received a Package: " << data.info();
   IPAddress destIP = HeaderUtil::getIPAddressAsIPAddress(data, false);
-  MACAddress destMAC;
-  if (this->m_macTable.contains(destIP)) {
-    MACAddress destMAC = this->m_macTable[destIP];
-  } else {
-    qDebug() << "Router: " << this->networkCard().physicalAddress().toString()
-             << " could not find MAC address for IP address: "
-             << destIP.toString();
-    return;
-  }
+  MACAddress destMAC = this->m_macTable[destIP];
   if (destIP == this->m_globalIpAddress) {
     NATEntry entry = m_portToNAT[HeaderUtil::getPortAsPort(data, false)];
     data.changePortAndIP(entry.port(), entry.address(), false);
@@ -57,9 +49,11 @@ void Router::receivePackage(Package data) {
     NATEntry entry(HeaderUtil::getIPAddressAsIPAddress(data, true),
                    HeaderUtil::getPortAsPort(data, true));
     data.changePortAndIP(m_natToPort[entry], this->m_globalIpAddress, true);
+    qDebug() << "TEST TEST TEST 1";
   }
 
   data.changeEthernetHeader(this->m_networkCard.physicalAddress(), destMAC);
+  qDebug() << "TEST TEST TEST 2";
 
   Router *nextRouter = this->m_routerCable[destMAC];
   if (nextRouter == nullptr) {

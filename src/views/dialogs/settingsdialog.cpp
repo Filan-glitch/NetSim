@@ -4,9 +4,7 @@
 using namespace NetSim;
 
 SettingsDialog::SettingsDialog(QWidget *parent)
-    : QDialog(parent), ui(new Ui::SettingsDialog), m_clientsAmount(), m_serverAmount(),
-    m_domain1(), m_domain2(), m_domain3(), m_domain4(),
-    m_domain5() {
+    : QDialog(parent), ui(new Ui::SettingsDialog) {
   ui->setupUi(this);
 
   // Connections

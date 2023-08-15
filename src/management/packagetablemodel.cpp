@@ -59,22 +59,22 @@ QVariant PackageTableModel::data(const QModelIndex &index, int role) const {
       return HeaderUtil::getIPAddress(package, false);
     case 2: {
       switch (HeaderUtil::getTopProtocol(package)) {
-      case HeaderType::DNS:
+      case DNS:
         return "DNS";
         break;
-      case HeaderType::HTTP:
+      case HTTP:
         return "HTTP";
         break;
-      case HeaderType::TCP:
+      case TCP:
         return "TCP";
         break;
-      case HeaderType::UDP:
+      case UDP:
         return "UDP";
         break;
-      case HeaderType::IP:
+      case IP:
         return "IP";
         break;
-      case HeaderType::MAC:
+      case MAC:
         return "MAC";
         break;
       default:

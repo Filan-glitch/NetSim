@@ -1,13 +1,11 @@
-#include "tcphandshakestrategy.h"
+#include "tcpserverhandshakestrategy.h"
 #include "src/network/cablenotfoundexception.h"
 #include "src/network/router.h"
 #include "src/protocols/headerutil.h"
 
 using namespace NetSim;
 
-TCPHandshakeStrategy::~TCPHandshakeStrategy() {}
-
-void TCPHandshakeStrategy::handle(Package package, Host *host) {
+void TCPServerHandshakeStrategy::handle(Package package, Host *host) {
   Process httpProcess;
   try {
     httpProcess = host->getProcessByName("HTTP");
