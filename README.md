@@ -15,11 +15,11 @@
 
 🚀 The Network Simulation project includes the following main features:
 
-1.  **Visualization of Network Topology**: The project visualizes the network topology in a graphical user interface where hosts, routers, and their connections are represented visually. This provides a clear representation of the simulated network.
+1.  **Visualization of Network Topology**: The project visualizes the network topology in a graphical user interface where hosts, routers, and their connections are represented visually. This provides a clear representation of the simulated network. Furthermore you can look into the packages which traverse the network.
 
-1.  **Creation and Configuration of Network Components**: It provides functions to add, remove, and configure hosts, routers, and processes within the network. Users can set parameters such as IP addresses, hostnames, port numbers, etc.
+1.  **Creation and Configuration of Network Components**: It provides functions to create a network consisting of clients, routers and servers. You can give a domain to every Server and the DNS Server will automatically add it to its domainresolution table. Every client will be in a local network and every server has its own local network. All clients can execute a HTTP GET Request to any server within the simulation. 
 
-1.  **Data Packet Simulation**: The project enables the simulation of data traffic between network components. Users can send data packets from one host to another and trace the path the packet takes through the network.
+1.  **Data Packet Simulation**: The project enables the simulation of data traffic between network components. Users can send data packets from one host to another and trace the path the packet takes through the network. To learn and analyse different aspects of networking you are able to look into the packages and see how network communication works.
 
 1.  **Protocol Support**: It implements basic network protocols such as IP (Internet Protocol), TCP (Transmission Control Protocol), and UDP (User Datagram Protocol). This allows the use of different protocols for communication between network components.
 
