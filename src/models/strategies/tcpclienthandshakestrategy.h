@@ -9,6 +9,9 @@
 
 namespace NetSim {
 
+//! \defgroup NetSimTCPClient TCP Client Handshake Strategy
+//! \brief Provides a strategy for handling TCP client handshake packages.
+
 /**
  * @class TCPClientHandshakeStrategy
  * @ingroup NetSimTCPClient

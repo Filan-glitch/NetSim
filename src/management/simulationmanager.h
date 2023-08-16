@@ -7,12 +7,12 @@
 #include <QString>
 
 //! \file simulationmanager.h
-//! \ingroup NetSimSimulation
+//! \ingroup Management
 //! \brief Contains the SimulationManager class definition.
 
 namespace NetSim {
 
-//! \defgroup NetSimSimulation NetSim Simulation Management
+//! \defgroup NetSimSimulation Simulation Management
 //! \brief Provides utilities to manage and simulate a network with clients,
 //! servers, and routers.
 

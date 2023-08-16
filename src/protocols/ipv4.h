@@ -14,7 +14,7 @@
 
 namespace NetSim {
 
-//! \defgroup NetSimIPv4 NetSim IPv4
+//! \defgroup NetSimIPv4 IPv4
 //! \brief Provides utilities for manipulating and creating IPv4 headers.
 
 //! Enumeration representing IP Flags.

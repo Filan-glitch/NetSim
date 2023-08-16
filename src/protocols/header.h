@@ -11,7 +11,7 @@
 
 namespace NetSim {
 
-//! \defgroup NetSimHeader NetSim Header
+//! \defgroup NetSimHeader Header
 //! \brief Provides functionalities related to the headers of different
 //! protocols.
 

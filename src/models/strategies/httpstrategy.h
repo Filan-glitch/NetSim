@@ -9,7 +9,7 @@
 
 namespace NetSim {
 
-//! \defgroup NetSimHTTPStrategy NetSim HTTPStrategy
+//! \defgroup NetSimHTTPStrategy HTTP Strategy
 //! \brief Provides a strategy for handling HTTP packages
 
 /**

@@ -9,7 +9,7 @@
 
 namespace NetSim {
 
-//! \defgroup NetSimPort NetSim Port
+//! \defgroup NetSimPort Port
 //! \brief Represents a network port.
 
 /**

@@ -9,10 +9,8 @@
 
 namespace NetSim {
 
-//! \defgroup NetSimCablenotFoundException NetSim CableNotFoundException
-//! \brief The NetSim CableNotFoundException class is used to throw an exception
-//! when a cable is not found.
-
+//! \defgroup NetSimCablenotFoundException CableNotFoundException
+//! \brief Provides exception for when a cable connection is not found.
 /**
  * @class CableNotFoundException
  * @ingroup NetSimCablenotFoundException

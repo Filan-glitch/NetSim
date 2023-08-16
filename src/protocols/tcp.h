@@ -28,6 +28,9 @@ enum TCPFlag {
   NS = 8
 };
 
+//! \defgroup NetSimTCP TCP
+//! \brief The NetSim TCP class provides methods for initializing TCP headers.
+
 /**
  * @class TCP
  * @ingroup NetSimTCP

@@ -13,7 +13,7 @@
 
 namespace NetSim {
 
-//! \defgroup NetSimPackage NetSim Package
+//! \defgroup NetSimPackage Package
 //! \brief Represents a network package with multiple headers.
 
 /**

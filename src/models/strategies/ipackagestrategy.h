@@ -10,7 +10,7 @@
 
 namespace NetSim {
 
-//! \defgroup NetSimIPackageStrategy NetSim IPackageStrategy
+//! \defgroup NetSimIPackageStrategy IPackage Strategy
 //! \brief Provides an interface for handling different package strategies.
 
 /**

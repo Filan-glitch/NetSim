@@ -9,7 +9,7 @@
 
 namespace NetSim {
 
-//! \defgroup NetSimTCPConnectionCloseStrategy NetSim TCPConnectionCloseStrategy
+//! \defgroup NetSimTCPConnectionCloseStrategy TCP Connection Close Strategy
 //! \brief Provides a strategy for handling TCP connection termination in the
 //! network simulation.
 

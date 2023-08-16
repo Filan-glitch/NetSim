@@ -9,7 +9,7 @@
 
 namespace NetSim {
 
-//! \defgroup NetSimHeaderNotFoundException NetSim HeaderNotFoundException
+//! \defgroup NetSimHeaderNotFoundException HeaderNotFoundException
 //! \brief Provides exceptions for scenarios when a header is not found.
 
 /**

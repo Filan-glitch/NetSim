@@ -7,11 +7,11 @@
 
 //! \file networkcard.h
 //! \ingroup NetSimNetworkCard
-//! \brief Contains the NetworkCard class definition.
+//! \brief Contains the Network Card class definition.
 
 namespace NetSim {
 
-//! \defgroup NetSimNetworkCard NetSim NetworkCard
+//! \defgroup NetSimNetworkCard Network Card
 //! \brief Provides functionalities related to networking interface cards.
 
 /**

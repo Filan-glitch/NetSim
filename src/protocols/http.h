@@ -10,7 +10,7 @@
 
 namespace NetSim {
 
-//! \defgroup NetSimHTTP NetSim HTTP
+//! \defgroup NetSimHTTP HTTP
 //! \brief Provides functionalities to handle HTTP requests and responses.
 
 /**

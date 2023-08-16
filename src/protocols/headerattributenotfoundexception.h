@@ -9,7 +9,7 @@
 
 namespace NetSim {
 
-//! \defgroup NetSimHeaderAttributeNotFoundException NetSim
+//! \defgroup NetSimHeaderAttributeNotFoundException
 //! HeaderAttributeNotFoundException
 //! \brief Contains all the exceptions used in
 //! the NetSim application.

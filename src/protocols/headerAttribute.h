@@ -10,7 +10,7 @@
 
 namespace NetSim {
 
-//! \defgroup NetSimAttribute NetSim Attribute
+//! \defgroup NetSimAttribute Attribute
 //! \brief Contains all classes related to attributes.
 
 /**

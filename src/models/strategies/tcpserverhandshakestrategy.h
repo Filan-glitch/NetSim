@@ -9,7 +9,7 @@
 
 namespace NetSim {
 
-//! \defgroup NetSimTCPHandshakeStrategy NetSim TCPHandshakeStrategy
+//! \defgroup NetSimTCPHandshakeStrategy TCP Handshake Strategy
 //! \brief Provides a strategy for handling TCP handshakes in the network
 //! simulation.
 

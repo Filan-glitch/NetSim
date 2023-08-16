@@ -5,12 +5,12 @@
 #include "src/models/port.h"
 
 //! \file natentry.h
-//! \ingroup NetSimNAT
-//! \brief Contains the NATEntry class definition.
+//! \ingroup NetSimNATEntry
+//! \brief Contains the NAT Entry class definition.
 
 namespace NetSim {
 
-//! \defgroup NetSimNAT NetSim NAT
+//! \defgroup NetSimNATEntry NAT Entry
 //! \brief Provides the Network Address Translation (NAT) utilities for the
 //! NetSim project.
 

@@ -5,12 +5,12 @@
 #include <QAbstractTableModel>
 
 //! \file packagetablemodel.h
-//! \ingroup NetSimPackageTable
+//! \ingroup Management
 //! \brief Contains the PackageTableModel class definition.
 
 namespace NetSim {
 
-//! \defgroup NetSimPackageTable NetSim Package Table
+//! \defgroup NetSimPackageTable Package Table
 //! \brief Provides utilities to model a table view for `Package` objects.
 
 /**

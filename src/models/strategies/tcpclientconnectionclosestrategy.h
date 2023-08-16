@@ -9,6 +9,9 @@
 
 namespace NetSim {
 
+//! \defgroup NetSimTCPClient TCP Client Connection Close Strategy
+//! \brief Provides a strategy for handling TCP client connection close packages.
+
 /**
  * @class TCPClientConnectionCloseStrategy
  * @ingroup NetSimTCPClient

@@ -9,7 +9,7 @@
 
 namespace NetSim {
 
-//! \defgroup NetSimDNSStrategy NetSim DNSStrategy
+//! \defgroup NetSimDNSStrategy DNS Strategy
 //! \brief Provides a strategy for handling DNS packages
 
 /**

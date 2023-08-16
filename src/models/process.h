@@ -6,12 +6,15 @@
 #include <QString>
 
 //! \file process.h
-//! \ingroup NetSimPackage
+//! \ingroup Management
 //! \brief Contains the Process class definition.
 
 namespace NetSim {
 
 class Host;
+
+//! \defgroup NetSimProcess Process
+//! \brief Represents a network process.
 
 /**
  * @class Process

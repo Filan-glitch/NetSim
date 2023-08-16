@@ -11,7 +11,7 @@
 
 namespace NetSim {
 
-//! \defgroup NetSimMACAddress NetSim MAC Address
+//! \defgroup NetSimMACAddress MAC Address
 //! \brief Represents a MAC address.
 
 /**

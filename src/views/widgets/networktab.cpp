@@ -21,7 +21,7 @@ void NetworkTab::paintEvent(QPaintEvent *event) {
   QWidget::paintEvent(event);
 
   QPainter painter{this};
-  painter.setPen(QPen(Qt::black, 4));
+  painter.setPen(QPen(Qt::blue, 4));
 
   // Connections Server -> Router
   for (auto i = 1; i < m_servers.size(); ++i) {

@@ -15,8 +15,8 @@
 
 namespace NetSim {
 
-//! \defgroup NetSimHost NetSim Host
-//! \brief
+//! \defgroup NetSimHost Host
+//! \brief The Host class implements a host in the network.
 
 class Router;
 

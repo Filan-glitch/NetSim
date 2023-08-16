@@ -10,7 +10,7 @@
 
 namespace NetSim {
 
-//! \defgroup NetSimDNS NetSim DNS
+//! \defgroup NetSimDNS DNS
 //! \brief Provides functionality related to DNS data manipulation in packages.
 
 /**
