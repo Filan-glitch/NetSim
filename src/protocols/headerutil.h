@@ -13,7 +13,7 @@
 
 namespace NetSim {
 
-//! \defgroup NetSimHeaderUtil HeaderUtil
+//! \defgroup NetSimHeaderUtil NetSim HeaderUtil
 //! \brief Provides functionality to convert header data to string representations.
 
 /**
@@ -415,29 +415,18 @@ public:
    */
   static HeaderType getTopProtocol(const Package &data);
 
+
   /**
-   * @brief Extracts the IP Address of the IP Header from the given package.
+   * @brief Extracts the IP Address of the IP Protocol from the given package.
    *
-   * This method extracts the IP Address of the IP Header from the given package and converts it to a reusable format.
-   * The IP Address can be the source or the destination IP Address.
    *
-   * @param data The package to extract the IP Address from.
-   * @param src If true the source IP Address will be returned, otherwise the destination IP Address.
-   * @return  IPAddress The IP Address of the IP Header.
+   *
+   * @param data
+   * @param src
+   * @return
    */
   static IPAddress getIPAddressAsIPAddress(const Package &data, bool src);
 
-  /**
-   * @brief Extracts the Port of the TCP Header from the given package.
-   *
-   * This method extracts the Port of the TCP Header from the given package and converts it to a reusable format.
-   * It automatically detects if the given package is a TCP or UDP package.
-   * The Port can be the source or the destination Port.
-   *
-   * @param data The package to extract the Port from.
-   * @param src If true the source Port will be returned, otherwise the destination Port.
-   * @return  Port The Port of the TCP Header.
-   */
   static Port getPortAsPort(const Package &data, bool src);
 };
 } // namespace NetSim
