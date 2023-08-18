@@ -1,0 +1,7 @@
+<map id="NetSim::HeaderUtil::getDNSAnswerIPAddress" name="NetSim::HeaderUtil::getDNSAnswerIPAddress">
+<area shape="rect" id="Node000001" title="Extracts the IP Address of the DNS Answer at the given index from a given package." alt="" coords="5,39,183,81"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_header_attribute_not_found_exception.html#a2ea879ef0321514f0f5e198414341cbf" title="Fetches the error message for the exception." alt="" coords="243,5,446,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="183,46,228,39,229,45,183,51"/>
+<area shape="rect" id="Node000003" href="$class_net_sim_1_1_header_not_found_exception.html#a14f185390a67f79b53a1d9968a0641e4" title="Simple Getter for the error message." alt="" coords="231,72,458,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="183,69,216,74,216,79,183,74"/>
+</map>

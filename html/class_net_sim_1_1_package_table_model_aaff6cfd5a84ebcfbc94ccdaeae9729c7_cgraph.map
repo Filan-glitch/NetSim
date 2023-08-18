@@ -1,0 +1,5 @@
+<map id="NetSim::PackageTableModel::addPackage" name="NetSim::PackageTableModel::addPackage">
+<area shape="rect" id="Node000001" title="Adds a new package to the table model." alt="" coords="5,5,195,48"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_package_table_model.html#a2ba1340797245619800fa76f62e613e2" title="Returns the number of rows under the given parent." alt="" coords="243,5,432,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="195,24,227,24,227,29,195,29"/>
+</map>

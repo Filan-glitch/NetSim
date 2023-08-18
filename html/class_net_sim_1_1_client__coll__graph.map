@@ -1,0 +1,5 @@
+<map id="NetSim::Client" name="NetSim::Client">
+<area shape="rect" id="Node000001" title="Represents a client in the network simulation." alt="" coords="5,80,111,107"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_host.html" title="Represents a network host that can communicate through routers." alt="" coords="8,5,108,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="61,47,61,80,55,80,55,47"/>
+</map>

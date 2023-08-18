@@ -1,0 +1,5 @@
+<map id="NetSim::HeaderUtil::getHTTPIsRequest" name="NetSim::HeaderUtil::getHTTPIsRequest">
+<area shape="rect" id="Node000001" title="Extracts if the package is a request or response." alt="" coords="261,5,398,48"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_server.html#abad41b2f843f563df59899ac8387cb26" title="Processes an incoming data package." alt="" coords="5,13,213,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="246,29,213,29,213,24,246,24"/>
+</map>

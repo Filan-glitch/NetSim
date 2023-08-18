@@ -1,0 +1,9 @@
+<map id="NetSim/src/protocols/headernotfoundexception.h" name="NetSim/src/protocols/headernotfoundexception.h">
+<area shape="rect" id="Node000001" title="Contains the HeaderNotFoundException class definition." alt="" coords="247,5,427,48"/>
+<area shape="rect" id="Node000002" href="$package_8cpp.html" title=" " alt="" coords="5,104,216,131"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="272,56,144,106,142,101,270,51"/>
+<area shape="rect" id="Node000003" href="$headernotfoundexception_8cpp.html" title=" " alt="" coords="240,96,434,139"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="340,63,340,96,335,96,335,63"/>
+<area shape="rect" id="Node000004" href="$headerutil_8cpp.html" title=" " alt="" coords="459,96,602,139"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="397,52,486,93,484,98,395,57"/>
+</map>

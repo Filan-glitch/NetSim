@@ -1,0 +1,14 @@
+<map id="NetSim/src/models/dnsentry.h" name="NetSim/src/models/dnsentry.h">
+<area shape="rect" id="Node000001" title="Contains the DNSEntry class definition." alt="" coords="5,5,203,32"/>
+<area shape="rect" id="Node000002" href="$ipaddress_8h.html" title="Contains the IPAddress class definition." alt="" coords="89,80,245,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="117,31,148,67,144,70,113,34"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="9,155,74,181"/>
+<area shape="poly" id="edge6_Node000001_Node000004" title=" " alt="" coords="100,33,78,81,54,142,49,140,74,79,96,31"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="99,155,235,181"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="169,107,169,140,164,140,164,107"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="146,110,77,149,74,145,144,105"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="259,155,357,181"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="192,105,271,145,269,150,190,110"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="381,155,451,181"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="211,105,367,150,366,155,209,110"/>
+</map>

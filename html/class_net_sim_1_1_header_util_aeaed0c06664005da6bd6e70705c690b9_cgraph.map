@@ -1,0 +1,7 @@
+<map id="NetSim::HeaderUtil::getPackageLength" name="NetSim::HeaderUtil::getPackageLength">
+<area shape="rect" id="Node000001" title="Extracts the Port of the DNS Answer at the given index from a given package." alt="" coords="5,5,143,48"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_package.html#af9d3e66a0b597143e7c6c9c62eec0c28" title="Returns the total size of the package." alt="" coords="191,13,346,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="143,24,176,24,176,29,143,29"/>
+<area shape="rect" id="Node000003" href="$class_net_sim_1_1_package.html#ad9ac6a1cd64803066873b56c9db88871" title="Returns the package&#39;s content." alt="" coords="394,13,568,40"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="346,24,379,24,379,29,346,29"/>
+</map>

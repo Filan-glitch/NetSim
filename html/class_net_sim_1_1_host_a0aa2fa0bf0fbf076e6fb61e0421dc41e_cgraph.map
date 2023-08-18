@@ -1,0 +1,5 @@
+<map id="NetSim::Host::setPackages" name="NetSim::Host::setPackages">
+<area shape="rect" id="Node000001" title="Set the packages for this host." alt="" coords="5,5,189,32"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_host.html#a2fad1a9971da9ef14685974bfef6e200" title="Get all the packages associated with this host." alt="" coords="237,5,400,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="189,16,222,16,222,21,189,21"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="NetSim::Process::openSocket" name="NetSim::Process::openSocket">
+<area shape="rect" id="Node000001" title="Opens a new socket with a specified destination port." alt="" coords="230,5,427,32"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_process.html#ad1beb630241ca007ed0118acb0291fca" title="Constructor initializing a process with a destination port and a name." alt="" coords="5,5,182,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="215,21,182,21,182,16,215,16"/>
+</map>

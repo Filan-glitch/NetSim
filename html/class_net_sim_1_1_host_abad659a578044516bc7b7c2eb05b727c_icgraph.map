@@ -1,0 +1,12 @@
+<map id="NetSim::Host::domainTable" name="NetSim::Host::domainTable">
+<area shape="rect" id="Node000001" title="Retrieve the domain table." alt="" coords="465,43,645,69"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_client.html#a3e22da7413d47c166cdf553ef72b8da4" title="Initiates a domain name resolution." alt="" coords="5,5,191,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="494,41,417,25,299,19,191,22,191,16,300,13,417,20,495,36"/>
+<area shape="rect" id="Node000003" href="$class_net_sim_1_1_process.html#a5665020fda51a0adb760050aa6c84938" title="Generates a DNS request package." alt="" coords="239,35,417,77"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="450,59,418,59,418,53,450,53"/>
+<area shape="rect" id="Node000004" href="$class_net_sim_1_1_process.html#a3b5d9472d264b28f691ed1089cfbc108" title="Generates a DNS response package." alt="" coords="239,101,417,144"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="494,77,404,103,402,98,492,72"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="223,45,191,41,192,36,224,40"/>
+<area shape="rect" id="Node000005" href="$class_net_sim_1_1_d_n_s_strategy.html#a22bb286b34362134e94ca34ab5dc9db5" title="Handles the DNS package." alt="" coords="24,101,172,144"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="224,125,173,125,173,120,224,120"/>
+</map>

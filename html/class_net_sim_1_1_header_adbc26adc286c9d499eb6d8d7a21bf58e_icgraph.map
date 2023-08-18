@@ -1,0 +1,9 @@
+<map id="NetSim::Header::headerList" name="NetSim::Header::headerList">
+<area shape="rect" id="Node000001" title="Retrieves the list of header attributes." alt="" coords="456,47,637,73"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_header_util.html#a44d8c8c486bc7a8e32ee826ce7dfc3e4" title="Extracts if the package is a request or response." alt="" coords="266,5,403,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="443,46,403,40,404,35,444,41"/>
+<area shape="rect" id="Node000004" href="$class_net_sim_1_1_header_util.html#a23f7643f26d2d72f38367a0c2b9d6d91" title="Extracts if the package is a response or request." alt="" coords="261,72,408,115"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="444,79,409,84,408,79,443,74"/>
+<area shape="rect" id="Node000003" href="$class_net_sim_1_1_server.html#abad41b2f843f563df59899ac8387cb26" title="Processes an incoming data package." alt="" coords="5,13,213,40"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="251,29,213,29,213,24,251,24"/>
+</map>

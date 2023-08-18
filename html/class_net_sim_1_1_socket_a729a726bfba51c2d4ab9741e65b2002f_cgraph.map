@@ -1,0 +1,15 @@
+<map id="NetSim::Socket::addUDPHeader" name="NetSim::Socket::addUDPHeader">
+<area shape="rect" id="Node000001" title="Adds a UDP header to the provided data package." alt="" coords="5,123,216,149"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_u_d_p.html#a6b5aa1f63400426c7c2a024e6720bd26" title="Initializes a UDP header." alt="" coords="264,123,429,149"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="216,133,249,133,249,139,216,139"/>
+<area shape="rect" id="Node000003" href="$class_net_sim_1_1_package.html#adfb8b09b329354d5cae1d9fd4122bdac" title="Adds a new header to the package." alt="" coords="485,5,678,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="361,120,410,81,442,60,476,42,494,34,496,39,478,46,445,64,413,86,364,124"/>
+<area shape="rect" id="Node000004" href="$class_net_sim_1_1_header.html#a57a32b3e56f02c18d3337e17c2613492" title="Adds a header attribute to the header." alt="" coords="490,56,673,99"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="402,120,478,100,480,105,403,125"/>
+<area shape="rect" id="Node000005" href="$class_net_sim_1_1_package.html#ad9ac6a1cd64803066873b56c9db88871" title="Returns the package&#39;s content." alt="" coords="494,123,668,149"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="430,133,479,133,479,139,430,139"/>
+<area shape="rect" id="Node000006" href="$class_net_sim_1_1_port.html#a8e032b8ec52d3a1ce59048ab67230c13" title="Returns the port number." alt="" coords="496,173,667,200"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="412,147,502,167,501,172,411,153"/>
+<area shape="rect" id="Node000007" href="$class_net_sim_1_1_header.html#a2074906dd8dcb915ba854eb3854cfaa9" title="Sets the header type." alt="" coords="477,224,685,251"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="368,147,417,179,478,210,499,217,497,222,476,214,414,183,365,152"/>
+</map>

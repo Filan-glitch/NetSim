@@ -1,0 +1,9 @@
+<map id="NetSim/src/network/client.h" name="NetSim/src/network/client.h">
+<area shape="rect" id="Node000001" title="Contains the Client class definition." alt="" coords="107,5,242,48"/>
+<area shape="rect" id="Node000002" href="$simulationmanager_8h.html" title="Contains the SimulationManager class definition." alt="" coords="5,96,171,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="146,61,110,98,106,94,143,57"/>
+<area shape="rect" id="Node000004" href="$client_8cpp.html" title=" " alt="" coords="195,96,330,139"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="207,57,244,94,240,98,203,61"/>
+<area shape="rect" id="Node000003" href="$simulationmanager_8cpp.html" title=" " alt="" coords="5,187,171,229"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="91,153,91,186,85,186,85,153"/>
+</map>

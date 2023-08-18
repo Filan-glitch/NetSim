@@ -1,0 +1,35 @@
+<map id="NetSim::IPv4::initHeader" name="NetSim::IPv4::initHeader">
+<area shape="rect" id="Node000001" title="Initializes an IPv4 header." alt="" coords="695,313,858,340"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_network_card.html#a0d7c9bcffbc19b9eebb5eccc6e4c39a8" title="Adds an IP header to the provided data package." alt="" coords="501,305,647,348"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="681,329,648,329,648,324,681,324"/>
+<area shape="rect" id="Node000003" href="$class_net_sim_1_1_process.html#acbcb4e36dc486a60d0863853e5245503" title="Generates a TCP connection close package." alt="" coords="275,105,453,148"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="544,295,502,247,451,195,395,151,398,146,455,191,506,243,548,292"/>
+<area shape="rect" id="Node000007" href="$class_net_sim_1_1_process.html#a5665020fda51a0adb760050aa6c84938" title="Generates a DNS request package." alt="" coords="275,205,453,248"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="523,300,452,262,425,251,427,246,454,258,526,295"/>
+<area shape="rect" id="Node000009" href="$class_net_sim_1_1_process.html#a3b5d9472d264b28f691ed1089cfbc108" title="Generates a DNS response package." alt="" coords="275,272,453,315"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="486,315,453,310,454,305,487,310"/>
+<area shape="rect" id="Node000011" href="$class_net_sim_1_1_process.html#a0c345e6e072f6ab65ff28cf47b970762" title="Generates a TCP handshake package." alt="" coords="275,339,453,381"/>
+<area shape="poly" id="edge10_Node000002_Node000011" title=" " alt="" coords="487,343,454,348,453,343,486,338"/>
+<area shape="rect" id="Node000014" href="$class_net_sim_1_1_process.html#aff889617a4aa42733795513c264f0c4c" title="Generates an HTTP request package." alt="" coords="275,417,453,460"/>
+<area shape="poly" id="edge13_Node000002_Node000014" title=" " alt="" coords="523,358,454,396,409,419,407,414,452,391,520,353"/>
+<area shape="rect" id="Node000016" href="$class_net_sim_1_1_process.html#ace24c765fbebd11d9f0e2a47824e9e5a" title="Generates an HTTP response package." alt="" coords="275,509,453,552"/>
+<area shape="poly" id="edge15_Node000002_Node000016" title=" " alt="" coords="552,362,509,417,455,474,404,511,401,507,451,470,505,413,547,359"/>
+<area shape="rect" id="Node000004" href="$class_net_sim_1_1_client.html#aa654c9fae6946bb345e639ae864ee4d6" title="Closes the connection to the specified IP address." alt="" coords="29,5,203,48"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="308,101,226,62,194,51,196,46,228,58,311,96"/>
+<area shape="rect" id="Node000005" href="$class_net_sim_1_1_t_c_p_client_connection_close_strategy.html#a8888ad2705a7a65cc193f6cbe9b61fdd" title="Handles the package to close the connection." alt="" coords="18,72,214,115"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="260,115,214,109,215,104,260,110"/>
+<area shape="rect" id="Node000006" href="$class_net_sim_1_1_t_c_p_server_connection_close_strategy.html#a51537048bc6b2af2260e534f143759a1" title="Handles the TCP connection termination process." alt="" coords="17,139,215,181"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="260,143,216,149,215,144,259,138"/>
+<area shape="rect" id="Node000008" href="$class_net_sim_1_1_client.html#a3e22da7413d47c166cdf553ef72b8da4" title="Initiates a domain name resolution." alt="" coords="23,205,209,248"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="260,229,209,229,209,224,260,224"/>
+<area shape="rect" id="Node000010" href="$class_net_sim_1_1_d_n_s_strategy.html#a22bb286b34362134e94ca34ab5dc9db5" title="Handles the DNS package." alt="" coords="42,272,190,315"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="260,296,191,296,191,291,260,291"/>
+<area shape="rect" id="Node000012" href="$class_net_sim_1_1_t_c_p_client_handshake_strategy.html#a7c2a4afd050131192f748e5459bda178" title="Handles the package during the handshake process." alt="" coords="18,339,214,381"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="260,363,214,363,214,357,260,357"/>
+<area shape="rect" id="Node000013" href="$class_net_sim_1_1_t_c_p_server_handshake_strategy.html#adbff518c136872ec5ddcdeba8a989006" title="Handles the TCP handshake process." alt="" coords="17,405,215,448"/>
+<area shape="poly" id="edge12_Node000011_Node000013" title=" " alt="" coords="268,388,199,407,197,402,267,383"/>
+<area shape="rect" id="Node000015" href="$class_net_sim_1_1_client.html#a105f0db7742da2637832c4bd8f339231" title="Sends an HTTP request to the specified IP address and URI." alt="" coords="5,472,227,499"/>
+<area shape="poly" id="edge14_Node000014_Node000015" title=" " alt="" coords="260,461,191,474,190,469,259,456"/>
+<area shape="rect" id="Node000017" href="$class_net_sim_1_1_h_t_t_p_strategy.html#adb92bbadb9b607469563ccc268019cea" title="Manages the HTTP package." alt="" coords="39,523,193,565"/>
+<area shape="poly" id="edge16_Node000016_Node000017" title=" " alt="" coords="260,539,193,543,193,537,260,534"/>
+</map>

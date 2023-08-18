@@ -1,0 +1,5 @@
+<map id="NetSim::Process::generateHTTPRequestPackage" name="NetSim::Process::generateHTTPRequestPackage">
+<area shape="rect" id="Node000001" title="Generates an HTTP request package." alt="" coords="275,5,453,48"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_client.html#a105f0db7742da2637832c4bd8f339231" title="Sends an HTTP request to the specified IP address and URI." alt="" coords="5,13,227,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="260,29,227,29,227,24,260,24"/>
+</map>

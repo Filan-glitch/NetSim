@@ -1,0 +1,25 @@
+<map id="NetSim/src/network/router.h" name="NetSim/src/network/router.h">
+<area shape="rect" id="Node000001" title="Contains the Router class definition." alt="" coords="1058,5,1193,48"/>
+<area shape="rect" id="Node000002" href="$simulationmanager_8h.html" title="Contains the SimulationManager class definition." alt="" coords="5,96,171,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1043,33,670,51,428,71,184,99,172,101,171,95,184,93,428,65,670,46,1043,28"/>
+<area shape="rect" id="Node000004" href="$dnsstrategy_8cpp.html" title=" " alt="" coords="195,96,389,139"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="1043,36,759,59,581,77,402,99,389,100,389,95,401,93,580,71,758,54,1042,31"/>
+<area shape="rect" id="Node000005" href="$httpstrategy_8cpp.html" title=" " alt="" coords="413,96,606,139"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="1043,40,849,65,619,99,607,101,606,95,618,93,849,60,1043,35"/>
+<area shape="rect" id="Node000006" href="$tcpclientconnectionclosestrategy_8cpp.html" title=" " alt="" coords="631,96,871,139"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="1044,50,839,98,838,93,1042,45"/>
+<area shape="rect" id="Node000007" href="$tcpclienthandshakestrategy_8cpp.html" title=" " alt="" coords="895,96,1105,139"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="1086,59,1031,98,1028,93,1083,55"/>
+<area shape="rect" id="Node000008" href="$tcpserverconnectionclosestrategy_8cpp.html" title=" " alt="" coords="1129,96,1372,139"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="1168,55,1223,93,1220,98,1165,59"/>
+<area shape="rect" id="Node000009" href="$tcpserverhandshakestrategy_8cpp.html" title=" " alt="" coords="1397,96,1609,139"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="1208,45,1415,93,1414,98,1207,50"/>
+<area shape="rect" id="Node000010" href="$client_8cpp.html" title=" " alt="" coords="1632,96,1768,139"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="1208,34,1398,57,1622,93,1632,96,1631,101,1621,99,1397,62,1207,39"/>
+<area shape="rect" id="Node000011" href="$host_8cpp.html" title=" " alt="" coords="1792,96,1928,139"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="1208,30,1465,51,1623,69,1780,93,1793,96,1792,101,1780,99,1622,75,1464,57,1208,35"/>
+<area shape="rect" id="Node000012" href="$router_8cpp.html" title=" " alt="" coords="1952,96,2088,139"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="1208,28,1348,34,1530,46,1735,65,1940,93,1953,96,1952,101,1940,99,1734,71,1530,51,1347,39,1208,33"/>
+<area shape="rect" id="Node000003" href="$simulationmanager_8cpp.html" title=" " alt="" coords="5,187,171,229"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="91,153,91,186,85,186,85,153"/>
+</map>

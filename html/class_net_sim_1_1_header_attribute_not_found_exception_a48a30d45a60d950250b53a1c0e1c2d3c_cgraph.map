@@ -1,0 +1,5 @@
+<map id="NetSim::HeaderAttributeNotFoundException::HeaderAttributeNotFoundException" name="NetSim::HeaderAttributeNotFoundException::HeaderAttributeNotFoundException">
+<area shape="rect" id="Node000001" title="Constructs the exception with an error message." alt="" coords="5,5,219,64"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_header_attribute_not_found_exception.html#a2ea879ef0321514f0f5e198414341cbf" title="Fetches the error message for the exception." alt="" coords="267,13,469,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="219,32,252,32,252,37,219,37"/>
+</map>

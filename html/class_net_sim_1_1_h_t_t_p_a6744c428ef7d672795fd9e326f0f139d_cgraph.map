@@ -1,0 +1,9 @@
+<map id="NetSim::HTTP::initHTTPResponse" name="NetSim::HTTP::initHTTPResponse">
+<area shape="rect" id="Node000001" title="Initializes an HTTP response header." alt="" coords="5,31,225,57"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_package.html#adfb8b09b329354d5cae1d9fd4122bdac" title="Adds a new header to the package." alt="" coords="273,5,467,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="225,30,258,27,259,32,225,36"/>
+<area shape="rect" id="Node000003" href="$class_net_sim_1_1_package.html#a7a642c4da3b1d2d3fa3e04810af36c7a" title="Sets the package&#39;s content." alt="" coords="273,56,467,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="225,52,258,56,258,61,225,58"/>
+<area shape="rect" id="Node000004" href="$class_net_sim_1_1_package.html#ad9ac6a1cd64803066873b56c9db88871" title="Returns the package&#39;s content." alt="" coords="515,56,689,83"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="467,67,500,67,500,72,467,72"/>
+</map>

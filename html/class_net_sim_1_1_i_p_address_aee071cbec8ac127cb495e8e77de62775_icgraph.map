@@ -1,0 +1,7 @@
+<map id="NetSim::IPAddress::IPAddress" name="NetSim::IPAddress::IPAddress">
+<area shape="rect" id="Node000001" title="Default constructor." alt="" coords="425,5,565,48"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_i_p_address.html#a76ee5bb91952894c03b99f6f53792cab" title="Generates a random IP address." alt="" coords="237,5,377,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="410,29,377,29,377,24,410,24"/>
+<area shape="rect" id="Node000003" href="$class_net_sim_1_1_simulation_manager.html#affa09b09628c220eb0850ce99ccfba6d" title="Constructs a new simulation manager with the specified amounts of clients and servers,..." alt="" coords="5,5,189,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="222,29,189,29,189,24,222,24"/>
+</map>

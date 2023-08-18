@@ -1,0 +1,9 @@
+<map id="NetSim/src/management/logger.h" name="NetSim/src/management/logger.h">
+<area shape="rect" id="Node000001" title="Contains the Logger class definition." alt="" coords="41,5,206,48"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,96,74,123"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="104,51,65,88,61,84,100,47"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="97,96,150,123"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="126,49,126,81,121,81,121,49"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="174,96,236,123"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="146,47,184,83,180,87,143,51"/>
+</map>

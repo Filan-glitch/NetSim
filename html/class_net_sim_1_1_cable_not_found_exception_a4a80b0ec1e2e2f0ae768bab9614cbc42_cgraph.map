@@ -1,0 +1,5 @@
+<map id="NetSim::CableNotFoundException::CableNotFoundException" name="NetSim::CableNotFoundException::CableNotFoundException">
+<area shape="rect" id="Node000001" title="Constructor that initializes the exception with an error message." alt="" coords="5,5,225,48"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_cable_not_found_exception.html#ab915d86dcebdae187df01f28ddafb646" title="Fetches the error message associated with this exception." alt="" coords="273,5,492,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="225,24,258,24,258,29,225,29"/>
+</map>

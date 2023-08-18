@@ -1,0 +1,36 @@
+<map id="NetSim/src/network/networkcard.h" name="NetSim/src/network/networkcard.h">
+<area shape="rect" id="Node000001" title="Contains the Network Card class definition." alt="" coords="328,5,463,48"/>
+<area shape="rect" id="Node000002" href="$ipaddress_8h.html" title="Contains the IPAddress class definition." alt="" coords="560,171,716,197"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="429,46,608,160,605,165,426,51"/>
+<area shape="rect" id="Node000007" href="$macaddress_8h.html" title="Contains the MACAddress class definition." alt="" coords="310,171,481,197"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="398,48,398,156,393,156,393,48"/>
+<area shape="rect" id="Node000008" href="$package_8h.html" title="Contains the Package class definition." alt="" coords="173,96,322,123"/>
+<area shape="poly" id="edge10_Node000001_Node000008" title=" " alt="" coords="358,51,284,91,281,86,356,46"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="458,245,594,272"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="620,200,559,239,556,235,617,196"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="268,320,333,347"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="669,195,697,210,723,228,737,250,737,262,730,274,703,293,663,306,614,313,561,317,455,319,374,323,348,327,347,321,374,317,455,313,561,311,614,308,661,301,700,288,727,270,732,261,732,252,719,232,694,215,667,200"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="618,245,716,272"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="645,197,659,231,654,233,640,199"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="386,320,455,347"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="692,195,729,208,762,225,774,235,781,247,782,260,775,274,753,290,722,302,640,320,549,330,470,334,470,328,548,324,639,315,721,297,751,285,770,270,777,259,776,249,770,239,759,230,727,213,690,200"/>
+<area shape="poly" id="edge7_Node000007_Node000003" title=" " alt="" coords="419,196,491,235,489,240,417,200"/>
+<area shape="poly" id="edge8_Node000007_Node000004" title=" " alt="" coords="391,199,347,273,321,309,317,306,342,271,386,197"/>
+<area shape="poly" id="edge9_Node000007_Node000006" title=" " alt="" coords="400,197,419,305,413,306,395,198"/>
+<area shape="poly" id="edge11_Node000008_Node000002" title=" " alt="" coords="316,121,556,165,555,170,315,126"/>
+<area shape="poly" id="edge12_Node000008_Node000007" title=" " alt="" coords="274,121,357,161,355,166,272,126"/>
+<area shape="rect" id="Node000009" href="$port_8h.html" title="Contains the Port class definition." alt="" coords="5,171,60,197"/>
+<area shape="poly" id="edge13_Node000008_Node000009" title=" " alt="" coords="211,126,74,171,73,166,209,121"/>
+<area shape="rect" id="Node000010" href="$header_8h.html" title="Contains the Header class definition and related enumerations." alt="" coords="135,171,285,197"/>
+<area shape="poly" id="edge15_Node000008_Node000010" title=" " alt="" coords="243,124,225,159,221,156,238,122"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="44,245,96,272"/>
+<area shape="poly" id="edge21_Node000008_Node000013" title=" " alt="" coords="209,126,166,145,125,173,100,202,83,234,78,231,96,199,121,169,163,140,206,121"/>
+<area shape="poly" id="edge14_Node000009_Node000004" title=" " alt="" coords="31,198,24,234,25,253,33,270,47,282,68,292,127,308,193,319,253,326,253,331,192,324,126,313,67,297,44,286,29,274,20,255,18,233,25,197"/>
+<area shape="rect" id="Node000011" href="$header_attribute_8h.html" title="Contains the HeaderAttribute class definition." alt="" coords="212,245,333,272"/>
+<area shape="poly" id="edge16_Node000010_Node000011" title=" " alt="" coords="223,196,254,232,250,236,219,200"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="120,245,188,272"/>
+<area shape="poly" id="edge19_Node000010_Node000012" title=" " alt="" coords="202,200,174,235,170,232,198,196"/>
+<area shape="poly" id="edge20_Node000010_Node000013" title=" " alt="" coords="187,200,109,240,106,236,184,196"/>
+<area shape="poly" id="edge17_Node000011_Node000004" title=" " alt="" coords="280,272,293,305,288,307,275,274"/>
+<area shape="poly" id="edge18_Node000011_Node000006" title=" " alt="" coords="299,270,383,311,380,315,297,275"/>
+</map>

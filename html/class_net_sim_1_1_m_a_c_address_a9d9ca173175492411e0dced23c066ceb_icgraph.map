@@ -1,0 +1,7 @@
+<map id="NetSim::MACAddress::MACAddress" name="NetSim::MACAddress::MACAddress">
+<area shape="rect" id="Node000001" title="Default constructor initializing an empty MAC address." alt="" coords="434,5,583,48"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_m_a_c_address.html#ab1b09c55ae35692e133f300d67d68554" title="Generates a random MAC address." alt="" coords="237,5,386,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="419,29,386,29,386,24,419,24"/>
+<area shape="rect" id="Node000003" href="$class_net_sim_1_1_simulation_manager.html#affa09b09628c220eb0850ce99ccfba6d" title="Constructs a new simulation manager with the specified amounts of clients and servers,..." alt="" coords="5,5,189,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="222,29,189,29,189,24,222,24"/>
+</map>

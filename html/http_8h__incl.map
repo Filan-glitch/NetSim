@@ -1,0 +1,35 @@
+<map id="NetSim/src/protocols/http.h" name="NetSim/src/protocols/http.h">
+<area shape="rect" id="Node000001" title="Contains the HTTP class definition." alt="" coords="460,5,604,48"/>
+<area shape="rect" id="Node000002" href="$package_8h.html" title="Contains the Package class definition." alt="" coords="324,96,473,123"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="499,51,433,90,430,86,496,46"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="527,320,593,347"/>
+<area shape="poly" id="edge20_Node000001_Node000005" title=" " alt="" coords="557,47,605,99,629,133,648,170,659,198,665,222,665,246,654,273,633,298,607,316,604,312,630,294,650,271,660,245,660,222,654,199,643,172,624,136,601,102,553,50"/>
+<area shape="rect" id="Node000003" href="$ipaddress_8h.html" title="Contains the IPAddress class definition." alt="" coords="92,245,180,272"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="377,125,172,240,169,236,375,121"/>
+<area shape="rect" id="Node000008" href="$macaddress_8h.html" title="Contains the MACAddress class definition." alt="" coords="204,245,308,272"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="388,125,280,236,276,233,384,121"/>
+<area shape="rect" id="Node000009" href="$port_8h.html" title="Contains the Port class definition." alt="" coords="579,171,634,197"/>
+<area shape="poly" id="edge11_Node000002_Node000009" title=" " alt="" coords="436,121,567,166,565,171,434,126"/>
+<area shape="rect" id="Node000010" href="$header_8h.html" title="Contains the Header class definition and related enumerations." alt="" coords="379,171,530,197"/>
+<area shape="poly" id="edge13_Node000002_Node000010" title=" " alt="" coords="410,122,438,157,434,160,406,125"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="331,245,383,272"/>
+<area shape="poly" id="edge19_Node000002_Node000013" title=" " alt="" coords="393,124,381,146,370,171,364,202,361,231,355,230,358,201,365,170,376,144,388,122"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="128,320,264,347"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="148,271,178,307,174,310,144,274"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="181,267,192,269,513,322,512,328,191,275,180,272"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="5,320,104,347"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="123,275,81,312,78,308,120,271"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="288,320,357,347"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="169,270,277,312,275,317,167,275"/>
+<area shape="poly" id="edge8_Node000008_Node000004" title=" " alt="" coords="247,274,217,310,213,307,243,271"/>
+<area shape="poly" id="edge9_Node000008_Node000005" title=" " alt="" coords="309,270,513,318,512,323,307,275"/>
+<area shape="poly" id="edge10_Node000008_Node000007" title=" " alt="" coords="269,271,303,307,299,311,265,274"/>
+<area shape="poly" id="edge12_Node000009_Node000005" title=" " alt="" coords="618,196,635,231,639,252,634,273,618,296,598,314,594,309,614,292,629,271,633,252,630,233,613,199"/>
+<area shape="rect" id="Node000011" href="$header_attribute_8h.html" title="Contains the HeaderAttribute class definition." alt="" coords="500,245,620,272"/>
+<area shape="poly" id="edge14_Node000010_Node000011" title=" " alt="" coords="474,196,531,234,528,239,471,200"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="407,245,475,272"/>
+<area shape="poly" id="edge17_Node000010_Node000012" title=" " alt="" coords="455,198,449,231,443,230,450,197"/>
+<area shape="poly" id="edge18_Node000010_Node000013" title=" " alt="" coords="439,200,387,239,384,234,436,196"/>
+<area shape="poly" id="edge15_Node000011_Node000005" title=" " alt="" coords="563,273,563,305,557,305,557,273"/>
+<area shape="poly" id="edge16_Node000011_Node000007" title=" " alt="" coords="519,275,372,320,371,315,518,270"/>
+</map>

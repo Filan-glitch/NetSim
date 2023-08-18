@@ -1,0 +1,13 @@
+<map id="NetSim::Socket::sourcePort" name="NetSim::Socket::sourcePort">
+<area shape="rect" id="Node000001" title="Simple Getter for source port." alt="" coords="727,56,912,83"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_host.html#a3fc266a66478c2421e8bca3609807e66" title="Constructor that initializes a host with a network card." alt="" coords="510,5,644,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="737,55,644,35,645,30,738,50"/>
+<area shape="rect" id="Node000003" href="$class_net_sim_1_1_socket.html#a896c8d12a01d274624cd05f4932a8d2a" title="Setter for the source port." alt="" coords="475,56,679,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="712,72,680,72,680,67,712,67"/>
+<area shape="rect" id="Node000006" href="$class_net_sim_1_1_process.html#a8543ef990d278c14be87cf103a64393b" title="Retrieves a string representation of the process." alt="" coords="491,107,664,133"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="738,89,645,109,644,103,737,84"/>
+<area shape="rect" id="Node000004" href="$class_net_sim_1_1_process.html#adda4d0d7a778f272604951074cb7a314" title="Opens a new socket with a specified destination port." alt="" coords="230,56,427,83"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="460,72,427,72,427,67,460,67"/>
+<area shape="rect" id="Node000005" href="$class_net_sim_1_1_process.html#ad1beb630241ca007ed0118acb0291fca" title="Constructor initializing a process with a destination port and a name." alt="" coords="5,56,182,83"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="215,72,182,72,182,67,215,67"/>
+</map>

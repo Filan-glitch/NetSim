@@ -1,0 +1,9 @@
+<map id="main" name="main">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,55,57"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_logger.html#a2aabe28b224b55fbf6d7432785cf6d2e" title="Cleans up resources used by the logger." alt="" coords="103,5,253,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="55,37,88,31,89,37,56,42"/>
+<area shape="rect" id="Node000003" href="$class_net_sim_1_1_logger.html#ad9f38f9cc2d75a6207f4972427aa74f1" title="Initializes the logger." alt="" coords="110,56,246,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="56,46,96,53,95,58,55,51"/>
+<area shape="rect" id="Node000004" href="$class_net_sim_1_1_logger.html#a0f1ca170ceea199e417c1436fecd619d" title="Outputs log messages based on their type and context." alt="" coords="301,56,512,83"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="246,67,286,67,286,72,246,72"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="NetSim::HeaderUtil::getMacAddress" name="NetSim::HeaderUtil::getMacAddress">
+<area shape="rect" id="Node000001" title="Extracts the MAC Address from a given package." alt="" coords="5,72,138,115"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_header_attribute_not_found_exception.html#a2ea879ef0321514f0f5e198414341cbf" title="Fetches the error message for the exception." alt="" coords="198,5,401,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="137,71,209,50,211,55,139,77"/>
+<area shape="rect" id="Node000003" href="$class_net_sim_1_1_header_not_found_exception.html#a14f185390a67f79b53a1d9968a0641e4" title="Simple Getter for the error message." alt="" coords="186,72,413,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="138,91,171,91,171,96,138,96"/>
+<area shape="rect" id="Node000004" href="$class_net_sim_1_1_m_a_c_address.html#aec61ae0ba93b7c6fb184a0a15c9626d8" title="Converts the MAC address to a string format." alt="" coords="225,139,374,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="139,110,211,131,210,137,137,115"/>
+</map>

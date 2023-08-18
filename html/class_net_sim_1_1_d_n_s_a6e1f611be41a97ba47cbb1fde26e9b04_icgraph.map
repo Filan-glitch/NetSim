@@ -1,0 +1,7 @@
+<map id="NetSim::DNS::initDNSRequest" name="NetSim::DNS::initDNSRequest">
+<area shape="rect" id="Node000001" title="Initializes a DNS request package with the given queries." alt="" coords="465,13,664,40"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_process.html#a5665020fda51a0adb760050aa6c84938" title="Generates a DNS request package." alt="" coords="239,5,417,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="450,29,417,29,417,24,450,24"/>
+<area shape="rect" id="Node000003" href="$class_net_sim_1_1_client.html#a3e22da7413d47c166cdf553ef72b8da4" title="Initiates a domain name resolution." alt="" coords="5,5,191,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="224,29,191,29,191,24,224,24"/>
+</map>

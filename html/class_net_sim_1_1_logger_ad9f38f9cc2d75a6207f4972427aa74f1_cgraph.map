@@ -1,0 +1,5 @@
+<map id="NetSim::Logger::init" name="NetSim::Logger::init">
+<area shape="rect" id="Node000001" title="Initializes the logger." alt="" coords="5,5,142,32"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_logger.html#a0f1ca170ceea199e417c1436fecd619d" title="Outputs log messages based on their type and context." alt="" coords="190,5,401,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="142,16,175,16,175,21,142,21"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="NetSim::Process::getSocket" name="NetSim::Process::getSocket">
+<area shape="rect" id="Node000001" title="Retrieve the associated socket." alt="" coords="252,80,439,107"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_t_c_p_server_connection_close_strategy.html#a51537048bc6b2af2260e534f143759a1" title="Handles the TCP connection termination process." alt="" coords="5,5,204,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="279,78,184,51,185,46,281,73"/>
+<area shape="rect" id="Node000003" href="$class_net_sim_1_1_t_c_p_server_handshake_strategy.html#adbff518c136872ec5ddcdeba8a989006" title="Handles the TCP handshake process." alt="" coords="5,72,204,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="237,96,204,96,204,91,237,91"/>
+<area shape="rect" id="Node000004" href="$class_net_sim_1_1_host.html#a3fc266a66478c2421e8bca3609807e66" title="Constructor that initializes a host with a network card." alt="" coords="37,139,172,165"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="274,113,163,141,162,136,273,108"/>
+</map>

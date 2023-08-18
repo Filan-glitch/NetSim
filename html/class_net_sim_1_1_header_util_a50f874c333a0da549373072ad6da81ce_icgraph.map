@@ -1,0 +1,5 @@
+<map id="NetSim::HeaderUtil::getDNSAnswer" name="NetSim::HeaderUtil::getDNSAnswer">
+<area shape="rect" id="Node000001" title="Extracts the DNS Answer at the given index from a given package." alt="" coords="258,5,390,48"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_client.html#af4df81d803402bc2d24e1bb38581f266" title="Receives a package and processes based on its type." alt="" coords="5,13,210,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="243,29,210,29,210,24,243,24"/>
+</map>

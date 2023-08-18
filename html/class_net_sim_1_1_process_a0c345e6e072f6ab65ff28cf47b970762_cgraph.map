@@ -1,0 +1,49 @@
+<map id="NetSim::Process::generateHandShakePackage" name="NetSim::Process::generateHandShakePackage">
+<area shape="rect" id="Node000001" title="Generates a TCP handshake package." alt="" coords="5,253,184,296"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_network_card.html#a0d7c9bcffbc19b9eebb5eccc6e4c39a8" title="Adds an IP header to the provided data package." alt="" coords="263,107,409,149"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="118,251,168,209,230,166,255,153,257,158,233,170,171,213,121,255"/>
+<area shape="rect" id="Node000010" href="$class_net_sim_1_1_network_card.html#ae8baec508e3e931ade349f3dcc42224d" title="Returns the network (IP) address of the network card." alt="" coords="499,132,645,175"/>
+<area shape="poly" id="edge27_Node000001_Node000010" title=" " alt="" coords="135,250,180,229,231,209,296,192,363,178,484,159,484,165,364,183,297,197,232,215,182,234,137,255"/>
+<area shape="rect" id="Node000011" href="$class_net_sim_1_1_network_card.html#aa042f9f8253c7d8a9f88e58436098696" title="Adds a MAC header to the provided data package." alt="" coords="263,224,409,267"/>
+<area shape="poly" id="edge11_Node000001_Node000011" title=" " alt="" coords="184,261,248,253,248,259,184,266"/>
+<area shape="rect" id="Node000015" href="$class_net_sim_1_1_socket.html#ad5eb9b6e9a016c11af4de33ae2ee554a" title="Adds a TCP header to the provided data package." alt="" coords="232,291,440,317"/>
+<area shape="poly" id="edge18_Node000001_Node000015" title=" " alt="" coords="184,283,217,287,217,292,184,288"/>
+<area shape="rect" id="Node000018" href="$class_net_sim_1_1_host.html#a6eafb0d20506c5299184d2acf17b947f" title="Retrieve the host table." alt="" coords="254,341,418,368"/>
+<area shape="poly" id="edge26_Node000001_Node000018" title=" " alt="" coords="146,294,233,327,259,335,257,340,231,332,145,299"/>
+<area shape="rect" id="Node000019" href="$class_net_sim_1_1_host.html#ab12558bb113fdd811a5764b7326285da" title="Retrieve the network card." alt="" coords="246,392,426,419"/>
+<area shape="poly" id="edge28_Node000001_Node000019" title=" " alt="" coords="120,295,169,337,200,359,233,378,249,385,247,389,230,382,197,363,166,341,116,299"/>
+<area shape="rect" id="Node000003" href="$class_net_sim_1_1_i_pv4.html#a90ea6767ff9dae13f79f46cec155a737" title="Initializes an IPv4 header." alt="" coords="491,81,653,108"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="409,115,475,106,476,111,410,120"/>
+<area shape="poly" id="edge10_Node000002_Node000010" title=" " alt="" coords="410,133,484,141,483,147,409,139"/>
+<area shape="rect" id="Node000004" href="$class_net_sim_1_1_package.html#adfb8b09b329354d5cae1d9fd4122bdac" title="Adds a new header to the package." alt="" coords="711,291,904,317"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="641,106,657,118,672,138,680,159,681,200,683,239,690,258,705,277,709,280,706,284,701,281,686,261,678,240,676,200,675,160,668,141,653,122,638,111"/>
+<area shape="rect" id="Node000005" href="$class_net_sim_1_1_header.html#a57a32b3e56f02c18d3337e17c2613492" title="Adds a header attribute to the header." alt="" coords="716,107,899,149"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="654,103,702,110,701,116,653,109"/>
+<area shape="rect" id="Node000006" href="$class_net_sim_1_1_package.html#ad9ac6a1cd64803066873b56c9db88871" title="Returns the package&#39;s content." alt="" coords="960,56,1134,83"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="653,88,945,72,945,77,653,93"/>
+<area shape="rect" id="Node000007" href="$class_net_sim_1_1_header.html#a2074906dd8dcb915ba854eb3854cfaa9" title="Sets the header type." alt="" coords="703,173,912,200"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="630,106,657,118,671,128,681,139,690,149,705,159,719,166,717,170,702,164,687,153,677,143,668,132,654,122,628,111"/>
+<area shape="rect" id="Node000008" href="$class_net_sim_1_1_package.html#af9d3e66a0b597143e7c6c9c62eec0c28" title="Returns the total size of the package." alt="" coords="730,5,885,32"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="613,78,703,48,746,34,747,39,704,53,614,83"/>
+<area shape="rect" id="Node000009" href="$class_net_sim_1_1_i_p_address.html#aa36666c2f80b9da38e5b586517a7fd8d" title="Converts the IP address to a byte array." alt="" coords="737,341,878,384"/>
+<area shape="poly" id="edge9_Node000003_Node000009" title=" " alt="" coords="642,106,657,118,676,145,684,172,685,198,682,225,680,251,680,276,688,302,705,328,725,343,722,347,701,331,683,304,675,277,674,251,677,224,679,198,679,173,671,147,653,122,639,111"/>
+<area shape="poly" id="edge8_Node000008_Node000006" title=" " alt="" coords="875,30,967,50,966,55,874,35"/>
+<area shape="rect" id="Node000012" href="$class_net_sim_1_1_m_a_c.html#a201758442c76bb5a0a1da8f877f85dbc" title="Initializes a MAC header." alt="" coords="488,265,655,292"/>
+<area shape="poly" id="edge12_Node000011_Node000012" title=" " alt="" coords="410,253,474,262,473,268,409,258"/>
+<area shape="rect" id="Node000014" href="$class_net_sim_1_1_network_card.html#ad7497ee5ecb4f6cec2ffb19292a1b940" title="Returns the physical (MAC) address of the network card." alt="" coords="499,199,645,241"/>
+<area shape="poly" id="edge17_Node000011_Node000014" title=" " alt="" coords="409,235,483,227,484,232,410,240"/>
+<area shape="poly" id="edge13_Node000012_Node000004" title=" " alt="" coords="656,285,696,289,696,295,656,290"/>
+<area shape="poly" id="edge14_Node000012_Node000005" title=" " alt="" coords="635,262,654,251,670,229,677,207,684,183,701,159,707,155,710,160,705,163,688,185,682,208,675,232,657,255,638,267"/>
+<area shape="poly" id="edge15_Node000012_Node000007" title=" " alt="" coords="628,262,654,251,668,241,677,231,687,220,702,210,717,203,719,208,705,214,690,224,681,234,671,245,657,256,630,267"/>
+<area shape="rect" id="Node000013" href="$class_net_sim_1_1_m_a_c_address.html#ae4e97cc45c1f7862e26feb9fcb364d72" title="Converts the MAC address to a byte array." alt="" coords="733,224,882,267"/>
+<area shape="poly" id="edge16_Node000012_Node000013" title=" " alt="" coords="655,264,718,255,719,261,656,269"/>
+<area shape="rect" id="Node000016" href="$class_net_sim_1_1_t_c_p.html#a320407c9aa07a27d4e898193af99428f" title="Initializes a TCP header." alt="" coords="490,316,653,343"/>
+<area shape="poly" id="edge19_Node000015_Node000016" title=" " alt="" coords="441,313,475,316,475,322,440,318"/>
+<area shape="poly" id="edge20_Node000016_Node000004" title=" " alt="" coords="654,318,695,313,696,319,654,323"/>
+<area shape="poly" id="edge21_Node000016_Node000005" title=" " alt="" coords="638,313,653,302,667,285,674,268,677,233,680,196,687,178,701,160,704,157,708,161,705,163,692,180,685,198,682,233,679,269,672,288,657,306,641,318"/>
+<area shape="poly" id="edge22_Node000016_Node000006" title=" " alt="" coords="585,342,632,395,666,423,704,444,762,466,812,476,835,476,859,471,883,461,910,445,949,409,979,366,1003,318,1019,268,1031,218,1038,171,1043,97,1048,98,1043,171,1036,219,1024,269,1007,320,984,369,953,413,913,449,886,466,860,476,836,482,811,482,761,471,702,449,663,428,628,399,581,345"/>
+<area shape="poly" id="edge24_Node000016_Node000007" title=" " alt="" coords="635,313,654,302,670,280,676,257,683,233,702,210,708,205,711,210,705,214,688,235,682,258,675,282,657,306,638,318"/>
+<area shape="poly" id="edge25_Node000016_Node000009" title=" " alt="" coords="654,338,723,348,722,353,654,344"/>
+<area shape="rect" id="Node000017" href="$class_net_sim_1_1_port.html#a8e032b8ec52d3a1ce59048ab67230c13" title="Returns the port number." alt="" coords="722,408,893,435"/>
+<area shape="poly" id="edge23_Node000016_Node000017" title=" " alt="" coords="598,341,646,367,704,394,727,401,725,406,702,398,644,372,595,346"/>
+</map>

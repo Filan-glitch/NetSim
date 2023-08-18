@@ -1,0 +1,5 @@
+<map id="NetSim::Socket::setDestinationPort" name="NetSim::Socket::setDestinationPort">
+<area shape="rect" id="Node000001" title="Setter for the destination port." alt="" coords="5,5,234,32"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_socket.html#ac311370f4c286925ae202de27d8781a9" title="Simple Getter for destination port." alt="" coords="282,5,490,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="234,16,267,16,267,21,234,21"/>
+</map>

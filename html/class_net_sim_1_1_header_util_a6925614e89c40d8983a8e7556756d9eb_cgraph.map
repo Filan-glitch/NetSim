@@ -1,0 +1,9 @@
+<map id="NetSim::HeaderUtil::getIPAddress" name="NetSim::HeaderUtil::getIPAddress">
+<area shape="rect" id="Node000001" title="Extracts the IP Protocol from a given package." alt="" coords="5,72,138,115"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_header_attribute_not_found_exception.html#a2ea879ef0321514f0f5e198414341cbf" title="Fetches the error message for the exception." alt="" coords="198,5,401,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="137,71,209,50,211,55,139,77"/>
+<area shape="rect" id="Node000003" href="$class_net_sim_1_1_header_not_found_exception.html#a14f185390a67f79b53a1d9968a0641e4" title="Simple Getter for the error message." alt="" coords="186,72,413,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="138,91,171,91,171,96,138,96"/>
+<area shape="rect" id="Node000004" href="$class_net_sim_1_1_i_p_address.html#a38ca7ba394e619682e5314c06275b24d" title="Converts the IP address to a string format." alt="" coords="229,139,370,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="139,110,216,133,214,138,137,115"/>
+</map>

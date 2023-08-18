@@ -1,0 +1,18 @@
+<map id="NetSim/src/protocols/header.cpp" name="NetSim/src/protocols/header.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="202,5,345,48"/>
+<area shape="rect" id="Node000002" href="$header_8h.html" title="Contains the Header class definition and related enumerations." alt="" coords="133,96,204,123"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="248,51,198,89,195,85,245,46"/>
+<area shape="rect" id="Node000008" href="$headerattributenotfoundexception_8h.html" title="Contains the HeaderAttributeNotFoundException class definition." alt="" coords="228,96,530,123"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="302,46,352,85,349,89,299,51"/>
+<area shape="rect" id="Node000003" href="$header_attribute_8h.html" title="Contains the HeaderAttribute class definition." alt="" coords="5,171,126,197"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="152,125,97,164,94,160,149,121"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="150,171,218,197"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="174,123,181,156,176,157,168,124"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="242,171,294,197"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="187,121,240,159,237,164,184,125"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="228,245,293,272"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="100,195,215,238,213,243,98,200"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="31,245,100,272"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="68,198,68,230,63,230,63,198"/>
+<area shape="poly" id="edge8_Node000008_Node000004" title=" " alt="" coords="371,125,281,235,277,232,367,121"/>
+</map>

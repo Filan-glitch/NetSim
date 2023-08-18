@@ -1,0 +1,7 @@
+<map id="NetSim/src/models/strategies/tcpserverconnectionclosestrategy.h" name="NetSim/src/models/strategies/tcpserverconnectionclosestrategy.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="119,5,348,48"/>
+<area shape="rect" id="Node000002" href="$tcpserverconnectionclosestrategy_8cpp.html" title=" " alt="" coords="5,96,249,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="200,60,154,97,150,93,196,55"/>
+<area shape="rect" id="Node000003" href="$server_8cpp.html" title=" " alt="" coords="273,96,408,139"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="271,55,317,93,314,97,268,60"/>
+</map>

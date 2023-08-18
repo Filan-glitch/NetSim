@@ -1,0 +1,21 @@
+<map id="NetSim::PackageTableModel::data" name="NetSim::PackageTableModel::data">
+<area shape="rect" id="Node000001" title="Returns the data stored under the given role for the item referred to by the index." alt="" coords="5,189,195,232"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_header_util.html#a6925614e89c40d8983a8e7556756d9eb" title="Extracts the IP Protocol from a given package." alt="" coords="245,101,378,144"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="152,186,244,148,246,153,154,191"/>
+<area shape="rect" id="Node000006" href="$class_net_sim_1_1_header_util.html#aeaed0c06664005da6bd6e70705c690b9" title="Extracts the Port of the DNS Answer at the given index from a given package." alt="" coords="243,189,380,232"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="195,208,228,208,228,213,195,213"/>
+<area shape="rect" id="Node000009" href="$class_net_sim_1_1_header_util.html#aafa7226880043f8b3918284723b369e7" title="Extracts the Package Top Protocol." alt="" coords="245,256,378,299"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="170,230,232,250,230,255,169,235"/>
+<area shape="rect" id="Node000003" href="$class_net_sim_1_1_header_attribute_not_found_exception.html#a2ea879ef0321514f0f5e198414341cbf" title="Fetches the error message for the exception." alt="" coords="441,5,643,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="347,99,427,58,445,51,447,56,429,62,349,103"/>
+<area shape="rect" id="Node000004" href="$class_net_sim_1_1_header_not_found_exception.html#a14f185390a67f79b53a1d9968a0641e4" title="Simple Getter for the error message." alt="" coords="428,72,655,115"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="378,112,413,107,413,112,378,117"/>
+<area shape="rect" id="Node000005" href="$class_net_sim_1_1_i_p_address.html#a38ca7ba394e619682e5314c06275b24d" title="Converts the IP address to a string format." alt="" coords="472,139,612,181"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="378,131,457,144,456,149,377,136"/>
+<area shape="rect" id="Node000007" href="$class_net_sim_1_1_package.html#af9d3e66a0b597143e7c6c9c62eec0c28" title="Returns the total size of the package." alt="" coords="464,205,619,232"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="380,210,450,213,449,218,380,216"/>
+<area shape="rect" id="Node000008" href="$class_net_sim_1_1_package.html#ad9ac6a1cd64803066873b56c9db88871" title="Returns the package&#39;s content." alt="" coords="703,205,878,232"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="620,216,689,216,689,221,620,221"/>
+<area shape="rect" id="Node000010" href="$class_net_sim_1_1_package.html#a11e58689765b4876417fbe30e7e61ef1" title="Returns the list of headers." alt="" coords="453,264,630,291"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="378,275,438,275,438,280,378,280"/>
+</map>

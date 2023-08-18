@@ -1,0 +1,9 @@
+<map id="NetSim::Host::Host" name="NetSim::Host::Host">
+<area shape="rect" id="Node000001" title="Constructor that initializes a host with a network card." alt="" coords="5,56,140,83"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_host.html#ae3413b8cb87413ab9d843ffa591df5e8" title=" " alt="" coords="193,5,370,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="130,53,209,33,210,39,131,58"/>
+<area shape="rect" id="Node000003" href="$class_net_sim_1_1_process.html#aaa3c579c8e8c1c53c9aa64a8f6e6686f" title="Retrieve the associated socket." alt="" coords="188,56,375,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="140,67,173,67,173,72,140,72"/>
+<area shape="rect" id="Node000004" href="$class_net_sim_1_1_socket.html#a86eb4d017b556b523b794c90d8f05e73" title="Simple Getter for source port." alt="" coords="189,107,374,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="131,81,210,100,209,105,130,86"/>
+</map>

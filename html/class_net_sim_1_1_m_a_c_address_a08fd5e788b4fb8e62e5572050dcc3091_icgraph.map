@@ -1,0 +1,7 @@
+<map id="NetSim::MACAddress::toInt" name="NetSim::MACAddress::toInt">
+<area shape="rect" id="Node000001" title="Converts the MAC address to an integer format." alt="" coords="203,39,352,81"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_m_a_c_address.html#a767b7f9efa6775a8226af6528fa7cc47" title="Overload of the less than operator." alt="" coords="5,5,155,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="188,48,155,42,155,37,188,42"/>
+<area shape="rect" id="Node000003" href="$class_net_sim_1_1_m_a_c_address.html#ab4bc415040cd484f2f41074087aa9c55" title="Overload of the equality operator." alt="" coords="5,72,155,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="188,78,155,83,155,78,188,72"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="NetSim::Package::changeEthernetHeader" name="NetSim::Package::changeEthernetHeader">
+<area shape="rect" id="Node000001" title="Modifies the Ethernet header." alt="" coords="5,72,228,115"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_header_not_found_exception.html#a14f185390a67f79b53a1d9968a0641e4" title="Simple Getter for the error message." alt="" coords="276,5,503,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="206,69,284,50,286,55,207,74"/>
+<area shape="rect" id="Node000003" href="$class_net_sim_1_1_m_a_c_address.html#ae4e97cc45c1f7862e26feb9fcb364d72" title="Converts the MAC address to a byte array." alt="" coords="315,72,464,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="228,91,300,91,300,96,228,96"/>
+<area shape="rect" id="Node000004" href="$class_net_sim_1_1_m_a_c_address.html#aec61ae0ba93b7c6fb184a0a15c9626d8" title="Converts the MAC address to a string format." alt="" coords="315,139,464,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="207,113,301,136,299,141,206,118"/>
+</map>

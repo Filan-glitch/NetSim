@@ -1,0 +1,5 @@
+<map id="NetSim::DNS::initDNSRequest" name="NetSim::DNS::initDNSRequest">
+<area shape="rect" id="Node000001" title="Initializes a DNS request package with the given queries." alt="" coords="5,5,205,32"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_package.html#adfb8b09b329354d5cae1d9fd4122bdac" title="Adds a new header to the package." alt="" coords="253,5,446,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="205,16,238,16,238,21,205,21"/>
+</map>

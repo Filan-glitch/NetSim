@@ -1,0 +1,7 @@
+<map id="NetSim::HeaderUtil::getTCPSequenceNumber" name="NetSim::HeaderUtil::getTCPSequenceNumber">
+<area shape="rect" id="Node000001" title="Extracts the TCP Sequence Number from a given package." alt="" coords="5,39,181,81"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_header_attribute_not_found_exception.html#a2ea879ef0321514f0f5e198414341cbf" title="Fetches the error message for the exception." alt="" coords="241,5,444,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="181,46,226,40,227,45,182,51"/>
+<area shape="rect" id="Node000003" href="$class_net_sim_1_1_header_not_found_exception.html#a14f185390a67f79b53a1d9968a0641e4" title="Simple Getter for the error message." alt="" coords="229,72,456,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="182,69,214,73,213,79,181,74"/>
+</map>

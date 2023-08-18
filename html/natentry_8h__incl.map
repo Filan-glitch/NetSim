@@ -1,0 +1,16 @@
+<map id="NetSim/src/network/natentry.h" name="NetSim/src/network/natentry.h">
+<area shape="rect" id="Node000001" title="Contains the NAT Entry class definition." alt="" coords="80,5,216,48"/>
+<area shape="rect" id="Node000002" href="$ipaddress_8h.html" title="Contains the IPAddress class definition." alt="" coords="152,96,309,123"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="171,47,209,83,205,87,167,51"/>
+<area shape="rect" id="Node000007" href="$port_8h.html" title="Contains the Port class definition." alt="" coords="5,96,128,123"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="129,51,91,87,88,83,125,47"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="124,171,260,197"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="226,124,208,159,203,156,221,122"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="34,171,99,197"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="203,126,110,167,107,162,201,121"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="284,171,382,197"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="250,121,305,160,302,164,247,125"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="407,171,476,197"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="268,121,393,164,392,169,266,126"/>
+<area shape="poly" id="edge7_Node000007_Node000004" title=" " alt="" coords="69,123,69,156,64,156,64,123"/>
+</map>

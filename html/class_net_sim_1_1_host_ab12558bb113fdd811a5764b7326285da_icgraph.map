@@ -1,0 +1,61 @@
+<map id="NetSim::Host::networkCard" name="NetSim::Host::networkCard">
+<area shape="rect" id="Node000001" title="Retrieve the network card." alt="" coords="532,516,711,543"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_client.html#aa654c9fae6946bb345e639ae864ee4d6" title="Closes the connection to the specified IP address." alt="" coords="29,23,203,66"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="614,502,598,401,571,264,552,196,531,135,508,86,482,54,450,34,414,21,376,12,337,9,260,13,192,25,191,20,259,7,337,4,377,7,415,15,452,30,486,50,513,83,536,132,557,194,576,263,604,400,619,502"/>
+<area shape="rect" id="Node000003" href="$class_net_sim_1_1_client.html#a3e22da7413d47c166cdf553ef72b8da4" title="Initiates a domain name resolution." alt="" coords="23,266,209,308"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="608,504,590,465,563,418,527,372,506,352,483,335,450,318,416,305,344,288,273,281,209,281,209,276,274,276,345,283,418,300,453,313,485,330,510,347,531,368,568,415,595,462,613,502"/>
+<area shape="rect" id="Node000004" href="$class_net_sim_1_1_client.html#ab8ba52cc6fa4b36002fc2572e53f8726" title="Initiates a TCP handshake to the specified IP address." alt="" coords="30,362,202,404"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="606,504,587,470,560,431,525,394,483,365,446,352,407,343,367,339,327,340,250,349,184,364,183,359,249,344,326,334,367,334,408,338,447,346,485,361,528,390,564,428,591,467,610,502"/>
+<area shape="rect" id="Node000005" href="$class_net_sim_1_1_client.html#a105f0db7742da2637832c4bd8f339231" title="Sends an HTTP request to the specified IP address and URI." alt="" coords="5,458,227,484"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="517,529,400,521,274,507,174,488,175,482,275,502,401,515,517,523"/>
+<area shape="rect" id="Node000006" href="$class_net_sim_1_1_process.html#acbcb4e36dc486a60d0863853e5245503" title="Generates a TCP connection close package." alt="" coords="290,90,469,132"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="615,502,605,432,583,339,566,289,544,240,516,194,482,153,458,135,461,131,486,149,520,191,548,238,571,288,588,338,611,431,621,501"/>
+<area shape="rect" id="Node000007" href="$class_net_sim_1_1_t_c_p_client_connection_close_strategy.html#a8888ad2705a7a65cc193f6cbe9b61fdd" title="Handles the package to close the connection." alt="" coords="18,90,214,132"/>
+<area shape="poly" id="edge22_Node000001_Node000007" title=" " alt="" coords="614,502,597,405,569,276,551,212,530,154,507,109,482,80,463,71,436,66,366,67,286,77,210,92,209,87,285,72,366,62,437,61,465,66,486,76,512,106,535,152,556,210,574,275,602,404,619,501"/>
+<area shape="rect" id="Node000008" href="$class_net_sim_1_1_t_c_p_server_connection_close_strategy.html#a51537048bc6b2af2260e534f143759a1" title="Handles the TCP connection termination process." alt="" coords="17,156,215,199"/>
+<area shape="poly" id="edge24_Node000001_Node000008" title=" " alt="" coords="616,502,607,436,585,352,568,308,546,266,517,228,482,197,452,179,419,167,385,158,350,153,279,152,214,158,214,153,279,146,350,147,386,153,421,161,454,175,486,193,521,225,550,263,573,306,590,350,612,435,621,501"/>
+<area shape="rect" id="Node000009" href="$class_net_sim_1_1_process.html#a5665020fda51a0adb760050aa6c84938" title="Generates a DNS request package." alt="" coords="290,207,469,250"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="611,503,594,454,568,392,531,327,508,297,482,270,455,253,458,248,486,266,512,294,535,324,573,389,599,452,616,502"/>
+<area shape="rect" id="Node000010" href="$class_net_sim_1_1_process.html#a3b5d9472d264b28f691ed1089cfbc108" title="Generates a DNS response package." alt="" coords="290,567,469,610"/>
+<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="550,550,470,569,468,564,549,545"/>
+<area shape="rect" id="Node000011" href="$class_net_sim_1_1_d_n_s_strategy.html#a22bb286b34362134e94ca34ab5dc9db5" title="Handles the DNS package." alt="" coords="42,567,190,610"/>
+<area shape="poly" id="edge20_Node000001_Node000011" title=" " alt="" coords="597,555,548,593,517,611,485,624,446,633,406,638,326,638,251,627,187,613,188,608,252,622,327,632,406,633,445,628,483,619,515,606,545,589,594,551"/>
+<area shape="rect" id="Node000012" href="$class_net_sim_1_1_process.html#a0c345e6e072f6ab65ff28cf47b970762" title="Generates a TCP handshake package." alt="" coords="290,735,469,778"/>
+<area shape="poly" id="edge13_Node000001_Node000012" title=" " alt="" coords="609,558,562,636,527,680,486,719,454,737,452,732,482,714,523,677,557,633,605,555"/>
+<area shape="rect" id="Node000013" href="$class_net_sim_1_1_t_c_p_client_handshake_strategy.html#a7c2a4afd050131192f748e5459bda178" title="Handles the package during the handshake process." alt="" coords="18,672,214,715"/>
+<area shape="poly" id="edge23_Node000001_Node000013" title=" " alt="" coords="601,556,552,603,520,626,485,646,417,669,346,685,277,694,214,697,214,692,276,688,345,680,416,664,483,641,517,622,548,599,597,552"/>
+<area shape="rect" id="Node000014" href="$class_net_sim_1_1_t_c_p_server_handshake_strategy.html#adbff518c136872ec5ddcdeba8a989006" title="Handles the TCP handshake process." alt="" coords="17,739,215,782"/>
+<area shape="poly" id="edge25_Node000001_Node000014" title=" " alt="" coords="618,558,605,611,580,676,562,710,541,741,515,769,485,792,446,810,404,820,361,824,318,822,236,806,168,785,170,780,237,801,318,816,361,818,403,815,444,805,483,787,512,765,537,738,558,707,575,674,599,609,613,557"/>
+<area shape="rect" id="Node000015" href="$class_net_sim_1_1_process.html#aff889617a4aa42733795513c264f0c4c" title="Generates an HTTP request package." alt="" coords="290,450,469,492"/>
+<area shape="poly" id="edge16_Node000001_Node000015" title=" " alt="" coords="549,515,468,495,470,490,550,510"/>
+<area shape="rect" id="Node000016" href="$class_net_sim_1_1_process.html#ace24c765fbebd11d9f0e2a47824e9e5a" title="Generates an HTTP response package." alt="" coords="290,852,469,895"/>
+<area shape="poly" id="edge18_Node000001_Node000016" title=" " alt="" coords="618,559,604,616,579,690,540,767,515,803,486,836,459,854,456,850,482,832,511,800,535,764,574,688,599,614,613,557"/>
+<area shape="rect" id="Node000017" href="$class_net_sim_1_1_h_t_t_p_strategy.html#adb92bbadb9b607469563ccc268019cea" title="Manages the HTTP package." alt="" coords="39,852,193,895"/>
+<area shape="poly" id="edge21_Node000001_Node000017" title=" " alt="" coords="623,558,617,632,610,679,598,730,581,781,557,829,525,873,486,909,446,930,404,941,360,944,315,941,231,923,163,898,165,893,233,918,316,936,360,939,403,936,445,925,482,905,521,870,552,827,576,779,593,728,605,678,612,631,618,558"/>
+<area shape="rect" id="Node000018" href="$class_net_sim_1_1_router.html#ae779e7a08d6bb9182b66c5f754c9179f" title="Receives a package and forwards it accordingly." alt="" coords="275,399,484,426"/>
+<area shape="poly" id="edge26_Node000001_Node000018" title=" " alt="" coords="591,509,542,474,483,440,451,429,453,424,485,435,545,469,595,505"/>
+<area shape="rect" id="Node000019" href="$class_net_sim_1_1_client.html#af4df81d803402bc2d24e1bb38581f266" title="Receives a package and processes based on its type." alt="" coords="277,970,482,996"/>
+<area shape="poly" id="edge38_Node000001_Node000019" title=" " alt="" coords="622,558,616,636,596,741,578,798,555,854,524,907,486,953,458,971,455,967,482,949,520,904,550,852,573,797,590,740,610,635,617,558"/>
+<area shape="rect" id="Node000020" href="$class_net_sim_1_1_server.html#abad41b2f843f563df59899ac8387cb26" title="Processes an incoming data package." alt="" coords="276,1020,483,1047"/>
+<area shape="poly" id="edge39_Node000001_Node000020" title=" " alt="" coords="624,558,622,645,616,704,605,767,588,833,563,897,530,958,486,1010,469,1022,466,1018,482,1006,525,955,558,895,583,831,600,766,610,703,616,645,619,558"/>
+<area shape="poly" id="edge6_Node000006_Node000002" title=" " alt="" coords="278,88,202,69,204,64,279,83"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="275,114,214,114,214,108,275,108"/>
+<area shape="poly" id="edge8_Node000006_Node000008" title=" " alt="" coords="279,139,204,158,202,153,278,134"/>
+<area shape="poly" id="edge10_Node000009_Node000003" title=" " alt="" coords="276,254,210,269,208,264,275,249"/>
+<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="275,591,191,591,191,586,275,586"/>
+<area shape="poly" id="edge14_Node000012_Node000013" title=" " alt="" coords="275,735,208,718,209,713,277,729"/>
+<area shape="poly" id="edge15_Node000012_Node000014" title=" " alt="" coords="276,761,216,762,216,756,276,755"/>
+<area shape="poly" id="edge17_Node000015_Node000005" title=" " alt="" coords="275,474,227,474,227,468,275,468"/>
+<area shape="poly" id="edge19_Node000016_Node000017" title=" " alt="" coords="275,876,193,876,193,871,275,871"/>
+<area shape="poly" id="edge27_Node000018_Node000002" title=" " alt="" coords="355,389,313,333,272,263,262,235,258,209,257,164,251,122,242,101,225,80,202,63,205,59,229,76,246,99,256,121,262,164,263,209,268,234,277,261,317,330,359,386"/>
+<area shape="poly" id="edge28_Node000018_Node000003" title=" " alt="" coords="335,395,162,311,164,307,337,390"/>
+<area shape="poly" id="edge29_Node000018_Node000004" title=" " alt="" coords="260,402,202,395,202,390,260,397"/>
+<area shape="poly" id="edge30_Node000018_Node000005" title=" " alt="" coords="303,432,180,460,179,455,302,427"/>
+<area shape="poly" id="edge33_Node000018_Node000007" title=" " alt="" coords="356,389,315,332,272,263,259,229,254,199,246,173,225,146,209,135,212,131,229,143,250,171,259,198,264,227,277,261,320,329,360,385"/>
+<area shape="poly" id="edge35_Node000018_Node000008" title=" " alt="" coords="355,389,298,327,225,256,151,202,154,198,228,252,302,323,359,386"/>
+<area shape="poly" id="edge31_Node000018_Node000011" title=" " alt="" coords="286,434,276,440,260,453,251,466,242,481,229,498,187,537,148,569,144,565,184,533,225,495,238,478,247,463,257,449,273,436,284,430"/>
+<area shape="poly" id="edge34_Node000018_Node000013" title=" " alt="" coords="280,436,277,440,260,461,251,483,249,504,249,526,249,573,243,598,229,623,200,652,167,674,164,670,197,648,225,620,238,596,244,572,244,526,243,504,246,481,255,459,273,436,276,433"/>
+<area shape="poly" id="edge36_Node000018_Node000014" title=" " alt="" coords="279,437,277,439,253,475,245,510,246,545,252,581,259,617,261,654,252,691,229,729,216,740,212,736,225,725,247,689,255,654,254,618,247,582,241,546,239,509,248,473,273,436,276,433"/>
+<area shape="poly" id="edge32_Node000018_Node000017" title=" " alt="" coords="279,437,277,440,260,461,248,483,236,525,237,566,244,608,252,652,256,697,250,745,242,769,229,795,199,829,164,854,161,850,196,825,224,792,237,767,245,743,251,697,247,652,239,609,231,567,231,524,243,481,255,458,273,436,276,433"/>
+<area shape="poly" id="edge37_Node000018_Node000018" title=" " alt="" coords="422,388,408,381,379,378,354,380,340,385,337,390,343,397,339,400,331,390,336,381,353,375,379,372,410,375,425,383"/>
+</map>

@@ -1,0 +1,75 @@
+<map id="NetSim/src/network/socket.h" name="NetSim/src/network/socket.h">
+<area shape="rect" id="Node000001" title="Contains the Socket class definition." alt="" coords="440,5,575,48"/>
+<area shape="rect" id="Node000002" href="$process_8h.html" title="Contains the Process class definition." alt="" coords="318,104,511,131"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="478,60,429,106,426,102,474,56"/>
+<area shape="rect" id="Node000027" href="$socket_8cpp.html" title=" " alt="" coords="535,96,670,139"/>
+<area shape="poly" id="edge46_Node000001_Node000027" title=" " alt="" coords="542,56,582,94,579,98,538,60"/>
+<area shape="rect" id="Node000003" href="$process_8cpp.html" title=" " alt="" coords="5,376,213,403"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="391,143,125,377,122,373,387,139"/>
+<area shape="rect" id="Node000004" href="$host_8h.html" title="The Host class implements a host in the network." alt="" coords="900,187,1035,229"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="495,131,523,136,900,194,899,200,522,141,494,137"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="886,229,170,378,169,373,885,224"/>
+<area shape="rect" id="Node000005" href="$ipackagestrategy_8h.html" title="Contains the IPackageStrategy interface definition." alt="" coords="871,277,1064,320"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="970,244,970,277,965,277,965,244"/>
+<area shape="rect" id="Node000020" href="$client_8h.html" title="Contains the Client class definition." alt="" coords="2015,368,2150,411"/>
+<area shape="poly" id="edge26_Node000004_Node000020" title=" " alt="" coords="1050,220,2015,374,2014,380,1049,225"/>
+<area shape="rect" id="Node000023" href="$host_8cpp.html" title=" " alt="" coords="2277,459,2413,501"/>
+<area shape="poly" id="edge30_Node000004_Node000023" title=" " alt="" coords="1050,206,1251,211,1384,219,1531,232,1688,252,1849,280,2009,317,2163,366,2209,385,2252,409,2320,456,2317,460,2249,414,2206,390,2161,370,2007,323,1848,285,1687,257,1531,237,1384,224,1251,216,1050,211"/>
+<area shape="rect" id="Node000024" href="$router_8h.html" title="Contains the Router class definition." alt="" coords="1271,368,1406,411"/>
+<area shape="poly" id="edge31_Node000004_Node000024" title=" " alt="" coords="1024,234,1297,365,1295,370,1022,238"/>
+<area shape="rect" id="Node000026" href="$server_8h.html" title="Contains the Server class definition." alt="" coords="657,277,793,320"/>
+<area shape="poly" id="edge42_Node000004_Node000026" title=" " alt="" coords="898,237,783,279,781,274,896,232"/>
+<area shape="rect" id="Node000006" href="$dnsstrategy_8h.html" title="Contains the DNSStrategy class definition." alt="" coords="339,368,532,411"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="857,320,544,371,533,373,532,367,543,365,856,314"/>
+<area shape="rect" id="Node000008" href="$server_8cpp.html" title=" " alt="" coords="173,459,309,501"/>
+<area shape="poly" id="edge25_Node000005_Node000008" title=" " alt="" coords="857,317,805,323,699,328,561,332,426,343,370,354,328,370,312,384,292,408,256,460,252,456,288,404,308,381,325,366,369,349,425,338,561,326,698,323,805,317,856,311"/>
+<area shape="rect" id="Node000009" href="$httpstrategy_8h.html" title="Contains the HTTPStrategy class definition." alt="" coords="556,368,750,411"/>
+<area shape="poly" id="edge9_Node000005_Node000009" title=" " alt="" coords="881,327,728,370,726,365,879,322"/>
+<area shape="rect" id="Node000011" href="$tcpclientconnectionclosestrategy_8h.html" title="Contains the TCPClientConnectionCloseStrategy class definition." alt="" coords="1437,368,1664,411"/>
+<area shape="poly" id="edge12_Node000005_Node000011" title=" " alt="" coords="1079,314,1419,365,1437,368,1436,373,1418,371,1079,319"/>
+<area shape="rect" id="Node000013" href="$client_8cpp.html" title=" " alt="" coords="1928,459,2063,501"/>
+<area shape="poly" id="edge24_Node000005_Node000013" title=" " alt="" coords="1080,301,1296,309,1551,322,1775,341,1855,353,1902,366,1930,385,1954,409,1987,457,1983,460,1950,413,1927,389,1900,370,1854,358,1775,346,1550,328,1295,314,1079,306"/>
+<area shape="rect" id="Node000014" href="$tcpclienthandshakestrategy_8h.html" title="Contains the TCPClientHandshakeStrategy class definition." alt="" coords="1694,368,1889,411"/>
+<area shape="poly" id="edge15_Node000005_Node000014" title=" " alt="" coords="1079,305,1351,329,1676,365,1694,368,1693,373,1675,371,1351,334,1079,311"/>
+<area shape="rect" id="Node000016" href="$tcpserverconnectionclosestrategy_8h.html" title=" " alt="" coords="774,368,1004,411"/>
+<area shape="poly" id="edge18_Node000005_Node000016" title=" " alt="" coords="942,333,909,369,905,366,938,329"/>
+<area shape="rect" id="Node000018" href="$tcpserverhandshakestrategy_8h.html" title=" " alt="" coords="1027,368,1226,411"/>
+<area shape="poly" id="edge21_Node000005_Node000018" title=" " alt="" coords="1019,325,1091,365,1088,370,1016,330"/>
+<area shape="rect" id="Node000007" href="$dnsstrategy_8cpp.html" title=" " alt="" coords="332,459,526,501"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="436,426,433,459,428,458,430,425"/>
+<area shape="poly" id="edge8_Node000006_Node000008" title=" " alt="" coords="378,420,288,460,286,456,376,415"/>
+<area shape="poly" id="edge11_Node000009_Node000008" title=" " alt="" coords="542,415,320,461,310,464,309,459,319,456,541,409"/>
+<area shape="rect" id="Node000010" href="$httpstrategy_8cpp.html" title=" " alt="" coords="550,459,743,501"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="653,426,651,459,645,458,648,425"/>
+<area shape="rect" id="Node000012" href="$tcpclientconnectionclosestrategy_8cpp.html" title=" " alt="" coords="1430,459,1671,501"/>
+<area shape="poly" id="edge13_Node000011_Node000012" title=" " alt="" coords="1553,425,1553,458,1548,458,1548,425"/>
+<area shape="poly" id="edge14_Node000011_Node000013" title=" " alt="" coords="1679,410,1918,456,1928,458,1927,464,1916,461,1678,415"/>
+<area shape="poly" id="edge17_Node000014_Node000013" title=" " alt="" coords="1854,414,1949,456,1947,460,1852,419"/>
+<area shape="rect" id="Node000015" href="$tcpclienthandshakestrategy_8cpp.html" title=" " alt="" coords="1695,459,1904,501"/>
+<area shape="poly" id="edge16_Node000014_Node000015" title=" " alt="" coords="1797,425,1800,458,1795,459,1792,426"/>
+<area shape="poly" id="edge20_Node000016_Node000008" title=" " alt="" coords="760,413,635,427,537,434,441,443,320,461,310,463,309,458,319,456,440,438,537,429,634,421,759,408"/>
+<area shape="rect" id="Node000017" href="$tcpserverconnectionclosestrategy_8cpp.html" title=" " alt="" coords="767,459,1011,501"/>
+<area shape="poly" id="edge19_Node000016_Node000017" title=" " alt="" coords="892,425,892,458,886,458,886,425"/>
+<area shape="poly" id="edge23_Node000018_Node000008" title=" " alt="" coords="1013,414,907,424,817,430,664,433,512,439,424,447,320,461,310,463,309,458,319,456,423,442,512,433,664,428,817,424,907,419,1012,408"/>
+<area shape="rect" id="Node000019" href="$tcpserverhandshakestrategy_8cpp.html" title=" " alt="" coords="1035,459,1247,501"/>
+<area shape="poly" id="edge22_Node000018_Node000019" title=" " alt="" coords="1135,425,1140,458,1135,459,1130,426"/>
+<area shape="poly" id="edge29_Node000020_Node000013" title=" " alt="" coords="2054,423,2018,460,2014,456,2050,419"/>
+<area shape="rect" id="Node000021" href="$simulationmanager_8h.html" title="Contains the SimulationManager class definition." alt="" coords="2088,459,2253,501"/>
+<area shape="poly" id="edge27_Node000020_Node000021" title=" " alt="" coords="2115,419,2152,456,2148,460,2111,423"/>
+<area shape="rect" id="Node000022" href="$simulationmanager_8cpp.html" title=" " alt="" coords="2088,549,2253,592"/>
+<area shape="poly" id="edge28_Node000021_Node000022" title=" " alt="" coords="2173,516,2173,549,2168,549,2168,516"/>
+<area shape="poly" id="edge33_Node000024_Node000007" title=" " alt="" coords="1257,410,1237,413,1041,433,887,438,734,443,537,461,526,463,526,458,537,456,733,438,887,433,1041,427,1237,408,1256,405"/>
+<area shape="poly" id="edge34_Node000024_Node000010" title=" " alt="" coords="1257,410,1237,413,1102,430,997,438,891,446,756,461,744,463,743,458,755,456,891,440,996,433,1102,425,1237,408,1256,405"/>
+<area shape="poly" id="edge35_Node000024_Node000012" title=" " alt="" coords="1402,414,1502,456,1500,460,1400,419"/>
+<area shape="poly" id="edge39_Node000024_Node000013" title=" " alt="" coords="1421,407,1425,408,1563,425,1671,431,1780,438,1917,456,1928,458,1927,463,1917,461,1779,443,1671,436,1563,430,1425,413,1420,413"/>
+<area shape="poly" id="edge36_Node000024_Node000015" title=" " alt="" coords="1421,407,1426,408,1695,458,1694,463,1424,413,1420,412"/>
+<area shape="poly" id="edge37_Node000024_Node000017" title=" " alt="" coords="1257,410,1238,413,995,461,994,455,1236,408,1256,404"/>
+<area shape="poly" id="edge38_Node000024_Node000019" title=" " alt="" coords="1280,420,1188,460,1186,456,1278,415"/>
+<area shape="poly" id="edge32_Node000024_Node000021" title=" " alt="" coords="1421,407,1425,408,1524,421,1607,428,1750,433,1893,437,1977,444,2076,456,2088,458,2087,463,2075,461,1977,449,1893,443,1750,438,1607,433,1523,426,1425,413,1420,413"/>
+<area shape="poly" id="edge40_Node000024_Node000023" title=" " alt="" coords="1421,407,1425,408,1552,423,1661,430,1845,431,2030,432,2138,440,2265,456,2278,458,2277,463,2265,461,2138,445,2030,438,1845,436,1660,435,1552,428,1425,413,1420,413"/>
+<area shape="rect" id="Node000025" href="$router_8cpp.html" title=" " alt="" coords="1271,459,1406,501"/>
+<area shape="poly" id="edge41_Node000024_Node000025" title=" " alt="" coords="1341,425,1341,458,1336,458,1336,425"/>
+<area shape="poly" id="edge44_Node000026_Node000003" title=" " alt="" coords="643,313,232,371,185,378,184,373,231,365,642,308"/>
+<area shape="poly" id="edge45_Node000026_Node000008" title=" " alt="" coords="642,311,428,337,334,354,302,362,284,370,267,389,256,413,245,459,240,458,251,411,263,387,281,366,300,357,333,348,427,332,642,306"/>
+<area shape="poly" id="edge43_Node000026_Node000021" title=" " alt="" coords="808,311,859,317,960,324,1087,327,1381,331,1675,339,1801,350,1902,365,1932,374,1954,384,2003,408,2120,456,2118,460,2001,413,1951,389,1930,379,1900,371,1800,355,1675,345,1381,336,1087,332,960,329,858,323,807,316"/>
+</map>

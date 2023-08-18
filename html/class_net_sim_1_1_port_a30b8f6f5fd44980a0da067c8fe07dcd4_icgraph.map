@@ -1,0 +1,9 @@
+<map id="NetSim::Port::Port" name="NetSim::Port::Port">
+<area shape="rect" id="Node000001" title="Default constructor." alt="" coords="717,5,846,32"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_port.html#abb5bd41d574732759cb54710ff128ee1" title="Returns a random port." alt="" coords="475,5,669,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="703,21,670,21,670,16,703,16"/>
+<area shape="rect" id="Node000003" href="$class_net_sim_1_1_process.html#adda4d0d7a778f272604951074cb7a314" title="Opens a new socket with a specified destination port." alt="" coords="230,5,427,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="460,21,427,21,427,16,460,16"/>
+<area shape="rect" id="Node000004" href="$class_net_sim_1_1_process.html#ad1beb630241ca007ed0118acb0291fca" title="Constructor initializing a process with a destination port and a name." alt="" coords="5,5,182,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="215,21,182,21,182,16,215,16"/>
+</map>

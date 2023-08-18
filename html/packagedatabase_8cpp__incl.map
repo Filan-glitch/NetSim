@@ -1,0 +1,37 @@
+<map id="NetSim/src/management/packagedatabase.cpp" name="NetSim/src/management/packagedatabase.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="476,5,641,48"/>
+<area shape="rect" id="Node000002" href="$packagedatabase_8h.html" title="Contains the PackageDatabase class definition." alt="" coords="491,96,626,123"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="561,49,561,81,556,81,556,49"/>
+<area shape="rect" id="Node000003" href="$package_8h.html" title="Contains the Package class definition." alt="" coords="403,171,552,197"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="546,125,504,163,500,159,543,121"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="682,320,734,347"/>
+<area shape="poly" id="edge21_Node000002_Node000014" title=" " alt="" coords="571,122,612,174,662,244,697,305,693,308,658,247,608,177,567,125"/>
+<area shape="rect" id="Node000004" href="$ipaddress_8h.html" title="Contains the IPAddress class definition." alt="" coords="154,320,243,347"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="448,200,345,248,231,314,229,309,343,243,445,196"/>
+<area shape="rect" id="Node000009" href="$macaddress_8h.html" title="Contains the MACAddress class definition." alt="" coords="267,320,370,347"/>
+<area shape="poly" id="edge8_Node000003_Node000009" title=" " alt="" coords="446,200,408,220,371,247,348,277,332,307,327,305,344,274,367,243,405,215,443,196"/>
+<area shape="rect" id="Node000010" href="$port_8h.html" title="Contains the Port class definition." alt="" coords="381,245,435,272"/>
+<area shape="poly" id="edge12_Node000003_Node000010" title=" " alt="" coords="467,200,432,236,428,233,463,196"/>
+<area shape="rect" id="Node000011" href="$header_8h.html" title="Contains the Header class definition and related enumerations." alt="" coords="465,245,615,272"/>
+<area shape="poly" id="edge14_Node000003_Node000011" title=" " alt="" coords="490,196,521,232,517,236,486,200"/>
+<area shape="poly" id="edge20_Node000003_Node000014" title=" " alt="" coords="524,195,575,215,628,243,664,274,692,307,688,310,660,278,625,248,573,220,522,200"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="128,395,264,421"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="201,347,199,380,194,380,195,347"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="382,395,447,421"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="237,345,368,388,367,394,235,350"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="5,395,104,421"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="175,350,94,390,92,385,172,345"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="288,395,357,421"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="221,345,290,385,287,389,219,350"/>
+<area shape="poly" id="edge9_Node000009_Node000005" title=" " alt="" coords="298,350,231,389,229,384,296,345"/>
+<area shape="poly" id="edge10_Node000009_Node000006" title=" " alt="" coords="337,345,388,384,385,388,334,349"/>
+<area shape="poly" id="edge11_Node000009_Node000008" title=" " alt="" coords="322,347,324,380,318,380,317,347"/>
+<area shape="poly" id="edge13_Node000010_Node000006" title=" " alt="" coords="411,272,416,379,411,380,406,273"/>
+<area shape="rect" id="Node000012" href="$header_attribute_8h.html" title="Contains the HeaderAttribute class definition." alt="" coords="445,320,565,347"/>
+<area shape="poly" id="edge15_Node000011_Node000012" title=" " alt="" coords="536,274,520,308,515,306,531,271"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="590,320,658,347"/>
+<area shape="poly" id="edge18_Node000011_Node000013" title=" " alt="" coords="556,271,600,308,597,312,553,275"/>
+<area shape="poly" id="edge19_Node000011_Node000014" title=" " alt="" coords="570,270,669,312,667,317,568,275"/>
+<area shape="poly" id="edge16_Node000012_Node000006" title=" " alt="" coords="491,349,443,388,440,383,488,345"/>
+<area shape="poly" id="edge17_Node000012_Node000008" title=" " alt="" coords="474,350,369,391,367,386,472,345"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="NetSim::HeaderUtil::getHTTPIsResponse" name="NetSim::HeaderUtil::getHTTPIsResponse">
+<area shape="rect" id="Node000001" title="Extracts if the package is a response or request." alt="" coords="5,35,153,77"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_header_not_found_exception.html#a14f185390a67f79b53a1d9968a0641e4" title="Simple Getter for the error message." alt="" coords="201,5,428,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="153,44,186,40,186,45,154,49"/>
+<area shape="rect" id="Node000003" href="$class_net_sim_1_1_header.html#adbc26adc286c9d499eb6d8d7a21bf58e" title="Retrieves the list of header attributes." alt="" coords="224,72,405,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="154,63,209,70,209,75,153,68"/>
+</map>

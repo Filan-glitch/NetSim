@@ -1,0 +1,26 @@
+<map id="NetSim::Package::changeEthernetHeader" name="NetSim::Package::changeEthernetHeader">
+<area shape="rect" id="Node000001" title="Modifies the Ethernet header." alt="" coords="532,289,754,332"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_router.html#ae779e7a08d6bb9182b66c5f754c9179f" title="Receives a package and forwards it accordingly." alt="" coords="275,297,484,324"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="517,313,484,313,484,308,517,308"/>
+<area shape="poly" id="edge12_Node000002_Node000002" title=" " alt="" coords="426,286,412,279,379,276,351,278,336,283,333,288,340,295,335,299,327,289,333,279,350,273,379,271,413,274,429,282"/>
+<area shape="rect" id="Node000003" href="$class_net_sim_1_1_client.html#aa654c9fae6946bb345e639ae864ee4d6" title="Closes the connection to the specified IP address." alt="" coords="29,5,203,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="367,284,348,236,318,176,277,115,252,87,225,62,202,48,205,44,228,58,256,83,281,112,322,174,352,234,372,283"/>
+<area shape="rect" id="Node000004" href="$class_net_sim_1_1_client.html#a3e22da7413d47c166cdf553ef72b8da4" title="Initiates a domain name resolution." alt="" coords="23,72,209,115"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="361,286,339,250,308,208,269,165,225,129,205,118,207,113,228,124,273,161,312,205,343,247,366,283"/>
+<area shape="rect" id="Node000005" href="$class_net_sim_1_1_client.html#ab8ba52cc6fa4b36002fc2572e53f8726" title="Initiates a TCP handshake to the specified IP address." alt="" coords="30,139,202,181"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="352,289,296,242,262,217,225,196,199,184,201,179,228,191,265,213,299,238,355,285"/>
+<area shape="rect" id="Node000006" href="$class_net_sim_1_1_client.html#a105f0db7742da2637832c4bd8f339231" title="Sends an HTTP request to the specified IP address and URI." alt="" coords="5,205,227,232"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="337,293,284,269,226,247,185,235,187,230,228,241,287,264,339,288"/>
+<area shape="rect" id="Node000007" href="$class_net_sim_1_1_d_n_s_strategy.html#a22bb286b34362134e94ca34ab5dc9db5" title="Handles the DNS package." alt="" coords="42,256,190,299"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="259,298,190,289,191,284,260,293"/>
+<area shape="rect" id="Node000008" href="$class_net_sim_1_1_h_t_t_p_strategy.html#adb92bbadb9b607469563ccc268019cea" title="Manages the HTTP package." alt="" coords="39,323,193,365"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="260,328,193,337,193,332,260,323"/>
+<area shape="rect" id="Node000009" href="$class_net_sim_1_1_t_c_p_client_connection_close_strategy.html#a8888ad2705a7a65cc193f6cbe9b61fdd" title="Handles the package to close the connection." alt="" coords="18,389,214,432"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="338,333,228,380,194,391,193,386,226,375,335,328"/>
+<area shape="rect" id="Node000010" href="$class_net_sim_1_1_t_c_p_client_handshake_strategy.html#a7c2a4afd050131192f748e5459bda178" title="Handles the package during the handshake process." alt="" coords="18,456,214,499"/>
+<area shape="poly" id="edge9_Node000002_Node000010" title=" " alt="" coords="358,337,303,392,267,421,228,446,204,458,201,453,225,442,264,417,299,388,355,333"/>
+<area shape="rect" id="Node000011" href="$class_net_sim_1_1_t_c_p_server_connection_close_strategy.html#a51537048bc6b2af2260e534f143759a1" title="Handles the TCP connection termination process." alt="" coords="17,523,215,565"/>
+<area shape="poly" id="edge10_Node000002_Node000011" title=" " alt="" coords="367,338,346,377,315,424,275,472,228,513,208,524,205,520,225,508,271,468,310,421,341,374,363,336"/>
+<area shape="rect" id="Node000012" href="$class_net_sim_1_1_t_c_p_server_handshake_strategy.html#adbff518c136872ec5ddcdeba8a989006" title="Handles the TCP handshake process." alt="" coords="17,589,215,632"/>
+<area shape="poly" id="edge11_Node000002_Node000012" title=" " alt="" coords="373,339,354,390,325,455,283,522,257,552,228,579,210,591,208,586,225,575,253,549,279,519,320,452,349,388,368,337"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="NetSim::Package::setContent" name="NetSim::Package::setContent">
+<area shape="rect" id="Node000001" title="Sets the package&#39;s content." alt="" coords="700,13,895,40"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_h_t_t_p.html#a6744c428ef7d672795fd9e326f0f139d" title="Initializes an HTTP response header." alt="" coords="433,13,652,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="685,29,653,29,653,24,685,24"/>
+<area shape="rect" id="Node000003" href="$class_net_sim_1_1_process.html#ace24c765fbebd11d9f0e2a47824e9e5a" title="Generates an HTTP response package." alt="" coords="207,5,385,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="418,29,385,29,385,24,418,24"/>
+<area shape="rect" id="Node000004" href="$class_net_sim_1_1_h_t_t_p_strategy.html#adb92bbadb9b607469563ccc268019cea" title="Manages the HTTP package." alt="" coords="5,5,159,48"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="192,29,159,29,159,24,192,24"/>
+</map>

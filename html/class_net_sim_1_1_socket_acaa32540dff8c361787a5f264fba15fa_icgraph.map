@@ -1,0 +1,15 @@
+<map id="NetSim::Socket::setDestinationPort" name="NetSim::Socket::setDestinationPort">
+<area shape="rect" id="Node000001" title="Setter for the destination port." alt="" coords="453,113,681,140"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_process.html#a3b5d9472d264b28f691ed1089cfbc108" title="Generates a DNS response package." alt="" coords="217,5,395,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="520,109,404,62,372,51,374,46,406,58,522,105"/>
+<area shape="rect" id="Node000004" href="$class_net_sim_1_1_process.html#ace24c765fbebd11d9f0e2a47824e9e5a" title="Generates an HTTP response package." alt="" coords="217,72,395,115"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="443,114,395,107,396,102,444,108"/>
+<area shape="rect" id="Node000006" href="$class_net_sim_1_1_t_c_p_server_connection_close_strategy.html#a51537048bc6b2af2260e534f143759a1" title="Handles the TCP connection termination process." alt="" coords="207,139,405,181"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="443,145,406,150,405,145,443,140"/>
+<area shape="rect" id="Node000007" href="$class_net_sim_1_1_t_c_p_server_handshake_strategy.html#adbff518c136872ec5ddcdeba8a989006" title="Handles the TCP handshake process." alt="" coords="207,205,405,248"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="522,149,406,196,374,207,372,202,404,191,520,144"/>
+<area shape="rect" id="Node000003" href="$class_net_sim_1_1_d_n_s_strategy.html#a22bb286b34362134e94ca34ab5dc9db5" title="Handles the DNS package." alt="" coords="8,5,156,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="202,29,156,29,156,24,202,24"/>
+<area shape="rect" id="Node000005" href="$class_net_sim_1_1_h_t_t_p_strategy.html#adb92bbadb9b607469563ccc268019cea" title="Manages the HTTP package." alt="" coords="5,72,159,115"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="202,96,159,96,159,91,202,91"/>
+</map>

@@ -1,0 +1,16 @@
+<map id="NetSim::IPv4::initHeader" name="NetSim::IPv4::initHeader">
+<area shape="rect" id="Node000001" title="Initializes an IPv4 header." alt="" coords="5,148,168,175"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_package.html#adfb8b09b329354d5cae1d9fd4122bdac" title="Adds a new header to the package." alt="" coords="223,5,417,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="97,146,144,95,177,66,214,42,228,35,231,40,217,46,181,70,148,98,101,149"/>
+<area shape="rect" id="Node000003" href="$class_net_sim_1_1_header.html#a57a32b3e56f02c18d3337e17c2613492" title="Adds a header attribute to the header." alt="" coords="228,56,412,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="125,145,244,102,246,107,127,150"/>
+<area shape="rect" id="Node000004" href="$class_net_sim_1_1_package.html#ad9ac6a1cd64803066873b56c9db88871" title="Returns the package&#39;s content." alt="" coords="472,173,646,200"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="168,154,289,153,424,159,483,167,483,173,424,164,289,158,168,160"/>
+<area shape="rect" id="Node000005" href="$class_net_sim_1_1_header.html#a2074906dd8dcb915ba854eb3854cfaa9" title="Sets the header type." alt="" coords="216,173,424,200"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="168,167,201,171,200,176,168,173"/>
+<area shape="rect" id="Node000006" href="$class_net_sim_1_1_package.html#af9d3e66a0b597143e7c6c9c62eec0c28" title="Returns the total size of the package." alt="" coords="242,224,398,251"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="120,173,217,209,243,217,241,222,215,215,118,178"/>
+<area shape="rect" id="Node000007" href="$class_net_sim_1_1_i_p_address.html#aa36666c2f80b9da38e5b586517a7fd8d" title="Converts the IP address to a byte array." alt="" coords="250,275,390,317"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="103,173,151,216,183,239,217,260,237,270,235,274,214,265,180,244,148,220,100,177"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="386,221,478,201,479,206,387,226"/>
+</map>

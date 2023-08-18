@@ -1,0 +1,5 @@
+<map id="NetSim::TCPServerHandshakeStrategy" name="NetSim::TCPServerHandshakeStrategy">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,80,204,123"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_i_package_strategy.html" title="Interface for defining strategies to handle packages." alt="" coords="17,5,192,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,47,107,80,102,80,102,47"/>
+</map>

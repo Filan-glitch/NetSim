@@ -1,0 +1,34 @@
+<map id="NetSim::Server::receivePackage" name="NetSim::Server::receivePackage">
+<area shape="rect" id="Node000001" title="Processes an incoming data package." alt="" coords="5,341,213,368"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_package_table_model.html#aaff6cfd5a84ebcfbc94ccdaeae9729c7" title="Adds a new package to the table model." alt="" coords="261,27,450,69"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="112,340,130,293,160,227,203,155,229,121,259,90,279,75,282,79,262,94,234,124,208,158,165,230,135,296,117,342"/>
+<area shape="rect" id="Node000004" href="$class_net_sim_1_1_header_util.html#a44d8c8c486bc7a8e32ee826ce7dfc3e4" title="Extracts if the package is a request or response." alt="" coords="287,104,424,147"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="115,340,135,304,167,255,209,202,259,157,272,148,275,153,262,161,213,206,171,258,140,306,119,342"/>
+<area shape="rect" id="Node000007" href="$class_net_sim_1_1_header_util.html#a1ec3c5b02df7796e0e4aa1d39ad3e4ce" title="Extracts a specific TCP Flag from a given package." alt="" coords="289,171,422,213"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="121,339,178,284,217,252,259,223,275,215,277,220,262,228,220,256,181,288,125,343"/>
+<area shape="rect" id="Node000009" href="$class_net_sim_1_1_header_util.html#aafa7226880043f8b3918284723b369e7" title="Extracts the Package Top Protocol." alt="" coords="289,237,422,280"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="141,338,260,290,277,283,279,288,262,294,143,343"/>
+<area shape="rect" id="Node000011" href="$class_net_sim_1_1_i_package_strategy.html#a1c71222006dcac4951f369cd5026aeaa" title="Abstract method for handling packages." alt="" coords="268,304,443,347"/>
+<area shape="poly" id="edge11_Node000001_Node000011" title=" " alt="" coords="213,340,252,335,253,340,214,345"/>
+<area shape="rect" id="Node000012" href="$class_net_sim_1_1_package.html#a1905629312fb07a53d7caa7e3e562120" title="Returns the package&#39;s information." alt="" coords="280,371,431,397"/>
+<area shape="poly" id="edge12_Node000001_Node000012" title=" " alt="" coords="214,364,265,371,264,376,213,370"/>
+<area shape="rect" id="Node000013" href="$class_net_sim_1_1_network_card.html#ae8baec508e3e931ade349f3dcc42224d" title="Returns the network (IP) address of the network card." alt="" coords="282,421,429,464"/>
+<area shape="poly" id="edge13_Node000001_Node000013" title=" " alt="" coords="150,366,262,407,280,413,278,418,260,412,148,371"/>
+<area shape="rect" id="Node000014" href="$class_net_sim_1_1_host.html#ab12558bb113fdd811a5764b7326285da" title="Retrieve the network card." alt="" coords="266,488,445,515"/>
+<area shape="poly" id="edge14_Node000001_Node000014" title=" " alt="" coords="125,367,182,419,220,448,262,474,276,480,274,485,259,478,217,453,178,423,122,370"/>
+<area shape="rect" id="Node000015" href="$class_net_sim_1_1_host.html#a2fad1a9971da9ef14685974bfef6e200" title="Get all the packages associated with this host." alt="" coords="274,539,437,565"/>
+<area shape="poly" id="edge15_Node000001_Node000015" title=" " alt="" coords="120,367,141,399,173,442,214,487,262,524,272,530,270,535,259,529,211,490,169,445,137,402,116,370"/>
+<area shape="rect" id="Node000016" href="$class_net_sim_1_1_i_p_address.html#a38ca7ba394e619682e5314c06275b24d" title="Converts the IP address to a string format." alt="" coords="285,589,426,632"/>
+<area shape="poly" id="edge16_Node000001_Node000016" title=" " alt="" coords="118,367,137,408,168,464,210,523,235,551,262,575,273,583,270,587,259,579,231,555,206,527,163,466,132,410,113,369"/>
+<area shape="rect" id="Node000003" href="$class_net_sim_1_1_package_table_model.html#a2ba1340797245619800fa76f62e613e2" title="Returns the number of rows under the given parent." alt="" coords="517,5,706,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="450,37,502,33,502,38,451,43"/>
+<area shape="rect" id="Node000005" href="$class_net_sim_1_1_header_not_found_exception.html#a14f185390a67f79b53a1d9968a0641e4" title="Simple Getter for the error message." alt="" coords="498,123,725,165"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="425,128,484,132,483,137,424,133"/>
+<area shape="rect" id="Node000006" href="$class_net_sim_1_1_header.html#adbc26adc286c9d499eb6d8d7a21bf58e" title="Retrieves the list of header attributes." alt="" coords="521,72,702,99"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="424,112,507,99,508,104,425,117"/>
+<area shape="poly" id="edge8_Node000007_Node000005" title=" " alt="" coords="421,177,483,165,484,171,422,182"/>
+<area shape="rect" id="Node000008" href="$class_net_sim_1_1_header_attribute_not_found_exception.html#a2ea879ef0321514f0f5e198414341cbf" title="Fetches the error message for the exception." alt="" coords="511,189,713,232"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="422,194,496,200,496,205,422,199"/>
+<area shape="rect" id="Node000010" href="$class_net_sim_1_1_package.html#a11e58689765b4876417fbe30e7e61ef1" title="Returns the list of headers." alt="" coords="523,256,700,283"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="422,259,508,262,508,268,422,264"/>
+</map>

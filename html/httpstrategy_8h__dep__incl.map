@@ -1,0 +1,7 @@
+<map id="NetSim/src/models/strategies/httpstrategy.h" name="NetSim/src/models/strategies/httpstrategy.h">
+<area shape="rect" id="Node000001" title="Contains the HTTPStrategy class definition." alt="" coords="99,5,292,48"/>
+<area shape="rect" id="Node000002" href="$httpstrategy_8cpp.html" title=" " alt="" coords="5,96,199,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="165,60,125,98,122,94,161,56"/>
+<area shape="rect" id="Node000003" href="$server_8cpp.html" title=" " alt="" coords="222,96,358,139"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="230,56,270,94,266,98,226,60"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="NetSim::HeaderUtil::getDNSQuery" name="NetSim::HeaderUtil::getDNSQuery">
+<area shape="rect" id="Node000001" title="Extracts the DNS Query at the given index from a given package." alt="" coords="202,5,334,48"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_d_n_s_strategy.html#a22bb286b34362134e94ca34ab5dc9db5" title="Handles the DNS package." alt="" coords="5,5,154,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="186,29,154,29,154,24,186,24"/>
+</map>

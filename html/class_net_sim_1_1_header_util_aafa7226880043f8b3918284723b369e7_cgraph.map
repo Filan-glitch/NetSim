@@ -1,0 +1,5 @@
+<map id="NetSim::HeaderUtil::getTopProtocol" name="NetSim::HeaderUtil::getTopProtocol">
+<area shape="rect" id="Node000001" title="Extracts the Package Top Protocol." alt="" coords="5,5,138,48"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_package.html#a11e58689765b4876417fbe30e7e61ef1" title="Returns the list of headers." alt="" coords="186,13,363,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="138,24,170,24,170,29,138,29"/>
+</map>

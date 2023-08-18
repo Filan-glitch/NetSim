@@ -1,0 +1,5 @@
+<map id="NetSim::HeaderUtil::getIPAddress" name="NetSim::HeaderUtil::getIPAddress">
+<area shape="rect" id="Node000001" title="Extracts the IP Protocol from a given package." alt="" coords="243,5,375,48"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_package_table_model.html#a42457eb645f25bcf67dec4350e86bd0c" title="Returns the data stored under the given role for the item referred to by the index." alt="" coords="5,5,195,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="228,29,195,29,195,24,228,24"/>
+</map>

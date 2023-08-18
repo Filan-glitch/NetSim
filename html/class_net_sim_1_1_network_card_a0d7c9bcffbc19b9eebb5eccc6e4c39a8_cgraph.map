@@ -1,0 +1,20 @@
+<map id="NetSim::NetworkCard::addIPHeader" name="NetSim::NetworkCard::addIPHeader">
+<area shape="rect" id="Node000001" title="Adds an IP header to the provided data package." alt="" coords="5,169,152,212"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_i_pv4.html#a90ea6767ff9dae13f79f46cec155a737" title="Initializes an IPv4 header." alt="" coords="200,148,362,175"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="152,177,184,173,185,178,152,183"/>
+<area shape="rect" id="Node000009" href="$class_net_sim_1_1_network_card.html#ae8baec508e3e931ade349f3dcc42224d" title="Returns the network (IP) address of the network card." alt="" coords="208,199,354,241"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="152,199,193,205,193,210,152,204"/>
+<area shape="rect" id="Node000003" href="$class_net_sim_1_1_package.html#adfb8b09b329354d5cae1d9fd4122bdac" title="Adds a new header to the package." alt="" coords="418,5,611,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="291,146,338,95,372,66,409,42,423,35,425,40,411,46,375,70,342,98,295,149"/>
+<area shape="rect" id="Node000004" href="$class_net_sim_1_1_header.html#a57a32b3e56f02c18d3337e17c2613492" title="Adds a header attribute to the header." alt="" coords="423,56,606,99"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="319,145,438,102,440,107,321,150"/>
+<area shape="rect" id="Node000005" href="$class_net_sim_1_1_package.html#ad9ac6a1cd64803066873b56c9db88871" title="Returns the package&#39;s content." alt="" coords="666,173,841,200"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="362,154,483,153,619,159,678,167,677,173,618,164,483,158,363,160"/>
+<area shape="rect" id="Node000006" href="$class_net_sim_1_1_header.html#a2074906dd8dcb915ba854eb3854cfaa9" title="Sets the header type." alt="" coords="410,173,618,200"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="362,167,395,171,395,176,362,173"/>
+<area shape="rect" id="Node000007" href="$class_net_sim_1_1_package.html#af9d3e66a0b597143e7c6c9c62eec0c28" title="Returns the total size of the package." alt="" coords="437,224,592,251"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="332,173,363,184,387,197,411,210,433,217,432,222,409,214,385,202,361,189,330,178"/>
+<area shape="rect" id="Node000008" href="$class_net_sim_1_1_i_p_address.html#aa36666c2f80b9da38e5b586517a7fd8d" title="Converts the IP address to a byte array." alt="" coords="444,275,584,317"/>
+<area shape="poly" id="edge8_Node000002_Node000008" title=" " alt="" coords="343,173,364,185,381,204,389,224,396,242,412,261,432,273,429,277,408,265,391,245,384,226,376,207,360,189,341,177"/>
+<area shape="poly" id="edge7_Node000007_Node000005" title=" " alt="" coords="580,221,672,201,673,206,581,226"/>
+</map>

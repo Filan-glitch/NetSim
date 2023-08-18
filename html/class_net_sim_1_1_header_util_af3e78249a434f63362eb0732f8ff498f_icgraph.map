@@ -1,0 +1,5 @@
+<map id="NetSim::HeaderUtil::getHTTPAttribute" name="NetSim::HeaderUtil::getHTTPAttribute">
+<area shape="rect" id="Node000001" title="Extracts a specific HTTP Attribute from a given package." alt="" coords="207,5,339,48"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_h_t_t_p_strategy.html#adb92bbadb9b607469563ccc268019cea" title="Manages the HTTP package." alt="" coords="5,5,159,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="192,29,159,29,159,24,192,24"/>
+</map>
