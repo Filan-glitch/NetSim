@@ -3,6 +3,8 @@
 </p>
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/c040d5aae28c4d82846cc95cce931988)](https://app.codacy.com/gh/Filan-glitch/NetSim/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+[![Qt Build](https://img.shields.io/badge/Qt-qmake-green.svg)](https://doc.qt.io/qt-6/qmake-manual.html)
+![Qt Version](https://img.shields.io/badge/Qt-6.5.2-green?link=https%3A%2F%2Fwiki.qt.io%2FQt_6.5_Release)
 [![Contributers](https://badgen.net/github/contributors/Filan-glitch/NetSim?label=Contributers)](https://github.com/Filan-glitch/NetSim/graphs/contributors)
 [![License: MIT](https://badgen.net/github/license/Filan-glitch/NetSim?label=License)](https://github.com/Filan-glitch/NetSim/blob/main/LICENSE)
 [![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/Filan-glitch)
