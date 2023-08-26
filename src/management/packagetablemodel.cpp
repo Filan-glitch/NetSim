@@ -10,18 +10,20 @@ PackageTableModel::PackageTableModel(QList<Package> *packageList,
 QVariant PackageTableModel::headerData(int section, Qt::Orientation orientation,
                                        int role) const {
   if (role == Qt::DisplayRole) {
-        // Setting the header strings
+    // Setting the header strings
     if (orientation == Qt::Horizontal) {
       switch (section) {
       case 0:
-        return tr("Source");
+        return tr("Timestamp");
       case 1:
-        return tr("Destination");
+        return tr("Source");
       case 2:
-        return tr("Protocol");
+        return tr("Destination");
       case 3:
-        return tr("Size");
+        return tr("Protocol");
       case 4:
+        return tr("Size");
+      case 5:
         return tr("Info");
       }
     } else {
@@ -43,7 +45,7 @@ int PackageTableModel::columnCount(const QModelIndex &parent) const {
   if (parent.isValid())
     return 0;
 
-  return 5;
+  return 6;
 }
 
 QVariant PackageTableModel::data(const QModelIndex &index, int role) const {
@@ -57,10 +59,12 @@ QVariant PackageTableModel::data(const QModelIndex &index, int role) const {
 
     switch (index.column()) {
     case 0:
-      return HeaderUtil::getIPAddress(package, true);
+      return package.receivedTimestamp().toString("hh:mm:ss.zzz");
     case 1:
+      return HeaderUtil::getIPAddress(package, true);
+    case 2:
       return HeaderUtil::getIPAddress(package, false);
-    case 2: {
+    case 3: {
       switch (HeaderUtil::getTopProtocol(package)) {
       case DNS:
         return "DNS";
@@ -85,9 +89,9 @@ QVariant PackageTableModel::data(const QModelIndex &index, int role) const {
         break;
       }
     }
-    case 3:
-      return HeaderUtil::getPackageLength(package);
     case 4:
+      return HeaderUtil::getPackageLength(package);
+    case 5:
       return package.info();
     }
   }

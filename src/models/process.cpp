@@ -8,26 +8,24 @@
 using namespace NetSim;
 
 Process::Process(const Port &destinationPort, const QString &name)
-    : m_name(name) {
-  openSocket(destinationPort);
-}
-
-void Process::openSocket(const Port &destinationPort) {
-  this->m_socket = Socket(Port(0), destinationPort);
-  m_socket.setSourcePort(Port::getRandomPort());
-}
+    : m_name(name), m_socket(Port::getRandomPort(), destinationPort) {}
 
 Package Process::generateHTTPRequestPackage(const QString &uri,
                                             const IPAddress &destination) {
+  // Creating the package with info
   Package data("Request HTML of " + uri);
 
+  // Adding the HTTP header to the package
   HTTP::initHTTPRequest("GET", uri, "HTTP/1.1", data);
 
+  // Adding the TCP header to the package
   m_socket.addTCPHeader(data, m_host->networkCard().networkAddress(),
                         destination, true, true, false, false);
 
+  // Adding the IP header to the package
   m_host->networkCard().addIPHeader(data, 6, destination);
 
+  // Adding the MAC header to the package
   m_host->networkCard().addMACHeader(
       data, m_host->hostTable().value(destination), 2048);
   return data;
@@ -35,6 +33,7 @@ Package Process::generateHTTPRequestPackage(const QString &uri,
 
 Package Process::generateHandShakePackage(const IPAddress &address,
                                           bool initiate, bool client) {
+  // Creating a [SYN] handshake package
   if (initiate && client) {
     Package tcpSynPackage("TCP Handshake [SYN]");
 
@@ -46,7 +45,9 @@ Package Process::generateHandShakePackage(const IPAddress &address,
     m_host->networkCard().addMACHeader(
         tcpSynPackage, m_host->hostTable().value(address), 2048);
     return tcpSynPackage;
-  } else if (!initiate && client) {
+  }
+  // Creating a [ACK] handshake package
+  else if (!initiate && client) {
     Package tcpACKPackage("TCP Handshake [ACK]");
     m_socket.addTCPHeader(tcpACKPackage, m_host->networkCard().networkAddress(),
                           address, true, false, false, false);
@@ -56,8 +57,8 @@ Package Process::generateHandShakePackage(const IPAddress &address,
         tcpACKPackage, m_host->hostTable().value(address), 2048);
     return tcpACKPackage;
   }
-
-  if (!client) {
+  // Creating a [SYN, ACK] handshake package
+  else if (!client) {
     Package synAckPackage("TCP Handshake [SYN, ACK]");
     m_socket.addTCPHeader(synAckPackage, m_host->networkCard().networkAddress(),
                           address, true, false, true, false);
@@ -67,14 +68,17 @@ Package Process::generateHandShakePackage(const IPAddress &address,
     return synAckPackage;
   }
 
+  // Returning a default package, if none of the above cases are true
   return Package();
 }
 
 Package Process::generateHTTPResponsePackage(const IPAddress &destination,
                                              const Port &destPort,
                                              const int &messageCode) {
+  // Creating a HTTP response package
   Package data("HTTP Response to: " + destination.toString());
 
+  // Adding the HTTP response header to the package
   if (messageCode == 200) {
     HTTP::initHTTPResponse("HTTP/1.1", messageCode, "OK", data,
                            static_cast<Server *>(m_host)->htmlFile());
@@ -86,12 +90,15 @@ Package Process::generateHTTPResponsePackage(const IPAddress &destination,
     return Package();
   }
 
+  // Adding the TCP header to the package
   m_socket.setDestinationPort(destPort);
   m_socket.addTCPHeader(data, m_host->networkCard().networkAddress(),
                         destination, true, true, false, false);
 
+  // Adding the IP header to the package
   m_host->networkCard().addIPHeader(data, 6, destination);
 
+  // Adding the MAC header to the package
   m_host->networkCard().addMACHeader(
       data, m_host->hostTable().value(destination), 2048);
   return data;
@@ -99,6 +106,7 @@ Package Process::generateHTTPResponsePackage(const IPAddress &destination,
 
 Package Process::generateCloseConnectionPackage(const IPAddress &address,
                                                 bool initiate, bool client) {
+  // Creating a [FIN] connection package
   if (initiate && client) {
     Package tcpFinPackage("TCP Connection Close [FIN]");
 
@@ -110,7 +118,9 @@ Package Process::generateCloseConnectionPackage(const IPAddress &address,
     m_host->networkCard().addMACHeader(
         tcpFinPackage, m_host->hostTable().value(address), 2048);
     return tcpFinPackage;
-  } else if (!initiate && client) {
+  }
+  // Creating a [ACK] connection package
+  else if (!initiate && client) {
     Package tcpACKPackage("TCP Connection Close [ACK]");
     m_socket.addTCPHeader(tcpACKPackage, m_host->networkCard().networkAddress(),
                           address, true, false, false, false);
@@ -120,8 +130,8 @@ Package Process::generateCloseConnectionPackage(const IPAddress &address,
         tcpACKPackage, m_host->hostTable().value(address), 2048);
     return tcpACKPackage;
   }
-
-  if (!client) {
+  // Creating a [FIN, ACK] connection package
+  else if (!client) {
     Package finAckPackage("TCP Connection Close [FIN, ACK]");
     m_socket.addTCPHeader(finAckPackage, m_host->networkCard().networkAddress(),
                           address, true, false, false, true);
@@ -131,6 +141,7 @@ Package Process::generateCloseConnectionPackage(const IPAddress &address,
     return finAckPackage;
   }
 
+  // Returning a default package if none of the above conditions are met
   return Package();
 }
 

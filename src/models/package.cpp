@@ -18,6 +18,17 @@ QString Package::info() const { return m_info; }
 
 void Package::setContent(const QString &content) { this->m_content = content; }
 
+void Package::setReceivedTimestamp(const QTime &time) {
+  m_receivedTimestamp = time;
+}
+
+void Package::setSentTimestamp(const QTime &time) { m_sentTimestamp = time; }
+
+QTime Package::receivedTimestamp() const { return m_receivedTimestamp; }
+
+QTime Package::sentTimestamp() const { return m_sentTimestamp; }
+
+// Returns the size of a package (content + all headers)
 quint16 Package::size() const {
   quint16 length = content().length();
   for (const Header &header : m_headers) {
@@ -26,6 +37,7 @@ quint16 Package::size() const {
   return length;
 }
 
+// Changes the port and ip address of a package, either source or destination
 void Package::changePortAndIP(const Port &number, const IPAddress &address,
                               bool src) {
   if (src) {
@@ -84,6 +96,7 @@ void Package::changePortAndIP(const Port &number, const IPAddress &address,
   }
 }
 
+// Changes the ethernet addresses
 void Package::changeEthernetHeader(const MACAddress &srcAddress,
                                    const MACAddress &destAddress) {
   try {
@@ -107,6 +120,7 @@ void Package::changeEthernetHeader(const MACAddress &srcAddress,
   }
 }
 
+// An overloaded index operator to get writable access to the headers
 Header &Package::operator[](const HeaderType &type) {
   for (int i = 0; i < m_headers.size(); i++) {
     if (type == m_headers[i].type()) {

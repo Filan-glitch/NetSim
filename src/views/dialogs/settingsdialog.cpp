@@ -7,12 +7,6 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     : QDialog(parent), ui(new Ui::SettingsDialog) {
   ui->setupUi(this);
 
-  // Connections
-  connect(ui->clientsSpinBox, SIGNAL(valueChanged(int)), this,
-          SLOT(setClientsAmount(int)));
-  connect(ui->serverSpinBox, SIGNAL(valueChanged(int)), this,
-          SLOT(setServerAmount(int)));
-
   ui->domainLabel_2->setVisible(false);
   ui->domainLineEdit_2->setVisible(false);
   ui->domainLabel_3->setVisible(false);
@@ -21,13 +15,17 @@ SettingsDialog::SettingsDialog(QWidget *parent)
   ui->domainLineEdit_4->setVisible(false);
   ui->domainLabel_5->setVisible(false);
   ui->domainLineEdit_5->setVisible(false);
-  ui->startPushButton->setEnabled(false);
   QRect rect = parent->geometry();
   rect.setHeight(0);
   this->setGeometry(rect);
   this->setFixedSize(size());
   setWindowFlags(Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint);
 
+  // Connections
+  connect(ui->clientsSpinBox, SIGNAL(valueChanged(int)), this,
+          SLOT(setClientsAmount(int)));
+  connect(ui->serverSpinBox, SIGNAL(valueChanged(int)), this,
+          SLOT(setServerAmount(int)));
   connect(ui->domainLineEdit_1, &QLineEdit::textChanged, this,
           &SettingsDialog::textChanged1);
   connect(ui->domainLineEdit_2, &QLineEdit::textChanged, this,
@@ -147,7 +145,7 @@ quint8 SettingsDialog::clientsAmount() const { return m_clientsAmount; }
 quint8 SettingsDialog::serversAmount() const { return m_serverAmount; }
 
 void SettingsDialog::textChanged1(const QString &data) {
-  m_domain1 = data;
+  (data.isEmpty()) ? m_domain1 = "test1.com" : m_domain1 = data;
   if (allVisibleLineEditsFilled()) {
     ui->startPushButton->setEnabled(true);
   } else {
@@ -156,7 +154,7 @@ void SettingsDialog::textChanged1(const QString &data) {
 }
 
 void SettingsDialog::textChanged2(const QString &data) {
-  m_domain2 = data;
+  (data.isEmpty()) ? m_domain2 = "test2.com" : m_domain2 = data;
   if (allVisibleLineEditsFilled()) {
     ui->startPushButton->setEnabled(true);
   } else {
@@ -165,7 +163,7 @@ void SettingsDialog::textChanged2(const QString &data) {
 }
 
 void SettingsDialog::textChanged3(const QString &data) {
-  m_domain3 = data;
+  (data.isEmpty()) ? m_domain3 = "test3.com" : m_domain3 = data;
   if (allVisibleLineEditsFilled()) {
     ui->startPushButton->setEnabled(true);
   } else {
@@ -174,7 +172,7 @@ void SettingsDialog::textChanged3(const QString &data) {
 }
 
 void SettingsDialog::textChanged4(const QString &data) {
-  m_domain4 = data;
+  (data.isEmpty()) ? m_domain4 = "test4.com" : m_domain4 = data;
   if (allVisibleLineEditsFilled()) {
     ui->startPushButton->setEnabled(true);
   } else {
@@ -183,7 +181,7 @@ void SettingsDialog::textChanged4(const QString &data) {
 }
 
 void SettingsDialog::textChanged5(const QString &data) {
-  m_domain5 = data;
+  (data.isEmpty()) ? m_domain5 = "test5.com" : m_domain5 = data;
   if (allVisibleLineEditsFilled()) {
     ui->startPushButton->setEnabled(true);
   } else {
@@ -211,48 +209,24 @@ QList<QString> SettingsDialog::domains() const {
 
 bool SettingsDialog::allVisibleLineEditsFilled() {
   switch (m_serverAmount) {
-  case 0:
-    return false;
   case 1:
-    return (ui->domainLineEdit_1->text().size() > 0);
+    return true;
   case 2:
-    return (ui->domainLineEdit_1->text().size() > 0) &&
-           (ui->domainLineEdit_2->text().size() > 0) &&
-           (ui->domainLineEdit_1->text() != ui->domainLineEdit_2->text());
+    return (m_domain1 != m_domain2);
   case 3:
-    return (ui->domainLineEdit_1->text().size() > 0) &&
-           (ui->domainLineEdit_2->text().size() > 0) &&
-           (ui->domainLineEdit_3->text().size() > 0) &&
-           (ui->domainLineEdit_1->text() != ui->domainLineEdit_2->text()) &&
-           (ui->domainLineEdit_1->text() != ui->domainLineEdit_3->text()) &&
-           (ui->domainLineEdit_2->text() != ui->domainLineEdit_3->text());
+    return (m_domain1 != m_domain2) && (m_domain1 != m_domain3) &&
+           (m_domain2 != m_domain3);
   case 4:
-    return (ui->domainLineEdit_1->text().size() > 0) &&
-           (ui->domainLineEdit_2->text().size() > 0) &&
-           (ui->domainLineEdit_3->text().size() > 0) &&
-           (ui->domainLineEdit_4->text().size() > 0) &&
-           (ui->domainLineEdit_1->text() != ui->domainLineEdit_2->text()) &&
-           (ui->domainLineEdit_1->text() != ui->domainLineEdit_3->text()) &&
-           (ui->domainLineEdit_1->text() != ui->domainLineEdit_4->text()) &&
-           (ui->domainLineEdit_2->text() != ui->domainLineEdit_3->text()) &&
-           (ui->domainLineEdit_2->text() != ui->domainLineEdit_4->text()) &&
-           (ui->domainLineEdit_3->text() != ui->domainLineEdit_4->text());
+    return (m_domain1 != m_domain2) && (m_domain1 != m_domain3) &&
+           (m_domain1 != m_domain4) && (m_domain2 != m_domain3) &&
+           (m_domain2 != m_domain4) && (m_domain3 != m_domain4);
   case 5:
-    return (ui->domainLineEdit_1->text().size() > 0) &&
-           (ui->domainLineEdit_2->text().size() > 0) &&
-           (ui->domainLineEdit_3->text().size() > 0) &&
-           (ui->domainLineEdit_4->text().size() > 0) &&
-           (ui->domainLineEdit_5->text().size() > 0) &&
-           (ui->domainLineEdit_1->text() != ui->domainLineEdit_2->text()) &&
-           (ui->domainLineEdit_1->text() != ui->domainLineEdit_3->text()) &&
-           (ui->domainLineEdit_1->text() != ui->domainLineEdit_4->text()) &&
-           (ui->domainLineEdit_1->text() != ui->domainLineEdit_5->text()) &&
-           (ui->domainLineEdit_2->text() != ui->domainLineEdit_3->text()) &&
-           (ui->domainLineEdit_2->text() != ui->domainLineEdit_4->text()) &&
-           (ui->domainLineEdit_2->text() != ui->domainLineEdit_5->text()) &&
-           (ui->domainLineEdit_3->text() != ui->domainLineEdit_4->text()) &&
-           (ui->domainLineEdit_3->text() != ui->domainLineEdit_5->text()) &&
-           (ui->domainLineEdit_4->text() != ui->domainLineEdit_5->text());
+    return (m_domain1 != m_domain2) && (m_domain1 != m_domain3) &&
+           (m_domain1 != m_domain4) && (m_domain1 != m_domain5) &&
+           (m_domain2 != m_domain3) && (m_domain2 != m_domain4) &&
+           (m_domain2 != m_domain5) && (m_domain3 != m_domain4) &&
+           (m_domain3 != m_domain5) && (m_domain4 != m_domain5);
+  default:
+    return false;
   }
-  return false;
 }

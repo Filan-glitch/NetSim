@@ -36,9 +36,6 @@ public:
   //! Retrieve the associated socket.
   Socket &getSocket();
 
-  //! Opens a new socket with a specified destination port.
-  void openSocket(const Port &destinationPort);
-
   //! Generates an HTTP request package.
   Package generateHTTPRequestPackage(const QString &uri,
                                      const IPAddress &destination);

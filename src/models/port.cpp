@@ -15,6 +15,7 @@ QVector<quint8> Port::toArray() const {
   return portArray;
 }
 
+// Using random generation by Qt to generate a random port number
 Port Port::getRandomPort() {
   return Port(QRandomGenerator::global()->generate() % 65535);
 }
