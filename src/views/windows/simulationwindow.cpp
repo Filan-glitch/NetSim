@@ -44,6 +44,12 @@ SimulationWindow::SimulationWindow(SimulationManager *manager, QWidget *parent)
   m_treeWidget->setHeaderHidden(true);
   this->ui->packageTab->layout()->addWidget(m_treeWidget);
 
+  // StatusBar
+  m_simTimeLabel = new QLabel("00:00:00.0", ui->statusbar);
+  ui->statusbar->setFixedHeight(30);
+  ui->statusbar->addWidget(m_simTimeLabel);
+  ui->statusbar->setSizeGripEnabled(false);
+
   // Connections
   connect(this->ui->actionDocumentation, &QAction::triggered, this,
           &SimulationWindow::openDocumentation);
@@ -51,6 +57,8 @@ SimulationWindow::SimulationWindow(SimulationManager *manager, QWidget *parent)
           &SimulationWindow::updateTreeWidget);
   connect(this->ui->actionAbout_NetSim, &QAction::triggered, this,
           &SimulationWindow::about);
+
+  startTimer(100);
 }
 
 SimulationWindow::~SimulationWindow() { delete ui; }
@@ -494,6 +502,12 @@ void SimulationWindow::updateTreeWidget(const QModelIndex &index) {
 
     this->m_treeWidget->addTopLevelItem(applicationHeader);
   }
+}
+
+void SimulationWindow::timerEvent(QTimerEvent *event)
+{
+  qDebug() << "Timer triggered.";
+  m_simTimeLabel->setText(QTime::fromString(m_simTimeLabel->text(), "hh:mm:ss.z").addMSecs(100).toString("hh:mm:ss.z"));
 }
 
 void SimulationWindow::about() {

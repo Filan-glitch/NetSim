@@ -42,8 +42,8 @@ ServerWidget::ServerWidget(Server *server, QWidget *parent)
   m_layout->addWidget(m_domainLabel);
   m_layout->addWidget(m_ipLabel);
   m_layout->addWidget(m_macLabel);
-
-  this->setFixedSize(QSize(256, 156));
+  m_layout->setContentsMargins(QMargins(2, 2, 2, 2));
+  this->setFixedSize(QSize(qFloor(parent->size().height() / 6 + 100), qFloor(parent->size().height() / 6)));
 
   // Connections
   connect(m_button, &QPushButton::clicked, this,

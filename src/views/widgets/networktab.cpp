@@ -3,7 +3,9 @@
 
 using namespace NetSim;
 
-NetworkTab::NetworkTab(QWidget *parent) : QWidget{parent} {}
+NetworkTab::NetworkTab(QWidget *parent) : QWidget{parent} {
+    this->setContentsMargins(2, 2, 2, 2);
+}
 
 void NetworkTab::addRouter(RouterWidget *router) { m_routers.append(router); }
 
