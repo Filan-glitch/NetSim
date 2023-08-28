@@ -95,12 +95,31 @@ public:
    */
   virtual void receivePackage(Package data) = 0;
 
-  void addProcess(const Port &port, const Process &process);
+  /**
+   * @brief Adds a process to the process table.
+   * @param process The process to add.
+   */
+  void addProcess(const Process &process);
 
+  /**
+   * @brief Adds an IP address to MAC address resolution to the ARP table.
+   * @param ipAddress The IP address to add.
+   * @param macAddress The MAC address to add.
+   */
   void addIPAddress(const IPAddress &ipAddress, const MACAddress &macAddress);
 
+  /**
+   * @brief Adds a MAC address to router pointer to the cables table.
+   * @param macAddress The MAC address to add.
+   * @param router The router to add.
+   */
   void addMACAddress(const MACAddress &macAddress, Router *router);
 
+  /**
+   * @brief Adds a domain to IP address resolution to the DNS table.
+   * @param domain The domain to add.
+   * @param ipAddress The IP address to add.
+   */
   void addDomain(const QString &domain, const IPAddress &ipAddress);
 
   /**

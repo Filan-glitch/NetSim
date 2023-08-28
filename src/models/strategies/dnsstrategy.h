@@ -49,7 +49,7 @@ public:
    * It processes the DNS request, generates a response, and forwards
    * it to the appropriate router.
    */
-  void handle(Package package, Host *host) override;
+  void handle(Package package, Host *host) const override;
 };
 } // namespace NetSim
 

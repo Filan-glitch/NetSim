@@ -44,7 +44,7 @@ public:
    * the connection, fetches the HTTP process from the client's host, and then
    * sends the handshake package to the router.
    */
-  void handle(Package package, Host *host) override;
+  void handle(Package package, Host *host) const override;
 };
 
 } // namespace NetSim

@@ -15,9 +15,10 @@ void Client::execDomainResolution(const QString &domain) {
   qInfo() << "Executing: Client::execDomainResolution"
           << " Client: " << this->networkCard().networkAddress().toString();
 
+  // Skipping if client already has domain in the cache
   if (domainTable().contains(domain)) {
     qInfo() << "Client: " << this->networkCard().networkAddress().toString()
-            << " already has IPAddress to Domain: " << domain;
+            << " already has domain: " << domain;
     return;
   }
 
@@ -25,13 +26,15 @@ void Client::execDomainResolution(const QString &domain) {
   try {
     dnsProcess = getProcessByName("DNS");
   } catch (const std::runtime_error &re) {
-    qDebug() << "Could not find Procces DNS ind Client::execDomainResolution";
+    qDebug() << "Could not find Procces DNS in Client::execDomainResolution";
     return;
   }
 
+  // Generating DNS request package
   Package dnsRequest = dnsProcess.generateDNSRequestPackage(domain);
 
   MACAddress routerMAC = this->hostTable().value(
+      // Currently using the standard dns server domain
       this->domainTable().value(QString("dns.beispiel.de")));
   Router *router;
   try {
@@ -150,6 +153,8 @@ void Client::receivePackage(Package data) {
           << " received Package: " << data.info()
           << " Client: " << this->networkCard().networkAddress().toString();
 
+  // Using the strategy pattern for handling different types of packages
+  // Extendable for new protocols
   IPackageStrategy *strategy = nullptr;
 
   // Receives a DNS Response Package from Server
@@ -160,12 +165,12 @@ void Client::receivePackage(Package data) {
     }
     return;
   }
-
+  // Receives a [SYN, ACK] Package from Server
   if (HeaderUtil::getTCPFlag(data, TCPFlag::SYN) == "Set" &&
       HeaderUtil::getTCPFlag(data, TCPFlag::ACK) == "Set") {
     strategy = new TCPClientHandshakeStrategy();
   }
-
+  // Receives a [FIN, ACK] Package from Server
   if (HeaderUtil::getTCPFlag(data, TCPFlag::FIN) == "Set" &&
       HeaderUtil::getTCPFlag(data, TCPFlag::ACK) == "Set") {
     strategy = new TCPClientConnectionCloseStrategy();

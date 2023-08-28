@@ -51,7 +51,7 @@ public:
    * to define how the given package is to be processed within the provided host
    * context.
    */
-  virtual void handle(Package package, Host *host) = 0;
+  virtual void handle(Package package, Host *host) const = 0;
 };
 } // namespace NetSim
 

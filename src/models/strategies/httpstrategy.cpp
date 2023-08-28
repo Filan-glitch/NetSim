@@ -6,7 +6,7 @@
 using namespace NetSim;
 
 // Strategies overridden handle function
-void HTTPStrategy::handle(Package package, Host *host) {
+void HTTPStrategy::handle(Package package, Host *host) const {
   Process httpProcess;
   try {
     httpProcess = host->getProcessByName("HTTP");
@@ -19,14 +19,15 @@ void HTTPStrategy::handle(Package package, Host *host) {
   Package httpResponse;
   if (HeaderUtil::getHTTPAttribute(package, "URI") == "/index.html") {
     httpResponse = httpProcess.generateHTTPResponsePackage(
-        HeaderUtil::getIPAddressAsIPAddress(package, true),         // Old src address to new dst address
-        HeaderUtil::getPortAsPort(package, true),                       // Old port to new port
-        200);                                                                    // Status code 200 for OK
+        HeaderUtil::getIPAddressAsIPAddress(
+            package, true), // Old src address to new dst address
+        HeaderUtil::getPortAsPort(package, true), // Old port to new port
+        200);                                     // Status code 200 for OK
   } else {
     httpResponse = httpProcess.generateHTTPResponsePackage(
         HeaderUtil::getIPAddressAsIPAddress(package, true),
         HeaderUtil::getPortAsPort(package, true),
-        404);                                                                   // Status code 404 for Not Found
+        404); // Status code 404 for Not Found
   }
 
   // Establishing connection to router

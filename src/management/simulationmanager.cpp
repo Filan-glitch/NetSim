@@ -4,7 +4,7 @@ using namespace NetSim;
 
 SimulationManager::SimulationManager(quint8 clientAmount, quint8 serverAmount,
                                      QList<QString> domains) {
-    // Setting the routers
+  // Setting the routers
   for (auto i = 0; i <= serverAmount; i++) {
     m_routers.append(Router());
   }
@@ -19,7 +19,7 @@ SimulationManager::SimulationManager(quint8 clientAmount, quint8 serverAmount,
     // Extracting the IP Address of the client router
     QVector<quint8> routerAddress =
         m_routers[0].networkCard().networkAddress().toArray();
-    //Incrementing the last byte of the IP Address for each host
+    // Incrementing the last byte of the IP Address for each host
     routerAddress[3] = i + 2;
 
     // Adding the client to the list
@@ -59,18 +59,18 @@ SimulationManager::SimulationManager(quint8 clientAmount, quint8 serverAmount,
         i++;
         continue;
       }
-        // Setting the Clients IP to MAC Table
+      // Setting the Clients IP to MAC Table
       client.addIPAddress(router.globalIpAddress(),
                           m_routers[0].networkCard().physicalAddress());
       i++;
     }
-      // Setting the Clients IP to MAC Table
+    // Setting the Clients IP to MAC Table
     client.addIPAddress(m_servers[0].networkCard().networkAddress(),
                         m_routers[0].networkCard().physicalAddress());
     // Setting the Clients MAC to Router Pointer Table
     client.addMACAddress(m_routers.constFirst().networkCard().physicalAddress(),
                          &m_routers[0]);
-      // Setting the Client-Routers IP to MAC Table
+    // Setting the Client-Routers IP to MAC Table
     m_routers[0].addIPAddress(client.networkCard().networkAddress(),
                               client.networkCard().physicalAddress());
     // Setting the Client-Routers MAC to Client Pointer Table
@@ -119,25 +119,23 @@ SimulationManager::SimulationManager(quint8 clientAmount, quint8 serverAmount,
   for (int i = 1; i < m_routers.size(); ++i) {
     // Setting the specific Server-Router NAT Entry
     m_routers[i].addNATEntry(
-        NATEntry(
-            m_servers[i].networkCard().networkAddress(),
-            m_servers[i].getProcessByName("HTTP").getSocket().sourcePort()),
+        NATEntry(m_servers[i].networkCard().networkAddress(),
+                 m_servers[i].getProcessByName("HTTP").socket().sourcePort()),
         Port(80));
     m_routers[i].addNATEntry(
         NATEntry(m_servers[i].networkCard().networkAddress(),
-                 m_servers[i].getProcessByName("DNS").getSocket().sourcePort()),
+                 m_servers[i].getProcessByName("DNS").socket().sourcePort()),
         Port(53));
   }
   for (int i = 0; i < m_clients.size(); ++i) {
     // Setting the Client-Router NAT Entry
     m_routers[0].addNATEntry(
-        NATEntry(
-            m_clients[i].networkCard().networkAddress(),
-            m_clients[i].getProcessByName("HTTP").getSocket().sourcePort()),
+        NATEntry(m_clients[i].networkCard().networkAddress(),
+                 m_clients[i].getProcessByName("HTTP").socket().sourcePort()),
         Port(50000 + 2 * i));
     m_routers[0].addNATEntry(
         NATEntry(m_clients[i].networkCard().networkAddress(),
-                 m_clients[i].getProcessByName("DNS").getSocket().sourcePort()),
+                 m_clients[i].getProcessByName("DNS").socket().sourcePort()),
         Port(50001 + 2 * i));
   }
 

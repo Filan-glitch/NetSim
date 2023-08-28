@@ -18,16 +18,6 @@ QString Package::info() const { return m_info; }
 
 void Package::setContent(const QString &content) { this->m_content = content; }
 
-void Package::setReceivedTimestamp(const QTime &time) {
-  m_receivedTimestamp = time;
-}
-
-void Package::setSentTimestamp(const QTime &time) { m_sentTimestamp = time; }
-
-QTime Package::receivedTimestamp() const { return m_receivedTimestamp; }
-
-QTime Package::sentTimestamp() const { return m_sentTimestamp; }
-
 // Returns the size of a package (content + all headers)
 quint16 Package::size() const {
   quint16 length = content().length();

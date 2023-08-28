@@ -33,8 +33,11 @@ public:
   //! Constructor initializing a process with a destination port and a name.
   Process(const Port &destinationPort, const QString &name);
 
+  //! Retrieves an editable associated socket reference.
+  Socket &socket();
+
   //! Retrieve the associated socket.
-  Socket &getSocket();
+  Socket socket() const;
 
   //! Generates an HTTP request package.
   Package generateHTTPRequestPackage(const QString &uri,

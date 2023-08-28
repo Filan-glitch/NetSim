@@ -51,7 +51,7 @@ public:
    * HTTP packages. It interprets the HTTP request, crafts a corresponding
    * response, and dispatches it to the appropriate router.
    */
-  void handle(Package package, Host *host) override;
+  void handle(Package package, Host *host) const override;
 };
 } // namespace NetSim
 

@@ -10,7 +10,8 @@
 namespace NetSim {
 
 //! \defgroup NetSimTCPClient TCP Client Connection Close Strategy
-//! \brief Provides a strategy for handling TCP client connection close packages.
+//! \brief Provides a strategy for handling TCP client connection close
+//! packages.
 
 /**
  * @class TCPClientConnectionCloseStrategy
@@ -44,7 +45,7 @@ public:
    * retrieves the HTTP process from the client's host, and forwards the closing
    * handshake package to the router.
    */
-  void handle(Package package, Host *host) override;
+  void handle(Package package, Host *host) const override;
 };
 
 } // namespace NetSim

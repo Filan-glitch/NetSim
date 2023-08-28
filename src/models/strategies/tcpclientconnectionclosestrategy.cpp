@@ -7,7 +7,7 @@ using namespace NetSim;
 
 // Strategies overridden handle function
 void NetSim::TCPClientConnectionCloseStrategy::handle(Package package,
-                                                      Host *host) {
+                                                      Host *host) const {
   Process httpProcess;
   try {
     httpProcess = host->getProcessByName("HTTP");
@@ -19,9 +19,7 @@ void NetSim::TCPClientConnectionCloseStrategy::handle(Package package,
 
   // Generating the response package
   Package httpResponse = httpProcess.generateCloseConnectionPackage(
-      HeaderUtil::getIPAddressAsIPAddress(package, true),
-      false,
-      true);
+      HeaderUtil::getIPAddressAsIPAddress(package, true), false, true);
 
   // Establishing connection to router
   MACAddress routerMAC = host->hostTable().value(

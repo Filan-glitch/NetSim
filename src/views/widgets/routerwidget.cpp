@@ -4,7 +4,7 @@ using namespace NetSim;
 
 RouterWidget::RouterWidget(Router *router, QWidget *parent)
     : QWidget{parent}, m_router{router} {
-  // Erstelle die Widgets
+  // create the widgets
   m_button = new QPushButton(this);
   m_localIpLabel = new QLabel(this);
   m_globalIpLabel = new QLabel(this);
@@ -38,14 +38,15 @@ RouterWidget::RouterWidget(Router *router, QWidget *parent)
                           m_macLabel->geometry().y(), 0, 0);
   m_macLabel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 
-  // Erstelle das Layout
+  // create the layout
   m_layout = new QVBoxLayout(this);
   m_layout->addWidget(m_button);
   m_layout->addWidget(m_globalIpLabel);
   m_layout->addWidget(m_localIpLabel);
   m_layout->addWidget(m_macLabel);
   m_layout->setContentsMargins(QMargins(2, 2, 2, 2));
-  this->setFixedSize(QSize(qFloor(parent->size().height() / 6 + 100), qFloor(parent->size().height() / 6)));
+  this->setFixedSize(QSize(qFloor(parent->size().height() / 6 + 100),
+                           qFloor(parent->size().height() / 6)));
 
   // Connections
   connect(m_button, &QPushButton::clicked, this,

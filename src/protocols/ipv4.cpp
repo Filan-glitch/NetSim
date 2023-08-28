@@ -11,11 +11,14 @@ void IPv4::initHeader(quint16 id, bool DF, bool MF, quint16 fragmentOffset,
   HeaderAttribute IHL("Header Length", 4, static_cast<quint8>(5));
   HeaderAttribute TOS("Type Of Service", 8, static_cast<quint8>(0));
 
+  // data.size() is the size of the current package and 20 is the size of the ip
+  // header
   quint16 totalLength = data.size() + 20;
   HeaderAttribute length("Total Length", 16, totalLength);
 
   HeaderAttribute identification("Identification", 16, id);
 
+  // flagsVal is a 8 bit value that represents the flags DF and MF
   quint8 flagsVal = 0b00000000;
   setFlag(&flagsVal, DF, 1);
   setFlag(&flagsVal, MF, 2);

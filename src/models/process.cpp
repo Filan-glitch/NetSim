@@ -199,4 +199,6 @@ QString Process::toString() const {
       .arg(m_socket.sourcePort().portNumber());
 }
 
-Socket &Process::getSocket() { return m_socket; }
+Socket &Process::socket() { return m_socket; }
+
+Socket Process::socket() const { return m_socket; }

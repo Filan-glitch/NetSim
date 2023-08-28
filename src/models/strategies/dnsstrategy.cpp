@@ -6,7 +6,7 @@
 using namespace NetSim;
 
 // Strategies overridden handle function
-void NetSim::DNSStrategy::handle(Package package, Host *host) {
+void NetSim::DNSStrategy::handle(Package package, Host *host) const {
   Process dnsProcess;
   try {
     dnsProcess = host->getProcessByName("DNS");
@@ -18,9 +18,10 @@ void NetSim::DNSStrategy::handle(Package package, Host *host) {
 
   // Generating the response package
   Package dnsResponse = dnsProcess.generateDNSResponsePackage(
-      HeaderUtil::getIPAddressAsIPAddress(package, true),   // Old src address to new dst address
+      HeaderUtil::getIPAddressAsIPAddress(
+          package, true), // Old src address to new dst address
       HeaderUtil::getDNSQuery(package, 0, RRAttribute::NAME), // Queried domain
-      HeaderUtil::getPortAsPort(package, true));                // Old src port to new dst port
+      HeaderUtil::getPortAsPort(package, true)); // Old src port to new dst port
 
   // Establishing connection to router
   MACAddress routerMAC = host->hostTable().value(

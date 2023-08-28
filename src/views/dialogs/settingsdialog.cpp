@@ -7,6 +7,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     : QDialog(parent), ui(new Ui::SettingsDialog) {
   ui->setupUi(this);
 
+  // Hide the domain fields
   ui->domainLabel_2->setVisible(false);
   ui->domainLineEdit_2->setVisible(false);
   ui->domainLabel_3->setVisible(false);
@@ -15,10 +16,14 @@ SettingsDialog::SettingsDialog(QWidget *parent)
   ui->domainLineEdit_4->setVisible(false);
   ui->domainLabel_5->setVisible(false);
   ui->domainLineEdit_5->setVisible(false);
+
+  // Setting the geometry
   QRect rect = parent->geometry();
   rect.setHeight(0);
   this->setGeometry(rect);
   this->setFixedSize(size());
+
+  // Setting the window flags
   setWindowFlags(Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint);
 
   // Connections
@@ -58,7 +63,6 @@ void SettingsDialog::setServerAmount(int amount) {
     ui->domainLabel_5->setVisible(false);
     ui->domainLineEdit_5->setVisible(false);
 
-    // Size of Dialog
     rect = static_cast<QWidget *>(this->parent())->geometry();
     rect.setX(this->geometry().x());
     rect.setY(this->geometry().y());
@@ -133,6 +137,7 @@ void SettingsDialog::setServerAmount(int amount) {
     break;
   }
 
+  // Validation
   if (allVisibleLineEditsFilled()) {
     ui->startPushButton->setEnabled(true);
   } else {
@@ -145,6 +150,7 @@ quint8 SettingsDialog::clientsAmount() const { return m_clientsAmount; }
 quint8 SettingsDialog::serversAmount() const { return m_serverAmount; }
 
 void SettingsDialog::textChanged1(const QString &data) {
+  // Having a default value in the line edit
   (data.isEmpty()) ? m_domain1 = "test1.com" : m_domain1 = data;
   if (allVisibleLineEditsFilled()) {
     ui->startPushButton->setEnabled(true);
@@ -208,6 +214,7 @@ QList<QString> SettingsDialog::domains() const {
 }
 
 bool SettingsDialog::allVisibleLineEditsFilled() {
+  // Validation if all visible lines are distinct
   switch (m_serverAmount) {
   case 1:
     return true;
