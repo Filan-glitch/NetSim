@@ -4,7 +4,7 @@ using namespace NetSim;
 
 ServerWidget::ServerWidget(Server *server, QWidget *parent)
     : QWidget{parent}, m_server{server} {
-  // Erstelle die Widgets
+  // Create the widgets
   m_button = new QPushButton(this);
   m_domainLabel = new QLabel(this);
   m_ipLabel = new QLabel(this);
@@ -36,14 +36,15 @@ ServerWidget::ServerWidget(Server *server, QWidget *parent)
                           m_macLabel->geometry().y(), 0, 0);
   m_macLabel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 
-  // Erstelle Layout
+  // Create Layout
   m_layout = new QVBoxLayout(this);
   m_layout->addWidget(m_button);
   m_layout->addWidget(m_domainLabel);
   m_layout->addWidget(m_ipLabel);
   m_layout->addWidget(m_macLabel);
-
-  this->setFixedSize(QSize(256, 156));
+  m_layout->setContentsMargins(QMargins(2, 2, 2, 2));
+  this->setFixedSize(QSize(qFloor(parent->size().height() / 6 + 100),
+                           qFloor(parent->size().height() / 6)));
 
   // Connections
   connect(m_button, &QPushButton::clicked, this,

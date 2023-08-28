@@ -3,6 +3,7 @@
 using namespace NetSim;
 
 void DNS::initDNSRequest(Package &data, const QList<DNSEntry> queries) {
+  // Generating a random transaction ID
   HeaderAttribute transactionID(
       "Transaction ID", 16,
       static_cast<quint16>(QRandomGenerator::global()->generate() % 0xFFFF));
@@ -19,6 +20,7 @@ void DNS::initDNSRequest(Package &data, const QList<DNSEntry> queries) {
   headerList.append(_questions);
   headerList.append(_answerRRs);
 
+  // Adding the query data, not realistic but it works
   for (auto i = 0; i < queries.size(); i++) {
     QByteArray queryData = queries.at(i).name().toLatin1();
     queryData = queryData.append('\0');
@@ -51,9 +53,10 @@ void DNS::initDNSResponse(Package &data, const QList<DNSEntry> queries,
   HeaderAttribute _answerRRs("Answer RRs", 16,
                              static_cast<quint16>(answers.size()));
 
+  // Setting the different flags with a help function
   quint16 flagsVal = 0;
-  setFlag(&flagsVal, true, 15);
-  if (nxDomain) {
+  setFlag(&flagsVal, true, 15); // True for response
+  if (nxDomain) {               // Flag for unknown domain
     setFlag(&flagsVal, true, 0);
     setFlag(&flagsVal, true, 1);
   }

@@ -1,10 +1,11 @@
 #include "clientwidget.h"
+#include <QtMath>
 
 using namespace NetSim;
 
 ClientWidget::ClientWidget(Client *client, const QString &name, QWidget *parent)
     : QWidget{parent}, m_client{client} {
-  // Erstelle die Widgets
+  // create the widgets
   m_button = new QPushButton(this);
   m_nameLabel = new QLabel(this);
   m_ipLabel = new QLabel(this);
@@ -36,13 +37,15 @@ ClientWidget::ClientWidget(Client *client, const QString &name, QWidget *parent)
                           m_macLabel->geometry().y(), 0, 0);
   m_macLabel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 
-  // Erstelle Layout
+  // create the layout
   m_layout = new QVBoxLayout(this);
   m_layout->addWidget(m_button);
   m_layout->addWidget(m_nameLabel);
   m_layout->addWidget(m_ipLabel);
   m_layout->addWidget(m_macLabel);
-  this->setFixedSize(QSize(256, 156));
+  m_layout->setContentsMargins(QMargins(2, 2, 2, 2));
+  this->setFixedSize(QSize(qFloor(parent->size().height() / 6 + 100),
+                           qFloor(parent->size().height() / 6)));
 
   // Connections
   connect(m_button, &QPushButton::clicked, this,

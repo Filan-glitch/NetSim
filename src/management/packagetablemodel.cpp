@@ -10,6 +10,7 @@ PackageTableModel::PackageTableModel(QList<Package> *packageList,
 QVariant PackageTableModel::headerData(int section, Qt::Orientation orientation,
                                        int role) const {
   if (role == Qt::DisplayRole) {
+    // Setting the header strings
     if (orientation == Qt::Horizontal) {
       switch (section) {
       case 0:
@@ -24,6 +25,7 @@ QVariant PackageTableModel::headerData(int section, Qt::Orientation orientation,
         return tr("Info");
       }
     } else {
+      // Inverting the counting of the entries so it starts from the bottom one
       return QString::number(m_packageList->size() - section);
     }
   }
@@ -49,6 +51,7 @@ QVariant PackageTableModel::data(const QModelIndex &index, int role) const {
     return QVariant();
 
   if (role == Qt::DisplayRole) {
+    // Inverting the counting of the entries so it starts from the bottom one
     const Package package =
         m_packageList->at(m_packageList->size() - index.row() - 1);
 

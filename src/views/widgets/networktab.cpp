@@ -3,7 +3,9 @@
 
 using namespace NetSim;
 
-NetworkTab::NetworkTab(QWidget *parent) : QWidget{parent} {}
+NetworkTab::NetworkTab(QWidget *parent) : QWidget{parent} {
+  this->setContentsMargins(2, 2, 2, 2);
+}
 
 void NetworkTab::addRouter(RouterWidget *router) { m_routers.append(router); }
 
@@ -17,6 +19,8 @@ QList<ServerWidget *> NetworkTab::servers() const { return m_servers; }
 
 QList<ClientWidget *> NetworkTab::clients() const { return m_clients; }
 
+// Overriding the paintEvent function to draw the connections between the
+// widgets
 void NetworkTab::paintEvent(QPaintEvent *event) {
   QWidget::paintEvent(event);
 

@@ -29,14 +29,14 @@ WelcomeWindow::~WelcomeWindow() { delete ui; }
 void WelcomeWindow::startSimulation() {
   SettingsDialog settings(this);
   if (settings.exec() == QDialog::Accepted) {
-    // Schließe das aktuelle Fenster (Startmenü).
+    // Close the current window
     close();
 
-    // Manager initialisieren.
+    // Manager initialisation
     SimulationManager *manager = new SimulationManager(
         settings.clientsAmount(), settings.serversAmount(), settings.domains());
 
-    // Öffne das Fenster für die Simulation.
+    // Open the window for the simulation.
     SimulationWindow *simWindow = new SimulationWindow(manager, this);
     simWindow->show();
   }

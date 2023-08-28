@@ -5,7 +5,7 @@
 
 using namespace NetSim;
 
-void TCPServerHandshakeStrategy::handle(Package package, Host *host) {
+void TCPServerHandshakeStrategy::handle(Package package, Host *host) const {
   Process httpProcess;
   try {
     httpProcess = host->getProcessByName("HTTP");
@@ -14,7 +14,7 @@ void TCPServerHandshakeStrategy::handle(Package package, Host *host) {
                 "Handshake Package";
   }
 
-  httpProcess.getSocket().setDestinationPort(
+  httpProcess.socket().setDestinationPort(
       HeaderUtil::getPortAsPort(package, true));
 
   Package synAckPackage = httpProcess.generateHandShakePackage(
