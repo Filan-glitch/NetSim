@@ -5,12 +5,12 @@
 #include <QList>
 
 //! \file packagedatabase.h
-//! \ingroup NetSimPackageDatabase
+//! \ingroup Management
 //! \brief Contains the PackageDatabase class definition.
 
 namespace NetSim {
 
-//! \defgroup NetSimPackageDatabase NetSim Package Database
+//! \defgroup NetSimPackageDatabase Package Database
 //! \brief Provides utilities for managing a list of `Package` objects.
 
 /**

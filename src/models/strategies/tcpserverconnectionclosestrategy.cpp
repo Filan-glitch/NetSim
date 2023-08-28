@@ -5,7 +5,8 @@
 
 using namespace NetSim;
 
-void TCPServerConnectionCloseStrategy::handle(Package package, Host *host) {
+void TCPServerConnectionCloseStrategy::handle(Package package,
+                                              Host *host) const {
   Process httpProcess;
   try {
     httpProcess = host->getProcessByName("HTTP");
@@ -15,7 +16,7 @@ void TCPServerConnectionCloseStrategy::handle(Package package, Host *host) {
     return;
   }
 
-  httpProcess.getSocket().setDestinationPort(
+  httpProcess.socket().setDestinationPort(
       HeaderUtil::getPortAsPort(package, true));
 
   Package finAckPackage = httpProcess.generateCloseConnectionPackage(

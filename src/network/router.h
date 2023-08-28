@@ -17,7 +17,7 @@ namespace NetSim {
 
 class Host;
 
-//! \defgroup NetSimRouter NetSim Router
+//! \defgroup NetSimRouter Router
 //! \brief Provides functionalities related to routing packets between networks.
 
 /**

@@ -5,7 +5,8 @@
 
 using namespace NetSim;
 
-void NetSim::TCPClientHandshakeStrategy::handle(Package package, Host *host) {
+void NetSim::TCPClientHandshakeStrategy::handle(Package package,
+                                                Host *host) const {
   MACAddress routerMAC = host->hostTable().value(
       HeaderUtil::getIPAddressAsIPAddress(package, true));
   Router *router;

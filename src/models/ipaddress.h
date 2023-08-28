@@ -12,7 +12,7 @@
 
 namespace NetSim {
 
-//! \defgroup NetSimIPAddress NetSim IP Address
+//! \defgroup NetSimIPAddress IP Address
 //! \brief Represents an IP address.
 
 /**

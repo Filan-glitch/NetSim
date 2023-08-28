@@ -44,6 +44,12 @@ SimulationWindow::SimulationWindow(SimulationManager *manager, QWidget *parent)
   m_treeWidget->setHeaderHidden(true);
   this->ui->packageTab->layout()->addWidget(m_treeWidget);
 
+  // StatusBar
+  m_simTimeLabel = new QLabel("00:00:00.0", ui->statusbar);
+  ui->statusbar->setFixedHeight(30);
+  ui->statusbar->addWidget(m_simTimeLabel);
+  ui->statusbar->setSizeGripEnabled(false);
+
   // Connections
   connect(this->ui->actionDocumentation, &QAction::triggered, this,
           &SimulationWindow::openDocumentation);
@@ -51,11 +57,15 @@ SimulationWindow::SimulationWindow(SimulationManager *manager, QWidget *parent)
           &SimulationWindow::updateTreeWidget);
   connect(this->ui->actionAbout_NetSim, &QAction::triggered, this,
           &SimulationWindow::about);
+
+  // Timer
+  startTimer(100);
 }
 
 SimulationWindow::~SimulationWindow() { delete ui; }
 
 void SimulationWindow::keyPressEvent(QKeyEvent *event) {
+  // Adding the feature to close the window by pressing the escape key
   if (event->key() == Qt::Key_Escape) {
     close();
   }
@@ -65,6 +75,7 @@ void SimulationWindow::setupNetwork() {
   // Mainlayout
   auto mainLayout = new QGridLayout(this);
 
+  // Adding the network tab to the tablist
   NetworkTab *networkTab = new NetworkTab(this);
   networkTab->setLayout(mainLayout);
   this->ui->tabWidget->insertTab(0, networkTab, QIcon(":/network.svg"),
@@ -117,6 +128,7 @@ void SimulationWindow::setupNetwork() {
     mainLayout->addWidget(clientWidget, i, 3);
     networkTab->addClient(clientWidget);
   }
+  // Setting the current index, so the window starts right at this tab
   this->ui->tabWidget->setCurrentIndex(0);
 }
 
@@ -132,6 +144,7 @@ void SimulationWindow::updateTreeWidget(const QModelIndex &index) {
   Package package = PackageDatabase::instance()->packageList()->at(
       PackageDatabase::instance()->packageList()->size() - index.row() - 1);
 
+  // Clearing the tree widget
   this->m_treeWidget->clear();
 
   // Mac Header
@@ -494,6 +507,14 @@ void SimulationWindow::updateTreeWidget(const QModelIndex &index) {
 
     this->m_treeWidget->addTopLevelItem(applicationHeader);
   }
+}
+
+void SimulationWindow::timerEvent(QTimerEvent *event) {
+  qDebug() << "Timer triggered.";
+  m_simTimeLabel->setText(
+      QTime::fromString(m_simTimeLabel->text(), "hh:mm:ss.z")
+          .addMSecs(100)
+          .toString("hh:mm:ss.z"));
 }
 
 void SimulationWindow::about() {

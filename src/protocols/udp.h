@@ -4,11 +4,15 @@
 #include "src/models/package.h"
 #include "src/models/port.h"
 #include <QString>
+
 //! \file udp.h
 //! \ingroup NetSimUDP
 //! \brief Contains the UDP class definition.
 
 namespace NetSim {
+
+//! \defgroup NetSimUDP UDP
+//! \brief Provides utilities for working with UDP headers.
 
 /**
  * @class UDP

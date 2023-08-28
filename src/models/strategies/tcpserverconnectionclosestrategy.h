@@ -9,7 +9,7 @@
 
 namespace NetSim {
 
-//! \defgroup NetSimTCPConnectionCloseStrategy NetSim TCPConnectionCloseStrategy
+//! \defgroup NetSimTCPConnectionCloseStrategy TCP Connection Close Strategy
 //! \brief Provides a strategy for handling TCP connection termination in the
 //! network simulation.
 
@@ -29,7 +29,7 @@ public:
    *
    * Establishes a new instance of the TCPConnectionCloseStrategy.
    */
-    TCPServerConnectionCloseStrategy() = default;
+  TCPServerConnectionCloseStrategy() = default;
 
   /**
    * @brief Virtual destructor to ensure correct cleanup for derived classes.
@@ -37,7 +37,7 @@ public:
    * Ensures that derived strategy objects related to TCP connection termination
    * are properly destroyed.
    */
-    virtual ~TCPServerConnectionCloseStrategy() = default;
+  virtual ~TCPServerConnectionCloseStrategy() = default;
 
   /**
    * @brief Handles the TCP connection termination process.
@@ -49,7 +49,7 @@ public:
    * appropriate TCP termination packets (e.g., FIN, FIN-ACK) and route them
    * through the network simulation.
    */
-  void handle(Package package, Host *host) override;
+  void handle(Package package, Host *host) const override;
 };
 
 } // namespace NetSim

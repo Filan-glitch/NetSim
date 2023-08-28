@@ -11,7 +11,7 @@
 
 namespace NetSim {
 
-//! \defgroup NetSimMAC NetSim MAC
+//! \defgroup NetSimMAC MAC
 //! \brief Provides classes and methods to handle MAC headers and their frame.
 
 /**

@@ -9,7 +9,7 @@
 
 namespace NetSim {
 
-//! \defgroup NetSimServer NetSim Server
+//! \defgroup NetSimServer Server
 //! \brief Defines the Server entity in the network simulation environment.
 
 /**

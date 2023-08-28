@@ -9,6 +9,8 @@
 #include <QKeyEvent>
 #include <QMainWindow>
 #include <QTreeWidget>
+#include <QTime>
+#include <QTimer>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -38,6 +40,10 @@ private:
 
   QTreeWidget *m_treeWidget;
 
+  QLabel *m_simTimeLabel;
+
+  QTimer* m_timer;
+
   void setupNetwork();
 
 private slots:
@@ -52,6 +58,10 @@ private slots:
   void routerDialog(RouterWidget *router);
 
   void serverDialog(ServerWidget *server);
+
+  // QObject interface
+  protected:
+  void timerEvent(QTimerEvent *event) override;
 };
 } // namespace NetSim
 

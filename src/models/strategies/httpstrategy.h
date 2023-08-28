@@ -9,7 +9,7 @@
 
 namespace NetSim {
 
-//! \defgroup NetSimHTTPStrategy NetSim HTTPStrategy
+//! \defgroup NetSimHTTPStrategy HTTP Strategy
 //! \brief Provides a strategy for handling HTTP packages
 
 /**
@@ -51,7 +51,7 @@ public:
    * HTTP packages. It interprets the HTTP request, crafts a corresponding
    * response, and dispatches it to the appropriate router.
    */
-  void handle(Package package, Host *host) override;
+  void handle(Package package, Host *host) const override;
 };
 } // namespace NetSim
 

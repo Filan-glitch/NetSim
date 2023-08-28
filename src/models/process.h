@@ -6,12 +6,15 @@
 #include <QString>
 
 //! \file process.h
-//! \ingroup NetSimPackage
+//! \ingroup Management
 //! \brief Contains the Process class definition.
 
 namespace NetSim {
 
 class Host;
+
+//! \defgroup NetSimProcess Process
+//! \brief Represents a network process.
 
 /**
  * @class Process
@@ -30,11 +33,11 @@ public:
   //! Constructor initializing a process with a destination port and a name.
   Process(const Port &destinationPort, const QString &name);
 
-  //! Retrieve the associated socket.
-  Socket &getSocket();
+  //! Retrieves an editable associated socket reference.
+  Socket &socket();
 
-  //! Opens a new socket with a specified destination port.
-  void openSocket(const Port &destinationPort);
+  //! Retrieve the associated socket.
+  Socket socket() const;
 
   //! Generates an HTTP request package.
   Package generateHTTPRequestPackage(const QString &uri,

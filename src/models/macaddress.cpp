@@ -4,6 +4,8 @@ using namespace NetSim;
 
 MACAddress::MACAddress(const QVector<quint8> &address) : m_address(address) {}
 
+// A function that returns the address formatted as a standard string (e.g.
+// "00:00:00:00:00:00")
 QString MACAddress::toString() const {
   return QString::number(static_cast<int>(m_address[0]), 16).toLower() + ":" +
          QString::number(static_cast<int>(m_address[1]), 16).toLower() + ":" +
@@ -15,6 +17,8 @@ QString MACAddress::toString() const {
 
 QVector<quint8> MACAddress::toArray() const { return m_address; }
 
+// A function that returns the address formatted as a quint32 (e.g.
+// 0x65DD1701327F)
 quint64 MACAddress::toInt() const {
   quint64 returnAddress = m_address[0];
   returnAddress = (returnAddress << 8) + m_address[1];
@@ -25,6 +29,7 @@ quint64 MACAddress::toInt() const {
   return returnAddress;
 }
 
+// Using the random generation method by Qt to generate a random address
 MACAddress MACAddress::getRandomAddress() {
   static QRandomGenerator *generator = new QRandomGenerator(2183193);
   QVector<quint8> addressArray;

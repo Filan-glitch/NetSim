@@ -13,6 +13,7 @@ void TCP::initHeader(const IPAddress &srcAdress, const IPAddress &destAdress,
   HeaderAttribute acknowledgementNumber("Acknowledgment Number", 32, ackNumber);
   HeaderAttribute headerLength("Header Length", 4, static_cast<quint8>(5));
 
+  // The four flags can be set
   quint16 flags = 0;
   setFlag(&flags, ack, 4);
   setFlag(&flags, psh, 3);
@@ -30,8 +31,11 @@ void TCP::initHeader(const IPAddress &srcAdress, const IPAddress &destAdress,
                      data.content().toLatin1().constData(),
                      data.content().toLatin1().length()));
 
+  // Urgent Pointer always set to 0
   quint16 urgent_pointer = 0b0000000000000000;
   HeaderAttribute urgentPointer("Urgent Pointer", 16, urgent_pointer);
+
+  // TODO: Options implementation
   HeaderAttribute options("Options", 0, static_cast<quint8>(0));
 
   Header tcpHeader;

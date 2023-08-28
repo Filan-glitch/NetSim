@@ -9,7 +9,7 @@
 
 namespace NetSim {
 
-//! \defgroup NetSimClient NetSim Client
+//! \defgroup NetSimClient Client
 //! \brief Simulates a client in a network
 
 /**

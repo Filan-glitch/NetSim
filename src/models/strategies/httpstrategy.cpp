@@ -5,7 +5,8 @@
 
 using namespace NetSim;
 
-void HTTPStrategy::handle(Package package, Host *host) {
+// Strategies overridden handle function
+void HTTPStrategy::handle(Package package, Host *host) const {
   Process httpProcess;
   try {
     httpProcess = host->getProcessByName("HTTP");
@@ -14,17 +15,22 @@ void HTTPStrategy::handle(Package package, Host *host) {
     return;
   }
 
+  // Generating the response package
   Package httpResponse;
   if (HeaderUtil::getHTTPAttribute(package, "URI") == "/index.html") {
     httpResponse = httpProcess.generateHTTPResponsePackage(
-        HeaderUtil::getIPAddressAsIPAddress(package, true),
-        HeaderUtil::getPortAsPort(package, true), 200);
+        HeaderUtil::getIPAddressAsIPAddress(
+            package, true), // Old src address to new dst address
+        HeaderUtil::getPortAsPort(package, true), // Old port to new port
+        200);                                     // Status code 200 for OK
   } else {
     httpResponse = httpProcess.generateHTTPResponsePackage(
         HeaderUtil::getIPAddressAsIPAddress(package, true),
-        HeaderUtil::getPortAsPort(package, true), 404);
+        HeaderUtil::getPortAsPort(package, true),
+        404); // Status code 404 for Not Found
   }
 
+  // Establishing connection to router
   MACAddress routerMAC = host->hostTable().value(
       HeaderUtil::getIPAddressAsIPAddress(package, true));
   Router *router;
@@ -44,5 +50,6 @@ void HTTPStrategy::handle(Package package, Host *host) {
   qInfo() << "Server: " << host->networkCard().networkAddress().toString()
           << " sends HTTP Response to router: "
           << router->networkCard().physicalAddress().toString();
+  // Sending package to router
   router->receivePackage(httpResponse);
 }

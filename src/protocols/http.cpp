@@ -28,6 +28,7 @@ void HTTP::initHTTPResponse(const QString &version, quint16 messageCode,
                        QString::number(messageCode));
   HeaderAttribute phrase("Phrase", messagePhrase.toLatin1().length() * 8,
                          messagePhrase);
+  // Currently only html is supported
   HeaderAttribute contentType("Content-Type", 72, "text/html");
 
   QList<HeaderAttribute> headerList;

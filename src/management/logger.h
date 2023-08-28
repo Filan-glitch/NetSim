@@ -11,7 +11,7 @@
 
 namespace NetSim {
 
-//! \defgroup NetSimLogger NetSim Logger
+//! \defgroup NetSimLogger Logger
 //! \brief Provides logging utilities for the NetSim project.
 
 /**

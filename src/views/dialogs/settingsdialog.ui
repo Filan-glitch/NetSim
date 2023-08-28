@@ -534,6 +534,9 @@ QGroupBox::title {
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="placeholderText">
+         <string>test1.com</string>
+        </property>
        </widget>
       </item>
       <item row="2" column="0">
@@ -556,6 +559,9 @@ QGroupBox::title {
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="placeholderText">
+         <string>test2.com</string>
         </property>
        </widget>
       </item>
@@ -580,6 +586,9 @@ QGroupBox::title {
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="placeholderText">
+         <string>test3.com</string>
+        </property>
        </widget>
       </item>
       <item row="4" column="0">
@@ -603,6 +612,9 @@ QGroupBox::title {
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="placeholderText">
+         <string>test4.com</string>
+        </property>
        </widget>
       </item>
       <item row="5" column="0">
@@ -625,6 +637,9 @@ QGroupBox::title {
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="placeholderText">
+         <string>test5.com</string>
         </property>
        </widget>
       </item>

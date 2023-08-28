@@ -29,17 +29,19 @@ Process &Host::getProcessByName(const QString &name) {
   throw std::runtime_error("Process not found");
 }
 
+// Important for the processes to have access to the host
 void Host::setHostOfProcesses(Host *host) {
   for (auto &process : m_processTable) {
     process.setHost(host);
   }
 }
 
+// Host always starts with the two standard processes HTTP(80) and DNS(53)
 Host::Host(const NetworkCard &networkCard) : m_networkCard(networkCard) {
   Process http(Port(80), "HTTP");
   Process dns(Port(53), "DNS");
-  addProcess(http.getSocket().sourcePort(), http);
-  addProcess(dns.getSocket().sourcePort(), dns);
+  addProcess(http);
+  addProcess(dns);
 }
 
 Router *Host::getRouterByMACAddress(const MACAddress &destinationAddress) {
@@ -55,8 +57,8 @@ void Host::sendPackage(Package &data, const MACAddress &destinationAddress) {
   m_cables[destinationAddress]->receivePackage(data);
 }
 
-void Host::addProcess(const Port &port, const Process &process) {
-  m_processTable[port] = process;
+void Host::addProcess(const Process &process) {
+  m_processTable[process.socket().sourcePort()] = process;
 }
 
 void Host::addIPAddress(const IPAddress &ipAddress,

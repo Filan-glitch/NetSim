@@ -9,6 +9,9 @@
 
 namespace NetSim {
 
+//! \defgroup NetSimTCPClient TCP Client Handshake Strategy
+//! \brief Provides a strategy for handling TCP client handshake packages.
+
 /**
  * @class TCPClientHandshakeStrategy
  * @ingroup NetSimTCPClient
@@ -41,7 +44,7 @@ public:
    * the connection, fetches the HTTP process from the client's host, and then
    * sends the handshake package to the router.
    */
-  void handle(Package package, Host *host) override;
+  void handle(Package package, Host *host) const override;
 };
 
 } // namespace NetSim

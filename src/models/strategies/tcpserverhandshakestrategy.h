@@ -9,7 +9,7 @@
 
 namespace NetSim {
 
-//! \defgroup NetSimTCPHandshakeStrategy NetSim TCPHandshakeStrategy
+//! \defgroup NetSimTCPHandshakeStrategy TCP Handshake Strategy
 //! \brief Provides a strategy for handling TCP handshakes in the network
 //! simulation.
 
@@ -49,7 +49,7 @@ public:
    * appropriate handshake packets (e.g., SYN, SYN-ACK) and route them through
    * the network simulation.
    */
-  void handle(Package package, Host *host) override;
+  void handle(Package package, Host *host) const override;
 };
 
 } // namespace NetSim

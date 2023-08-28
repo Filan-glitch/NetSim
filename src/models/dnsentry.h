@@ -13,7 +13,7 @@ namespace NetSim {
 //! Enumeration to represent various Resource Record attributes.
 enum RRAttribute { FULL_DATA, NAME, TYPE, CLASS, TTL, DATA_LENGTH, DATA };
 
-//! \defgroup NetSimDNSEntry NetSim DNS Entry
+//! \defgroup NetSimDNSEntry DNS Entry
 //! \brief Represents a DNS Resource Record.
 
 /**

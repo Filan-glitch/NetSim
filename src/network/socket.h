@@ -11,7 +11,7 @@
 
 namespace NetSim {
 
-//! \defgroup NetSimSocket NetSim Socket
+//! \defgroup NetSimSocket Socket
 //! \brief Contains the Socket class and its related classes.
 
 class Port;
