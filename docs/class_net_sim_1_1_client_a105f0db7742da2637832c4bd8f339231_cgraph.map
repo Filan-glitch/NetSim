@@ -84,7 +84,7 @@
 <area shape="poly" id="edge68_Node000026_Node000034" title=" " alt="" coords="419,879,484,902,571,922,618,929,668,931,716,927,763,916,778,909,787,901,797,891,811,882,841,869,843,874,814,886,800,895,791,905,781,914,765,921,717,932,668,936,618,934,570,928,483,907,418,884"/>
 <area shape="rect" id="Node000035" href="$class_net_sim_1_1_header_util.html#a1a81004c0482b89389571227269cf922" title="Extracts the IP Address of the IP Protocol from the given package." alt="" coords="562,1232,745,1275"/>
 <area shape="poly" id="edge53_Node000026_Node000035" title=" " alt="" coords="390,881,402,943,429,1033,450,1083,475,1132,506,1178,544,1218,550,1223,547,1227,540,1222,502,1181,470,1135,445,1085,424,1035,397,944,385,882"/>
-<area shape="rect" id="Node000037" href="$class_net_sim_1_1_header_util.html#a7dd7d004200d5132624b5d0995574916" title=" " alt="" coords="587,1165,719,1208"/>
+<area shape="rect" id="Node000037" href="$class_net_sim_1_1_header_util.html#a7dd7d004200d5132624b5d0995574916" title="Extracts the Port of the TCP Protocol from the given package." alt="" coords="587,1165,719,1208"/>
 <area shape="poly" id="edge56_Node000026_Node000037" title=" " alt="" coords="392,881,408,932,437,1005,458,1045,482,1084,511,1120,544,1151,574,1169,572,1173,540,1155,507,1123,478,1087,453,1047,432,1007,402,934,387,883"/>
 <area shape="rect" id="Node000038" href="$class_net_sim_1_1_package.html#a1905629312fb07a53d7caa7e3e562120" title="Returns the package&#39;s information." alt="" coords="578,829,729,856"/>
 <area shape="poly" id="edge59_Node000026_Node000038" title=" " alt="" coords="489,855,562,849,563,854,490,861"/>

@@ -15,6 +15,7 @@ var searchData=
   ['simulationmanager_12',['SimulationManager',['../class_net_sim_1_1_simulation_manager.html#affa09b09628c220eb0850ce99ccfba6d',1,'NetSim::SimulationManager']]],
   ['size_13',['size',['../class_net_sim_1_1_package.html#af9d3e66a0b597143e7c6c9c62eec0c28',1,'NetSim::Package::size()'],['../class_net_sim_1_1_header.html#af8b6b3ae4e3366231a04344cfc8ae6ce',1,'NetSim::Header::size()'],['../class_net_sim_1_1_header_attribute.html#a34ad38d9ca0c107b309068b1517a30ec',1,'NetSim::HeaderAttribute::size()']]],
   ['socket_14',['Socket',['../class_net_sim_1_1_socket.html#a2c2a71ad9a010699597190e95f40ae82',1,'NetSim::Socket::Socket()=default'],['../class_net_sim_1_1_socket.html#ad4bb6410b87b7b29f49e65fd7e454912',1,'NetSim::Socket::Socket(const Port &amp;sourcePort, const Port &amp;destinationPort)']]],
-  ['sourceport_15',['sourcePort',['../class_net_sim_1_1_socket.html#a86eb4d017b556b523b794c90d8f05e73',1,'NetSim::Socket']]],
-  ['startseq_16',['startSeq',['../class_net_sim_1_1_socket.html#acce927677f0fbdbd067679164e4e1747',1,'NetSim::Socket']]]
+  ['socket_15',['socket',['../class_net_sim_1_1_process.html#a87c3dfaba1ce7fbf6e4a0f1b1ef82eab',1,'NetSim::Process::socket()'],['../class_net_sim_1_1_process.html#a91a72cf4d0ce5d4830324b657d9ce268',1,'NetSim::Process::socket() const']]],
+  ['sourceport_16',['sourcePort',['../class_net_sim_1_1_socket.html#a86eb4d017b556b523b794c90d8f05e73',1,'NetSim::Socket']]],
+  ['startseq_17',['startSeq',['../class_net_sim_1_1_socket.html#acce927677f0fbdbd067679164e4e1747',1,'NetSim::Socket']]]
 ];

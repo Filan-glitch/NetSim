@@ -75,8 +75,8 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p align="center"><a class="anchor" id="md__net_sim_2_r_e_a_d_m_e"></a> </p>
-<p><img src="full_logo.svg" alt="Alt Text" style="pointer-events: none;" width="350" class="inline"/> </p>
-<p><a href="https://app.codacy.com/gh/Filan-glitch/NetSim/dashboard?utm_source=gh&amp;utm_medium=referral&amp;utm_content=&amp;utm_campaign=Badge_grade"><img src="https://app.codacy.com/project/badge/Grade/c040d5aae28c4d82846cc95cce931988" alt="Codacy Badge" class="inline"/></a> <a href="https://github.com/Filan-glitch/NetSim/graphs/contributors"><img src="https://badgen.net/github/contributors/Filan-glitch/NetSim?label=Contributers" alt="Contributers" class="inline"/></a> <a href="https://github.com/Filan-glitch/NetSim/blob/main/LICENSE"><img src="https://badgen.net/github/license/Filan-glitch/NetSim?label=License" alt="License: MIT" class="inline"/></a> <a href="https://saythanks.io/to/Filan-glitch"><img src="https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg" alt="Say Thanks!" style="pointer-events: none;" class="inline"/></a></p>
+<p><img src="assets/full_logo.svg" alt="Alt Text" style="pointer-events: none;" width="350" class="inline"/> </p>
+<p><a href="https://app.codacy.com/gh/Filan-glitch/NetSim/dashboard?utm_source=gh&amp;utm_medium=referral&amp;utm_content=&amp;utm_campaign=Badge_grade"><img src="https://app.codacy.com/project/badge/Grade/c040d5aae28c4d82846cc95cce931988" alt="Codacy Badge" class="inline"/></a> <a href="https://doc.qt.io/qt-6/qmake-manual.html"><img src="https://img.shields.io/badge/Qt-qmake-green.svg" alt="Qt Build" style="pointer-events: none;" class="inline"/></a> <a href="https://wiki.qt.io/Qt_6.5_Release"><img src="https://img.shields.io/badge/Qt-6.5.2-green" alt="Qt Version" class="inline"/></a> <a href="https://github.com/Filan-glitch/NetSim/graphs/contributors"><img src="https://badgen.net/github/contributors/Filan-glitch/NetSim?label=Contributers" alt="Contributers" class="inline"/></a> <a href="https://github.com/Filan-glitch/NetSim/blob/main/LICENSE"><img src="https://badgen.net/github/license/Filan-glitch/NetSim?label=License" alt="License: MIT" class="inline"/></a> <a href="https://saythanks.io/to/Filan-glitch"><img src="https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg" alt="Say Thanks!" style="pointer-events: none;" class="inline"/></a></p>
 <h1><a class="anchor" id="autotoc_md0"></a>
 NetSim - The educational Network Simulation</h1>
 <p>🌐 **Net**work **Sim**ulation is a C++ based project using the Qt framework that represents a simulation of a network. The project aims to model and simulate basic network structures such as hosts, routers, processes, and network layers with their protocols. It provides a visual graphical user interface (GUI) to visualize the network topology and allows interaction with the simulated network components.</p>
@@ -84,13 +84,13 @@ NetSim - The educational Network Simulation</h1>
 Project Features</h2>
 <p>🚀 The Network Simulation project includes the following main features:</p>
 <ol type="1">
-<li><b>Visualization of Network Topology</b>: The project visualizes the network topology in a graphical user interface where hosts, routers, and their connections are represented visually. This provides a clear representation of the simulated network.</li>
+<li><b>Visualization of Network Topology</b>: The project visualizes the network topology in a graphical user interface where hosts, routers, and their connections are represented visually. This provides a clear representation of the simulated network. Furthermore you can look into the packages which traverse the network.</li>
 </ol>
 <ol type="1">
-<li><b>Creation and Configuration of Network Components</b>: It provides functions to add, remove, and configure hosts, routers, and processes within the network. Users can set parameters such as IP addresses, hostnames, port numbers, etc.</li>
+<li><b>Creation and Configuration of Network Components</b>: It provides functions to create a network consisting of clients, routers and servers. You can give a domain to every Server and the DNS Server will automatically add it to its domainresolution table. Every client will be in a local network and every server has its own local network. All clients can execute a HTTP GET Request to any server within the simulation.</li>
 </ol>
 <ol type="1">
-<li><b>Data Packet Simulation</b>: The project enables the simulation of data traffic between network components. Users can send data packets from one host to another and trace the path the packet takes through the network.</li>
+<li><b>Data Packet Simulation</b>: The project enables the simulation of data traffic between network components. Users can send data packets from one host to another and trace the path the packet takes through the network. To learn and analyse different aspects of networking you are able to look into the packages and see how network communication works.</li>
 </ol>
 <ol type="1">
 <li><b>Protocol Support</b>: It implements basic network protocols such as IP (Internet Protocol), TCP (Transmission Control Protocol), and UDP (User Datagram Protocol). This allows the use of different protocols for communication between network components.</li>

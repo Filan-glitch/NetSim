@@ -131,13 +131,17 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:abaaa85103362b4cd47a590e3019ef769"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_net_sim_1_1_host.html#abaaa85103362b4cd47a590e3019ef769">receivePackage</a> (<a class="el" href="class_net_sim_1_1_package.html">Package</a> data)=0</td></tr>
 <tr class="memdesc:abaaa85103362b4cd47a590e3019ef769"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pure virtual function to receive a package. Must be implemented in derived classes.  <br /></td></tr>
 <tr class="separator:abaaa85103362b4cd47a590e3019ef769"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae3413b8cb87413ab9d843ffa591df5e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_net_sim_1_1_host.html#ae3413b8cb87413ab9d843ffa591df5e8">addProcess</a> (const <a class="el" href="class_net_sim_1_1_port.html">Port</a> &amp;port, const <a class="el" href="class_net_sim_1_1_process.html">Process</a> &amp;process)</td></tr>
-<tr class="separator:ae3413b8cb87413ab9d843ffa591df5e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63aa59b1558cc2d90ab48d808f7c8cf5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_net_sim_1_1_host.html#a63aa59b1558cc2d90ab48d808f7c8cf5">addProcess</a> (const <a class="el" href="class_net_sim_1_1_process.html">Process</a> &amp;process)</td></tr>
+<tr class="memdesc:a63aa59b1558cc2d90ab48d808f7c8cf5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a process to the process table.  <br /></td></tr>
+<tr class="separator:a63aa59b1558cc2d90ab48d808f7c8cf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a636538e5493917bfab24a21ed904282f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_net_sim_1_1_host.html#a636538e5493917bfab24a21ed904282f">addIPAddress</a> (const <a class="el" href="class_net_sim_1_1_i_p_address.html">IPAddress</a> &amp;ipAddress, const <a class="el" href="class_net_sim_1_1_m_a_c_address.html">MACAddress</a> &amp;macAddress)</td></tr>
+<tr class="memdesc:a636538e5493917bfab24a21ed904282f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds an IP address to <a class="el" href="class_net_sim_1_1_m_a_c.html" title="A static class that provides methods to handle MAC headers and their Frame Check Sequence (FCS).">MAC</a> address resolution to the ARP table.  <br /></td></tr>
 <tr class="separator:a636538e5493917bfab24a21ed904282f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a13e0fea868740e36fc2d29c5bde5bf7b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_net_sim_1_1_host.html#a13e0fea868740e36fc2d29c5bde5bf7b">addMACAddress</a> (const <a class="el" href="class_net_sim_1_1_m_a_c_address.html">MACAddress</a> &amp;macAddress, <a class="el" href="class_net_sim_1_1_router.html">Router</a> *router)</td></tr>
+<tr class="memdesc:a13e0fea868740e36fc2d29c5bde5bf7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a <a class="el" href="class_net_sim_1_1_m_a_c.html" title="A static class that provides methods to handle MAC headers and their Frame Check Sequence (FCS).">MAC</a> address to router pointer to the cables table.  <br /></td></tr>
 <tr class="separator:a13e0fea868740e36fc2d29c5bde5bf7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5135cf81cca8f72e8b8271097031e5e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_net_sim_1_1_host.html#a5135cf81cca8f72e8b8271097031e5e8">addDomain</a> (const QString &amp;domain, const <a class="el" href="class_net_sim_1_1_i_p_address.html">IPAddress</a> &amp;ipAddress)</td></tr>
+<tr class="memdesc:a5135cf81cca8f72e8b8271097031e5e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a domain to IP address resolution to the <a class="el" href="class_net_sim_1_1_d_n_s.html" title="Provides utility methods to initialize DNS request and response data in packages.">DNS</a> table.  <br /></td></tr>
 <tr class="separator:a5135cf81cca8f72e8b8271097031e5e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2fad1a9971da9ef14685974bfef6e200"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_net_sim_1_1_package_table_model.html">PackageTableModel</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_net_sim_1_1_host.html#a2fad1a9971da9ef14685974bfef6e200">packages</a> () const</td></tr>
 <tr class="memdesc:a2fad1a9971da9ef14685974bfef6e200"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all the packages associated with this host.  <br /></td></tr>
@@ -211,13 +215,13 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_net_sim_1_1_host_a3fc266a66478c2421e8bca3609807e66_cgraph.png" border="0" usemap="#aclass_net_sim_1_1_host_a3fc266a66478c2421e8bca3609807e66_cgraph" alt=""/></div>
 <map name="aclass_net_sim_1_1_host_a3fc266a66478c2421e8bca3609807e66_cgraph" id="aclass_net_sim_1_1_host_a3fc266a66478c2421e8bca3609807e66_cgraph">
-<area shape="rect" title="Constructor that initializes a host with a network card." alt="" coords="5,56,140,83"/>
-<area shape="rect" href="class_net_sim_1_1_host.html#ae3413b8cb87413ab9d843ffa591df5e8" title=" " alt="" coords="193,5,370,32"/>
-<area shape="poly" title=" " alt="" coords="130,53,209,33,210,39,131,58"/>
-<area shape="rect" href="class_net_sim_1_1_process.html#aaa3c579c8e8c1c53c9aa64a8f6e6686f" title="Retrieve the associated socket." alt="" coords="188,56,375,83"/>
-<area shape="poly" title=" " alt="" coords="140,67,173,67,173,72,140,72"/>
-<area shape="rect" href="class_net_sim_1_1_socket.html#a86eb4d017b556b523b794c90d8f05e73" title="Simple Getter for source port." alt="" coords="189,107,374,133"/>
-<area shape="poly" title=" " alt="" coords="131,81,210,100,209,105,130,86"/>
+<area shape="rect" title="Constructor that initializes a host with a network card." alt="" coords="5,31,140,57"/>
+<area shape="rect" href="class_net_sim_1_1_host.html#a63aa59b1558cc2d90ab48d808f7c8cf5" title="Adds a process to the process table." alt="" coords="188,31,364,57"/>
+<area shape="poly" title=" " alt="" coords="140,41,173,41,173,47,140,47"/>
+<area shape="rect" href="class_net_sim_1_1_process.html#a87c3dfaba1ce7fbf6e4a0f1b1ef82eab" title="Retrieves an editable associated socket reference." alt="" coords="421,5,588,32"/>
+<area shape="poly" title=" " alt="" coords="364,32,405,27,406,32,365,37"/>
+<area shape="rect" href="class_net_sim_1_1_socket.html#a86eb4d017b556b523b794c90d8f05e73" title="Simple Getter for source port." alt="" coords="412,56,596,83"/>
+<area shape="poly" title=" " alt="" coords="365,51,397,55,397,60,364,56"/>
 </map>
 </div>
 
@@ -249,12 +253,21 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Adds a domain to IP address resolution to the <a class="el" href="class_net_sim_1_1_d_n_s.html" title="Provides utility methods to initialize DNS request and response data in packages.">DNS</a> table. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">domain</td><td>The domain to add. </td></tr>
+    <tr><td class="paramname">ipAddress</td><td>The IP address to add. </td></tr>
+  </table>
+  </dd>
+</dl>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_net_sim_1_1_host_a5135cf81cca8f72e8b8271097031e5e8_icgraph.png" border="0" usemap="#aclass_net_sim_1_1_host_a5135cf81cca8f72e8b8271097031e5e8_icgraph" alt=""/></div>
 <map name="aclass_net_sim_1_1_host_a5135cf81cca8f72e8b8271097031e5e8_icgraph" id="aclass_net_sim_1_1_host_a5135cf81cca8f72e8b8271097031e5e8_icgraph">
-<area shape="rect" title=" " alt="" coords="258,5,430,32"/>
+<area shape="rect" title="Adds a domain to IP address resolution to the DNS table." alt="" coords="258,5,430,32"/>
 <area shape="rect" href="class_net_sim_1_1_client.html#af4df81d803402bc2d24e1bb38581f266" title="Receives a package and processes based on its type." alt="" coords="5,5,210,32"/>
 <area shape="poly" title=" " alt="" coords="243,21,210,21,210,16,243,16"/>
 </map>
@@ -288,6 +301,15 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>Adds an IP address to <a class="el" href="class_net_sim_1_1_m_a_c.html" title="A static class that provides methods to handle MAC headers and their Frame Check Sequence (FCS).">MAC</a> address resolution to the ARP table. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ipAddress</td><td>The IP address to add. </td></tr>
+    <tr><td class="paramname">macAddress</td><td>The <a class="el" href="class_net_sim_1_1_m_a_c.html" title="A static class that provides methods to handle MAC headers and their Frame Check Sequence (FCS).">MAC</a> address to add. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a13e0fea868740e36fc2d29c5bde5bf7b" name="a13e0fea868740e36fc2d29c5bde5bf7b"></a>
@@ -316,10 +338,19 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
+<p>Adds a <a class="el" href="class_net_sim_1_1_m_a_c.html" title="A static class that provides methods to handle MAC headers and their Frame Check Sequence (FCS).">MAC</a> address to router pointer to the cables table. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">macAddress</td><td>The <a class="el" href="class_net_sim_1_1_m_a_c.html" title="A static class that provides methods to handle MAC headers and their Frame Check Sequence (FCS).">MAC</a> address to add. </td></tr>
+    <tr><td class="paramname">router</td><td>The router to add. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
-<a id="ae3413b8cb87413ab9d843ffa591df5e8" name="ae3413b8cb87413ab9d843ffa591df5e8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae3413b8cb87413ab9d843ffa591df5e8">&#9670;&#160;</a></span>addProcess()</h2>
+<a id="a63aa59b1558cc2d90ab48d808f7c8cf5" name="a63aa59b1558cc2d90ab48d808f7c8cf5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63aa59b1558cc2d90ab48d808f7c8cf5">&#9670;&#160;</a></span>addProcess()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -327,28 +358,38 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="memname">void Host::addProcess </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="class_net_sim_1_1_port.html">Port</a> &amp;&#160;</td>
-          <td class="paramname"><em>port</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">const <a class="el" href="class_net_sim_1_1_process.html">Process</a> &amp;&#160;</td>
-          <td class="paramname"><em>process</em>&#160;</td>
-        </tr>
-        <tr>
+          <td class="paramname"><em>process</em></td><td>)</td>
           <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Adds a process to the process table. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">process</td><td>The process to add. </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_net_sim_1_1_host_a63aa59b1558cc2d90ab48d808f7c8cf5_cgraph.png" border="0" usemap="#aclass_net_sim_1_1_host_a63aa59b1558cc2d90ab48d808f7c8cf5_cgraph" alt=""/></div>
+<map name="aclass_net_sim_1_1_host_a63aa59b1558cc2d90ab48d808f7c8cf5_cgraph" id="aclass_net_sim_1_1_host_a63aa59b1558cc2d90ab48d808f7c8cf5_cgraph">
+<area shape="rect" title="Adds a process to the process table." alt="" coords="5,31,182,57"/>
+<area shape="rect" href="class_net_sim_1_1_process.html#a87c3dfaba1ce7fbf6e4a0f1b1ef82eab" title="Retrieves an editable associated socket reference." alt="" coords="238,5,406,32"/>
+<area shape="poly" title=" " alt="" coords="182,32,223,27,224,32,182,37"/>
+<area shape="rect" href="class_net_sim_1_1_socket.html#a86eb4d017b556b523b794c90d8f05e73" title="Simple Getter for source port." alt="" coords="230,56,414,83"/>
+<area shape="poly" title=" " alt="" coords="182,51,215,55,214,60,182,56"/>
+</map>
+</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_net_sim_1_1_host_ae3413b8cb87413ab9d843ffa591df5e8_icgraph.png" border="0" usemap="#aclass_net_sim_1_1_host_ae3413b8cb87413ab9d843ffa591df5e8_icgraph" alt=""/></div>
-<map name="aclass_net_sim_1_1_host_ae3413b8cb87413ab9d843ffa591df5e8_icgraph" id="aclass_net_sim_1_1_host_ae3413b8cb87413ab9d843ffa591df5e8_icgraph">
-<area shape="rect" title=" " alt="" coords="188,5,364,32"/>
+<div class="center"><img src="class_net_sim_1_1_host_a63aa59b1558cc2d90ab48d808f7c8cf5_icgraph.png" border="0" usemap="#aclass_net_sim_1_1_host_a63aa59b1558cc2d90ab48d808f7c8cf5_icgraph" alt=""/></div>
+<map name="aclass_net_sim_1_1_host_a63aa59b1558cc2d90ab48d808f7c8cf5_icgraph" id="aclass_net_sim_1_1_host_a63aa59b1558cc2d90ab48d808f7c8cf5_icgraph">
+<area shape="rect" title="Adds a process to the process table." alt="" coords="188,5,364,32"/>
 <area shape="rect" href="class_net_sim_1_1_host.html#a3fc266a66478c2421e8bca3609807e66" title="Constructor that initializes a host with a network card." alt="" coords="5,5,140,32"/>
 <area shape="poly" title=" " alt="" coords="173,21,140,21,140,16,173,16"/>
 </map>
@@ -416,7 +457,7 @@ Here is the caller graph for this function:</div>
 <area shape="rect" href="class_net_sim_1_1_process.html#a3b5d9472d264b28f691ed1089cfbc108" title="Generates a DNS response package." alt="" coords="239,101,417,144"/>
 <area shape="poly" title=" " alt="" coords="494,77,404,103,402,98,492,72"/>
 <area shape="poly" title=" " alt="" coords="223,45,191,41,192,36,224,40"/>
-<area shape="rect" href="class_net_sim_1_1_d_n_s_strategy.html#a22bb286b34362134e94ca34ab5dc9db5" title="Handles the DNS package." alt="" coords="24,101,172,144"/>
+<area shape="rect" href="class_net_sim_1_1_d_n_s_strategy.html#afe76cd4a35e303cc84afa6e4b17db3bc" title="Handles the DNS package." alt="" coords="24,101,172,144"/>
 <area shape="poly" title=" " alt="" coords="224,125,173,125,173,120,224,120"/>
 </map>
 </div>
@@ -472,17 +513,17 @@ Here is the caller graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="329,280,283,236,225,196,201,184,203,179,228,191,286,232,333,276"/>
 <area shape="rect" href="class_net_sim_1_1_client.html#a105f0db7742da2637832c4bd8f339231" title="Sends an HTTP request to the specified IP address and URI." alt="" coords="5,205,227,232"/>
 <area shape="poly" title=" " alt="" coords="309,285,226,246,188,235,189,230,228,242,311,280"/>
-<area shape="rect" href="class_net_sim_1_1_d_n_s_strategy.html#a22bb286b34362134e94ca34ab5dc9db5" title="Handles the DNS package." alt="" coords="42,256,190,299"/>
+<area shape="rect" href="class_net_sim_1_1_d_n_s_strategy.html#afe76cd4a35e303cc84afa6e4b17db3bc" title="Handles the DNS package." alt="" coords="42,256,190,299"/>
 <area shape="poly" title=" " alt="" coords="259,300,190,290,191,285,260,294"/>
-<area shape="rect" href="class_net_sim_1_1_h_t_t_p_strategy.html#adb92bbadb9b607469563ccc268019cea" title="Manages the HTTP package." alt="" coords="39,323,193,365"/>
+<area shape="rect" href="class_net_sim_1_1_h_t_t_p_strategy.html#adf481a1d5af1d04cb550e321f4fadcdc" title="Manages the HTTP package." alt="" coords="39,323,193,365"/>
 <area shape="poly" title=" " alt="" coords="260,327,193,336,193,331,259,322"/>
-<area shape="rect" href="class_net_sim_1_1_t_c_p_client_connection_close_strategy.html#a8888ad2705a7a65cc193f6cbe9b61fdd" title="Handles the package to close the connection." alt="" coords="18,389,214,432"/>
+<area shape="rect" href="class_net_sim_1_1_t_c_p_client_connection_close_strategy.html#a994b5faced691901d33ff936e5c89450" title="Handles the package to close the connection." alt="" coords="18,389,214,432"/>
 <area shape="poly" title=" " alt="" coords="309,342,228,380,196,391,194,386,226,375,307,337"/>
-<area shape="rect" href="class_net_sim_1_1_t_c_p_client_handshake_strategy.html#a7c2a4afd050131192f748e5459bda178" title="Handles the package during the handshake process." alt="" coords="18,456,214,499"/>
+<area shape="rect" href="class_net_sim_1_1_t_c_p_client_handshake_strategy.html#af41488645090c3038dd1bcf017fe53a3" title="Handles the package during the handshake process." alt="" coords="18,456,214,499"/>
 <area shape="poly" title=" " alt="" coords="337,345,290,397,260,424,228,446,205,458,203,453,225,442,257,419,286,393,333,342"/>
-<area shape="rect" href="class_net_sim_1_1_t_c_p_server_connection_close_strategy.html#a51537048bc6b2af2260e534f143759a1" title="Handles the TCP connection termination process." alt="" coords="17,523,215,565"/>
+<area shape="rect" href="class_net_sim_1_1_t_c_p_server_connection_close_strategy.html#a34bface2bea5f7b97bcf6583fae06997" title="Handles the TCP connection termination process." alt="" coords="17,523,215,565"/>
 <area shape="poly" title=" " alt="" coords="348,347,329,385,303,430,269,475,228,513,209,524,206,520,225,509,265,471,298,427,325,383,343,344"/>
-<area shape="rect" href="class_net_sim_1_1_t_c_p_server_handshake_strategy.html#adbff518c136872ec5ddcdeba8a989006" title="Handles the TCP handshake process." alt="" coords="17,589,215,632"/>
+<area shape="rect" href="class_net_sim_1_1_t_c_p_server_handshake_strategy.html#a0d5ecb00d5d8d659f97d1ae4e0f8d098" title="Handles the TCP handshake process." alt="" coords="17,589,215,632"/>
 <area shape="poly" title=" " alt="" coords="354,347,339,399,313,461,277,525,254,554,228,579,211,591,208,587,225,575,250,550,273,522,309,459,334,397,349,346"/>
 </map>
 </div>
@@ -538,17 +579,17 @@ Here is the caller graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="332,281,284,237,225,196,201,184,203,179,228,191,287,233,335,277"/>
 <area shape="rect" href="class_net_sim_1_1_client.html#a105f0db7742da2637832c4bd8f339231" title="Sends an HTTP request to the specified IP address and URI." alt="" coords="5,205,227,232"/>
 <area shape="poly" title=" " alt="" coords="310,284,226,247,187,235,189,230,228,241,312,279"/>
-<area shape="rect" href="class_net_sim_1_1_d_n_s_strategy.html#a22bb286b34362134e94ca34ab5dc9db5" title="Handles the DNS package." alt="" coords="42,256,190,299"/>
+<area shape="rect" href="class_net_sim_1_1_d_n_s_strategy.html#afe76cd4a35e303cc84afa6e4b17db3bc" title="Handles the DNS package." alt="" coords="42,256,190,299"/>
 <area shape="poly" title=" " alt="" coords="260,299,190,290,191,285,260,294"/>
-<area shape="rect" href="class_net_sim_1_1_h_t_t_p_strategy.html#adb92bbadb9b607469563ccc268019cea" title="Manages the HTTP package." alt="" coords="39,323,193,365"/>
+<area shape="rect" href="class_net_sim_1_1_h_t_t_p_strategy.html#adf481a1d5af1d04cb550e321f4fadcdc" title="Manages the HTTP package." alt="" coords="39,323,193,365"/>
 <area shape="poly" title=" " alt="" coords="260,327,194,336,193,331,259,322"/>
-<area shape="rect" href="class_net_sim_1_1_t_c_p_client_connection_close_strategy.html#a8888ad2705a7a65cc193f6cbe9b61fdd" title="Handles the package to close the connection." alt="" coords="18,389,214,432"/>
+<area shape="rect" href="class_net_sim_1_1_t_c_p_client_connection_close_strategy.html#a994b5faced691901d33ff936e5c89450" title="Handles the package to close the connection." alt="" coords="18,389,214,432"/>
 <area shape="poly" title=" " alt="" coords="311,342,228,380,196,391,194,386,226,375,309,337"/>
-<area shape="rect" href="class_net_sim_1_1_t_c_p_client_handshake_strategy.html#a7c2a4afd050131192f748e5459bda178" title="Handles the package during the handshake process." alt="" coords="18,456,214,499"/>
+<area shape="rect" href="class_net_sim_1_1_t_c_p_client_handshake_strategy.html#af41488645090c3038dd1bcf017fe53a3" title="Handles the package during the handshake process." alt="" coords="18,456,214,499"/>
 <area shape="poly" title=" " alt="" coords="339,345,291,397,261,424,228,446,204,458,202,453,225,442,258,419,287,393,335,342"/>
-<area shape="rect" href="class_net_sim_1_1_t_c_p_server_connection_close_strategy.html#a51537048bc6b2af2260e534f143759a1" title="Handles the TCP connection termination process." alt="" coords="17,523,215,565"/>
+<area shape="rect" href="class_net_sim_1_1_t_c_p_server_connection_close_strategy.html#a34bface2bea5f7b97bcf6583fae06997" title="Handles the TCP connection termination process." alt="" coords="17,523,215,565"/>
 <area shape="poly" title=" " alt="" coords="351,347,331,385,304,430,270,475,228,513,209,524,206,520,225,509,266,471,300,427,326,383,346,344"/>
-<area shape="rect" href="class_net_sim_1_1_t_c_p_server_handshake_strategy.html#adbff518c136872ec5ddcdeba8a989006" title="Handles the TCP handshake process." alt="" coords="17,589,215,632"/>
+<area shape="rect" href="class_net_sim_1_1_t_c_p_server_handshake_strategy.html#a0d5ecb00d5d8d659f97d1ae4e0f8d098" title="Handles the TCP handshake process." alt="" coords="17,589,215,632"/>
 <area shape="poly" title=" " alt="" coords="357,347,341,399,315,461,278,525,255,554,228,579,211,591,208,586,225,575,251,550,273,522,310,459,336,397,352,346"/>
 </map>
 </div>
@@ -593,27 +634,27 @@ Here is the caller graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="486,459,453,458,275,458,227,459,227,453,275,453,453,453,486,453"/>
 <area shape="rect" href="class_net_sim_1_1_process.html#acbcb4e36dc486a60d0863853e5245503" title="Generates a TCP connection close package." alt="" coords="275,65,453,107"/>
 <area shape="poly" title=" " alt="" coords="575,432,564,371,541,290,525,247,505,204,480,164,451,128,427,110,431,106,455,124,485,161,509,202,530,245,546,288,569,369,580,431"/>
-<area shape="rect" href="class_net_sim_1_1_t_c_p_client_connection_close_strategy.html#a8888ad2705a7a65cc193f6cbe9b61fdd" title="Handles the package to close the connection." alt="" coords="18,82,214,125"/>
+<area shape="rect" href="class_net_sim_1_1_t_c_p_client_connection_close_strategy.html#a994b5faced691901d33ff936e5c89450" title="Handles the package to close the connection." alt="" coords="18,82,214,125"/>
 <area shape="poly" title=" " alt="" coords="574,432,560,380,537,315,501,248,478,218,451,192,411,171,351,152,213,121,215,116,353,146,413,166,455,188,482,215,506,246,542,313,566,379,579,431"/>
-<area shape="rect" href="class_net_sim_1_1_t_c_p_server_connection_close_strategy.html#a51537048bc6b2af2260e534f143759a1" title="Handles the TCP connection termination process." alt="" coords="17,157,215,199"/>
+<area shape="rect" href="class_net_sim_1_1_t_c_p_server_connection_close_strategy.html#a34bface2bea5f7b97bcf6583fae06997" title="Handles the TCP connection termination process." alt="" coords="17,157,215,199"/>
 <area shape="poly" title=" " alt="" coords="571,433,556,389,532,336,497,282,476,259,452,239,396,209,335,190,273,180,215,176,216,171,274,175,336,185,398,204,454,234,479,255,501,279,536,333,561,387,576,431"/>
 <area shape="rect" href="class_net_sim_1_1_process.html#a5665020fda51a0adb760050aa6c84938" title="Generates a DNS request package." alt="" coords="275,283,453,326"/>
 <area shape="poly" title=" " alt="" coords="559,436,512,388,483,363,452,340,430,329,433,324,454,336,486,358,516,384,563,433"/>
 <area shape="rect" href="class_net_sim_1_1_process.html#a3b5d9472d264b28f691ed1089cfbc108" title="Generates a DNS response package." alt="" coords="275,585,453,627"/>
 <area shape="poly" title=" " alt="" coords="559,485,512,526,454,568,421,586,418,582,452,564,509,522,555,481"/>
-<area shape="rect" href="class_net_sim_1_1_d_n_s_strategy.html#a22bb286b34362134e94ca34ab5dc9db5" title="Handles the DNS package." alt="" coords="42,555,190,598"/>
+<area shape="rect" href="class_net_sim_1_1_d_n_s_strategy.html#afe76cd4a35e303cc84afa6e4b17db3bc" title="Handles the DNS package." alt="" coords="42,555,190,598"/>
 <area shape="poly" title=" " alt="" coords="547,483,503,505,454,524,385,543,315,557,191,573,190,568,314,552,384,538,452,519,501,500,544,478"/>
 <area shape="rect" href="class_net_sim_1_1_process.html#a0c345e6e072f6ab65ff28cf47b970762" title="Generates a TCP handshake package." alt="" coords="275,702,453,745"/>
 <area shape="poly" title=" " alt="" coords="575,487,558,530,532,582,498,637,455,685,428,704,425,699,451,681,493,633,527,580,553,528,570,485"/>
-<area shape="rect" href="class_net_sim_1_1_t_c_p_client_handshake_strategy.html#a7c2a4afd050131192f748e5459bda178" title="Handles the package during the handshake process." alt="" coords="18,655,214,698"/>
+<area shape="rect" href="class_net_sim_1_1_t_c_p_client_handshake_strategy.html#af41488645090c3038dd1bcf017fe53a3" title="Handles the package during the handshake process." alt="" coords="18,655,214,698"/>
 <area shape="poly" title=" " alt="" coords="573,488,556,524,530,566,496,608,454,641,396,667,334,682,271,688,214,689,214,683,271,683,333,677,394,662,452,637,493,604,526,563,551,521,568,485"/>
-<area shape="rect" href="class_net_sim_1_1_t_c_p_server_handshake_strategy.html#adbff518c136872ec5ddcdeba8a989006" title="Handles the TCP handshake process." alt="" coords="17,747,215,790"/>
+<area shape="rect" href="class_net_sim_1_1_t_c_p_server_handshake_strategy.html#a0d5ecb00d5d8d659f97d1ae4e0f8d098" title="Handles the TCP handshake process." alt="" coords="17,747,215,790"/>
 <area shape="poly" title=" " alt="" coords="581,488,572,547,550,622,534,661,513,698,487,731,455,759,427,775,397,786,334,798,270,799,212,793,212,788,270,794,333,793,395,781,424,770,451,754,483,727,508,695,529,659,545,620,567,546,576,487"/>
 <area shape="rect" href="class_net_sim_1_1_process.html#aff889617a4aa42733795513c264f0c4c" title="Generates an HTTP request package." alt="" coords="275,467,453,510"/>
 <area shape="poly" title=" " alt="" coords="487,475,454,479,453,474,486,469"/>
 <area shape="rect" href="class_net_sim_1_1_process.html#ace24c765fbebd11d9f0e2a47824e9e5a" title="Generates an HTTP response package." alt="" coords="275,870,453,913"/>
 <area shape="poly" title=" " alt="" coords="582,488,574,559,553,656,537,708,516,759,488,809,455,853,432,872,428,867,451,849,484,806,511,757,532,706,548,654,569,558,577,487"/>
-<area shape="rect" href="class_net_sim_1_1_h_t_t_p_strategy.html#adb92bbadb9b607469563ccc268019cea" title="Manages the HTTP package." alt="" coords="39,841,193,883"/>
+<area shape="rect" href="class_net_sim_1_1_h_t_t_p_strategy.html#adf481a1d5af1d04cb550e321f4fadcdc" title="Manages the HTTP package." alt="" coords="39,841,193,883"/>
 <area shape="poly" title=" " alt="" coords="583,488,574,554,554,640,538,686,516,730,489,770,455,805,435,817,409,827,342,842,265,853,193,860,193,855,265,848,341,837,408,822,433,812,451,801,485,767,512,727,533,684,549,639,569,553,577,487"/>
 <area shape="poly" title=" " alt="" coords="260,66,203,54,204,49,261,61"/>
 <area shape="poly" title=" " alt="" coords="260,96,214,99,214,94,260,90"/>
@@ -667,27 +708,27 @@ Here is the caller graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="517,529,400,521,274,507,174,488,175,482,275,502,401,515,517,523"/>
 <area shape="rect" href="class_net_sim_1_1_process.html#acbcb4e36dc486a60d0863853e5245503" title="Generates a TCP connection close package." alt="" coords="290,90,469,132"/>
 <area shape="poly" title=" " alt="" coords="615,502,605,432,583,339,566,289,544,240,516,194,482,153,458,135,461,131,486,149,520,191,548,238,571,288,588,338,611,431,621,501"/>
-<area shape="rect" href="class_net_sim_1_1_t_c_p_client_connection_close_strategy.html#a8888ad2705a7a65cc193f6cbe9b61fdd" title="Handles the package to close the connection." alt="" coords="18,90,214,132"/>
+<area shape="rect" href="class_net_sim_1_1_t_c_p_client_connection_close_strategy.html#a994b5faced691901d33ff936e5c89450" title="Handles the package to close the connection." alt="" coords="18,90,214,132"/>
 <area shape="poly" title=" " alt="" coords="614,502,597,405,569,276,551,212,530,154,507,109,482,80,463,71,436,66,366,67,286,77,210,92,209,87,285,72,366,62,437,61,465,66,486,76,512,106,535,152,556,210,574,275,602,404,619,501"/>
-<area shape="rect" href="class_net_sim_1_1_t_c_p_server_connection_close_strategy.html#a51537048bc6b2af2260e534f143759a1" title="Handles the TCP connection termination process." alt="" coords="17,156,215,199"/>
+<area shape="rect" href="class_net_sim_1_1_t_c_p_server_connection_close_strategy.html#a34bface2bea5f7b97bcf6583fae06997" title="Handles the TCP connection termination process." alt="" coords="17,156,215,199"/>
 <area shape="poly" title=" " alt="" coords="616,502,607,436,585,352,568,308,546,266,517,228,482,197,452,179,419,167,385,158,350,153,279,152,214,158,214,153,279,146,350,147,386,153,421,161,454,175,486,193,521,225,550,263,573,306,590,350,612,435,621,501"/>
 <area shape="rect" href="class_net_sim_1_1_process.html#a5665020fda51a0adb760050aa6c84938" title="Generates a DNS request package." alt="" coords="290,207,469,250"/>
 <area shape="poly" title=" " alt="" coords="611,503,594,454,568,392,531,327,508,297,482,270,455,253,458,248,486,266,512,294,535,324,573,389,599,452,616,502"/>
 <area shape="rect" href="class_net_sim_1_1_process.html#a3b5d9472d264b28f691ed1089cfbc108" title="Generates a DNS response package." alt="" coords="290,567,469,610"/>
 <area shape="poly" title=" " alt="" coords="550,550,470,569,468,564,549,545"/>
-<area shape="rect" href="class_net_sim_1_1_d_n_s_strategy.html#a22bb286b34362134e94ca34ab5dc9db5" title="Handles the DNS package." alt="" coords="42,567,190,610"/>
+<area shape="rect" href="class_net_sim_1_1_d_n_s_strategy.html#afe76cd4a35e303cc84afa6e4b17db3bc" title="Handles the DNS package." alt="" coords="42,567,190,610"/>
 <area shape="poly" title=" " alt="" coords="597,555,548,593,517,611,485,624,446,633,406,638,326,638,251,627,187,613,188,608,252,622,327,632,406,633,445,628,483,619,515,606,545,589,594,551"/>
 <area shape="rect" href="class_net_sim_1_1_process.html#a0c345e6e072f6ab65ff28cf47b970762" title="Generates a TCP handshake package." alt="" coords="290,735,469,778"/>
 <area shape="poly" title=" " alt="" coords="609,558,562,636,527,680,486,719,454,737,452,732,482,714,523,677,557,633,605,555"/>
-<area shape="rect" href="class_net_sim_1_1_t_c_p_client_handshake_strategy.html#a7c2a4afd050131192f748e5459bda178" title="Handles the package during the handshake process." alt="" coords="18,672,214,715"/>
+<area shape="rect" href="class_net_sim_1_1_t_c_p_client_handshake_strategy.html#af41488645090c3038dd1bcf017fe53a3" title="Handles the package during the handshake process." alt="" coords="18,672,214,715"/>
 <area shape="poly" title=" " alt="" coords="601,556,552,603,520,626,485,646,417,669,346,685,277,694,214,697,214,692,276,688,345,680,416,664,483,641,517,622,548,599,597,552"/>
-<area shape="rect" href="class_net_sim_1_1_t_c_p_server_handshake_strategy.html#adbff518c136872ec5ddcdeba8a989006" title="Handles the TCP handshake process." alt="" coords="17,739,215,782"/>
+<area shape="rect" href="class_net_sim_1_1_t_c_p_server_handshake_strategy.html#a0d5ecb00d5d8d659f97d1ae4e0f8d098" title="Handles the TCP handshake process." alt="" coords="17,739,215,782"/>
 <area shape="poly" title=" " alt="" coords="618,558,605,611,580,676,562,710,541,741,515,769,485,792,446,810,404,820,361,824,318,822,236,806,168,785,170,780,237,801,318,816,361,818,403,815,444,805,483,787,512,765,537,738,558,707,575,674,599,609,613,557"/>
 <area shape="rect" href="class_net_sim_1_1_process.html#aff889617a4aa42733795513c264f0c4c" title="Generates an HTTP request package." alt="" coords="290,450,469,492"/>
 <area shape="poly" title=" " alt="" coords="549,515,468,495,470,490,550,510"/>
 <area shape="rect" href="class_net_sim_1_1_process.html#ace24c765fbebd11d9f0e2a47824e9e5a" title="Generates an HTTP response package." alt="" coords="290,852,469,895"/>
 <area shape="poly" title=" " alt="" coords="618,559,604,616,579,690,540,767,515,803,486,836,459,854,456,850,482,832,511,800,535,764,574,688,599,614,613,557"/>
-<area shape="rect" href="class_net_sim_1_1_h_t_t_p_strategy.html#adb92bbadb9b607469563ccc268019cea" title="Manages the HTTP package." alt="" coords="39,852,193,895"/>
+<area shape="rect" href="class_net_sim_1_1_h_t_t_p_strategy.html#adf481a1d5af1d04cb550e321f4fadcdc" title="Manages the HTTP package." alt="" coords="39,852,193,895"/>
 <area shape="poly" title=" " alt="" coords="623,558,617,632,610,679,598,730,581,781,557,829,525,873,486,909,446,930,404,941,360,944,315,941,231,923,163,898,165,893,233,918,316,936,360,939,403,936,445,925,482,905,521,870,552,827,576,779,593,728,605,678,612,631,618,558"/>
 <area shape="rect" href="class_net_sim_1_1_router.html#ae779e7a08d6bb9182b66c5f754c9179f" title="Receives a package and forwards it accordingly." alt="" coords="275,399,484,426"/>
 <area shape="poly" title=" " alt="" coords="591,509,542,474,483,440,451,429,453,424,485,435,545,469,595,505"/>
@@ -834,17 +875,17 @@ Here is the caller graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="352,289,296,242,262,217,225,196,199,184,201,179,228,191,265,213,299,238,355,285"/>
 <area shape="rect" href="class_net_sim_1_1_client.html#a105f0db7742da2637832c4bd8f339231" title="Sends an HTTP request to the specified IP address and URI." alt="" coords="5,205,227,232"/>
 <area shape="poly" title=" " alt="" coords="337,293,284,269,226,247,185,235,187,230,228,241,287,264,339,288"/>
-<area shape="rect" href="class_net_sim_1_1_d_n_s_strategy.html#a22bb286b34362134e94ca34ab5dc9db5" title="Handles the DNS package." alt="" coords="42,256,190,299"/>
+<area shape="rect" href="class_net_sim_1_1_d_n_s_strategy.html#afe76cd4a35e303cc84afa6e4b17db3bc" title="Handles the DNS package." alt="" coords="42,256,190,299"/>
 <area shape="poly" title=" " alt="" coords="259,298,190,289,191,284,260,293"/>
-<area shape="rect" href="class_net_sim_1_1_h_t_t_p_strategy.html#adb92bbadb9b607469563ccc268019cea" title="Manages the HTTP package." alt="" coords="39,323,193,365"/>
+<area shape="rect" href="class_net_sim_1_1_h_t_t_p_strategy.html#adf481a1d5af1d04cb550e321f4fadcdc" title="Manages the HTTP package." alt="" coords="39,323,193,365"/>
 <area shape="poly" title=" " alt="" coords="260,328,193,337,193,332,260,323"/>
-<area shape="rect" href="class_net_sim_1_1_t_c_p_client_connection_close_strategy.html#a8888ad2705a7a65cc193f6cbe9b61fdd" title="Handles the package to close the connection." alt="" coords="18,389,214,432"/>
+<area shape="rect" href="class_net_sim_1_1_t_c_p_client_connection_close_strategy.html#a994b5faced691901d33ff936e5c89450" title="Handles the package to close the connection." alt="" coords="18,389,214,432"/>
 <area shape="poly" title=" " alt="" coords="338,333,228,380,194,391,193,386,226,375,335,328"/>
-<area shape="rect" href="class_net_sim_1_1_t_c_p_client_handshake_strategy.html#a7c2a4afd050131192f748e5459bda178" title="Handles the package during the handshake process." alt="" coords="18,456,214,499"/>
+<area shape="rect" href="class_net_sim_1_1_t_c_p_client_handshake_strategy.html#af41488645090c3038dd1bcf017fe53a3" title="Handles the package during the handshake process." alt="" coords="18,456,214,499"/>
 <area shape="poly" title=" " alt="" coords="358,337,303,392,267,421,228,446,204,458,201,453,225,442,264,417,299,388,355,333"/>
-<area shape="rect" href="class_net_sim_1_1_t_c_p_server_connection_close_strategy.html#a51537048bc6b2af2260e534f143759a1" title="Handles the TCP connection termination process." alt="" coords="17,523,215,565"/>
+<area shape="rect" href="class_net_sim_1_1_t_c_p_server_connection_close_strategy.html#a34bface2bea5f7b97bcf6583fae06997" title="Handles the TCP connection termination process." alt="" coords="17,523,215,565"/>
 <area shape="poly" title=" " alt="" coords="367,338,346,377,315,424,275,472,228,513,208,524,205,520,225,508,271,468,310,421,341,374,363,336"/>
-<area shape="rect" href="class_net_sim_1_1_t_c_p_server_handshake_strategy.html#adbff518c136872ec5ddcdeba8a989006" title="Handles the TCP handshake process." alt="" coords="17,589,215,632"/>
+<area shape="rect" href="class_net_sim_1_1_t_c_p_server_handshake_strategy.html#a0d5ecb00d5d8d659f97d1ae4e0f8d098" title="Handles the TCP handshake process." alt="" coords="17,589,215,632"/>
 <area shape="poly" title=" " alt="" coords="373,339,354,390,325,455,283,522,257,552,228,579,210,591,208,586,225,575,253,549,279,519,320,452,349,388,368,337"/>
 </map>
 </div>

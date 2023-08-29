@@ -8,7 +8,7 @@
 <area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="121,339,178,284,217,252,259,223,275,215,277,220,262,228,220,256,181,288,125,343"/>
 <area shape="rect" id="Node000009" href="$class_net_sim_1_1_header_util.html#aafa7226880043f8b3918284723b369e7" title="Extracts the Package Top Protocol." alt="" coords="289,237,422,280"/>
 <area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="141,338,260,290,277,283,279,288,262,294,143,343"/>
-<area shape="rect" id="Node000011" href="$class_net_sim_1_1_i_package_strategy.html#a1c71222006dcac4951f369cd5026aeaa" title="Abstract method for handling packages." alt="" coords="268,304,443,347"/>
+<area shape="rect" id="Node000011" href="$class_net_sim_1_1_i_package_strategy.html#aaedd5e315e0707db9c53037a72e6ae95" title="Abstract method for handling packages." alt="" coords="268,304,443,347"/>
 <area shape="poly" id="edge11_Node000001_Node000011" title=" " alt="" coords="213,340,252,335,253,340,214,345"/>
 <area shape="rect" id="Node000012" href="$class_net_sim_1_1_package.html#a1905629312fb07a53d7caa7e3e562120" title="Returns the package&#39;s information." alt="" coords="280,371,431,397"/>
 <area shape="poly" id="edge12_Node000001_Node000012" title=" " alt="" coords="214,364,265,371,264,376,213,370"/>

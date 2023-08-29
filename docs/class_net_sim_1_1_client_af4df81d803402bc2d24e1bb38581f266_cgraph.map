@@ -1,6 +1,6 @@
 <map id="NetSim::Client::receivePackage" name="NetSim::Client::receivePackage">
 <area shape="rect" id="Node000001" title="Receives a package and processes based on its type." alt="" coords="5,389,210,416"/>
-<area shape="rect" id="Node000002" href="$class_net_sim_1_1_host.html#a5135cf81cca8f72e8b8271097031e5e8" title=" " alt="" coords="266,5,439,32"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_host.html#a5135cf81cca8f72e8b8271097031e5e8" title="Adds a domain to IP address resolution to the DNS table." alt="" coords="266,5,439,32"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,388,118,326,142,232,161,181,186,130,218,83,256,42,261,38,264,42,259,46,222,86,191,133,166,183,147,234,123,327,113,389"/>
 <area shape="rect" id="Node000003" href="$class_net_sim_1_1_package_table_model.html#aaff6cfd5a84ebcfbc94ccdaeae9729c7" title="Adds a new package to the table model." alt="" coords="258,56,447,99"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="109,388,124,336,152,262,172,221,196,180,223,142,256,109,260,105,264,109,259,113,228,146,200,183,177,223,157,264,129,338,115,390"/>
@@ -16,7 +16,7 @@
 <area shape="poly" id="edge14_Node000001_Node000011" title=" " alt="" coords="127,387,184,349,256,308,271,302,273,307,259,313,186,354,130,391"/>
 <area shape="rect" id="Node000012" href="$class_net_sim_1_1_header_util.html#aafa7226880043f8b3918284723b369e7" title="Extracts the Package Top Protocol." alt="" coords="286,440,419,483"/>
 <area shape="poly" id="edge17_Node000001_Node000012" title=" " alt="" coords="167,414,273,440,271,445,166,419"/>
-<area shape="rect" id="Node000014" href="$class_net_sim_1_1_i_package_strategy.html#a1c71222006dcac4951f369cd5026aeaa" title="Abstract method for handling packages." alt="" coords="265,507,440,549"/>
+<area shape="rect" id="Node000014" href="$class_net_sim_1_1_i_package_strategy.html#aaedd5e315e0707db9c53037a72e6ae95" title="Abstract method for handling packages." alt="" coords="265,507,440,549"/>
 <area shape="poly" id="edge19_Node000001_Node000014" title=" " alt="" coords="130,414,186,452,259,492,272,498,270,503,256,497,184,456,127,419"/>
 <area shape="rect" id="Node000015" href="$class_net_sim_1_1_package.html#a1905629312fb07a53d7caa7e3e562120" title="Returns the package&#39;s information." alt="" coords="277,573,428,600"/>
 <area shape="poly" id="edge20_Node000001_Node000015" title=" " alt="" coords="120,415,173,484,213,525,259,559,270,565,268,570,256,564,210,529,169,488,116,418"/>

@@ -8,17 +8,17 @@
 <area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="601,309,549,264,517,242,483,224,412,199,337,182,265,171,202,165,202,160,266,166,338,176,413,194,485,219,520,237,553,260,604,305"/>
 <area shape="rect" id="Node000005" href="$class_net_sim_1_1_client.html#a105f0db7742da2637832c4bd8f339231" title="Sends an HTTP request to the specified IP address and URI." alt="" coords="5,205,227,232"/>
 <area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="592,311,542,283,483,259,418,243,351,232,227,222,227,216,352,226,419,237,485,253,545,278,595,307"/>
-<area shape="rect" id="Node000006" href="$class_net_sim_1_1_d_n_s_strategy.html#a22bb286b34362134e94ca34ab5dc9db5" title="Handles the DNS package." alt="" coords="42,256,190,299"/>
+<area shape="rect" id="Node000006" href="$class_net_sim_1_1_d_n_s_strategy.html#afe76cd4a35e303cc84afa6e4b17db3bc" title="Handles the DNS package." alt="" coords="42,256,190,299"/>
 <area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="581,314,534,297,484,284,406,274,328,271,191,274,191,269,328,265,406,269,484,279,536,292,582,309"/>
-<area shape="rect" id="Node000007" href="$class_net_sim_1_1_h_t_t_p_strategy.html#adb92bbadb9b607469563ccc268019cea" title="Manages the HTTP package." alt="" coords="39,323,193,365"/>
+<area shape="rect" id="Node000007" href="$class_net_sim_1_1_h_t_t_p_strategy.html#adf481a1d5af1d04cb550e321f4fadcdc" title="Manages the HTTP package." alt="" coords="39,323,193,365"/>
 <area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="548,350,484,359,407,363,329,362,193,354,193,349,329,357,407,357,484,353,547,345"/>
-<area shape="rect" id="Node000008" href="$class_net_sim_1_1_t_c_p_client_connection_close_strategy.html#a8888ad2705a7a65cc193f6cbe9b61fdd" title="Handles the package to close the connection." alt="" coords="18,389,214,432"/>
+<area shape="rect" id="Node000008" href="$class_net_sim_1_1_t_c_p_client_connection_close_strategy.html#a994b5faced691901d33ff936e5c89450" title="Handles the package to close the connection." alt="" coords="18,389,214,432"/>
 <area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="564,351,485,369,343,391,214,405,214,400,342,386,483,364,563,346"/>
-<area shape="rect" id="Node000009" href="$class_net_sim_1_1_t_c_p_client_handshake_strategy.html#a7c2a4afd050131192f748e5459bda178" title="Handles the package during the handshake process." alt="" coords="18,456,214,499"/>
+<area shape="rect" id="Node000009" href="$class_net_sim_1_1_t_c_p_client_handshake_strategy.html#af41488645090c3038dd1bcf017fe53a3" title="Handles the package during the handshake process." alt="" coords="18,456,214,499"/>
 <area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="592,354,542,381,485,405,416,426,344,444,215,467,214,462,343,439,414,421,483,400,540,376,590,349"/>
-<area shape="rect" id="Node000010" href="$class_net_sim_1_1_t_c_p_server_connection_close_strategy.html#a51537048bc6b2af2260e534f143759a1" title="Handles the TCP connection termination process." alt="" coords="17,523,215,565"/>
+<area shape="rect" id="Node000010" href="$class_net_sim_1_1_t_c_p_server_connection_close_strategy.html#a34bface2bea5f7b97bcf6583fae06997" title="Handles the TCP connection termination process." alt="" coords="17,523,215,565"/>
 <area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="608,357,556,411,522,439,485,462,418,492,347,513,278,528,216,538,215,533,277,523,346,508,416,487,483,458,519,435,552,407,604,354"/>
-<area shape="rect" id="Node000011" href="$class_net_sim_1_1_t_c_p_server_handshake_strategy.html#adbff518c136872ec5ddcdeba8a989006" title="Handles the TCP handshake process." alt="" coords="17,589,215,632"/>
+<area shape="rect" id="Node000011" href="$class_net_sim_1_1_t_c_p_server_handshake_strategy.html#a0d5ecb00d5d8d659f97d1ae4e0f8d098" title="Handles the TCP handshake process." alt="" coords="17,589,215,632"/>
 <area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="617,359,598,398,569,446,531,493,485,533,420,567,350,590,280,604,216,611,215,606,279,598,348,585,418,562,483,528,528,489,565,443,593,396,612,356"/>
 <area shape="rect" id="Node000012" href="$class_net_sim_1_1_router.html#ae779e7a08d6bb9182b66c5f754c9179f" title="Receives a package and forwards it accordingly." alt="" coords="275,317,484,344"/>
 <area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="517,333,484,333,484,328,517,328"/>

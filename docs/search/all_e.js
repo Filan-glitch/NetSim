@@ -20,9 +20,10 @@ var searchData=
   ['simulationmanager_2eh_17',['simulationmanager.h',['../simulationmanager_8h.html',1,'']]],
   ['size_18',['size',['../class_net_sim_1_1_package.html#af9d3e66a0b597143e7c6c9c62eec0c28',1,'NetSim::Package::size()'],['../class_net_sim_1_1_header.html#af8b6b3ae4e3366231a04344cfc8ae6ce',1,'NetSim::Header::size()'],['../class_net_sim_1_1_header_attribute.html#a34ad38d9ca0c107b309068b1517a30ec',1,'NetSim::HeaderAttribute::size()']]],
   ['socket_19',['Socket',['../class_net_sim_1_1_socket.html',1,'NetSim::Socket'],['../group___net_sim_socket.html',1,'(Global Namespace)'],['../class_net_sim_1_1_socket.html#a2c2a71ad9a010699597190e95f40ae82',1,'NetSim::Socket::Socket()=default'],['../class_net_sim_1_1_socket.html#ad4bb6410b87b7b29f49e65fd7e454912',1,'NetSim::Socket::Socket(const Port &amp;sourcePort, const Port &amp;destinationPort)']]],
-  ['socket_2ecpp_20',['socket.cpp',['../socket_8cpp.html',1,'']]],
-  ['socket_2eh_21',['socket.h',['../socket_8h.html',1,'']]],
-  ['sourceport_22',['sourcePort',['../class_net_sim_1_1_socket.html#a86eb4d017b556b523b794c90d8f05e73',1,'NetSim::Socket']]],
-  ['startseq_23',['startSeq',['../class_net_sim_1_1_socket.html#acce927677f0fbdbd067679164e4e1747',1,'NetSim::Socket']]],
-  ['syn_24',['SYN',['../namespace_net_sim.html#a2bf3db23247b7e5c5115c158ebf32626afb954e791c5e422ce796814eb003ace9',1,'NetSim']]]
+  ['socket_20',['socket',['../class_net_sim_1_1_process.html#a87c3dfaba1ce7fbf6e4a0f1b1ef82eab',1,'NetSim::Process::socket()'],['../class_net_sim_1_1_process.html#a91a72cf4d0ce5d4830324b657d9ce268',1,'NetSim::Process::socket() const']]],
+  ['socket_2ecpp_21',['socket.cpp',['../socket_8cpp.html',1,'']]],
+  ['socket_2eh_22',['socket.h',['../socket_8h.html',1,'']]],
+  ['sourceport_23',['sourcePort',['../class_net_sim_1_1_socket.html#a86eb4d017b556b523b794c90d8f05e73',1,'NetSim::Socket']]],
+  ['startseq_24',['startSeq',['../class_net_sim_1_1_socket.html#acce927677f0fbdbd067679164e4e1747',1,'NetSim::Socket']]],
+  ['syn_25',['SYN',['../namespace_net_sim.html#a2bf3db23247b7e5c5115c158ebf32626afb954e791c5e422ce796814eb003ace9',1,'NetSim']]]
 ];

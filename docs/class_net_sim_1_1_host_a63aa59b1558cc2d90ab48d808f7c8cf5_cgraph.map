@@ -1,0 +1,7 @@
+<map id="NetSim::Host::addProcess" name="NetSim::Host::addProcess">
+<area shape="rect" id="Node000001" title="Adds a process to the process table." alt="" coords="5,31,182,57"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_process.html#a87c3dfaba1ce7fbf6e4a0f1b1ef82eab" title="Retrieves an editable associated socket reference." alt="" coords="238,5,406,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="182,32,223,27,224,32,182,37"/>
+<area shape="rect" id="Node000003" href="$class_net_sim_1_1_socket.html#a86eb4d017b556b523b794c90d8f05e73" title="Simple Getter for source port." alt="" coords="230,56,414,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="182,51,215,55,214,60,182,56"/>
+</map>

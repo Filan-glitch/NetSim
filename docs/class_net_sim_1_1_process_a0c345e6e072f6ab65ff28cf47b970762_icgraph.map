@@ -1,7 +1,7 @@
 <map id="NetSim::Process::generateHandShakePackage" name="NetSim::Process::generateHandShakePackage">
 <area shape="rect" id="Node000001" title="Generates a TCP handshake package." alt="" coords="252,39,430,81"/>
-<area shape="rect" id="Node000002" href="$class_net_sim_1_1_t_c_p_client_handshake_strategy.html#a7c2a4afd050131192f748e5459bda178" title="Handles the package during the handshake process." alt="" coords="7,5,202,48"/>
+<area shape="rect" id="Node000002" href="$class_net_sim_1_1_t_c_p_client_handshake_strategy.html#af41488645090c3038dd1bcf017fe53a3" title="Handles the package during the handshake process." alt="" coords="7,5,202,48"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="236,48,202,43,203,38,237,43"/>
-<area shape="rect" id="Node000003" href="$class_net_sim_1_1_t_c_p_server_handshake_strategy.html#adbff518c136872ec5ddcdeba8a989006" title="Handles the TCP handshake process." alt="" coords="5,72,204,115"/>
+<area shape="rect" id="Node000003" href="$class_net_sim_1_1_t_c_p_server_handshake_strategy.html#a0d5ecb00d5d8d659f97d1ae4e0f8d098" title="Handles the TCP handshake process." alt="" coords="5,72,204,115"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="237,77,204,82,204,77,237,72"/>
 </map>

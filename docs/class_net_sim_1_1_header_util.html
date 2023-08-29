@@ -204,6 +204,7 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memdesc:a1a81004c0482b89389571227269cf922"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extracts the IP Address of the IP Protocol from the given package.  <br /></td></tr>
 <tr class="separator:a1a81004c0482b89389571227269cf922"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7dd7d004200d5132624b5d0995574916"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_net_sim_1_1_port.html">Port</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_net_sim_1_1_header_util.html#a7dd7d004200d5132624b5d0995574916">getPortAsPort</a> (const <a class="el" href="class_net_sim_1_1_package.html">Package</a> &amp;data, bool src)</td></tr>
+<tr class="memdesc:a7dd7d004200d5132624b5d0995574916"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extracts the <a class="el" href="class_net_sim_1_1_port.html" title="Represents a network port.">Port</a> of the <a class="el" href="class_net_sim_1_1_t_c_p.html" title="A static class providing methods for initializing TCP headers and managing TCP flags.">TCP</a> Protocol from the given package.  <br /></td></tr>
 <tr class="separator:a7dd7d004200d5132624b5d0995574916"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -639,7 +640,7 @@ Here is the caller graph for this function:</div>
 <div class="center"><img src="class_net_sim_1_1_header_util_ac035ccadc5cd43bb9c31d2c0c01cae37_icgraph.png" border="0" usemap="#aclass_net_sim_1_1_header_util_ac035ccadc5cd43bb9c31d2c0c01cae37_icgraph" alt=""/></div>
 <map name="aclass_net_sim_1_1_header_util_ac035ccadc5cd43bb9c31d2c0c01cae37_icgraph" id="aclass_net_sim_1_1_header_util_ac035ccadc5cd43bb9c31d2c0c01cae37_icgraph">
 <area shape="rect" title="Extracts the DNS Query at the given index from a given package." alt="" coords="202,5,334,48"/>
-<area shape="rect" href="class_net_sim_1_1_d_n_s_strategy.html#a22bb286b34362134e94ca34ab5dc9db5" title="Handles the DNS package." alt="" coords="5,5,154,48"/>
+<area shape="rect" href="class_net_sim_1_1_d_n_s_strategy.html#afe76cd4a35e303cc84afa6e4b17db3bc" title="Handles the DNS package." alt="" coords="5,5,154,48"/>
 <area shape="poly" title=" " alt="" coords="186,29,154,29,154,24,186,24"/>
 </map>
 </div>
@@ -804,7 +805,7 @@ Here is the caller graph for this function:</div>
 <div class="center"><img src="class_net_sim_1_1_header_util_af3e78249a434f63362eb0732f8ff498f_icgraph.png" border="0" usemap="#aclass_net_sim_1_1_header_util_af3e78249a434f63362eb0732f8ff498f_icgraph" alt=""/></div>
 <map name="aclass_net_sim_1_1_header_util_af3e78249a434f63362eb0732f8ff498f_icgraph" id="aclass_net_sim_1_1_header_util_af3e78249a434f63362eb0732f8ff498f_icgraph">
 <area shape="rect" title="Extracts a specific HTTP Attribute from a given package." alt="" coords="207,5,339,48"/>
-<area shape="rect" href="class_net_sim_1_1_h_t_t_p_strategy.html#adb92bbadb9b607469563ccc268019cea" title="Manages the HTTP package." alt="" coords="5,5,159,48"/>
+<area shape="rect" href="class_net_sim_1_1_h_t_t_p_strategy.html#adf481a1d5af1d04cb550e321f4fadcdc" title="Manages the HTTP package." alt="" coords="5,5,159,48"/>
 <area shape="poly" title=" " alt="" coords="192,29,159,29,159,24,192,24"/>
 </map>
 </div>
@@ -1022,14 +1023,15 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Extracts the IP Address of the IP Protocol from the given package. </p>
+<p>This method extracts the IP Address of the IP Protocol from the given package and converts it to a reusable format.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">data</td><td></td></tr>
-    <tr><td class="paramname">src</td><td></td></tr>
+    <tr><td class="paramname">data</td><td>The package to extract the IP Address from. </td></tr>
+    <tr><td class="paramname">src</td><td>True if the source IP Address should be extracted, false if the destination IP Address should be extracted. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_net_sim_1_1_i_p_address.html" title="Represents an IPv4 address.">IPAddress</a> The IP Address of the IP Protocol. </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1048,17 +1050,17 @@ Here is the caller graph for this function:</div>
 <div class="center"><img src="class_net_sim_1_1_header_util_a1a81004c0482b89389571227269cf922_icgraph.png" border="0" usemap="#aclass_net_sim_1_1_header_util_a1a81004c0482b89389571227269cf922_icgraph" alt=""/></div>
 <map name="aclass_net_sim_1_1_header_util_a1a81004c0482b89389571227269cf922_icgraph" id="aclass_net_sim_1_1_header_util_a1a81004c0482b89389571227269cf922_icgraph">
 <area shape="rect" title="Extracts the IP Address of the IP Protocol from the given package." alt="" coords="532,293,715,336"/>
-<area shape="rect" href="class_net_sim_1_1_d_n_s_strategy.html#a22bb286b34362134e94ca34ab5dc9db5" title="Handles the DNS package." alt="" coords="42,5,190,48"/>
+<area shape="rect" href="class_net_sim_1_1_d_n_s_strategy.html#afe76cd4a35e303cc84afa6e4b17db3bc" title="Handles the DNS package." alt="" coords="42,5,190,48"/>
 <area shape="poly" title=" " alt="" coords="598,282,549,220,517,188,482,160,410,117,332,85,256,60,190,43,191,38,257,55,334,80,412,113,486,155,521,184,553,217,602,279"/>
-<area shape="rect" href="class_net_sim_1_1_h_t_t_p_strategy.html#adb92bbadb9b607469563ccc268019cea" title="Manages the HTTP package." alt="" coords="39,72,193,115"/>
+<area shape="rect" href="class_net_sim_1_1_h_t_t_p_strategy.html#adf481a1d5af1d04cb550e321f4fadcdc" title="Manages the HTTP package." alt="" coords="39,72,193,115"/>
 <area shape="poly" title=" " alt="" coords="584,286,537,251,483,218,408,184,330,155,192,114,194,109,332,150,410,179,485,214,540,247,587,282"/>
-<area shape="rect" href="class_net_sim_1_1_t_c_p_client_connection_close_strategy.html#a8888ad2705a7a65cc193f6cbe9b61fdd" title="Handles the package to close the connection." alt="" coords="18,139,214,181"/>
+<area shape="rect" href="class_net_sim_1_1_t_c_p_client_connection_close_strategy.html#a994b5faced691901d33ff936e5c89450" title="Handles the package to close the connection." alt="" coords="18,139,214,181"/>
 <area shape="poly" title=" " alt="" coords="549,290,483,268,332,222,199,185,200,179,334,217,485,263,551,285"/>
-<area shape="rect" href="class_net_sim_1_1_t_c_p_client_handshake_strategy.html#a7c2a4afd050131192f748e5459bda178" title="Handles the package during the handshake process." alt="" coords="18,456,214,499"/>
+<area shape="rect" href="class_net_sim_1_1_t_c_p_client_handshake_strategy.html#af41488645090c3038dd1bcf017fe53a3" title="Handles the package during the handshake process." alt="" coords="18,456,214,499"/>
 <area shape="poly" title=" " alt="" coords="544,344,227,447,191,458,189,453,226,441,542,339"/>
-<area shape="rect" href="class_net_sim_1_1_t_c_p_server_connection_close_strategy.html#a51537048bc6b2af2260e534f143759a1" title="Handles the TCP connection termination process." alt="" coords="17,523,215,565"/>
+<area shape="rect" href="class_net_sim_1_1_t_c_p_server_connection_close_strategy.html#a34bface2bea5f7b97bcf6583fae06997" title="Handles the TCP connection termination process." alt="" coords="17,523,215,565"/>
 <area shape="poly" title=" " alt="" coords="594,349,546,394,485,436,418,468,347,493,216,529,215,523,346,488,416,463,483,431,542,389,591,345"/>
-<area shape="rect" href="class_net_sim_1_1_t_c_p_server_handshake_strategy.html#adbff518c136872ec5ddcdeba8a989006" title="Handles the TCP handshake process." alt="" coords="17,589,215,632"/>
+<area shape="rect" href="class_net_sim_1_1_t_c_p_server_handshake_strategy.html#a0d5ecb00d5d8d659f97d1ae4e0f8d098" title="Handles the TCP handshake process." alt="" coords="17,589,215,632"/>
 <area shape="poly" title=" " alt="" coords="610,350,591,389,563,435,528,480,486,518,421,554,350,580,280,597,216,607,215,601,279,592,349,575,418,550,482,514,524,476,559,432,586,387,606,348"/>
 <area shape="rect" href="class_net_sim_1_1_router.html#ae779e7a08d6bb9182b66c5f754c9179f" title="Receives a package and forwards it accordingly." alt="" coords="275,301,484,328"/>
 <area shape="poly" title=" " alt="" coords="517,317,484,317,484,312,517,312"/>
@@ -1785,12 +1787,23 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Extracts the <a class="el" href="class_net_sim_1_1_port.html" title="Represents a network port.">Port</a> of the <a class="el" href="class_net_sim_1_1_t_c_p.html" title="A static class providing methods for initializing TCP headers and managing TCP flags.">TCP</a> Protocol from the given package. </p>
+<p>This method extracts the <a class="el" href="class_net_sim_1_1_port.html" title="Represents a network port.">Port</a> of the <a class="el" href="class_net_sim_1_1_t_c_p.html" title="A static class providing methods for initializing TCP headers and managing TCP flags.">TCP</a> Protocol from the given package and converts it to a reusable format.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>The package to extract the <a class="el" href="class_net_sim_1_1_port.html" title="Represents a network port.">Port</a> from. </td></tr>
+    <tr><td class="paramname">src</td><td>True if the source <a class="el" href="class_net_sim_1_1_port.html" title="Represents a network port.">Port</a> should be extracted, false if the destination <a class="el" href="class_net_sim_1_1_port.html" title="Represents a network port.">Port</a> should be extracted. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_net_sim_1_1_port.html" title="Represents a network port.">Port</a> The <a class="el" href="class_net_sim_1_1_port.html" title="Represents a network port.">Port</a> of the <a class="el" href="class_net_sim_1_1_t_c_p.html" title="A static class providing methods for initializing TCP headers and managing TCP flags.">TCP</a> Protocol. </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_net_sim_1_1_header_util_a7dd7d004200d5132624b5d0995574916_cgraph.png" border="0" usemap="#aclass_net_sim_1_1_header_util_a7dd7d004200d5132624b5d0995574916_cgraph" alt=""/></div>
 <map name="aclass_net_sim_1_1_header_util_a7dd7d004200d5132624b5d0995574916_cgraph" id="aclass_net_sim_1_1_header_util_a7dd7d004200d5132624b5d0995574916_cgraph">
-<area shape="rect" title=" " alt="" coords="5,39,138,81"/>
+<area shape="rect" title="Extracts the Port of the TCP Protocol from the given package." alt="" coords="5,39,138,81"/>
 <area shape="rect" href="class_net_sim_1_1_header_attribute_not_found_exception.html#a2ea879ef0321514f0f5e198414341cbf" title="Fetches the error message for the exception." alt="" coords="198,5,401,48"/>
 <area shape="poly" title=" " alt="" coords="138,48,183,41,184,46,138,53"/>
 <area shape="rect" href="class_net_sim_1_1_header_not_found_exception.html#a14f185390a67f79b53a1d9968a0641e4" title="Simple Getter for the error message." alt="" coords="186,72,413,115"/>
@@ -1802,14 +1815,14 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_net_sim_1_1_header_util_a7dd7d004200d5132624b5d0995574916_icgraph.png" border="0" usemap="#aclass_net_sim_1_1_header_util_a7dd7d004200d5132624b5d0995574916_icgraph" alt=""/></div>
 <map name="aclass_net_sim_1_1_header_util_a7dd7d004200d5132624b5d0995574916_icgraph" id="aclass_net_sim_1_1_header_util_a7dd7d004200d5132624b5d0995574916_icgraph">
-<area shape="rect" title=" " alt="" coords="532,139,664,181"/>
-<area shape="rect" href="class_net_sim_1_1_d_n_s_strategy.html#a22bb286b34362134e94ca34ab5dc9db5" title="Handles the DNS package." alt="" coords="42,5,190,48"/>
+<area shape="rect" title="Extracts the Port of the TCP Protocol from the given package." alt="" coords="532,139,664,181"/>
+<area shape="rect" href="class_net_sim_1_1_d_n_s_strategy.html#afe76cd4a35e303cc84afa6e4b17db3bc" title="Handles the DNS package." alt="" coords="42,5,190,48"/>
 <area shape="poly" title=" " alt="" coords="540,135,483,112,406,89,327,69,190,41,191,36,329,64,407,84,485,107,542,130"/>
-<area shape="rect" href="class_net_sim_1_1_h_t_t_p_strategy.html#adb92bbadb9b607469563ccc268019cea" title="Manages the HTTP package." alt="" coords="39,72,193,115"/>
+<area shape="rect" href="class_net_sim_1_1_h_t_t_p_strategy.html#adf481a1d5af1d04cb550e321f4fadcdc" title="Manages the HTTP package." alt="" coords="39,72,193,115"/>
 <area shape="poly" title=" " alt="" coords="517,149,484,144,193,105,194,100,484,139,518,144"/>
-<area shape="rect" href="class_net_sim_1_1_t_c_p_server_connection_close_strategy.html#a51537048bc6b2af2260e534f143759a1" title="Handles the TCP connection termination process." alt="" coords="17,139,215,181"/>
+<area shape="rect" href="class_net_sim_1_1_t_c_p_server_connection_close_strategy.html#a34bface2bea5f7b97bcf6583fae06997" title="Handles the TCP connection termination process." alt="" coords="17,139,215,181"/>
 <area shape="poly" title=" " alt="" coords="517,163,216,163,216,157,517,157"/>
-<area shape="rect" href="class_net_sim_1_1_t_c_p_server_handshake_strategy.html#adbff518c136872ec5ddcdeba8a989006" title="Handles the TCP handshake process." alt="" coords="17,589,215,632"/>
+<area shape="rect" href="class_net_sim_1_1_t_c_p_server_handshake_strategy.html#a0d5ecb00d5d8d659f97d1ae4e0f8d098" title="Handles the TCP handshake process." alt="" coords="17,589,215,632"/>
 <area shape="poly" title=" " alt="" coords="579,196,527,275,449,380,400,435,347,488,290,537,228,580,205,591,203,586,225,575,286,533,344,484,396,431,444,376,523,272,575,193"/>
 <area shape="rect" href="class_net_sim_1_1_router.html#ae779e7a08d6bb9182b66c5f754c9179f" title="Receives a package and forwards it accordingly." alt="" coords="275,280,484,307"/>
 <area shape="poly" title=" " alt="" coords="551,192,405,282,402,277,548,187"/>
@@ -1826,9 +1839,9 @@ Here is the caller graph for this function:</div>
 <area shape="poly" title=" " alt="" coords="310,313,203,341,202,336,309,308"/>
 <area shape="rect" href="class_net_sim_1_1_client.html#a105f0db7742da2637832c4bd8f339231" title="Sends an HTTP request to the specified IP address and URI." alt="" coords="5,405,227,432"/>
 <area shape="poly" title=" " alt="" coords="352,318,296,358,228,396,194,407,192,402,226,391,294,354,349,314"/>
-<area shape="rect" href="class_net_sim_1_1_t_c_p_client_connection_close_strategy.html#a8888ad2705a7a65cc193f6cbe9b61fdd" title="Handles the package to close the connection." alt="" coords="18,456,214,499"/>
+<area shape="rect" href="class_net_sim_1_1_t_c_p_client_connection_close_strategy.html#a994b5faced691901d33ff936e5c89450" title="Handles the package to close the connection." alt="" coords="18,456,214,499"/>
 <area shape="poly" title=" " alt="" coords="361,320,306,383,269,417,228,446,205,458,203,453,225,442,266,413,302,379,357,317"/>
-<area shape="rect" href="class_net_sim_1_1_t_c_p_client_handshake_strategy.html#a7c2a4afd050131192f748e5459bda178" title="Handles the package during the handshake process." alt="" coords="18,523,214,565"/>
+<area shape="rect" href="class_net_sim_1_1_t_c_p_client_handshake_strategy.html#af41488645090c3038dd1bcf017fe53a3" title="Handles the package during the handshake process." alt="" coords="18,523,214,565"/>
 <area shape="poly" title=" " alt="" coords="365,321,299,426,261,479,228,513,209,524,206,520,225,509,257,475,295,423,360,318"/>
 </map>
 </div>
