@@ -26,10 +26,9 @@ quint32 IPAddress::toInt() const {
 
 // Using the random generation method by Qt to generate a random address
 IPAddress IPAddress::getRandomAddress(bool isLocal) {
-  static QRandomGenerator *generator = new QRandomGenerator(2183193);
   QVector<quint8> addressArray;
   for (int i = 0; i < 4; i++) {
-    addressArray.append(generator->generate() % 256);
+    addressArray.append(QRandomGenerator::global()->generate() % 256);
   }
   // If a local address is required, set the non subnetmask byte to 1
   if (isLocal)

@@ -31,10 +31,9 @@ quint64 MACAddress::toInt() const {
 
 // Using the random generation method by Qt to generate a random address
 MACAddress MACAddress::getRandomAddress() {
-  static QRandomGenerator *generator = new QRandomGenerator(2183193);
   QVector<quint8> addressArray;
   for (int i = 0; i < 6; i++) {
-    addressArray.append(generator->generate() % 256);
+    addressArray.append(QRandomGenerator::global()->generate() % 256);
   }
   return MACAddress(addressArray);
 }

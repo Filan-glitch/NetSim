@@ -37,7 +37,9 @@ void WelcomeWindow::startSimulation() {
         settings.clientsAmount(), settings.serversAmount(), settings.domains());
 
     // Open the window for the simulation.
-    SimulationWindow *simWindow = new SimulationWindow(manager, this);
+    SimulationWindow *simWindow = new SimulationWindow(manager);
+    simWindow->setAttribute(Qt::WA_DeleteOnClose);
+    simWindow->setAttribute(Qt::WA_QuitOnClose);
     simWindow->show();
   }
 }

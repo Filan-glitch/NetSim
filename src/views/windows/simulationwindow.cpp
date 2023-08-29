@@ -30,7 +30,7 @@ SimulationWindow::SimulationWindow(SimulationManager *manager, QWidget *parent)
   // Model Initialization
   m_packageModel =
       new PackageTableModel(PackageDatabase::instance()->packageList(), this);
-  manager->setPackages(m_packageModel);
+  m_manager->setPackages(m_packageModel);
   ui->packagesTableView->setModel(m_packageModel);
   ui->packagesTableView->horizontalHeader()->setDefaultAlignment(Qt::AlignLeft);
   ui->packagesTableView->horizontalHeader()->setSectionResizeMode(
@@ -45,7 +45,7 @@ SimulationWindow::SimulationWindow(SimulationManager *manager, QWidget *parent)
   this->ui->packageTab->layout()->addWidget(m_treeWidget);
 
   // StatusBar
-  m_simTimeLabel = new QLabel("00:00:00.0", ui->statusbar);
+  m_simTimeLabel = new QLabel("00:00:00.0", this);
   ui->statusbar->setFixedHeight(30);
   ui->statusbar->addWidget(m_simTimeLabel);
   ui->statusbar->setSizeGripEnabled(false);
@@ -62,7 +62,11 @@ SimulationWindow::SimulationWindow(SimulationManager *manager, QWidget *parent)
   startTimer(100);
 }
 
-SimulationWindow::~SimulationWindow() { delete ui; }
+SimulationWindow::~SimulationWindow() {
+  delete ui;
+  delete m_manager;
+  delete PackageDatabase::instance();
+}
 
 void SimulationWindow::keyPressEvent(QKeyEvent *event) {
   // Adding the feature to close the window by pressing the escape key
@@ -148,8 +152,8 @@ void SimulationWindow::updateTreeWidget(const QModelIndex &index) {
   this->m_treeWidget->clear();
 
   // Mac Header
-  QTreeWidgetItem *macHeader = new QTreeWidgetItem(
-      static_cast<QTreeWidget *>(nullptr), QStringList(QString("Ethernet II")));
+  QTreeWidgetItem *macHeader =
+      new QTreeWidgetItem(QStringList(QString("Ethernet II")));
   macHeader->addChild(new QTreeWidgetItem(
       macHeader,
       QStringList(QString("Destination: %1")
@@ -166,8 +170,7 @@ void SimulationWindow::updateTreeWidget(const QModelIndex &index) {
 
   // IP Header
   QTreeWidgetItem *ipHeader =
-      new QTreeWidgetItem(static_cast<QTreeWidget *>(nullptr),
-                          QStringList(QString("Internet Protocol Version 4")));
+      new QTreeWidgetItem(QStringList(QString("Internet Protocol Version 4")));
   ipHeader->addChild(
       new QTreeWidgetItem(ipHeader, QStringList(QString("Version: 4"))));
   ipHeader->addChild(new QTreeWidgetItem(
@@ -226,7 +229,6 @@ void SimulationWindow::updateTreeWidget(const QModelIndex &index) {
   QTreeWidgetItem *transportHeader;
   if (HeaderUtil::getIPNextProtocol(package) == "TCP") {
     transportHeader = new QTreeWidgetItem(
-        static_cast<QTreeWidget *>(nullptr),
         QStringList(QString("Transmission Control Protocol")));
     transportHeader->addChild(new QTreeWidgetItem(
         transportHeader,
@@ -303,8 +305,7 @@ void SimulationWindow::updateTreeWidget(const QModelIndex &index) {
 
   } else {
     transportHeader =
-        new QTreeWidgetItem(static_cast<QTreeWidget *>(nullptr),
-                            QStringList(QString("User Datagram Protocol")));
+        new QTreeWidgetItem(QStringList(QString("User Datagram Protocol")));
     transportHeader->addChild(new QTreeWidgetItem(
         transportHeader,
         QStringList(QString("Source Port: %1")
@@ -329,7 +330,6 @@ void SimulationWindow::updateTreeWidget(const QModelIndex &index) {
   if (HeaderUtil::getTopProtocol(package) == NetSim::HeaderType::HTTP) {
     if (HeaderUtil::getHTTPIsResponse(package)) {
       QTreeWidgetItem *applicationHeader = new QTreeWidgetItem(
-          static_cast<QTreeWidget *>(nullptr),
           QStringList(QString("Hypertext Transfer Protocol")));
       applicationHeader->addChild(new QTreeWidgetItem(
           applicationHeader, QStringList(QString("Response Version: %1")
@@ -350,18 +350,15 @@ void SimulationWindow::updateTreeWidget(const QModelIndex &index) {
       this->m_treeWidget->addTopLevelItem(applicationHeader);
 
       if (HeaderUtil::getHTTPAttribute(package, "Code") == "200") {
-        QTreeWidgetItem *contentHeader = new QTreeWidgetItem(
-            static_cast<QTreeWidget *>(nullptr),
-            QStringList(QString("Line-based text data: %1")
-                            .arg(HeaderUtil::getHTTPAttribute(
-                                package, "Content-Type"))));
+        QTreeWidgetItem *contentHeader = new QTreeWidgetItem(QStringList(
+            QString("Line-based text data: %1")
+                .arg(HeaderUtil::getHTTPAttribute(package, "Content-Type"))));
         contentHeader->addChild(
             new QTreeWidgetItem(contentHeader, QStringList(package.content())));
         this->m_treeWidget->addTopLevelItem(contentHeader);
       }
     } else {
       QTreeWidgetItem *applicationHeader = new QTreeWidgetItem(
-          static_cast<QTreeWidget *>(nullptr),
           QStringList(QString("Hypertext Transfer Protocol")));
       applicationHeader->addChild(new QTreeWidgetItem(
           applicationHeader, QStringList(QString("Request Method: %1")
@@ -381,8 +378,7 @@ void SimulationWindow::updateTreeWidget(const QModelIndex &index) {
 
   } else if (HeaderUtil::getTopProtocol(package) == NetSim::HeaderType::DNS) {
     QTreeWidgetItem *applicationHeader =
-        new QTreeWidgetItem(static_cast<QTreeWidget *>(nullptr),
-                            QStringList(QString("Domain Name System")));
+        new QTreeWidgetItem(QStringList(QString("Domain Name System")));
     applicationHeader->addChild(new QTreeWidgetItem(
         applicationHeader,
         QStringList(
