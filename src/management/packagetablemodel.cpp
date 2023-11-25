@@ -77,7 +77,7 @@ QVariant PackageTableModel::data(const QModelIndex &index, int role) const {
       case IP:
         return "IP";
         break;
-      case MAC:
+      case ETHERNET2:
         return "MAC";
         break;
       default:

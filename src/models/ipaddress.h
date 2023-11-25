@@ -5,6 +5,7 @@
 #include <QString>
 #include <QTextStream>
 #include <QVector>
+#include <QBitArray>
 
 //! \file ipaddress.h
 //! \ingroup NetSimIPAddress
@@ -34,16 +35,13 @@ public:
    *
    * @param address A byte array representing the IP address.
    */
-  IPAddress(const QVector<quint8> &address);
+  IPAddress(const QBitArray &address);
 
   //! @brief Converts the IP address to a string format.
   QString toString() const;
 
   //! @brief Converts the IP address to a byte array.
-  QVector<quint8> toArray() const;
-
-  //! @brief Converts the IP address to an integer format.
-  quint32 toInt() const;
+  QBitArray toArray() const;
 
   /**
    * @brief Generates a random IP address.
@@ -55,16 +53,6 @@ public:
    * @return A random IP address.
    */
   static IPAddress getRandomAddress(bool isLocal = false);
-
-  /**
-   * @brief Overload of the less than operator.
-   *
-   * Compares this IP address to another based on their integer format.
-   *
-   * @param other The other IP address to compare against.
-   * @return true if this IP address is less than the other, false otherwise.
-   */
-  bool operator<(const IPAddress &other) const;
 
   /**
    * @brief Overload of the equality operator.
@@ -79,7 +67,7 @@ public:
 
 private:
   //! @brief A byte array representing the IP address.
-  QVector<quint8> m_address{QVector<quint8>() << 0 << 0 << 0 << 0};
+  QBitArray m_address{32, false};
 };
 } // namespace NetSim
 

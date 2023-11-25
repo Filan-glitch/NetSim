@@ -2,6 +2,7 @@
 #define DNSENTRY_H
 
 #include "src/models/ipaddress.h"
+#include "src/models/rawdata.h"
 #include <QString>
 
 //! \file dnsentry.h
@@ -40,42 +41,45 @@ public:
    * @param ttl Time-to-live value.
    * @param data The data associated with the entry.
    */
-  DNSEntry(const QString &name, quint16 type, quint16 dnsClass, quint32 ttl = 0,
-           const QVector<quint8> &data = QVector<quint8>());
+  DNSEntry(const QString &name, const QBitArray &type, const  QBitArray& dnsClass, const QBitArray& ttl = QBitArray(),
+           const QBitArray &data = QBitArray());
 
   //! @brief Returns the domain name.
   QString name() const;
 
+  //! @brief Returns the domain name as a QBitArray.
+  RawData nameAsQBitArray() const;
+
   //! @brief Returns the type of the DNS entry.
-  quint16 type() const;
+  RawData type() const;
 
   //! @brief Returns the class of the DNS entry.
-  quint16 dnsClass() const;
+  RawData dnsClass() const;
 
   //! @brief Returns the time-to-live value.
-  quint32 ttl() const;
+  RawData ttl() const;
 
   //! @brief Returns the length of the data.
-  quint16 dataLength() const;
+  RawData dataLength() const;
 
   //! @brief Returns the data associated with the entry.
-  QVector<quint8> data() const;
+  RawData data() const;
 
 private:
   //! @brief Domain name.
   QString m_name{};
 
   //! @brief Type of the DNS entry.
-  quint16 m_type{0};
+  RawData m_type{2};
 
   //! @brief Class of the DNS entry.
-  quint16 m_class{0};
+  RawData m_class{2};
 
   //! @brief Time-to-live value.
-  quint32 m_ttl{0};
+  RawData m_ttl{4};
 
   //! @brief The data associated with the entry.
-  QVector<quint8> m_data{};
+  RawData m_data{};
 };
 } // namespace NetSim
 

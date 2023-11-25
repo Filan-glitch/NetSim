@@ -1,6 +1,7 @@
 #ifndef MACADDRESS_H
 #define MACADDRESS_H
 
+#include <QBitArray>
 #include <QRandomGenerator>
 #include <QString>
 #include <QVector>
@@ -33,16 +34,13 @@ public:
    *
    * @param address A byte array representing the MAC address.
    */
-  explicit MACAddress(const QVector<quint8> &address);
+  explicit MACAddress(const QBitArray &address);
 
   //! @brief Converts the MAC address to a string format.
   QString toString() const;
 
-  //! @brief Converts the MAC address to a byte array.
-  QVector<quint8> toArray() const;
-
-  //! @brief Converts the MAC address to an integer format.
-  quint64 toInt() const;
+  //! @brief Returns the MAC address as a byte array.
+  QBitArray data() const;
 
   //! @brief Generates a random MAC address.
   static MACAddress getRandomAddress();
@@ -70,7 +68,7 @@ public:
 
 private:
   //! @brief A byte array representing the MAC address.
-  QVector<quint8> m_address{QVector<quint8>() << 0 << 0 << 0 << 0 << 0 << 0};
+  QBitArray m_address{48, false};
 };
 } // namespace NetSim
 

@@ -4,6 +4,7 @@
 #include "dns.h"
 #include "ipv4.h"
 #include "src/models/package.h"
+#include "src/models/header.h"
 #include "tcp.h"
 #include <QString>
 

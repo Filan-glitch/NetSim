@@ -1,11 +1,8 @@
 #ifndef PACKAGE_H
 #define PACKAGE_H
 
-#include "ipaddress.h"
-#include "macaddress.h"
-#include "port.h"
-#include "src/protocols/header.h"
-#include <QList>
+#include <QBitArray>
+#include <QString>
 
 //! \file package.h
 //! \ingroup NetSimPackage
@@ -34,48 +31,29 @@ public:
   explicit Package(const QString &info);
 
   //! @brief Constructs a package with information and content.
-  Package(const QString &info, const QString &content);
+  Package(const QString &info, const QBitArray &content);
 
   //! @brief Returns the package's content.
-  QString content() const;
-
-  //! @brief Returns the list of headers.
-  QList<Header> headers() const;
+  QBitArray content() const;
 
   //! @brief Returns the package's information.
   QString info() const;
 
   //! @brief Returns the total size of the package.
-  quint16 size() const;
-
-  //! @brief Adds a new header to the package.
-  void addHeader(const Header &header);
+  qsizetype size() const;
 
   //! @brief Sets the package's content.
-  void setContent(const QString &content);
+  void setContent(const QBitArray &content);
 
-  //! @brief Modifies the IP and port headers.
-  void changePortAndIP(const Port &number, const IPAddress &address, bool src);
-
-  //! @brief Modifies the Ethernet header.
-  void changeEthernetHeader(const MACAddress &srcAddress,
-                            const MACAddress &destAddress);
-
-  //! @brief Returns a reference to a specific header.
-  Header &operator[](const NetSim::HeaderType &type);
-
-  //! @brief Returns a specific header.
-  Header operator[](const NetSim::HeaderType &type) const;
+  //! @brief Adds data to the package's content
+  void appendData(const QBitArray &data);
 
 private:
-  //! @brief List of headers.
-  QList<Header> m_headers{};
+   //! @brief Package's content.
+   QBitArray m_content;
 
   //! @brief Package's information.
   QString m_info{"Basic Description"};
-
-  //! @brief Package's content.
-  QString m_content{};
 };
 } // namespace NetSim
 

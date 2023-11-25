@@ -1,5 +1,6 @@
 #include "udp.h"
 #include "headerAttribute.h"
+#include "src/protocols/header.h"
 
 #include <QDebug>
 
@@ -24,7 +25,7 @@ void UDP::initHeader(const Port &sourcePort, const Port &destinationPort,
   udpHeader.addHeaderAttribute(length);
   udpHeader.addHeaderAttribute(checksum);
 
-  data.addHeader(udpHeader);
+  data.appendData(udpHeader.toData());
 }
 
 quint16 UDP::overflowHandling(quint16 checksum) {

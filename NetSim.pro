@@ -21,6 +21,7 @@ SOURCES += \
     src/models/dnsentry.cpp \
     src/models/package.cpp \
     src/models/process.cpp \
+    src/models/rawdata.cpp \
     src/models/strategies/dnsstrategy.cpp \
     src/models/strategies/httpstrategy.cpp \
     src/models/strategies/tcpclientconnectionclosestrategy.cpp \
@@ -39,14 +40,13 @@ SOURCES += \
     src/models/port.cpp \
     src/network/socket.cpp \
     src/protocols/dns.cpp \
-    src/protocols/header.cpp \
-    src/protocols/headerAttribute.cpp \
+    src/models/header.cpp \
     src/protocols/headerattributenotfoundexception.cpp \
     src/protocols/headernotfoundexception.cpp \
     src/protocols/headerutil.cpp \
     src/protocols/http.cpp \
     src/protocols/ipv4.cpp \
-    src/protocols/mac.cpp \
+    src/protocols/ethernet2.cpp \
     src/protocols/tcp.cpp \
     src/protocols/udp.cpp \
     src/views/dialogs/about_dialog.cpp \
@@ -70,6 +70,7 @@ HEADERS += \
     src/models/dnsentry.h \
     src/models/package.h \
     src/models/process.h \
+    src/models/rawdata.h \
     src/models/strategies/dnsstrategy.h \
     src/models/strategies/httpstrategy.h \
     src/models/strategies/ipackagestrategy.h \
@@ -89,14 +90,13 @@ HEADERS += \
     src/models/port.h \
     src/network/socket.h \
     src/protocols/dns.h \
-    src/protocols/header.h \
-    src/protocols/headerAttribute.h \
+    src/models/header.h \
     src/protocols/headerattributenotfoundexception.h \
     src/protocols/headernotfoundexception.h \
     src/protocols/headerutil.h \
     src/protocols/http.h \
     src/protocols/ipv4.h \
-    src/protocols/mac.h \
+    src/protocols/ethernet2.h \
     src/protocols/tcp.h \
     src/protocols/udp.h \
     src/views/dialogs/about_dialog.h \

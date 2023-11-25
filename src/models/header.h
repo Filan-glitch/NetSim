@@ -5,9 +5,9 @@
 //! \ingroup NetSimHeader
 //! \brief Contains the Header class definition and related enumerations.
 
-#include "headerAttribute.h"
 #include <QDebug>
 #include <QList>
+#include <QBitArray>
 
 namespace NetSim {
 
@@ -20,7 +20,7 @@ namespace NetSim {
  * @ingroup NetSimHeader
  * @brief Enumeration for the type of headers available.
  */
-enum HeaderType { HTTP, DNS, TCP, UDP, IP, MAC, UNKNOWN };
+enum HeaderType { HTTP, DNS, TCP, UDP, IP, ETHERNET2, UNKNOWN };
 
 /**
  * @class Header
@@ -38,17 +38,27 @@ public:
    * @brief Parameterized constructor.
    *
    * @param headerType Type of header.
+   * @param headerList List of attributes.
+   */
+  Header(const HeaderType &headerType,
+         const QList<QBitArray> &attributes);
+
+  /**
+   * @brief Parameterized constructor.
+   *
+   * @param headerType Type of header.
    * @param headerList List of header attributes.
    */
   Header(const HeaderType &headerType,
-         const QList<HeaderAttribute> &headerList);
+         const QBitArray& packageData, int offset = 0);
+
 
   /**
    * @brief Adds a header attribute to the header.
    *
    * @param headerAttribute The header attribute to be added.
    */
-  void addHeaderAttribute(const HeaderAttribute &headerAttribute);
+  void addHeaderAttribute(const QBitArray &headerAttribute);
 
   /**
    * @brief Sets the header type.
@@ -62,7 +72,7 @@ public:
    *
    * @retval QList<HeaderAttribute> List of header attributes.
    */
-  QList<HeaderAttribute> headerList() const;
+  QList<QBitArray> headerList() const;
 
   /**
    * @brief Retrieves the header type.
@@ -76,7 +86,7 @@ public:
    *
    * @retval quint16 Size of the header in bytes.
    */
-  quint16 size() const;
+  qsizetype size() const;
 
   /**
    * @brief Overloaded subscript operator to get a header attribute by its name.
@@ -86,11 +96,17 @@ public:
    * @throws HeaderAttributeNotFoundException If the named attribute is not
    * found.
    */
-  HeaderAttribute &operator[](const QString &name);
+  QBitArray &operator[](int index);
+
+  /**
+   * @brief Converts the header to a QBitArray.
+   * @retval QBitArray The header as a QBitArray.
+   */
+  QBitArray toData() const;
 
 private:
   HeaderType m_headerType{HeaderType::UNKNOWN}; //!< Header type.
-  QList<HeaderAttribute> m_headerList{};        //!< List of header attributes.
+  QList<QBitArray> m_headerList{};        //!< List of header attributes.
 };
 
 } // namespace NetSim

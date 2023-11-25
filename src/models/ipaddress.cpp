@@ -2,7 +2,7 @@
 
 using namespace NetSim;
 
-IPAddress::IPAddress(const QVector<quint8> &address) : m_address(address) {}
+IPAddress::IPAddress(const QBitArray &address) : m_address(address) {}
 
 // A function that returns the address formatted as a standard string (e.g.
 // 101.221.23.1)
@@ -13,34 +13,28 @@ QString IPAddress::toString() const {
          QString::number(static_cast<int>(m_address[3]));
 }
 
-QVector<quint8> IPAddress::toArray() const { return m_address; }
-
-// A function that returns the address formatted as a quint32 (e.g. 0x65DD1701)
-quint32 IPAddress::toInt() const {
-  quint32 returnAddress = m_address[0];
-  returnAddress = (returnAddress << 8) + m_address[1];
-  returnAddress = (returnAddress << 8) + m_address[2];
-  returnAddress = (returnAddress << 8) + m_address[3];
-  return returnAddress;
-}
+QBitArray IPAddress::toArray() const { return m_address; }
 
 // Using the random generation method by Qt to generate a random address
 IPAddress IPAddress::getRandomAddress(bool isLocal) {
-  QVector<quint8> addressArray;
-  for (int i = 0; i < 4; i++) {
-    addressArray.append(QRandomGenerator::global()->generate() % 256);
+  QBitArray addressArray(32);
+  for (int i = 0; i < 32; i++) {
+    addressArray[i] = QRandomGenerator::global()->bounded(2);
   }
   // If a local address is required, set the non subnetmask byte to 1
-  if (isLocal)
-    addressArray[3] = 1;
+  if (isLocal) {
+    addressArray[31] = true;
+    addressArray[30] = false;
+    addressArray[29] = false;
+    addressArray[28] = false;
+    addressArray[27] = false;
+    addressArray[26] = false;
+    addressArray[25] = false;
+    addressArray[24] = false;
+  }
   return IPAddress(addressArray);
 }
 
-bool IPAddress::operator<(const IPAddress &other) const {
-  return toInt() < other.toInt();
-}
-
 bool IPAddress::operator==(const IPAddress &other) const {
-  quint32 otherAddressInt = other.toInt();
-  return otherAddressInt == toInt();
+  return this->m_address == other.m_address;
 }

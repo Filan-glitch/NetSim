@@ -18,7 +18,7 @@ void NetworkCard::addIPHeader(Package &data, quint8 protocol,
 
 void NetworkCard::addMACHeader(Package &data, MACAddress destinationMACAddress,
                                quint16 etherType) {
-  MAC::initHeader(data, destinationMACAddress, this->physicalAddress(),
+  EthernetII::initHeader(data, destinationMACAddress, this->physicalAddress(),
                   etherType);
 }
 
