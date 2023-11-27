@@ -1,7 +1,7 @@
 #ifndef IPV4_H
 #define IPV4_H
 
-#include "src/models/ipaddress.h"
+#include "src/models/ipv4address.h"
 #include "src/models/package.h"
 #include <QDebug>
 #include <QList>
@@ -47,8 +47,8 @@ public:
    */
   static void initHeader(quint16 id, bool DF, bool MF, quint16 fragmentOffset,
                          quint8 ttl, quint8 protocol,
-                         const IPAddress &sourceAddress,
-                         const IPAddress &destinationAdress, Package &data);
+                         const IPv4Address &sourceAddress,
+                         const IPv4Address &destinationAdress, Package &data);
 
 private:
   /**

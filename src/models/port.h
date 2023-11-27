@@ -1,7 +1,7 @@
 #ifndef PORT_H
 #define PORT_H
 
-#include <QString>
+#include "src/models/rawdata.h"
 
 //! \file port.h
 //! \ingroup NetSimPort
@@ -29,21 +29,21 @@ public:
   //! @brief Constructs a port with a specified port number.
   explicit Port(quint16 portNumber);
 
+  //! @brief Constructs a port with a specified port number.
+  explicit Port(RawData portNumber);
+
   //! @brief Returns the port number.
   quint16 portNumber() const;
 
   //! @brief Converts the port number to an array of bytes.
-  QVector<quint8> toArray() const;
+  RawData data() const;
 
   //! @brief Returns a random port.
   static Port getRandomPort();
 
-  //! @brief Compares the port number with another port.
-  bool operator<(const Port &other) const;
-
 private:
   //! @brief The port number.
-  quint16 m_portNumber{0};
+  RawData m_portNumber{2};
 };
 } // namespace NetSim
 

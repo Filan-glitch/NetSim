@@ -4,8 +4,8 @@
 
 using namespace NetSim;
 
-void Socket::addTCPHeader(Package &data, const IPAddress &srcAddress,
-                          const IPAddress &destAddress, bool ack, bool psh,
+void Socket::addTCPHeader(Package &data, const IPv4Address &srcAddress,
+                          const IPv4Address &destAddress, bool ack, bool psh,
                           bool syn, bool fin) {
   TCP::initHeader(srcAddress, destAddress, this->m_sourcePort,
                   this->m_destinationPort, m_startSeq + m_amountReceivedData,

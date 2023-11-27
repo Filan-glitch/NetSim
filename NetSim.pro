@@ -19,7 +19,10 @@ SOURCES += \
     src/management/packagetablemodel.cpp \
     src/management/simulationmanager.cpp \
     src/models/dnsentry.cpp \
-    src/models/package.cpp \
+    src/models/ethernetframe.cpp \
+    src/models/headers/tcpheader.cpp \
+    src/models/headers/udpheader.cpp \
+    src/models/ipv4datagram.cpp \
     src/models/process.cpp \
     src/models/rawdata.cpp \
     src/models/strategies/dnsstrategy.cpp \
@@ -35,12 +38,12 @@ SOURCES += \
     src/network/networkcard.cpp \
     src/network/router.cpp \
     src/network/server.cpp \
-    src/models/ipaddress.cpp \
+    src/models/ipv4address.cpp \
     src/models/macaddress.cpp \
     src/models/port.cpp \
+    src/models/package.cpp \
     src/network/socket.cpp \
     src/protocols/dns.cpp \
-    src/models/header.cpp \
     src/protocols/headerattributenotfoundexception.cpp \
     src/protocols/headernotfoundexception.cpp \
     src/protocols/headerutil.cpp \
@@ -68,7 +71,10 @@ HEADERS += \
     src/management/packagetablemodel.h \
     src/management/simulationmanager.h \
     src/models/dnsentry.h \
-    src/models/package.h \
+    src/models/ethernetframe.h \
+    src/models/headers/tcpheader.h \
+    src/models/headers/udpheader.h \
+    src/models/ipv4datagram.h \
     src/models/process.h \
     src/models/rawdata.h \
     src/models/strategies/dnsstrategy.h \
@@ -85,12 +91,12 @@ HEADERS += \
     src/network/networkcard.h \
     src/network/router.h \
     src/network/server.h \
-    src/models/ipaddress.h \
+    src/models/ipv4address.h \
     src/models/macaddress.h \
     src/models/port.h \
+    src/models/package.h \
     src/network/socket.h \
     src/protocols/dns.h \
-    src/models/header.h \
     src/protocols/headerattributenotfoundexception.h \
     src/protocols/headernotfoundexception.h \
     src/protocols/headerutil.h \

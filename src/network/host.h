@@ -2,7 +2,7 @@
 #define HOST_H
 
 #include "src/management/packagetablemodel.h"
-#include "src/models/ipaddress.h"
+#include "src/models/ipv4address.h"
 #include "src/models/macaddress.h"
 #include "src/models/process.h"
 #include "src/network/networkcard.h"
@@ -51,14 +51,14 @@ public:
    * @retval QMap<IPAddress, MACAddress> The table mapping IP addresses to MAC
    * addresses.
    */
-  QMap<IPAddress, MACAddress> hostTable() const;
+  QMap<IPv4Address, MACAddress> hostTable() const;
 
   /**
    * @brief Retrieve the domain table.
    * @retval QMap<QString, IPAddress> The table mapping domain names to IP
    * addresses.
    */
-  QMap<QString, IPAddress> domainTable() const;
+  QMap<QString, IPv4Address> domainTable() const;
 
   /**
    * @brief Retrieve the cables table.
@@ -106,7 +106,7 @@ public:
    * @param ipAddress The IP address to add.
    * @param macAddress The MAC address to add.
    */
-  void addIPAddress(const IPAddress &ipAddress, const MACAddress &macAddress);
+  void addIPAddress(const IPv4Address &ipAddress, const MACAddress &macAddress);
 
   /**
    * @brief Adds a MAC address to router pointer to the cables table.
@@ -120,7 +120,7 @@ public:
    * @param domain The domain to add.
    * @param ipAddress The IP address to add.
    */
-  void addDomain(const QString &domain, const IPAddress &ipAddress);
+  void addDomain(const QString &domain, const IPv4Address &ipAddress);
 
   /**
    * @brief Get all the packages associated with this host.
@@ -153,10 +153,10 @@ private:
   QMap<Port, Process> m_processTable{};
 
   //! @brief The Map that maps IP addresses to MAC addresses.
-  QMap<IPAddress, MACAddress> m_hostTable{};
+  QMap<IPv4Address, MACAddress> m_hostTable{};
 
   //! @brief The Map that maps domain names to IP addresses.
-  QMap<QString, IPAddress> m_domainTable{};
+  QMap<QString, IPv4Address> m_domainTable{};
 
   //! @brief The Map that maps MAC addresses to routers pointer to call receive
   //! function

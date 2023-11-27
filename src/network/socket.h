@@ -5,7 +5,7 @@
 //! \ingroup NetSimSocket
 //! \brief Contains the Socket class definition.
 
-#include "src/models/ipaddress.h"
+#include "src/models/ipv4address.h"
 #include "src/models/package.h"
 #include "src/models/port.h"
 
@@ -52,8 +52,8 @@ public:
    * This function calls the functionality of the TCP class to init the TCP
    * header and adds the header to the given package.
    */
-  void addTCPHeader(Package &data, const IPAddress &srcAddress,
-                    const IPAddress &destAddress, bool ack, bool psh, bool syn,
+  void addTCPHeader(Package &data, const IPv4Address &srcAddress,
+                    const IPv4Address &destAddress, bool ack, bool psh, bool syn,
                     bool fin);
 
   /**

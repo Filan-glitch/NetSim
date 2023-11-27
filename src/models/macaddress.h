@@ -1,7 +1,7 @@
 #ifndef MACADDRESS_H
 #define MACADDRESS_H
 
-#include <QBitArray>
+#include "src/models/rawdata.h"
 #include <QRandomGenerator>
 #include <QString>
 #include <QVector>
@@ -34,41 +34,20 @@ public:
    *
    * @param address A byte array representing the MAC address.
    */
-  explicit MACAddress(const QBitArray &address);
+  explicit MACAddress(const RawData &address);
 
   //! @brief Converts the MAC address to a string format.
   QString toString() const;
 
   //! @brief Returns the MAC address as a byte array.
-  QBitArray data() const;
+  RawData data() const;
 
   //! @brief Generates a random MAC address.
   static MACAddress getRandomAddress();
 
-  /**
-   * @brief Overload of the less than operator.
-   *
-   * Compares this MAC address to another based on their integer format.
-   *
-   * @param other The other MAC address to compare against.
-   * @return true if this MAC address is less than the other, false otherwise.
-   */
-  bool operator<(const MACAddress &other) const;
-
-  /**
-   * @brief Overload of the equality operator.
-   *
-   * Checks if this MAC address is equal to another based on their integer
-   * format.
-   *
-   * @param other The other MAC address to compare against.
-   * @return true if the MAC addresses are equal, false otherwise.
-   */
-  bool operator==(const MACAddress &other) const;
-
 private:
   //! @brief A byte array representing the MAC address.
-  QBitArray m_address{48, false};
+  RawData m_address{48};
 };
 } // namespace NetSim
 

@@ -45,7 +45,7 @@ public:
    *
    * @param address IP address to establish a connection.
    */
-  void execHandShake(const IPAddress &address);
+  void execHandShake(const IPv4Address &address);
 
   /**
    * @brief Sends an HTTP request to the specified IP address and URI.
@@ -53,14 +53,14 @@ public:
    * @param address IP address of the server to send the request.
    * @param uri Requested Uniform Resource Identifier.
    */
-  void execHTTPRequest(const IPAddress &address, const QString &uri);
+  void execHTTPRequest(const IPv4Address &address, const QString &uri);
 
   /**
    * @brief Closes the connection to the specified IP address.
    *
    * @param address IP address to close the connection.
    */
-  void execCloseConnection(const IPAddress &address);
+  void execCloseConnection(const IPv4Address &address);
 
   /**
    * @brief Receives a package and processes based on its type.

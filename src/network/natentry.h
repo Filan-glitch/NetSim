@@ -1,7 +1,7 @@
 #ifndef NATENTRY_H
 #define NATENTRY_H
 
-#include "src/models/ipaddress.h"
+#include "src/models/ipv4address.h"
 #include "src/models/port.h"
 
 //! \file natentry.h
@@ -31,7 +31,7 @@ public:
    * @param address The IP address associated with this NAT entry.
    * @param port The port associated with this NAT entry.
    */
-  NATEntry(const IPAddress &address, const Port &port);
+  NATEntry(const IPv4Address &address, const Port &port);
 
   //! @brief Default constructor.
   NATEntry() = default;
@@ -40,7 +40,7 @@ public:
   Port port() const;
 
   //! @brief Retrieves the IP address associated with this NAT entry.
-  IPAddress address() const;
+  IPv4Address address() const;
 
   /**
    * @brief Compares two NAT entries based on their port numbers.
@@ -54,7 +54,7 @@ private:
   //! @brief The port associated with this NAT entry.
   Port m_port{};
   //! @brief The IP address associated with this NAT entry.
-  IPAddress m_address{};
+  IPv4Address m_address{};
 };
 } // namespace NetSim
 

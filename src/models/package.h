@@ -1,7 +1,7 @@
 #ifndef PACKAGE_H
 #define PACKAGE_H
 
-#include <QBitArray>
+#include "src/models/rawdata.h"
 #include <QString>
 
 //! \file package.h
@@ -31,10 +31,10 @@ public:
   explicit Package(const QString &info);
 
   //! @brief Constructs a package with information and content.
-  Package(const QString &info, const QBitArray &content);
+  Package(const QString &info, const RawData &content);
 
   //! @brief Returns the package's content.
-  QBitArray content() const;
+  RawData content() const;
 
   //! @brief Returns the package's information.
   QString info() const;
@@ -43,17 +43,15 @@ public:
   qsizetype size() const;
 
   //! @brief Sets the package's content.
-  void setContent(const QBitArray &content);
+  void setContent(const RawData &content);
 
-  //! @brief Adds data to the package's content
-  void appendData(const QBitArray &data);
 
 private:
-   //! @brief Package's content.
-   QBitArray m_content;
+    //! @brief Package's content.
+    RawData m_content{};
 
-  //! @brief Package's information.
-  QString m_info{"Basic Description"};
+    //! @brief Package's information.
+    QString m_info{"Basic Description"};
 };
 } // namespace NetSim
 

@@ -1,9 +1,7 @@
 #ifndef DNSENTRY_H
 #define DNSENTRY_H
 
-#include "src/models/ipaddress.h"
 #include "src/models/rawdata.h"
-#include <QString>
 
 //! \file dnsentry.h
 //! \ingroup NetSimDNSEntry
@@ -41,14 +39,11 @@ public:
    * @param ttl Time-to-live value.
    * @param data The data associated with the entry.
    */
-  DNSEntry(const QString &name, const QBitArray &type, const  QBitArray& dnsClass, const QBitArray& ttl = QBitArray(),
-           const QBitArray &data = QBitArray());
+  DNSEntry(const RawData &name, const RawData &type, const  RawData& dnsClass, const RawData& ttl = RawData(),
+           const RawData &data = RawData());
 
   //! @brief Returns the domain name.
-  QString name() const;
-
-  //! @brief Returns the domain name as a QBitArray.
-  RawData nameAsQBitArray() const;
+  RawData name() const;
 
   //! @brief Returns the type of the DNS entry.
   RawData type() const;
@@ -67,16 +62,16 @@ public:
 
 private:
   //! @brief Domain name.
-  QString m_name{};
+  RawData m_name{};
 
   //! @brief Type of the DNS entry.
-  RawData m_type{2};
+  RawData m_type{16};
 
   //! @brief Class of the DNS entry.
-  RawData m_class{2};
+  RawData m_class{16};
 
   //! @brief Time-to-live value.
-  RawData m_ttl{4};
+  RawData m_ttl{32};
 
   //! @brief The data associated with the entry.
   RawData m_data{};

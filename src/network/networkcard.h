@@ -1,7 +1,7 @@
 #ifndef NETWORKCARD_H
 #define NETWORKCARD_H
 
-#include "src/models/ipaddress.h"
+#include "src/models/ipv4address.h"
 #include "src/models/macaddress.h"
 #include "src/models/package.h"
 
@@ -36,7 +36,7 @@ public:
    * @param networkAddress IP address of the network card.
    * @param physicalAddress MAC address of the network card.
    */
-  explicit NetworkCard(const IPAddress &networkAddress,
+  explicit NetworkCard(const IPv4Address &networkAddress,
                        const MACAddress &physicalAddress);
 
   /**
@@ -47,7 +47,7 @@ public:
    * @param destinationAddress IP address of the destination.
    */
   void addIPHeader(Package &data, quint8 protocol,
-                   const IPAddress &destinationAddress);
+                   const IPv4Address &destinationAddress);
 
   /**
    * @brief Adds a MAC header to the provided data package.
@@ -61,14 +61,14 @@ public:
                     quint16 etherType);
 
   //! Returns the network (IP) address of the network card.
-  IPAddress networkAddress() const;
+  IPv4Address networkAddress() const;
 
   //! Returns the physical (MAC) address of the network card.
   MACAddress physicalAddress() const;
 
 private:
   //! @brief IP address of the network card.
-  IPAddress m_networkAddress{};
+  IPv4Address m_networkAddress{};
 
   //! @brief MAC address of the network card.
   MACAddress m_physicalAddress{};

@@ -11,7 +11,7 @@ Process::Process(const Port &destinationPort, const QString &name)
     : m_name(name), m_socket(Port::getRandomPort(), destinationPort) {}
 
 Package Process::generateHTTPRequestPackage(const QString &uri,
-                                            const IPAddress &destination) {
+                                            const IPv4Address &destination) {
   // Creating the package with info
   Package data("Request HTML of " + uri);
 
@@ -31,7 +31,7 @@ Package Process::generateHTTPRequestPackage(const QString &uri,
   return data;
 }
 
-Package Process::generateHandShakePackage(const IPAddress &address,
+Package Process::generateHandShakePackage(const IPv4Address &address,
                                           bool initiate, bool client) {
   // Creating a [SYN] handshake package
   if (initiate && client) {
@@ -72,7 +72,7 @@ Package Process::generateHandShakePackage(const IPAddress &address,
   return Package();
 }
 
-Package Process::generateHTTPResponsePackage(const IPAddress &destination,
+Package Process::generateHTTPResponsePackage(const IPv4Address &destination,
                                              const Port &destPort,
                                              const int &messageCode) {
   // Creating a HTTP response package
@@ -104,7 +104,7 @@ Package Process::generateHTTPResponsePackage(const IPAddress &destination,
   return data;
 }
 
-Package Process::generateCloseConnectionPackage(const IPAddress &address,
+Package Process::generateCloseConnectionPackage(const IPv4Address &address,
                                                 bool initiate, bool client) {
   // Creating a [FIN] connection package
   if (initiate && client) {
@@ -152,7 +152,7 @@ Package Process::generateDNSRequestPackage(const QString &domain) {
 
   m_socket.addUDPHeader(package);
 
-  IPAddress dnsServer = m_host->domainTable().value(QString("dns.beispiel.de"));
+  IPv4Address dnsServer = m_host->domainTable().value(QString("dns.beispiel.de"));
   m_host->networkCard().addIPHeader(package, 17, dnsServer);
 
   m_host->networkCard().addMACHeader(

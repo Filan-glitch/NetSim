@@ -1,7 +1,7 @@
 #ifndef TCP_H
 #define TCP_H
 
-#include "src/models/ipaddress.h"
+#include "src/models/ipv4address.h"
 #include "src/models/package.h"
 #include "src/models/port.h"
 #include <QDebug>

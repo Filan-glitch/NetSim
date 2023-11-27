@@ -3,7 +3,7 @@
 
 #include "host.h"
 #include "natentry.h"
-#include "src/models/ipaddress.h"
+#include "src/models/ipv4address.h"
 #include "src/network/networkcard.h"
 #include <QHash>
 #include <QStack>
@@ -44,13 +44,13 @@ public:
   void receivePackage(Package data);
 
   //! Returns the global IP address of the router.
-  IPAddress globalIpAddress() const;
+  IPv4Address globalIpAddress() const;
 
   //! Returns the network card associated with the router.
   NetworkCard networkCard() const;
 
   //! Returns the MAC address table mapping IP addresses to MAC addresses.
-  QMap<IPAddress, MACAddress> macTable() const;
+  QMap<IPv4Address, MACAddress> macTable() const;
 
   //! Returns the mapping between MAC addresses and connected routers.
   QMap<MACAddress, Router *> routerCable() const;
@@ -68,7 +68,7 @@ public:
    * @param ipAddress The IP address to be added.
    * @param macaddress The associated MAC address.
    */
-  void addIPAddress(const IPAddress &ipAddress, const MACAddress &macaddress);
+  void addIPAddress(const IPv4Address &ipAddress, const MACAddress &macaddress);
 
   /**
    * @brief Adds a MAC address and its associated router to the router's table.
@@ -96,7 +96,7 @@ public:
 
 private:
   //! @brief Mapping of IP addresses to their associated MAC addresses.
-  QMap<IPAddress, MACAddress> m_macTable{};
+  QMap<IPv4Address, MACAddress> m_macTable{};
 
   //! @brief Mapping of MAC addresses to connected routers.
   QMap<MACAddress, Router *> m_routerCable{};
@@ -111,11 +111,11 @@ private:
   QMap<NATEntry, Port> m_natToPort{};
 
   //! @brief The network card associated with the router.
-  NetworkCard m_networkCard{NetworkCard(IPAddress::getRandomAddress(true),
+  NetworkCard m_networkCard{NetworkCard(IPv4Address::getRandomAddress(true),
                                         MACAddress::getRandomAddress())};
 
   //! @brief The global IP address of the router.
-  IPAddress m_globalIpAddress{IPAddress::getRandomAddress(false)};
+  IPv4Address m_globalIpAddress{IPv4Address::getRandomAddress(false)};
 };
 } // namespace NetSim
 
