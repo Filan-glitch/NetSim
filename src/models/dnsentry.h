@@ -30,17 +30,11 @@ public:
   //! @brief Default constructor.
   DNSEntry() = default;
 
-  /**
-   * @brief Constructs a new DNSEntry.
-   *
-   * @param name Domain name.
-   * @param type Type of the DNS entry.
-   * @param dnsClass Class of the DNS entry.
-   * @param ttl Time-to-live value.
-   * @param data The data associated with the entry.
-   */
-  DNSEntry(const RawData &name, const RawData &type, const  RawData& dnsClass, const RawData& ttl = RawData(),
-           const RawData &data = RawData());
+  DNSEntry(const RawData& data);
+
+  DNSEntry(const RawData& name, const RawData& type, const RawData& dnsClass);
+
+  DNSEntry(const RawData& name, const RawData& type, const RawData& dnsClass, const RawData& ttl, const RawData& rDataLength, const RawData& rData);
 
   //! @brief Returns the domain name.
   RawData name() const;
@@ -55,24 +49,15 @@ public:
   RawData ttl() const;
 
   //! @brief Returns the length of the data.
-  RawData dataLength() const;
+  RawData rDataLength() const;
+
+  //! @brief Returns the rdata associated with the entry.
+  RawData rData() const;
 
   //! @brief Returns the data associated with the entry.
   RawData data() const;
 
 private:
-  //! @brief Domain name.
-  RawData m_name{};
-
-  //! @brief Type of the DNS entry.
-  RawData m_type{16};
-
-  //! @brief Class of the DNS entry.
-  RawData m_class{16};
-
-  //! @brief Time-to-live value.
-  RawData m_ttl{32};
-
   //! @brief The data associated with the entry.
   RawData m_data{};
 };

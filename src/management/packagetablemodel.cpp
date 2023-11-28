@@ -1,5 +1,5 @@
 #include "packagetablemodel.h"
-#include "src/protocols/headerutil.h"
+#include "src/network/packageutil.h"
 
 using namespace NetSim;
 
@@ -57,11 +57,11 @@ QVariant PackageTableModel::data(const QModelIndex &index, int role) const {
 
     switch (index.column()) {
     case 0:
-      return HeaderUtil::getIPAddress(package, true);
+      return PackageUtil::getIPAddress(package, true);
     case 1:
-      return HeaderUtil::getIPAddress(package, false);
+      return PackageUtil::getIPAddress(package, false);
     case 2: {
-      switch (HeaderUtil::getTopProtocol(package)) {
+      switch (PackageUtil::getTopProtocol(package)) {
       case DNS:
         return "DNS";
         break;
@@ -86,7 +86,7 @@ QVariant PackageTableModel::data(const QModelIndex &index, int role) const {
       }
     }
     case 3:
-      return HeaderUtil::getPackageLength(package);
+      return QString::number(package.size());
     case 4:
       return package.info();
     }

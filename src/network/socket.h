@@ -76,13 +76,13 @@ public:
   void setDestinationPort(const Port &destinationPort);
 
   //! Simple Getter for start sequence.
-  quint32 startSeq() const;
+  RawData startSeq() const;
 
   //! Simple Getter for server sequence.
-  quint32 serverSeq() const;
+  RawData serverSeq() const;
 
   //! Simple Getter for amount of received data.
-  quint32 amountReceivedData() const;
+  RawData amountReceivedData() const;
 
 private:
   //! @brief The source port for this socket.
@@ -92,13 +92,13 @@ private:
   Port m_destinationPort;
 
   //! @brief The start sequence number for TCP communication.
-  quint32 m_startSeq{100};
+  RawData m_startSeq{32};
 
   //! @brief The server sequence number for TCP communication.
-  quint32 m_serverSeq{0};
+  RawData m_serverSeq{32};
 
   //! @brief The amount of data received by this socket.
-  quint32 m_amountReceivedData{0};
+  RawData m_amountReceivedData{32};
 };
 } // namespace NetSim
 

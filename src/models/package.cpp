@@ -15,6 +15,6 @@ void Package::setContent(const RawData &content) { this->m_content = RawData(con
 
 // Returns the size of a package (content + all headers)
 qsizetype Package::size() const {
-  return m_content.size();
+  return m_content.size() / 8;
 }
 

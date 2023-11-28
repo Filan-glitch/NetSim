@@ -174,7 +174,7 @@ Package Process::generateDNSResponsePackage(const IPAddress &address,
     DNS::initDNSResponse(
         package, QList<DNSEntry>() << DNSEntry(domain, 1, 1),
         QList<DNSEntry>() << DNSEntry(
-            domain, 1, 1, 5600, m_host->domainTable().value(domain).toArray()),
+            domain, 1, 1, 5600, m_host->domainTable().value(domain).address()),
         nxDomain);
   }
 

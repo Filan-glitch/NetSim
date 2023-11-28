@@ -13,7 +13,7 @@ QString IPv4Address::toString() const {
          QString::number(static_cast<int>(m_address.getByte(3)));
 }
 
-RawData IPv4Address::toArray() const { return m_address; }
+RawData IPv4Address::address() const { return m_address; }
 
 // Using the random generation method by Qt to generate a random address
 IPv4Address IPv4Address::getRandomAddress(bool isLocal) {

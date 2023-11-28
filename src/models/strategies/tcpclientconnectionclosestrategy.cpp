@@ -1,7 +1,7 @@
 #include "tcpclientconnectionclosestrategy.h"
 #include "src/network/cablenotfoundexception.h"
 #include "src/network/router.h"
-#include "src/protocols/headerutil.h"
+#include "src/network/packageutil.h"
 
 using namespace NetSim;
 

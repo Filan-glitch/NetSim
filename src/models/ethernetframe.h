@@ -11,6 +11,7 @@ class EthernetFrame
 public:
     EthernetFrame() = default;
     EthernetFrame(const RawData& data);
+    EthernetFrame(const RawData& headerData, const RawData& payload);
     void setDestination(const MACAddress& destination);
     void setSource(const MACAddress& source);
     void setType(const RawData& type);
@@ -21,7 +22,7 @@ public:
 
 private:
     RawData m_headerData{112};
-    RawData m_payload{368};
+    RawData m_payload{};
 };
 
 }

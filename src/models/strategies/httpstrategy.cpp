@@ -1,7 +1,7 @@
 #include "httpstrategy.h"
 #include "src/network/cablenotfoundexception.h"
 #include "src/network/router.h"
-#include "src/protocols/headerutil.h"
+#include "src/network/headerutil.h"
 
 using namespace NetSim;
 

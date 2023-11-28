@@ -4,7 +4,6 @@
 #include "src/models/rawdata.h"
 #include <QRandomGenerator>
 #include <QString>
-#include <QTextStream>
 #include <QVector>
 
 //! \file ipv4address.h
@@ -41,7 +40,7 @@ public:
   QString toString() const;
 
   //! @brief Converts the IPv4 address to a byte array.
-  RawData toArray() const;
+  RawData address() const;
 
   /**
    * @brief Generates a random IPv4 address.

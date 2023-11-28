@@ -1,6 +1,4 @@
 #include "networkcard.h"
-#include "src/protocols/ipv4.h"
-#include "src/protocols/ethernet2.h"
 
 using namespace NetSim;
 

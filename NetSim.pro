@@ -18,11 +18,12 @@ SOURCES += \
     src/management/packagedatabase.cpp \
     src/management/packagetablemodel.cpp \
     src/management/simulationmanager.cpp \
+    src/models/dnsdata.cpp \
     src/models/dnsentry.cpp \
     src/models/ethernetframe.cpp \
-    src/models/headers/tcpheader.cpp \
-    src/models/headers/udpheader.cpp \
     src/models/ipv4datagram.cpp \
+    src/models/ipv6address.cpp \
+    src/models/ipv6datagram.cpp \
     src/models/process.cpp \
     src/models/rawdata.cpp \
     src/models/strategies/dnsstrategy.cpp \
@@ -31,11 +32,14 @@ SOURCES += \
     src/models/strategies/tcpclienthandshakestrategy.cpp \
     src/models/strategies/tcpserverconnectionclosestrategy.cpp \
     src/models/strategies/tcpserverhandshakestrategy.cpp \
+    src/models/tcpsegment.cpp \
+    src/models/udpdatagram.cpp \
     src/network/cablenotfoundexception.cpp \
     src/network/client.cpp \
     src/network/host.cpp \
     src/network/natentry.cpp \
     src/network/networkcard.cpp \
+    src/network/packageutil.cpp \
     src/network/router.cpp \
     src/network/server.cpp \
     src/models/ipv4address.cpp \
@@ -43,15 +47,6 @@ SOURCES += \
     src/models/port.cpp \
     src/models/package.cpp \
     src/network/socket.cpp \
-    src/protocols/dns.cpp \
-    src/protocols/headerattributenotfoundexception.cpp \
-    src/protocols/headernotfoundexception.cpp \
-    src/protocols/headerutil.cpp \
-    src/protocols/http.cpp \
-    src/protocols/ipv4.cpp \
-    src/protocols/ethernet2.cpp \
-    src/protocols/tcp.cpp \
-    src/protocols/udp.cpp \
     src/views/dialogs/about_dialog.cpp \
     src/views/dialogs/client_dialog.cpp \
     src/views/dialogs/router_dialog.cpp \
@@ -70,11 +65,12 @@ HEADERS += \
     src/management/packagedatabase.h \
     src/management/packagetablemodel.h \
     src/management/simulationmanager.h \
+    src/models/dnsdata.h \
     src/models/dnsentry.h \
     src/models/ethernetframe.h \
-    src/models/headers/tcpheader.h \
-    src/models/headers/udpheader.h \
     src/models/ipv4datagram.h \
+    src/models/ipv6address.h \
+    src/models/ipv6datagram.h \
     src/models/process.h \
     src/models/rawdata.h \
     src/models/strategies/dnsstrategy.h \
@@ -84,11 +80,14 @@ HEADERS += \
     src/models/strategies/tcpclienthandshakestrategy.h \
     src/models/strategies/tcpserverconnectionclosestrategy.h \
     src/models/strategies/tcpserverhandshakestrategy.h \
+    src/models/tcpsegment.h \
+    src/models/udpdatagram.h \
     src/network/cablenotfoundexception.h \
     src/network/client.h \
     src/network/host.h \
     src/network/natentry.h \
     src/network/networkcard.h \
+    src/network/packageutil.h \
     src/network/router.h \
     src/network/server.h \
     src/models/ipv4address.h \
@@ -96,15 +95,6 @@ HEADERS += \
     src/models/port.h \
     src/models/package.h \
     src/network/socket.h \
-    src/protocols/dns.h \
-    src/protocols/headerattributenotfoundexception.h \
-    src/protocols/headernotfoundexception.h \
-    src/protocols/headerutil.h \
-    src/protocols/http.h \
-    src/protocols/ipv4.h \
-    src/protocols/ethernet2.h \
-    src/protocols/tcp.h \
-    src/protocols/udp.h \
     src/views/dialogs/about_dialog.h \
     src/views/dialogs/client_dialog.h \
     src/views/dialogs/router_dialog.h \

@@ -35,10 +35,9 @@ class IPv4Datagram
 public:
     IPv4Datagram() = default;
     IPv4Datagram(const RawData& data);
+    IPv4Datagram(const RawData& headerData, const RawData& payload);
     void setVersion(const Version version);
-    void setIHL(const IHL ihl);
     void setTOS(const RawData tos);
-    void setTotalLength(const RawData totalLength);
     void setIdentification(const RawData identification);
     void setFlags(const bool dontFragment, const bool moreFragements);
     void setFragmentOffset(const RawData fragmentOffset);
@@ -46,8 +45,9 @@ public:
     void setProtocol(const Protocol protocol);
     void setSource(const IPv4Address& source);
     void setDestination(const IPv4Address& destination);
-    void setOptions(const RawData& options);
+    void appendOption(const RawData& option);
     void setData(const RawData& data);
+    void clearOptions();
     Version version() const;
     IHL ihl() const;
     RawData tos() const;
@@ -64,7 +64,12 @@ public:
     RawData data() const;
 
 private:
-    RawData m_data{160};
+    void calculateIHL();
+    void calculateTotalLength();
+    void calculateChecksum();
+
+    RawData m_headerData{160};
+    RawData m_payload{};
 };
 }
 

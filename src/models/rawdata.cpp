@@ -116,6 +116,17 @@ void RawData::setBytes(const qsizetype byteIndex, const RawData &value)
     }
 }
 
+void RawData::truncate(const qsizetype size)
+{
+    qsizetype byteSize = size / 8;
+    if (size % 8 != 0)
+    {
+        byteSize++;
+    }
+    this->m_size = size;
+    this->m_data->resize(byteSize);
+}
+
 quint8 RawData::getByte(const qsizetype byteIndex) const
 {
     if(byteIndex*8 >= this->size())
@@ -151,6 +162,34 @@ bool RawData::getBit(const qsizetype byteIndex, const qsizetype bitIndex) const
 bool RawData::getBit(const qsizetype bitIndex) const
 {
     return this->getBit(bitIndex/8, bitIndex%8);
+}
+
+RawData RawData::getBits(const qsizetype byteIndex, const qsizetype bitIndex, const qsizetype length) const
+{
+    if(byteIndex*8 + bitIndex + length > this->size()*8)
+    {
+        throw std::out_of_range("Bit index out of range");
+    }
+    RawData bits(length);
+    for (int i = 0; i < length; i++)
+    {
+        bits.setBit(i, this->getBit(byteIndex * 8 + bitIndex + i));
+    }
+    return bits;
+}
+
+RawData RawData::getBits(const qsizetype bitIndex, const qsizetype length) const
+{
+    if(bitIndex + length > this->size())
+    {
+        throw std::out_of_range("Bit index out of range");
+    }
+    RawData bits(length);
+    for (int i = 0; i < length; i++)
+    {
+        bits.setBit(i, this->getBit(bitIndex + i));
+    }
+    return bits;
 }
 
 QString RawData::toString(int base) const
@@ -190,6 +229,13 @@ RawData& RawData::operator<<(const RawData &other)
     this->m_size += other.m_size;
     this->m_data->append(*other.m_data);
     return *this;
+}
+
+RawData RawData::operator<<(const RawData& other) const
+{
+    RawData data(*this);
+    data << other;
+    return data;
 }
 
 RawData& RawData::operator=(const RawData &other)

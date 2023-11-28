@@ -4,7 +4,7 @@
 #include "src/models/strategies/tcpclientconnectionclosestrategy.h"
 #include "src/models/strategies/tcpclienthandshakestrategy.h"
 #include "src/network/router.h"
-#include "src/protocols/headerutil.h"
+#include "src/network/packageutil.h"
 #include "src/protocols/tcp.h"
 
 using namespace NetSim;

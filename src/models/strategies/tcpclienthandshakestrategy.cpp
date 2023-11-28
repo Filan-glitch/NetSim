@@ -1,7 +1,7 @@
 #include "tcpclienthandshakestrategy.h"
 #include "src/network/cablenotfoundexception.h"
 #include "src/network/router.h"
-#include "src/protocols/headerutil.h"
+#include "src/protocols/packageutil.h"
 
 using namespace NetSim;
 

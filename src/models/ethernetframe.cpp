@@ -4,7 +4,13 @@ using namespace NetSim;
 
 EthernetFrame::EthernetFrame(const RawData &data)
 {
-    m_headerData = data;
+    m_headerData = data.getBytes(0, 14);
+    m_payload = data.getBytes(14, data.size() - 14);
+}
+
+EthernetFrame::EthernetFrame(const RawData &headerData, const RawData &payload)
+    : m_headerData(headerData), m_payload(payload)
+{
 }
 
 void EthernetFrame::setDestination(const MACAddress &destination)

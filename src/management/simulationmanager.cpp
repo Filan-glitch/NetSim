@@ -10,21 +10,21 @@ SimulationManager::SimulationManager(quint8 clientAmount, quint8 serverAmount,
   }
 
   // Setting the DNS Server
-  m_servers.append(Server(NetworkCard(IPAddress::getRandomAddress(),
+  m_servers.append(Server(NetworkCard(IPv4Address::getRandomAddress(),
                                       MACAddress::getRandomAddress()),
                           "dns.beispiel.de", ""));
 
   // Setting the clients
   for (quint8 i = 0; i < clientAmount; i++) {
     // Extracting the IP Address of the client router
-    QVector<quint8> routerAddress =
-        m_routers[0].networkCard().networkAddress().toArray();
+    RawData routerAddress =
+        m_routers[0].networkCard().networkAddress().address();
     // Incrementing the last byte of the IP Address for each host
-    routerAddress[3] = i + 2;
+    routerAddress.setByte(3, i + 2);
 
     // Adding the client to the list
     m_clients.append(Client(
-        NetworkCard(IPAddress(routerAddress), MACAddress::getRandomAddress())));
+        NetworkCard(IPv4Address(routerAddress), MACAddress::getRandomAddress())));
 
     // Adding the domain of the dns to the dns cache of the client
     m_clients[i].addDomain(
@@ -41,13 +41,13 @@ SimulationManager::SimulationManager(quint8 clientAmount, quint8 serverAmount,
   // Setting the servers
   for (auto i = 0; i < serverAmount; i++) {
     // Extracting the IP Address of the specific router
-    QVector<quint8> routerAddress =
-        m_routers[i + 1].networkCard().networkAddress().toArray();
-    routerAddress[3] = 2;
+    RawData routerAddress =
+        m_routers[i + 1].networkCard().networkAddress().address();
+    routerAddress.setByte(3, 2);
 
     // Adding the server to the list
     m_servers.append(Server(
-        NetworkCard(IPAddress(routerAddress), MACAddress::getRandomAddress()),
+        NetworkCard(IPv4Address(routerAddress), MACAddress::getRandomAddress()),
         domains[i], html));
   }
 
