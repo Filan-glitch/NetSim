@@ -116,6 +116,20 @@ void RawData::setBytes(const qsizetype byteIndex, const RawData &value)
     }
 }
 
+void RawData::setBytes(const qsizetype byteIndex, const quint16 value)
+{
+    m_data->operator[](byteIndex) = value >> 8;
+    m_data->operator[](byteIndex + 1) = value & 0xFF;
+}
+
+void RawData::setBytes(const qsizetype byteIndex, const quint32 value)
+{
+    m_data->operator[](byteIndex) = value >> 24;
+    m_data->operator[](byteIndex + 1) = (value >> 16) & 0xFF;
+    m_data->operator[](byteIndex + 2) = (value >> 8) & 0xFF;
+    m_data->operator[](byteIndex + 3) = value & 0xFF;
+}
+
 void RawData::truncate(const qsizetype size)
 {
     qsizetype byteSize = size / 8;
@@ -236,6 +250,52 @@ RawData RawData::operator<<(const RawData& other) const
     RawData data(*this);
     data << other;
     return data;
+}
+
+RawData& RawData::operator<<(const quint8 value)
+{
+    this->m_size += 8;
+    this->m_data->append(value);
+    return *this;
+}
+
+RawData& RawData::operator<<(const quint16 value)
+{
+    this->m_size += 16;
+    this->m_data->append(value >> 8);
+    this->m_data->append(value & 0xFF);
+    return *this;
+}
+
+RawData& RawData::operator<<(const quint32 value)
+{
+    this->m_size += 32;
+    this->m_data->append(value >> 24);
+    this->m_data->append((value >> 16) & 0xFF);
+    this->m_data->append((value >> 8) & 0xFF);
+    this->m_data->append(value & 0xFF);
+    return *this;
+}
+
+RawData::operator quint8() const
+{
+    if(this->m_data->size() == 0)
+        throw std::runtime_error("RawData::operator quint8() const : m_data is empty");
+    return this->m_data->operator[](0);
+}
+
+RawData::operator quint16() const
+{
+    if(this->m_data->size() < 2)
+        throw std::runtime_error("RawData::operator quint16() const : m_data is too small");
+    return (this->m_data->operator[](0) << 8) | this->m_data->operator[](1);
+}
+
+RawData::operator quint32() const
+{
+    if(this->m_data->size() < 4)
+        throw std::runtime_error("RawData::operator quint32() const : m_data is too small");
+    return (this->m_data->operator[](0) << 24) | (this->m_data->operator[](1) << 16) | (this->m_data->operator[](2) << 8) | this->m_data->operator[](3);
 }
 
 RawData& RawData::operator=(const RawData &other)

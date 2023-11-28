@@ -2,6 +2,8 @@
 #define DNSDATA_H
 
 #include "src/models/rawdata.h"
+#include <QList>
+#include "src/models/dnsentry.h"
 
 namespace NetSim {
 
@@ -10,18 +12,18 @@ class DNSData
 public:
     DNSData() = default;
     DNSData(const RawData& data);
-    void setTransactionID(const RawData& transactionID);
-    void setFlags(const RawData& flags);
-    void addQuestion(const RawData& question);
-    void addAnswer(const RawData& answer);
-    void addAuthority(const RawData& authority);
-    void addAdditional(const RawData& additional);
-    RawData transactionID() const;
+    DNSData(quint16 transactionID, const RawData& flags, quint16 questionCount,
+            quint16 answerCount, quint16 authorityCount, quint16 additionalCount, const QList<DNSEntry>& questions, const QList<DNSEntry>& answers, const QList<DNSEntry>& authorities, const QList<DNSEntry>& additional);
+    quint16 transactionID() const;
     RawData flags() const;
-    RawData questionCount() const;
-    RawData answerCount() const;
-    RawData authorityCount() const;
-    RawData additionalCount() const;
+    quint16 questionCount() const;
+    quint16 answerCount() const;
+    quint16 authorityCount() const;
+    quint16 additionalCount() const;
+    QList<DNSEntry> questions() const;
+    QList<DNSEntry> answers() const;
+    QList<DNSEntry> authorities() const;
+    QList<DNSEntry> additional() const;
     RawData data() const;
 
 private:

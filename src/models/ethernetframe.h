@@ -11,13 +11,10 @@ class EthernetFrame
 public:
     EthernetFrame() = default;
     EthernetFrame(const RawData& data);
-    EthernetFrame(const RawData& headerData, const RawData& payload);
-    void setDestination(const MACAddress& destination);
-    void setSource(const MACAddress& source);
-    void setType(const RawData& type);
-    MACAddress destinationData() const;
-    MACAddress sourceData() const;
-    RawData type() const;
+    EthernetFrame(const MACAddress& destinationAddress, const MACAddress& sourceAddress, quint16 type, const RawData& payload);
+    MACAddress destinationAddress() const;
+    MACAddress sourceAddress() const;
+    quint16 type() const;
     RawData data() const;
 
 private:

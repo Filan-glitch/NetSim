@@ -9,161 +9,104 @@ IPv4Datagram::IPv4Datagram(const RawData &data)
     m_payload = data.getBytes(headerSize, data.size() - headerSize);
 }
 
-IPv4Datagram::IPv4Datagram(const RawData &headerData, const RawData &payload)
-    : m_headerData(headerData), m_payload(payload)
+IPv4Datagram::IPv4Datagram(quint8 tos, quint16 totalLength, quint16 identification, bool dontFragment, bool moreFragments, quint16 fragmentOffset, quint8 ttl, Protocol protocol, IPv4Address sourceAddress, IPv4Address destinationAddress, const RawData &payload)
+    : m_payload(payload)
 {
+    m_headerData.setBit(1, true); //Version
+    m_headerData.setBit(5, true);
+    m_headerData.setBit(6, true); //IHL
+    m_headerData.setByte(1, tos);
+    m_headerData.setBytes(2, totalLength);
+    m_headerData.setBytes(4, identification);
+    m_headerData.setBit(6, 1, dontFragment);
+    m_headerData.setBit(6, 2, moreFragments);
+    m_headerData.setBits(6, 3, fragmentOffset);
+    m_headerData.setByte(8, ttl);
+    m_headerData.setByte(9, protocol);
+    m_headerData.setBytes(12, sourceAddress.address());
+    m_headerData.setBytes(16, destinationAddress.address());
     calculateChecksum();
 }
 
-void IPv4Datagram::setVersion(const Version version)
+void IPv4Datagram::hop()
 {
-    if(version == Version::IPv4)
-    {
-        m_headerData.setBit(2, false);
+    if(ttl() - 1 > 0) {
+        m_headerData.setByte(8, ttl() - 1);
+    } else {
+        m_headerData.resize(0);
+        m_payload.resize(0);
     }
-    else if(version == Version::IPv6)
-    {
-        m_headerData.setBit(1, true);
-        m_headerData.setBit(2, true);
-    }
-    else
-    {
-        throw std::invalid_argument("Invalid version");
-    }
+
 }
 
-void IPv4Datagram::setTOS(const RawData tos)
+IPv4Datagram::Version IPv4Datagram::version() const
 {
-    m_headerData.setBytes(1, tos);
+    return Version(m_headerData.getBit(0) << 2 | m_headerData.getBit(1) << 1 | m_headerData.getBit(2));
 }
 
-void IPv4Datagram::setIdentification(const RawData identification)
+IPv4Datagram::IHL IPv4Datagram::ihl() const
 {
-    m_headerData.setBytes(4, identification);
+    return IHL(m_headerData.getBit(4) << 2 | m_headerData.getBit(5) << 1 | m_headerData.getBit(6));
 }
 
-void IPv4Datagram::setFlags(const bool dontFragment, const bool moreFragements)
+quint8 IPv4Datagram::tos() const
 {
-    m_headerData.setBit(6, 6, dontFragment);
-    m_headerData.setBit(6, 5, moreFragements);
+    return static_cast<quint8>(m_headerData.getByte(1));
 }
 
-void IPv4Datagram::setFragmentOffset(const RawData fragmentOffset)
+quint16 IPv4Datagram::totalLength() const
 {
-    m_headerData.setBits(6, 3, fragmentOffset);
+    return static_cast<quint16>(m_headerData.getBytes(2, 2));
 }
 
-void IPv4Datagram::setTTL(const RawData ttl)
+quint16 IPv4Datagram::identification() const
 {
-    m_headerData.setBytes(8, ttl);
+    return static_cast<quint16>(m_headerData.getBytes(4, 2));
 }
 
-void IPv4Datagram::setProtocol(const Protocol protocol)
+bool IPv4Datagram::dontFragment() const
 {
-    switch(protocol) {
-        case ICMP:
-            m_headerData.setBytes(9, 1);
-            break;
-         case TCP:
-            m_headerData.setBytes(9, 6);
-            break;
-         case UDP:
-            m_headerData.setBytes(9, 17);
-            break;
-    }
+    return m_headerData.getBit(6, 1);
 }
 
-void IPv4Datagram::setSource(const IPv4Address &source)
+bool IPv4Datagram::moreFragments() const
 {
-    m_headerData.setBytes(12, source.address());
+    return m_headerData.getBit(6, 2);
 }
 
-void IPv4Datagram::setDestination(const IPv4Address &destination)
+quint16 IPv4Datagram::fragmentOffset() const
 {
-    m_headerData.setBytes(13, destination.address());
+    return static_cast<quint16>(m_headerData.getBits(6, 3, 13));
 }
 
-void IPv4Datagram::calculateIHL()
+quint8 IPv4Datagram::ttl() const
 {
-    IHL ihl = IHL(m_headerData.size() / 8);
-    switch(ihl) {
-    case IHL::MinIHL:
-            m_headerData.setBit(4, true);
-            m_headerData.setBit(5, false);
-            m_headerData.setBit(6, true);
-            m_headerData.setBit(7, false);
-            break;
-    case IHL::IHL6:
-            m_headerData.setBit(4, false);
-            m_headerData.setBit(5, true);
-            m_headerData.setBit(6, true);
-            m_headerData.setBit(7, false);
-            break;
-    case IHL::IHL7:
-            m_headerData.setBit(4, true);
-            m_headerData.setBit(5, true);
-            m_headerData.setBit(6, true);
-            m_headerData.setBit(7, false);
-            break;
-    case IHL::IHL8:
-            m_headerData.setBit(4, false);
-            m_headerData.setBit(5, false);
-            m_headerData.setBit(6, false);
-            m_headerData.setBit(7, true);
-            break;
-    case IHL::IHL9:
-            m_headerData.setBit(4, true);
-            m_headerData.setBit(5, false);
-            m_headerData.setBit(6, false);
-            m_headerData.setBit(7, true);
-            break;
-    case IHL::IHL10:
-            m_headerData.setBit(4, false);
-            m_headerData.setBit(5, true);
-            m_headerData.setBit(6, false);
-            m_headerData.setBit(7, true);
-            break;
-    case IHL::IHL11:
-            m_headerData.setBit(4, true);
-            m_headerData.setBit(5, true);
-            m_headerData.setBit(6, false);
-            m_headerData.setBit(7, true);
-            break;
-    case IHL::IHL12:
-            m_headerData.setBit(4, false);
-            m_headerData.setBit(5, false);
-            m_headerData.setBit(6, true);
-            m_headerData.setBit(7, true);
-            break;
-    case IHL::IHL13:
-            m_headerData.setBit(4, true);
-            m_headerData.setBit(5, false);
-            m_headerData.setBit(6, true);
-            m_headerData.setBit(7, true);
-            break;
-    case IHL::IHL14:
-            m_headerData.setBit(4, false);
-            m_headerData.setBit(5, true);
-            m_headerData.setBit(6, true);
-            m_headerData.setBit(7, true);
-            break;
-    case IHL::MaxIHL:
-            m_headerData.setBit(4, true);
-            m_headerData.setBit(5, true);
-            m_headerData.setBit(6, true);
-            m_headerData.setBit(7, true);
-            break;
-    }
+    return static_cast<quint8>(m_headerData.getByte(8));
 }
 
-void IPv4Datagram::calculateTotalLength()
+IPv4Datagram::Protocol IPv4Datagram::protocol() const
 {
-    RawData totalLength(16);
-    for(int i = 0; i < 16; i++)
-    {
-            totalLength.setBit(i,  (((m_payload.size() + m_headerData.size()) / 8) >> i) & 1);
-    }
-    m_headerData.setBytes(2, totalLength);
+    return Protocol(static_cast<quint8>(m_headerData.getByte(9)));
+}
+
+quint16 IPv4Datagram::headerChecksum() const
+{
+    return static_cast<quint16>(m_headerData.getBytes(10, 2));
+}
+
+IPv4Address IPv4Datagram::source() const
+{
+    return IPv4Address(m_headerData.getBytes(12, 4));
+}
+
+IPv4Address IPv4Datagram::destination() const
+{
+    return IPv4Address(m_headerData.getBytes(16, 4));
+}
+
+RawData IPv4Datagram::data() const
+{
+    return m_headerData;
 }
 
 void IPv4Datagram::calculateChecksum()

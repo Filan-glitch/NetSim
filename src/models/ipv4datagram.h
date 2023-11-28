@@ -35,37 +35,25 @@ class IPv4Datagram
 public:
     IPv4Datagram() = default;
     IPv4Datagram(const RawData& data);
-    IPv4Datagram(const RawData& headerData, const RawData& payload);
-    void setVersion(const Version version);
-    void setTOS(const RawData tos);
-    void setIdentification(const RawData identification);
-    void setFlags(const bool dontFragment, const bool moreFragements);
-    void setFragmentOffset(const RawData fragmentOffset);
-    void setTTL(const RawData ttl);
-    void setProtocol(const Protocol protocol);
-    void setSource(const IPv4Address& source);
-    void setDestination(const IPv4Address& destination);
-    void appendOption(const RawData& option);
-    void setData(const RawData& data);
-    void clearOptions();
+    IPv4Datagram(quint8 tos, quint16 totalLength, quint16 identification, bool dontFragment, bool moreFragments, quint16 fragmentOffset, quint8 ttl, Protocol protocol, IPv4Address sourceAddress, IPv4Address destinationAddress, const RawData& payload);
+    void hop();
     Version version() const;
     IHL ihl() const;
-    RawData tos() const;
-    RawData totalLength() const;
-    RawData identification() const;
+    quint8 tos() const;
+    quint16 totalLength() const;
+    quint16 identification() const;
     bool dontFragment() const;
     bool moreFragments() const;
-    RawData fragmentOffset() const;
-    RawData ttl() const;
+    quint16 fragmentOffset() const;
+    quint8 ttl() const;
     Protocol protocol() const;
+    quint16 headerChecksum() const;
     IPv4Address source() const;
     IPv4Address destination() const;
     RawData options() const;
     RawData data() const;
 
 private:
-    void calculateIHL();
-    void calculateTotalLength();
     void calculateChecksum();
 
     RawData m_headerData{160};

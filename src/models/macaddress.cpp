@@ -7,12 +7,14 @@ MACAddress::MACAddress(const RawData &address) : m_address(address) {}
 // A function that returns the address formatted as a standard string (e.g.
 // "00:00:00:00:00:00")
 QString MACAddress::toString() const {
-    return QString::number(static_cast<int>(m_address.getByte(0)), 16).toLower() + ":" +
-           QString::number(static_cast<int>(m_address.getByte(1)), 16).toLower() + ":" +
-           QString::number(static_cast<int>(m_address.getByte(2)), 16).toLower() + ":" +
-           QString::number(static_cast<int>(m_address.getByte(3)), 16).toLower() + ":" +
-           QString::number(static_cast<int>(m_address.getByte(4)), 16).toLower() + ":" +
-           QString::number(static_cast<int>(m_address.getByte(5)), 16).toLower();
+    QString address = "";
+    for (int i = 0; i < 6; i++) {
+        address += QString::number(static_cast<int>(m_address.getByte(i)), 16).toLower();
+        if (i != 5) {
+            address += ":";
+        }
+    }
+    return address;
 }
 
 RawData MACAddress::data() const { return m_address; }

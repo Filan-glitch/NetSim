@@ -10,55 +10,55 @@ DNSEntry::DNSEntry(const RawData& name, const RawData& type, const RawData& dnsC
     m_data << name << type << dnsClass;
 }
 
-DNSEntry::DNSEntry(const RawData& name, const RawData& type, const RawData& dnsClass, const RawData& ttl, const RawData& rDataLength, const RawData& rData)
+DNSEntry::DNSEntry(const QString& name, quint16 type, quint16 dnsClass, quint32 ttl, quint16 rDataLength, const RawData& rData)
 {
-    m_data << name << type << dnsClass << ttl << rDataLength << rData;
+    m_data << stringToRawData(name) << type << dnsClass << ttl << rDataLength << rData;
 }
 
-RawData DNSEntry::name() const
-{
-    qsizetype nameLength;
-    for (nameLength = 0; nameLength < m_data.size()/8; nameLength++) {
-        if(m_data.getByte(nameLength) == 0) break;
-    }
-    return m_data.getBytes(0, nameLength);
-}
-
-RawData DNSEntry::type() const
+QString DNSEntry::name() const
 {
     qsizetype nameLength;
     for (nameLength = 0; nameLength < m_data.size()/8; nameLength++) {
         if(m_data.getByte(nameLength) == 0) break;
     }
-    return m_data.getBytes(nameLength, 2);
+    return rawDataToString(m_data.getBytes(0, nameLength));
 }
 
-RawData DNSEntry::dnsClass() const
+quint16 DNSEntry::type() const
 {
     qsizetype nameLength;
     for (nameLength = 0; nameLength < m_data.size()/8; nameLength++) {
         if(m_data.getByte(nameLength) == 0) break;
     }
-    return m_data.getBytes(nameLength + 2, 2);
+    return static_cast<quint16>(m_data.getBytes(nameLength, 2));
 }
 
-RawData DNSEntry::ttl() const
+quint16 DNSEntry::dnsClass() const
 {
     qsizetype nameLength;
     for (nameLength = 0; nameLength < m_data.size()/8; nameLength++) {
         if(m_data.getByte(nameLength) == 0) break;
     }
-    if(m_data.size() / 8 <= (nameLength + 4)) return RawData();
-    return m_data.getBytes(nameLength + 4, 4);
+    return static_cast<quint16>(m_data.getBytes(nameLength + 2, 2));
 }
 
-RawData DNSEntry::rDataLength() const {
+quint32 DNSEntry::ttl() const
+{
     qsizetype nameLength;
     for (nameLength = 0; nameLength < m_data.size()/8; nameLength++) {
         if(m_data.getByte(nameLength) == 0) break;
     }
-    if(m_data.size() / 8 <= (nameLength + 4)) return RawData();
-    return m_data.getBytes(nameLength + 8, 2);
+    if(m_data.size() / 8 <= (nameLength + 4)) return 0;
+    return static_cast<quint32>(m_data.getBytes(nameLength + 4, 4));
+}
+
+quint16 DNSEntry::rDataLength() const {
+    qsizetype nameLength;
+    for (nameLength = 0; nameLength < m_data.size()/8; nameLength++) {
+        if(m_data.getByte(nameLength) == 0) break;
+    }
+    if(m_data.size() / 8 <= (nameLength + 4)) return 0;
+    return static_cast<quint16>(m_data.getBytes(nameLength + 8, 2));
 }
 
 RawData DNSEntry::rData() const
@@ -76,3 +76,31 @@ RawData DNSEntry::data() const
     return m_data;
 }
 
+RawData DNSEntry::stringToRawData(const QString &string)
+{
+    //Durch den String iterieren und Punkte durch 0x00 ersetzen
+    RawData data{8};
+    quint8 amount = 0;
+    for (int i = 0; i < string.size(); i++) {
+        if(string[i] == '.') {
+            data << static_cast<quint8>(0);
+            data.setByte(i - amount - 1, amount);
+            amount = 0;
+        } else {
+            data << static_cast<quint8>(string[i].toLatin1());
+            amount++;
+        }
+    }
+    return data << static_cast<quint8>(0);
+}
+
+QString DNSEntry::rawDataToString(const RawData &data)
+{
+    QString string;
+    for (int i = 0; i < data.size()/8; i++) {
+        quint8 byte = data.getByte(i);
+        if(byte == 0) break;
+        string.append(QChar::fromLatin1(byte));
+    }
+    return string;
+}

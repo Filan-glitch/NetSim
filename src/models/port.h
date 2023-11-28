@@ -29,8 +29,11 @@ public:
   //! @brief Constructs a port with a specified port number.
   explicit Port(RawData portNumber);
 
+  //! @brief Constructs a port with a specified port number.
+  explicit Port(quint16 portNumber);
+
   //! @brief Returns the port number.
-  RawData portNumber() const;
+  quint16 portNumber() const;
 
   //! @brief Converts the port number to an array of bytes.
   RawData data() const;
@@ -40,7 +43,7 @@ public:
 
 private:
   //! @brief The port number.
-  RawData m_portNumber{16};
+  quint16 m_portNumber;
 };
 } // namespace NetSim
 

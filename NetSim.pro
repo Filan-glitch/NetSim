@@ -4,7 +4,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++17
 
-VERSION = 1.0.0
+VERSION = 1.5.0
 
 RC_ICONS = icon.ico
 
@@ -24,7 +24,8 @@ SOURCES += \
     src/models/ipv4datagram.cpp \
     src/models/ipv6address.cpp \
     src/models/ipv6datagram.cpp \
-    src/models/process.cpp \
+    src/models/processes/process.cpp \
+    src/models/processes/dnsprocess.cpp \
     src/models/rawdata.cpp \
     src/models/strategies/dnsstrategy.cpp \
     src/models/strategies/httpstrategy.cpp \
@@ -71,7 +72,8 @@ HEADERS += \
     src/models/ipv4datagram.h \
     src/models/ipv6address.h \
     src/models/ipv6datagram.h \
-    src/models/process.h \
+    src/models/processes/process.h \
+    src/models/processes/dnsprocess.h \
     src/models/rawdata.h \
     src/models/strategies/dnsstrategy.h \
     src/models/strategies/httpstrategy.h \

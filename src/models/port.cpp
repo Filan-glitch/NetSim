@@ -3,24 +3,20 @@
 
 using namespace NetSim;
 
-Port::Port(RawData portNumber) : m_portNumber(portNumber) {}
+Port::Port(quint16 portNumber) : m_portNumber(portNumber) {}
 
-Port::Port(quint16 portNumber) {
-  m_portNumber.setByte(0, portNumber & 0xFF);
-  m_portNumber.setByte(1, (portNumber >> 8) & 0xFF);
-}
+Port::Port(RawData portNumber) : m_portNumber(static_cast<quint16>(portNumber)){}
 
 
 quint16 Port::portNumber() const
 {
-    quint16 portNumber = 0;
-    portNumber += m_portNumber.getByte(1) << 8;
-    portNumber += m_portNumber.getByte(0);
-    return portNumber;
+    return m_portNumber;
 }
 
 RawData Port::data() const {
-  return m_portNumber;
+    RawData data;
+    data << m_portNumber;
+    return data;
 }
 
 // Using random generation by Qt to generate a random port number

@@ -1,52 +1,29 @@
 #include "ipv6datagram.h"
 
+using namespace NetSim;
+
 IPv6Datagram::IPv6Datagram(const RawData &data)
 {
     m_headerData = data.getBytes(0, 40);
     m_payload = data.getBytes(40, data.size() - 40);
 }
 
-IPv6Datagram::IPv6Datagram(const RawData &headerData, const RawData &payload)
-    : m_headerData(headerData), m_payload(payload) {}
-
-void IPv6Datagram::setVersion(const RawData &version)
+IPv6Datagram::IPv6Datagram(Version version, const RawData& trafficClass, const RawData& flowLabel, quint16 payloadLength, NextHeader nextHeader, quint8 hopLimit, const IPv6Address& sourceAddress, const IPv6Address& destinationAddress, const RawData& payload)
+    : m_payload(payload)
 {
-    m_headerData.setBits(0, version);
+    m_headerData.setBits(0, 4, version);
+    m_headerData.setBits(4, 8, trafficClass);
+    m_headerData.setBits(12, 20, flowLabel);
+    m_headerData.setBits(32, 16, payloadLength);
+    m_headerData.setBits(48, 8, nextHeader);
+    m_headerData.setBits(56, 8, hopLimit);
+    m_headerData.setBytes(64, sourceAddress.address());
+    m_headerData.setBytes(80, destinationAddress.address());
 }
 
-void IPv6Datagram::setTrafficClass(const RawData &trafficClass)
+IPv6Datagram::Version IPv6Datagram::version() const
 {
-    m_headerData.setBits(4, trafficClass);
-}
-
-void IPv6Datagram::setFlowLabel(const RawData &flowLabel)
-{
-    m_headerData.setBits(8, flowLabel);
-}
-
-void IPv6Datagram::setNextHeader(const RawData &nextHeader)
-{
-    m_headerData.setBytes(6, nextHeader);
-}
-
-void IPv6Datagram::setHopLimit(const RawData &hopLimit)
-{
-    m_headerData.setBytes(7, hopLimit);
-}
-
-void IPv6Datagram::setSource(const IPv6Address &source)
-{
-    m_headerData.setBytes(8, source.address());
-}
-
-void IPv6Datagram::setDestination(const IPv6Address &destination)
-{
-    m_headerData.setBytes(24, destination.address());
-}
-
-RawData IPv6Datagram::version() const
-{
-    return m_headerData.getBits(0, 4);
+    return IPv6Datagram::Version(static_cast<quint8>(m_headerData.getBits(0, 4)));
 }
 
 RawData IPv6Datagram::trafficClass() const
@@ -59,29 +36,29 @@ RawData IPv6Datagram::flowLabel() const
     return m_headerData.getBits(8, 20);
 }
 
-RawData IPv6Datagram::payloadLength() const
+quint16 IPv6Datagram::payloadLength() const
 {
-    return m_headerData.getBytes(4, 2);
+    return static_cast<quint16>(m_headerData.getBytes(4, 2));
 }
 
-RawData IPv6Datagram::nextHeader() const
+IPv6Datagram::NextHeader IPv6Datagram::nextHeader() const
 {
-    return m_headerData.getBytes(6, 1);
+    return IPv6Datagram::NextHeader(m_headerData.getByte(6));
 }
 
-RawData IPv6Datagram::hopLimit() const
+quint8 IPv6Datagram::hopLimit() const
 {
-    return m_headerData.getBytes(7, 1);
+    return static_cast<quint8>(m_headerData.getByte(7));
 }
 
-RawData IPv6Datagram::source() const
+IPv6Address IPv6Datagram::source() const
 {
-    return m_headerData.getBytes(8, 16);
+    return IPv6Address(m_headerData.getBytes(8, 16));
 }
 
-RawData IPv6Datagram::destination() const
+IPv6Address IPv6Datagram::destination() const
 {
-    return m_headerData.getBytes(24, 16);
+    return IPv6Address(m_headerData.getBytes(24, 16));
 }
 
 RawData IPv6Datagram::data() const

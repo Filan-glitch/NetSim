@@ -1,7 +1,7 @@
 #ifndef PROCESS_H
 #define PROCESS_H
 
-#include "ipv4address.h"
+#include "src/models/ipv4address.h"
 #include "src/network/socket.h"
 #include <QString>
 
@@ -39,31 +39,6 @@ public:
   //! Retrieve the associated socket.
   Socket socket() const;
 
-  //! Generates an HTTP request package.
-  Package generateHTTPRequestPackage(const QString &uri,
-                                     const IPv4Address &destination);
-
-  //! Generates an HTTP response package.
-  Package generateHTTPResponsePackage(const IPv4Address &destination,
-                                      const Port &destPort,
-                                      const int &messageCode);
-
-  //! Generates a TCP handshake package.
-  Package generateHandShakePackage(const IPv4Address &address, bool initiate,
-                                   bool client);
-
-  //! Generates a TCP connection close package.
-  Package generateCloseConnectionPackage(const IPv4Address &address,
-                                         bool initiate, bool client);
-
-  //! Generates a DNS request package.
-  Package generateDNSRequestPackage(const QString &domain);
-
-  //! Generates a DNS response package.
-  Package generateDNSResponsePackage(const IPv4Address &destination,
-                                     const QString &domain,
-                                     const Port &destPort);
-
   //! Retrieves the process's name.
   QString name() const;
 
@@ -72,6 +47,9 @@ public:
 
   //! Retrieves a string representation of the process.
   QString toString() const;
+
+  //! Handles the data received by the process.
+  virtual void handleData(const RawData& data) = 0;
 
 private:
   QString m_name{};      //!< The name of the process.

@@ -8,39 +8,27 @@ EthernetFrame::EthernetFrame(const RawData &data)
     m_payload = data.getBytes(14, data.size() - 14);
 }
 
-EthernetFrame::EthernetFrame(const RawData &headerData, const RawData &payload)
-    : m_headerData(headerData), m_payload(payload)
+EthernetFrame::EthernetFrame(const MACAddress& destinationAddress, const MACAddress& sourceAddress, quint16 type, const RawData &payload)
+    : m_payload(payload)
 {
-}
-
-void EthernetFrame::setDestination(const MACAddress &destination)
-{
-    m_headerData.setBytes(0, destination.data());
-}
-
-void EthernetFrame::setSource(const MACAddress &source)
-{
-    m_headerData.setBytes(6, source.data());
-}
-
-void EthernetFrame::setType(const RawData &type)
-{
+    m_headerData.setBytes(0, sourceAddress.data());
+    m_headerData.setBytes(6, destinationAddress.data());
     m_headerData.setBytes(12, type);
 }
 
-MACAddress EthernetFrame::destinationData() const
+MACAddress EthernetFrame::destinationAddress() const
 {
     return MACAddress(m_headerData.getBytes(6, 6));
 }
 
-MACAddress EthernetFrame::sourceData() const
+MACAddress EthernetFrame::sourceAddress() const
 {
     return MACAddress(m_headerData.getBytes(0, 6));
 }
 
-RawData EthernetFrame::type() const
+quint16 EthernetFrame::type() const
 {
-    return m_headerData.getBytes(12, 2);
+    return static_cast<quint16>(m_headerData.getBytes(12, 2));
 }
 
 RawData EthernetFrame::data() const

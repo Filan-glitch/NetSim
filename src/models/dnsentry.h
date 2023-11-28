@@ -34,22 +34,22 @@ public:
 
   DNSEntry(const RawData& name, const RawData& type, const RawData& dnsClass);
 
-  DNSEntry(const RawData& name, const RawData& type, const RawData& dnsClass, const RawData& ttl, const RawData& rDataLength, const RawData& rData);
+  DNSEntry(const QString& name, quint16 type, quint16 dnsClass, quint32 ttl, quint16 rDataLength, const RawData& rData);
 
   //! @brief Returns the domain name.
-  RawData name() const;
+  QString name() const;
 
   //! @brief Returns the type of the DNS entry.
-  RawData type() const;
+  quint16 type() const;
 
   //! @brief Returns the class of the DNS entry.
-  RawData dnsClass() const;
+  quint16 dnsClass() const;
 
   //! @brief Returns the time-to-live value.
-  RawData ttl() const;
+  quint32 ttl() const;
 
   //! @brief Returns the length of the data.
-  RawData rDataLength() const;
+  quint16 rDataLength() const;
 
   //! @brief Returns the rdata associated with the entry.
   RawData rData() const;
@@ -58,6 +58,9 @@ public:
   RawData data() const;
 
 private:
+  static RawData stringToRawData(const QString& string);
+  static QString rawDataToString(const RawData& data);
+
   //! @brief The data associated with the entry.
   RawData m_data{};
 };
