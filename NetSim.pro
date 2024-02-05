@@ -8,9 +8,6 @@ VERSION = 1.0.0
 
 RC_ICONS = icon.ico
 
-# You can make your code fail to compile if it uses deprecated APIs.
-# In order to do so, uncomment the following line.
-#DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
     src/main.cpp \
@@ -18,48 +15,48 @@ SOURCES += \
     src/management/packagedatabase.cpp \
     src/management/packagetablemodel.cpp \
     src/management/simulationmanager.cpp \
-    src/models/dnsentry.cpp \
-    src/models/package.cpp \
-    src/models/process.cpp \
-    src/models/strategies/dnsstrategy.cpp \
-    src/models/strategies/httpstrategy.cpp \
-    src/models/strategies/tcpclientconnectionclosestrategy.cpp \
-    src/models/strategies/tcpclienthandshakestrategy.cpp \
-    src/models/strategies/tcpserverconnectionclosestrategy.cpp \
-    src/models/strategies/tcpserverhandshakestrategy.cpp \
-    src/network/cablenotfoundexception.cpp \
-    src/network/client.cpp \
-    src/network/host.cpp \
-    src/network/natentry.cpp \
-    src/network/networkcard.cpp \
-    src/network/router.cpp \
-    src/network/server.cpp \
-    src/models/ipaddress.cpp \
-    src/models/macaddress.cpp \
-    src/models/port.cpp \
-    src/network/socket.cpp \
-    src/protocols/dns.cpp \
-    src/protocols/header.cpp \
-    src/protocols/headerAttribute.cpp \
-    src/protocols/headerattributenotfoundexception.cpp \
-    src/protocols/headernotfoundexception.cpp \
-    src/protocols/headerutil.cpp \
-    src/protocols/http.cpp \
-    src/protocols/ipv4.cpp \
-    src/protocols/mac.cpp \
-    src/protocols/tcp.cpp \
-    src/protocols/udp.cpp \
-    src/views/dialogs/about_dialog.cpp \
-    src/views/dialogs/client_dialog.cpp \
-    src/views/dialogs/router_dialog.cpp \
-    src/views/dialogs/server_dialog.cpp \
-    src/views/dialogs/settingsdialog.cpp \
-    src/views/widgets/clientwidget.cpp \
-    src/views/widgets/networktab.cpp \
-    src/views/widgets/routerwidget.cpp \
-    src/views/widgets/serverwidget.cpp \
-    src/views/windows/simulationwindow.cpp \
-    src/views/windows/welcomewindow.cpp
+    src/hardware/cablenotfoundexception.cpp \
+    src/hardware/client.cpp \
+    src/hardware/host.cpp \
+    src/hardware/networkcard.cpp \
+    src/hardware/router.cpp \
+    src/hardware/server.cpp \
+    src/software/00_common/strategies/dnsstrategy.cpp \
+    src/software/00_common/strategies/httpstrategy.cpp \
+    src/software/00_common/strategies/tcpclientconnectionclosestrategy.cpp \
+    src/software/00_common/strategies/tcpclienthandshakestrategy.cpp \
+    src/software/00_common/strategies/tcpserverconnectionclosestrategy.cpp \
+    src/software/00_common/strategies/tcpserverhandshakestrategy.cpp \
+    src/software/00_common/header.cpp \
+    src/software/00_common/headerAttribute.cpp \
+    src/software/00_common/headerattributenotfoundexception.cpp \
+    src/software/00_common/headernotfoundexception.cpp \
+    src/software/00_common/headerutil.cpp \
+    src/software/00_common/package.cpp \
+    src/software/00_common/process.cpp \
+    src/software/01_application_layer/dns.cpp \
+    src/software/01_application_layer/http.cpp \
+    src/software/01_application_layer/dnsentry.cpp \
+    src/software/02_transport_layer/port.cpp \
+    src/software/02_transport_layer/socket.cpp \
+    src/software/02_transport_layer/tcp.cpp \
+    src/software/02_transport_layer/udp.cpp \
+    src/software/03_network_layer/ipaddress.cpp \
+    src/software/03_network_layer/ipv4.cpp \
+    src/software/03_network_layer/natentry.cpp \
+    src/software/04_network_access_layer/mac.cpp \
+    src/software/04_network_access_layer/macaddress.cpp \
+    src/ui/dialogs/about_dialog.cpp \
+    src/ui/dialogs/client_dialog.cpp \
+    src/ui/dialogs/router_dialog.cpp \
+    src/ui/dialogs/server_dialog.cpp \
+    src/ui/dialogs/settingsdialog.cpp \
+    src/ui/widgets/clientwidget.cpp \
+    src/ui/widgets/networktab.cpp \
+    src/ui/widgets/routerwidget.cpp \
+    src/ui/widgets/serverwidget.cpp \
+    src/ui/windows/simulationwindow.cpp \
+    src/ui/windows/welcomewindow.cpp
 
 
 HEADERS += \
@@ -67,59 +64,60 @@ HEADERS += \
     src/management/packagedatabase.h \
     src/management/packagetablemodel.h \
     src/management/simulationmanager.h \
-    src/models/dnsentry.h \
-    src/models/package.h \
-    src/models/process.h \
-    src/models/strategies/dnsstrategy.h \
-    src/models/strategies/httpstrategy.h \
-    src/models/strategies/ipackagestrategy.h \
-    src/models/strategies/tcpclientconnectionclosestrategy.h \
-    src/models/strategies/tcpclienthandshakestrategy.h \
-    src/models/strategies/tcpserverconnectionclosestrategy.h \
-    src/models/strategies/tcpserverhandshakestrategy.h \
-    src/network/cablenotfoundexception.h \
-    src/network/client.h \
-    src/network/host.h \
-    src/network/natentry.h \
-    src/network/networkcard.h \
-    src/network/router.h \
-    src/network/server.h \
-    src/models/ipaddress.h \
-    src/models/macaddress.h \
-    src/models/port.h \
-    src/network/socket.h \
-    src/protocols/dns.h \
-    src/protocols/header.h \
-    src/protocols/headerAttribute.h \
-    src/protocols/headerattributenotfoundexception.h \
-    src/protocols/headernotfoundexception.h \
-    src/protocols/headerutil.h \
-    src/protocols/http.h \
-    src/protocols/ipv4.h \
-    src/protocols/mac.h \
-    src/protocols/tcp.h \
-    src/protocols/udp.h \
-    src/views/dialogs/about_dialog.h \
-    src/views/dialogs/client_dialog.h \
-    src/views/dialogs/router_dialog.h \
-    src/views/dialogs/server_dialog.h \
-    src/views/dialogs/settingsdialog.h \
-    src/views/widgets/clientwidget.h \
-    src/views/widgets/networktab.h \
-    src/views/widgets/routerwidget.h \
-    src/views/widgets/serverwidget.h \
-    src/views/windows/simulationwindow.h \
-    src/views/windows/welcomewindow.h
+    src/hardware/cablenotfoundexception.h \
+    src/hardware/client.h \
+    src/hardware/host.h \
+    src/hardware/networkcard.h \
+    src/hardware/router.h \
+    src/hardware/server.h \
+    src/software/00_common/strategies/dnsstrategy.h \
+    src/software/00_common/strategies/httpstrategy.h \
+    src/software/00_common/strategies/ipackagestrategy.h \
+    src/software/00_common/strategies/tcpclientconnectionclosestrategy.h \
+    src/software/00_common/strategies/tcpclienthandshakestrategy.h \
+    src/software/00_common/strategies/tcpserverconnectionclosestrategy.h \
+    src/software/00_common/strategies/tcpserverhandshakestrategy.h \
+    src/software/00_common/header.h \
+    src/software/00_common/headerAttribute.h \
+    src/software/00_common/headerattributenotfoundexception.h \
+    src/software/00_common/headernotfoundexception.h \
+    src/software/00_common/headerutil.h \
+    src/software/00_common/package.h \
+    src/software/00_common/process.h \
+    src/software/01_application_layer/dns.h \
+    src/software/01_application_layer/http.h \
+    src/software/01_application_layer/dnsentry.h \
+    src/software/02_transport_layer/port.h \
+    src/software/02_transport_layer/socket.h \
+    src/software/02_transport_layer/tcp.h \
+    src/software/02_transport_layer/udp.h \
+    src/software/03_network_layer/ipaddress.h \
+    src/software/03_network_layer/ipv4.h \
+    src/software/03_network_layer/natentry.h \
+    src/software/04_network_access_layer/mac.h \
+    src/software/04_network_access_layer/macaddress.h \
+    src/ui/dialogs/about_dialog.h \
+    src/ui/dialogs/client_dialog.h \
+    src/ui/dialogs/router_dialog.h \
+    src/ui/dialogs/server_dialog.h \
+    src/ui/dialogs/settingsdialog.h \
+    src/ui/widgets/clientwidget.h \
+    src/ui/widgets/networktab.h \
+    src/ui/widgets/routerwidget.h \
+    src/ui/widgets/serverwidget.h \
+    src/ui/windows/simulationwindow.h \
+    src/ui/windows/welcomewindow.h
 
 
 FORMS += \
-    src/views/dialogs/about_dialog.ui \
-    src/views/dialogs/client_dialog.ui \
-    src/views/dialogs/router_dialog.ui \
-    src/views/dialogs/server_dialog.ui \
-    src/views/dialogs/settingsdialog.ui \
-    src/views/windows/simulationwindow.ui \
-    src/views/windows/welcomewindow.ui
+    src/ui/dialogs/about_dialog.ui \
+    src/ui/dialogs/client_dialog.ui \
+    src/ui/dialogs/router_dialog.ui \
+    src/ui/dialogs/server_dialog.ui \
+    src/ui/dialogs/settingsdialog.ui \
+    src/ui/windows/simulationwindow.ui \
+    src/ui/windows/welcomewindow.ui
+
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -1,7 +1,7 @@
 #ifndef PACKAGETABLEMODEL_H
 #define PACKAGETABLEMODEL_H
 
-#include "src/models/package.h"
+#include "src/software/00_common/package.h"
 #include <QAbstractTableModel>
 
 //! \file packagetablemodel.h

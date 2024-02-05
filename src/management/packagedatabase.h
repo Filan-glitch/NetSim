@@ -1,7 +1,7 @@
 #ifndef PACKAGEDATABASE_H
 #define PACKAGEDATABASE_H
 
-#include "src/models/package.h"
+#include "src/software/00_common/package.h"
 #include <QList>
 
 //! \file packagedatabase.h

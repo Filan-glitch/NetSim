@@ -1,9 +1,9 @@
 #ifndef SIMULATIONMANAGER_H
 #define SIMULATIONMANAGER_H
 
-#include "src/network/client.h"
-#include "src/network/router.h"
-#include "src/network/server.h"
+#include "src/hardware/client.h"
+#include "src/hardware/router.h"
+#include "src/hardware/server.h"
 #include <QString>
 
 //! \file simulationmanager.h
