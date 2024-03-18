@@ -1,5 +1,5 @@
 #include "packagetablemodel.h"
-#include "src/protocols/headerutil.h"
+#include "src/software/00_common/headerutil.h"
 
 using namespace NetSim;
 
