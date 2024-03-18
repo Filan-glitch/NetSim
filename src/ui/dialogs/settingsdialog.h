@@ -19,45 +19,20 @@ public:
 
   ~SettingsDialog();
 
-  quint8 clientsAmount() const;
+public slots:
+  void onhttpRadioButtonChecked();
+  void ondnsRadioButtonChecked();
+  void onudpRadioButtonChecked();
+  void ontcpRadioButtonChecked();
+  void onicmpRadioButtonChecked();
+  void onipRadioButtonChecked();
+  void ondhcpRadioButtonChecked();
+  void onarpRadioButtonChecked();
 
-  quint8 serversAmount() const;
-
-  QList<QString> domains() const;
-
-private slots:
-  void setClientsAmount(int amount);
-
-  void setServerAmount(int amount);
-
-  void textChanged1(const QString &data);
-
-  void textChanged2(const QString &data);
-
-  void textChanged3(const QString &data);
-
-  void textChanged4(const QString &data);
-
-  void textChanged5(const QString &data);
 
 private:
   Ui::SettingsDialog *ui;
 
-  quint8 m_clientsAmount{1};
-
-  quint8 m_serverAmount{1};
-
-  QString m_domain1{"test1.com"};
-
-  QString m_domain2{"test2.com"};
-
-  QString m_domain3{"test3.com"};
-
-  QString m_domain4{"test4.com"};
-
-  QString m_domain5{"test5.com"};
-
-  bool allVisibleLineEditsFilled();
 };
 } // namespace NetSim
 

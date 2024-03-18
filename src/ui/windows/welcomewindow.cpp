@@ -34,7 +34,7 @@ void WelcomeWindow::startSimulation() {
 
     // Manager initialisation
     SimulationManager *manager = new SimulationManager(
-        settings.clientsAmount(), settings.serversAmount(), settings.domains());
+        5, 5, QList<QString>() << "1" << "2" << "3" << "4" << "5");
 
     // Open the window for the simulation.
     SimulationWindow *simWindow = new SimulationWindow(manager);
