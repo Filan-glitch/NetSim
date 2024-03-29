@@ -1,6 +1,7 @@
 #ifndef SETTINGSDIALOG_H
 #define SETTINGSDIALOG_H
 
+#include "src/management/simulationmanager.h"
 #include <QDialog>
 
 QT_BEGIN_NAMESPACE
@@ -17,6 +18,8 @@ class SettingsDialog : public QDialog {
 public:
   explicit SettingsDialog(QWidget *parent = nullptr);
 
+  Praktikum praktikum() const;
+
   ~SettingsDialog();
 
 public slots:
@@ -32,6 +35,7 @@ public slots:
 
 private:
   Ui::SettingsDialog *ui;
+
 
 };
 } // namespace NetSim

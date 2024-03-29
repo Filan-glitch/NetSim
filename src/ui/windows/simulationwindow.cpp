@@ -25,11 +25,11 @@ SimulationWindow::SimulationWindow(SimulationManager *manager, QWidget *parent)
   // Initial Setup
   ui->setupUi(this);
   showFullScreen();
-  setupNetwork();
+  setupNetwork(manager->praktikum());
 
   // Model Initialization
   m_packageModel =
-      new PackageTableModel(PackageDatabase::instance()->packageList(), this);
+      new PackageTableModel(PackageDatabase::instance()->packageList(), manager->praktikum(), this);
   m_manager->setPackages(m_packageModel);
   ui->packagesTableView->setModel(m_packageModel);
   ui->packagesTableView->horizontalHeader()->setDefaultAlignment(Qt::AlignLeft);
@@ -75,7 +75,7 @@ void SimulationWindow::keyPressEvent(QKeyEvent *event) {
   }
 }
 
-void SimulationWindow::setupNetwork() {
+void SimulationWindow::setupNetwork(Praktikum praktikum) {
   // Mainlayout
   auto mainLayout = new QGridLayout(this);
 
@@ -84,56 +84,63 @@ void SimulationWindow::setupNetwork() {
   networkTab->setLayout(mainLayout);
   this->ui->tabWidget->insertTab(0, networkTab, QIcon(":/network.svg"),
                                  "Network");
-
-  // Mainrouter
-  auto mainRouter = new RouterWidget(&(*m_manager->routers())[0], this);
-  connect(mainRouter, &RouterWidget::clicked, this,
-          &SimulationWindow::routerDialog);
-  auto dnsServer = new ServerWidget(&(*m_manager->servers())[0], this);
-  connect(dnsServer, &ServerWidget::clicked, this,
-          &SimulationWindow::serverDialog);
-  switch (this->m_manager->clientsAmount()) {
-  case 1:
-    mainLayout->addWidget(mainRouter, 0, 2);
-    mainLayout->addWidget(dnsServer, 1, 2);
-    break;
-  case 2:
-  case 3:
-  case 4:
-  case 5:
-    mainLayout->addWidget(mainRouter, 2, 2);
-    mainLayout->addWidget(dnsServer, 0, 2);
-    break;
-  }
-  networkTab->addRouter(mainRouter);
-  networkTab->addServer(dnsServer);
-
-  for (auto i = 1; i <= m_manager->serversAmount(); i++) {
-    ServerWidget *serverWidget =
-        new ServerWidget(&(*m_manager->servers())[i], this);
-    connect(serverWidget, &ServerWidget::clicked, this,
-            &SimulationWindow::serverDialog);
-    mainLayout->addWidget(serverWidget, i - 1, 0);
-    networkTab->addServer(serverWidget);
-
-    RouterWidget *routerWidget =
-        new RouterWidget(&(*m_manager->routers())[i], this);
-    connect(routerWidget, &RouterWidget::clicked, this,
-            &SimulationWindow::routerDialog);
-    mainLayout->addWidget(routerWidget, i - 1, 1);
-    networkTab->addRouter(routerWidget);
-  }
-
-  for (auto i = 0; i < m_manager->clientsAmount(); i++) {
-    ClientWidget *clientWidget = new ClientWidget(
-        &(*m_manager->clients())[i], QString("Client %1").arg(i + 1), this);
-    connect(clientWidget, &ClientWidget::clicked, this,
-            &SimulationWindow::clientDialog);
-    mainLayout->addWidget(clientWidget, i, 3);
-    networkTab->addClient(clientWidget);
-  }
   // Setting the current index, so the window starts right at this tab
   this->ui->tabWidget->setCurrentIndex(0);
+
+  switch(praktikum) {
+      case HTTP_Praktikum:
+          {
+              // Mainrouter
+              RouterWidget* mainRouter = new RouterWidget(&(*m_manager->routers())[0], this);
+              connect(mainRouter, &RouterWidget::clicked, this,
+                      &SimulationWindow::routerDialog);
+              mainLayout->addWidget(mainRouter, 2, 2);
+              networkTab->addRouter(mainRouter);
+
+              // Server
+              ServerWidget* serverWidget = new ServerWidget(&(*m_manager->servers())[0], this);
+              connect(serverWidget, &ServerWidget::clicked, this,
+                      &SimulationWindow::serverDialog);
+              mainLayout->addWidget(serverWidget, 2, 0);
+              networkTab->addServer(serverWidget);
+
+              // Serverrouter
+              RouterWidget* serverRouter = new RouterWidget(&(*m_manager->routers())[1], this);
+              connect(serverRouter, &RouterWidget::clicked, this,
+                      &SimulationWindow::routerDialog);
+              mainLayout->addWidget(serverRouter, 2, 1);
+              networkTab->addRouter(serverRouter);
+
+              // Client
+              ClientWidget* clientWidget = new ClientWidget(&(*m_manager->clients())[0], "Client", this);
+              connect(clientWidget, &ClientWidget::clicked, this,
+                      &SimulationWindow::clientDialog);
+              networkTab->addClient(clientWidget);
+              mainLayout->addWidget(clientWidget, 2, 3);
+              break;
+          }
+      case DNS_Praktikum:
+          {
+              // Mainrouter
+              RouterWidget* mainRouter = new RouterWidget(&(*m_manager->routers())[0], this);
+              connect(mainRouter, &RouterWidget::clicked, this,
+                      &SimulationWindow::routerDialog);
+              networkTab->addRouter(mainRouter);
+              // DNS Server
+              ServerWidget* dnsServer = new ServerWidget(&(*m_manager->servers())[0], this);
+              connect(dnsServer, &ServerWidget::clicked, this,
+                      &SimulationWindow::serverDialog);
+              networkTab->addServer(dnsServer);
+              break;
+          }
+      case UDP_Praktikum:
+      case TCP_Praktikum:
+      case ICMP_Praktikum:
+      case IP_Praktikum:
+      case DHCP_Praktikum:
+      case ARP_Praktikum:
+          break;
+  }
 }
 
 void SimulationWindow::openDocumentation() {

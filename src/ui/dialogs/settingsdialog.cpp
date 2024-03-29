@@ -18,7 +18,10 @@ SettingsDialog::SettingsDialog(QWidget *parent)
   setWindowFlags(Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint);
 
   // Setting the radio buttons
+  ui->udpRadioButton->setEnabled(false);
+  ui->tcpRadioButton->setEnabled(false);
   ui->icmpRadioButton->setEnabled(false);
+  ui->ipRadioButton->setEnabled(false);
   ui->dhcpRadioButton->setEnabled(false);
   ui->arpRadioButton->setEnabled(false);
 
@@ -32,6 +35,27 @@ SettingsDialog::SettingsDialog(QWidget *parent)
   connect(ui->dhcpRadioButton, SIGNAL(clicked()), this, SLOT(ondhcpRadioButtonChecked()));
   connect(ui->arpRadioButton, SIGNAL(clicked()), this, SLOT(onarpRadioButtonChecked()));
 
+}
+
+Praktikum SettingsDialog::praktikum() const
+{
+    Praktikum praktikum;
+    if (ui->httpRadioButton->isChecked())
+        praktikum = Praktikum::HTTP_Praktikum;
+    else if (ui->dnsRadioButton->isChecked())
+        praktikum = Praktikum::DNS_Praktikum;
+    else if (ui->udpRadioButton->isChecked())
+        praktikum = Praktikum::UDP_Praktikum;
+    else if (ui->tcpRadioButton->isChecked())
+        praktikum = Praktikum::TCP_Praktikum;
+    else if (ui->icmpRadioButton->isChecked())
+        praktikum = Praktikum::ICMP_Praktikum;
+    else if (ui->ipRadioButton->isChecked())
+        praktikum = Praktikum::IP_Praktikum;
+    else if (ui->dhcpRadioButton->isChecked())
+        praktikum = Praktikum::DHCP_Praktikum;
+    else praktikum = Praktikum::ARP_Praktikum;
+    return praktikum;
 }
 
 SettingsDialog::~SettingsDialog() { delete ui; }

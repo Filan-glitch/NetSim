@@ -16,6 +16,17 @@ namespace NetSim {
 //! \brief Provides utilities to manage and simulate a network with clients,
 //! servers, and routers.
 
+enum Praktikum {
+    HTTP_Praktikum = 1,
+    DNS_Praktikum = 2,
+    UDP_Praktikum = 3,
+    TCP_Praktikum = 4,
+    ICMP_Praktikum = 5,
+    IP_Praktikum = 6,
+    DHCP_Praktikum = 7,
+    ARP_Praktikum = 8,
+};
+
 /**
  * @class SimulationManager
  * @ingroup NetSimSimulation
@@ -31,15 +42,10 @@ class SimulationManager {
 
 public:
   /**
-   * @brief Constructs a new simulation manager with the specified amounts of
-   * clients and servers, and domains.
+   * @brief Constructs a new simulation manager for the specified praktikum.
    *
-   * @param clientAmount Number of clients.
-   * @param serverAmount Number of servers.
-   * @param domains List of domain names.
    */
-  explicit SimulationManager(quint8 clientAmount, quint8 serverAmount,
-                             QList<QString> domains);
+  explicit SimulationManager(Praktikum praktikum);
 
   /**
    * @brief Retrieves the number of clients.
@@ -54,6 +60,13 @@ public:
    * @retval quint8 Amount of servers.
    */
   quint8 serversAmount() const;
+
+  /**
+   * @brief Retrieves the associated praktikum.
+   *
+   * @retval Praktikum The associated praktikum.
+   */
+  Praktikum praktikum() const;
 
   /**
    * @brief Provides access to the list of servers.
@@ -92,6 +105,9 @@ private:
 
   //! @brief A list storing all the `Router` objects in the simulation.
   QList<Router> m_routers{};
+
+  //! @brief The praktikum that this simulation manager is associated with.
+  Praktikum m_praktikum{};
 };
 } // namespace NetSim
 

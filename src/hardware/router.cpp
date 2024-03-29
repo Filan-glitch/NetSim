@@ -34,6 +34,12 @@ void Router::addNATEntry(const NATEntry &entry, const Port &port) {
   m_natToPort[entry] = port;
 }
 
+Router::Router(const IPAddress &localIp, const IPAddress &globalIp)
+{
+    m_networkCard = NetworkCard(localIp, MACAddress::getRandomAddress());
+    m_globalIpAddress = globalIp;
+}
+
 void Router::receivePackage(Package data) {
   qInfo() << "Router: " << this->networkCard().physicalAddress().toString()
           << " received a Package: " << data.info();
@@ -49,11 +55,9 @@ void Router::receivePackage(Package data) {
     NATEntry entry(HeaderUtil::getIPAddressAsIPAddress(data, true),
                    HeaderUtil::getPortAsPort(data, true));
     data.changePortAndIP(m_natToPort[entry], this->m_globalIpAddress, true);
-    qDebug() << "TEST TEST TEST 1";
   }
 
   data.changeEthernetHeader(this->m_networkCard.physicalAddress(), destMAC);
-  qDebug() << "TEST TEST TEST 2";
 
   Router *nextRouter = this->m_routerCable[destMAC];
   if (nextRouter == nullptr) {

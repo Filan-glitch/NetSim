@@ -44,7 +44,7 @@ private:
 
   QTimer* m_timer;
 
-  void setupNetwork();
+  void setupNetwork(Praktikum praktikum);
 
 private slots:
   void openDocumentation();

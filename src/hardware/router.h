@@ -37,6 +37,13 @@ public:
   Router() = default;
 
   /**
+   * @brief Constructs a router with the specified ips.
+   *
+   * @param name The name of the router.
+   */
+  explicit Router(const IPAddress& localIp, const IPAddress& globalIp);
+
+  /**
    * @brief Receives a package and forwards it accordingly.
    *
    * @param data The data package to be processed and forwarded.

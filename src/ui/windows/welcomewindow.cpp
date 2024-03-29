@@ -33,8 +33,7 @@ void WelcomeWindow::startSimulation() {
     close();
 
     // Manager initialisation
-    SimulationManager *manager = new SimulationManager(
-        5, 5, QList<QString>() << "1" << "2" << "3" << "4" << "5");
+    SimulationManager *manager = new SimulationManager(settings.praktikum());
 
     // Open the window for the simulation.
     SimulationWindow *simWindow = new SimulationWindow(manager);
