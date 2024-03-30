@@ -698,7 +698,7 @@ bool HeaderUtil::getHTTPIsResponse(const Package &data) {
     return false;
   }
 
-  return header.headerList().size() == 4;
+  return header.headerList().size() == 5;
 }
 
 bool HeaderUtil::getHTTPIsRequest(const Package &data) {

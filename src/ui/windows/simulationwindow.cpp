@@ -354,6 +354,10 @@ void SimulationWindow::updateTreeWidget(const QModelIndex &index) {
           applicationHeader, QStringList(QString("Content-Type: %1")
                                              .arg(HeaderUtil::getHTTPAttribute(
                                                  package, "Content-Type")))));
+      applicationHeader->addChild(new QTreeWidgetItem(
+          applicationHeader, QStringList(QString("If-Modified-Since: %1")
+                          .arg(HeaderUtil::getHTTPAttribute(
+                              package, "If-Modified-Since")))));
       this->m_treeWidget->addTopLevelItem(applicationHeader);
 
       if (HeaderUtil::getHTTPAttribute(package, "Code") == "200") {

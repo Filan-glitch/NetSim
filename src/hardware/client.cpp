@@ -150,8 +150,7 @@ void Client::execCloseConnection(const IPAddress &address) {
 void Client::receivePackage(Package data) {
   packages()->addPackage(data);
   qInfo() << "Client: " << this->networkCard().networkAddress().toString()
-          << " received Package: " << data.info()
-          << " Client: " << this->networkCard().networkAddress().toString();
+          << " received Package: " << data.info();
 
   // Using the strategy pattern for handling different types of packages
   // Extendable for new protocols
