@@ -30,12 +30,14 @@ void HTTP::initHTTPResponse(const QString &version, quint16 messageCode,
                          messagePhrase);
   // Currently only html is supported
   HeaderAttribute contentType("Content-Type", 72, "text/html");
+  HeaderAttribute ifModifiedSince("If-Modified-Since", 29*8, "Wed, 21 Oct 2015 07:28:00 GMT");
 
   QList<HeaderAttribute> headerList;
   headerList.append(httpVersion);
   headerList.append(code);
   headerList.append(phrase);
   headerList.append(contentType);
+  headerList.append(ifModifiedSince);
 
   Header httpHeader(HeaderType::HTTP, headerList);
   data.addHeader(httpHeader);
