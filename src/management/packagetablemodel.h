@@ -34,6 +34,7 @@ public:
    * @param parent The parent QObject.
    */
   explicit PackageTableModel(QList<Package> *packageList,
+                             int praktikum,
                              QObject *parent = nullptr);
 
   /**
@@ -85,6 +86,9 @@ public:
 private:
   //! @brief A list storing all the `Package` objects that the model represents.
   QList<Package> *m_packageList{nullptr};
+
+  //! @brief A filter list to filter the packages for the different praktikums.
+  int m_praktikum;
 };
 } // namespace NetSim
 

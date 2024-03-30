@@ -28,10 +28,10 @@ void NetworkTab::paintEvent(QPaintEvent *event) {
   painter.setPen(QPen(Qt::blue, 4));
 
   // Connections Server -> Router
-  for (auto i = 1; i < m_servers.size(); ++i) {
+  for (auto i = 0; i < m_servers.size(); ++i) {
     painter.drawLine(
         m_servers[i]->mapTo(this, m_servers[i]->button()->rect().center()),
-        m_routers[i]->mapTo(this, m_routers[i]->button()->rect().center()));
+        m_routers[i+1]->mapTo(this, m_routers[i+1]->button()->rect().center()));
   }
 
   // Connections Router -> Router
@@ -50,9 +50,9 @@ void NetworkTab::paintEvent(QPaintEvent *event) {
         m_routers[0]->mapTo(this, m_routers[0]->button()->rect().center()));
   }
 
-  // Connection Router -> DNS Server
-  painter.setPen(QPen(Qt::red, 4));
-  painter.drawLine(
-      m_routers[0]->mapTo(this, m_routers[0]->button()->rect().center()),
-      m_servers[0]->mapTo(this, m_servers[0]->button()->rect().center()));
+  // // Connection Router -> DNS Server
+  // painter.setPen(QPen(Qt::red, 4));
+  // painter.drawLine(
+  //     m_routers[0]->mapTo(this, m_routers[0]->button()->rect().center()),
+  //     m_servers[0]->mapTo(this, m_servers[0]->button()->rect().center()));
 }

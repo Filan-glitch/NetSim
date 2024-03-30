@@ -3,9 +3,9 @@
 
 using namespace NetSim;
 
-PackageTableModel::PackageTableModel(QList<Package> *packageList,
+PackageTableModel::PackageTableModel(QList<Package> *packageList, int praktikum,
                                      QObject *parent)
-    : QAbstractTableModel(parent), m_packageList(packageList) {}
+    : QAbstractTableModel(parent), m_packageList(packageList), m_praktikum(praktikum) {}
 
 QVariant PackageTableModel::headerData(int section, Qt::Orientation orientation,
                                        int role) const {
@@ -95,9 +95,36 @@ QVariant PackageTableModel::data(const QModelIndex &index, int role) const {
 }
 
 void PackageTableModel::addPackage(const Package &package) {
-  beginInsertRows(QModelIndex(), rowCount(), rowCount());
+    auto topProtocol = HeaderUtil::getTopProtocol(package);
+    switch(m_praktikum) {
+    case 1:
+    {
+        if(topProtocol == HTTP) {
+            beginInsertRows(QModelIndex(), rowCount(), rowCount());
 
-  m_packageList->append(package);
+            m_packageList->append(package);
 
-  endInsertRows();
+            endInsertRows();
+        }
+        break;
+    }
+    case 2:
+    {
+        if(topProtocol == DNS) {
+            beginInsertRows(QModelIndex(), rowCount(), rowCount());
+
+            m_packageList->append(package);
+
+            endInsertRows();
+        }
+        break;
+    }
+    case 3:
+    case 4:
+    case 5:
+    case 6:
+    case 7:
+    case 8:
+        break;
+    }
 }

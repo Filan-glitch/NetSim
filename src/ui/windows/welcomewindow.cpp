@@ -33,8 +33,7 @@ void WelcomeWindow::startSimulation() {
     close();
 
     // Manager initialisation
-    SimulationManager *manager = new SimulationManager(
-        settings.clientsAmount(), settings.serversAmount(), settings.domains());
+    SimulationManager *manager = new SimulationManager(settings.praktikum());
 
     // Open the window for the simulation.
     SimulationWindow *simWindow = new SimulationWindow(manager);
