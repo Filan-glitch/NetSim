@@ -5,9 +5,9 @@ using namespace NetSim;
 DNSData::DNSData(const RawData &data) : m_data(data)
 {}
 
-DNSData::DNSData(quint16 transactionID, const RawData& flags, quint16 questionCount, quint16 answerCount, quint16 authorityCount, quint16 additionalCount, const QList<DNSEntry>& questions, const QList<DNSEntry>& answers, const QList<DNSEntry>& authorities, const QList<DNSEntry>& additional)
+DNSData::DNSData(quint16 transactionID, const RawData& flags, const QList<DNSEntry>& questions, const QList<DNSEntry>& answers, const QList<DNSEntry>& authorities, const QList<DNSEntry>& additional)
 {
-    m_data << transactionID << flags << questionCount << answerCount << authorityCount << additionalCount;
+    m_data << transactionID << flags << static_cast<quint16>(questions.size()) << static_cast<quint16>(answers.size()) << static_cast<quint16>(authorities.size()) << static_cast<quint16>(additional.size());
     foreach (DNSEntry entry, questions)
         m_data << entry.data();
     foreach (DNSEntry entry, answers)

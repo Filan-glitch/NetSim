@@ -4,7 +4,9 @@
 #include "src/management/packagetablemodel.h"
 #include "src/models/ipv4address.h"
 #include "src/models/macaddress.h"
-#include "src/models/process.h"
+#include "src/models/port.h"
+#include "src/models/processes/process.h"
+#include "src/models/processes/process.h"
 #include "src/network/networkcard.h"
 #include <QMap>
 #include <QString>
@@ -44,7 +46,7 @@ public:
    * @brief Retrieve the process table.
    * @retval QMap<Port, Process> The table mapping ports to processes.
    */
-  QMap<Port, Process> processTable() const;
+  QMap<Port, Process*> processTable() const;
 
   /**
    * @brief Retrieve the host table.
@@ -99,7 +101,7 @@ public:
    * @brief Adds a process to the process table.
    * @param process The process to add.
    */
-  void addProcess(const Process &process);
+  void addProcess(Process* process);
 
   /**
    * @brief Adds an IP address to MAC address resolution to the ARP table.
@@ -150,7 +152,7 @@ public:
 
 private:
   //! @brief The Map that maps ports to processes.
-  QMap<Port, Process> m_processTable{};
+  QMap<Port, Process*> m_processTable{};
 
   //! @brief The Map that maps IP addresses to MAC addresses.
   QMap<IPv4Address, MACAddress> m_hostTable{};

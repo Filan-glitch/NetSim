@@ -1,7 +1,7 @@
 #include "tcpclientconnectionclosestrategy.h"
 #include "src/network/cablenotfoundexception.h"
 #include "src/network/router.h"
-#include "src/network/packageutil.h"
+#include "src/utils/packageutil.h"
 
 using namespace NetSim;
 
@@ -19,11 +19,11 @@ void NetSim::TCPClientConnectionCloseStrategy::handle(Package package,
 
   // Generating the response package
   Package httpResponse = httpProcess.generateCloseConnectionPackage(
-      HeaderUtil::getIPAddressAsIPAddress(package, true), false, true);
+      PackageUtil::getIPAddressAsIPAddress(package, true), false, true);
 
   // Establishing connection to router
   MACAddress routerMAC = host->hostTable().value(
-      HeaderUtil::getIPAddressAsIPAddress(package, true));
+      PackageUtil::getIPAddressAsIPAddress(package, true));
   Router *router;
   try {
     router = host->getRouterByMACAddress(routerMAC);

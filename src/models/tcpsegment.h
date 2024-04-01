@@ -8,28 +8,16 @@ class TCPSegment
 public:
     TCPSegment() = default;
     TCPSegment(const RawData& data);
-    TCPSegment(const RawData& headerData, const RawData& payload);
-    void setSourcePort(const RawData& sourcePort);
-    void setDestinationPort(const RawData& destinationPort);
-    void setSequenceNumber(const RawData& sequenceNumber);
-    void setAcknowledgementNumber(const RawData& acknowledgementNumber);
-    //void setReserved(const RawData& reserved);
-    void setFlags(const RawData& flags);
-    void setWindowSize(const RawData& windowSize);
-    void setUrgentPointer(const RawData& urgentPointer);
-    void appendOption(const RawData& option);
-    void setPayload(const RawData& payload);
-    void clearOptions();
-    RawData sourcePort() const;
-    RawData destinationPort() const;
-    RawData sequenceNumber() const;
-    RawData acknowledgementNumber() const;
+    TCPSegment(quint16 sourcePort, quint16 destinationPort, quint32 sequenceNumber, quint32 achnowledgementNumber, bool CWR, bool ECE, bool URG, bool ACK, bool PSH, bool PST, bool SYN, bool FIN, quint16 windowSize, quint16 urgentPointer, const RawData& payload);
+    quint16 sourcePort() const;
+    quint16 destinationPort() const;
+    quint32 sequenceNumber() const;
+    quint32 acknowledgementNumber() const;
     RawData dataOffset() const;
-    RawData reserved() const;
     RawData flags() const;
-    RawData windowSize() const;
-    RawData checksum() const;
-    RawData urgentPointer() const;
+    quint16 windowSize() const;
+    quint16 checksum() const;
+    quint16 urgentPointer() const;
     RawData options() const;
 
 

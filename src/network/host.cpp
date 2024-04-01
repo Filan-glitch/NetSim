@@ -4,11 +4,11 @@
 
 using namespace NetSim;
 
-QMap<Port, Process> Host::processTable() const { return m_processTable; }
+QMap<Port, Process*> Host::processTable() const { return m_processTable; }
 
-QMap<IPAddress, MACAddress> Host::hostTable() const { return m_hostTable; }
+QMap<IPv4Address, MACAddress> Host::hostTable() const { return m_hostTable; }
 
-QMap<QString, IPAddress> Host::domainTable() const { return m_domainTable; }
+QMap<QString, IPv4Address> Host::domainTable() const { return m_domainTable; }
 
 QMap<MACAddress, Router *> Host::cables() const { return m_cables; }
 
@@ -22,8 +22,8 @@ void Host::setPackages(PackageTableModel *packages) {
 
 Process &Host::getProcessByName(const QString &name) {
   for (auto &process : m_processTable) {
-    if (process.name() == name) {
-      return process;
+        if (process->name() == name) {
+      return *process;
     }
   }
   throw std::runtime_error("Process not found");
@@ -32,7 +32,7 @@ Process &Host::getProcessByName(const QString &name) {
 // Important for the processes to have access to the host
 void Host::setHostOfProcesses(Host *host) {
   for (auto &process : m_processTable) {
-    process.setHost(host);
+        process->setHost(host);
   }
 }
 
@@ -57,12 +57,11 @@ void Host::sendPackage(Package &data, const MACAddress &destinationAddress) {
   m_cables[destinationAddress]->receivePackage(data);
 }
 
-void Host::addProcess(const Process &process) {
+void Host::addProcess(Process* process) {
   m_processTable[process.socket().sourcePort()] = process;
 }
 
-void Host::addIPAddress(const IPAddress &ipAddress,
-                        const MACAddress &macAddress) {
+void Host::addIPAddress(const IPv4Address &ipAddress, const MACAddress &macAddress) {
   m_hostTable[ipAddress] = macAddress;
 }
 
@@ -70,6 +69,6 @@ void Host::addMACAddress(const MACAddress &macAddress, Router *router) {
   m_cables[macAddress] = router;
 }
 
-void Host::addDomain(const QString &domain, const IPAddress &ipAddress) {
+void Host::addDomain(const QString &domain, const IPv4Address &ipAddress) {
   m_domainTable[domain] = ipAddress;
 }

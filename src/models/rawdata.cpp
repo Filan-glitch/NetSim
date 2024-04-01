@@ -277,6 +277,13 @@ RawData& RawData::operator<<(const quint32 value)
     return *this;
 }
 
+RawData& RawData::operator<<(bool value)
+{
+    this->m_size += 1;
+    this->m_data->append(value);
+    return *this;
+}
+
 RawData::operator quint8() const
 {
     if(this->m_data->size() == 0)

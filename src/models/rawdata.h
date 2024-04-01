@@ -39,6 +39,7 @@ public:
     RawData& operator<<(const quint8 value);
     RawData& operator<<(const quint16 value);
     RawData& operator<<(const quint32 value);
+    RawData& operator<<(bool value);
     RawData& operator=(const RawData& other);
     operator quint8() const;
     operator quint16() const;

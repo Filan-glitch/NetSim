@@ -4,60 +4,34 @@
 UDPDatagram::UDPDatagram(const RawData &data)
 {
     m_headerData = data.getBytes(0, 8);
-    m_payload = data.getBytes(8, data.size() - 8);
+    m_payload = data.getBytes(8, data.size()/8 - 8);
 }
 
-UDPDatagram::UDPDatagram(const RawData &headerData, const RawData &payload)
-    : m_headerData(headerData), m_payload(payload)
+UDPDatagram::UDPDatagram(quint16 sourcePort, quint16 destinationPort, const RawData &payload)
 {
-    calculateChecksum();
-}
-
-UDPDatagram::UDPDatagram(const RawData &sourcePort, const RawData &destinationPort, const RawData &payload)
-{
-    m_headerData.setBytes(0, sourcePort);
-    m_headerData.setBytes(2, destinationPort);
+    m_headerData.setBytes(0, RawData() << sourcePort);
+    m_headerData.setBytes(2, RawData() << destinationPort);
     calculateLength(payload.size()/8);
     m_payload = payload;
     calculateChecksum();
 }
 
-void UDPDatagram::setSourcePort(const RawData &sourcePort)
-{
-    m_headerData.setBytes(0, sourcePort);
-    calculateChecksum();
-}
-
-void UDPDatagram::setDestinationPort(const RawData &destinationPort)
-{
-    m_headerData.setBytes(2, destinationPort);
-    calculateChecksum();
-}
-
-void UDPDatagram::setPayload(const RawData &payload)
-{
-    m_payload = payload;
-    m_headerData.setBytes(4, payload.size()/8);
-    calculateLength(payload.size()/8);
-    calculateChecksum();
-}
-
-RawData UDPDatagram::sourcePort() const
+quint16 UDPDatagram::sourcePort() const
 {
     return m_headerData.getBytes(0, 2);
 }
 
-RawData UDPDatagram::destinationPort() const
+quint16 UDPDatagram::destinationPort() const
 {
     return m_headerData.getBytes(2, 2);
 }
 
-RawData UDPDatagram::length() const
+quint16 UDPDatagram::length() const
 {
     return m_headerData.getBytes(4, 2);
 }
 
-RawData UDPDatagram::checksum() const
+quint16 UDPDatagram::checksum() const
 {
     return m_headerData.getBytes(6, 2);
 }

@@ -21,9 +21,11 @@ SOURCES += \
     src/models/dnsdata.cpp \
     src/models/dnsentry.cpp \
     src/models/ethernetframe.cpp \
+    src/models/httpdata.cpp \
     src/models/ipv4datagram.cpp \
     src/models/ipv6address.cpp \
     src/models/ipv6datagram.cpp \
+    src/models/processes/httpprocess.cpp \
     src/models/processes/process.cpp \
     src/models/processes/dnsprocess.cpp \
     src/models/rawdata.cpp \
@@ -40,7 +42,7 @@ SOURCES += \
     src/network/host.cpp \
     src/network/natentry.cpp \
     src/network/networkcard.cpp \
-    src/network/packageutil.cpp \
+    src/utils/packageutil.cpp \
     src/network/router.cpp \
     src/network/server.cpp \
     src/models/ipv4address.cpp \
@@ -69,9 +71,11 @@ HEADERS += \
     src/models/dnsdata.h \
     src/models/dnsentry.h \
     src/models/ethernetframe.h \
+    src/models/httpdata.h \
     src/models/ipv4datagram.h \
     src/models/ipv6address.h \
     src/models/ipv6datagram.h \
+    src/models/processes/httpprocess.h \
     src/models/processes/process.h \
     src/models/processes/dnsprocess.h \
     src/models/rawdata.h \
@@ -89,7 +93,7 @@ HEADERS += \
     src/network/host.h \
     src/network/natentry.h \
     src/network/networkcard.h \
-    src/network/packageutil.h \
+    src/utils/packageutil.h \
     src/network/router.h \
     src/network/server.h \
     src/models/ipv4address.h \

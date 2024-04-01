@@ -1,7 +1,7 @@
 #include "tcpserverhandshakestrategy.h"
 #include "src/network/cablenotfoundexception.h"
 #include "src/network/router.h"
-#include "src/network/packageutil.h"
+#include "src/utils/packageutil.h"
 
 using namespace NetSim;
 
@@ -15,7 +15,7 @@ void TCPServerHandshakeStrategy::handle(Package package, Host *host) const {
   }
 
   httpProcess.socket().setDestinationPort(
-      HeaderUtil::getPortAsPort(package, true));
+      PackageUtil::getPortAsPort(package, true));
 
   Package synAckPackage = httpProcess.generateHandShakePackage(
       HeaderUtil::getIPAddressAsIPAddress(package, true), false, false);

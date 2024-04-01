@@ -1,7 +1,7 @@
 #include "tcpserverconnectionclosestrategy.h"
 #include "src/network/cablenotfoundexception.h"
 #include "src/network/router.h"
-#include "src/protocols/packageutil.h"
+#include "src/utils/packageutil.h"
 
 using namespace NetSim;
 
@@ -17,13 +17,13 @@ void TCPServerConnectionCloseStrategy::handle(Package package,
   }
 
   httpProcess.socket().setDestinationPort(
-      HeaderUtil::getPortAsPort(package, true));
+      PackageUtil::getPortAsPort(package, true));
 
   Package finAckPackage = httpProcess.generateCloseConnectionPackage(
-      HeaderUtil::getIPAddressAsIPAddress(package, true), false, false);
+      PackageUtil::getIPAddressAsIPAddress(package, true), false, false);
 
   MACAddress routerMAC = host->hostTable().value(
-      HeaderUtil::getIPAddressAsIPAddress(package, true));
+      PackageUtil::getIPAddressAsIPAddress(package, true));
   Router *router;
   try {
     router = host->getRouterByMACAddress(routerMAC);

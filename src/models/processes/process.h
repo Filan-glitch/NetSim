@@ -48,9 +48,6 @@ public:
   //! Retrieves a string representation of the process.
   QString toString() const;
 
-  //! Handles the data received by the process.
-  virtual void handleData(const RawData& data) = 0;
-
 private:
   QString m_name{};      //!< The name of the process.
   Socket m_socket{};     //!< The associated socket.

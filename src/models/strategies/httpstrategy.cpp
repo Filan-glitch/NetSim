@@ -1,7 +1,7 @@
 #include "httpstrategy.h"
 #include "src/network/cablenotfoundexception.h"
 #include "src/network/router.h"
-#include "src/network/headerutil.h"
+#include "src/utils/packageutil.h"
 
 using namespace NetSim;
 
@@ -17,22 +17,22 @@ void HTTPStrategy::handle(Package package, Host *host) const {
 
   // Generating the response package
   Package httpResponse;
-  if (HeaderUtil::getHTTPAttribute(package, "URI") == "/index.html") {
+  if (PackageUtil::getHTTPAttribute(package, "URI") == "/index.html") {
     httpResponse = httpProcess.generateHTTPResponsePackage(
-        HeaderUtil::getIPAddressAsIPAddress(
+        PackageUtil::getIPAddressAsIPAddress(
             package, true), // Old src address to new dst address
-        HeaderUtil::getPortAsPort(package, true), // Old port to new port
+        PackageUtil::getPortAsPort(package, true), // Old port to new port
         200);                                     // Status code 200 for OK
   } else {
     httpResponse = httpProcess.generateHTTPResponsePackage(
-        HeaderUtil::getIPAddressAsIPAddress(package, true),
-        HeaderUtil::getPortAsPort(package, true),
+        PackageUtil::getIPAddressAsIPAddress(package, true),
+        PackageUtil::getPortAsPort(package, true),
         404); // Status code 404 for Not Found
   }
 
   // Establishing connection to router
   MACAddress routerMAC = host->hostTable().value(
-      HeaderUtil::getIPAddressAsIPAddress(package, true));
+      PackageUtil::getIPAddressAsIPAddress(package, true));
   Router *router;
   try {
     router = host->getRouterByMACAddress(routerMAC);

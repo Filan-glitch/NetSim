@@ -12,8 +12,7 @@ class DNSData
 public:
     DNSData() = default;
     DNSData(const RawData& data);
-    DNSData(quint16 transactionID, const RawData& flags, quint16 questionCount,
-            quint16 answerCount, quint16 authorityCount, quint16 additionalCount, const QList<DNSEntry>& questions, const QList<DNSEntry>& answers, const QList<DNSEntry>& authorities, const QList<DNSEntry>& additional);
+    DNSData(quint16 transactionID, const RawData& flags, const QList<DNSEntry>& questions, const QList<DNSEntry>& answers = {}, const QList<DNSEntry>& authorities = {}, const QList<DNSEntry>& additional = {});
     quint16 transactionID() const;
     RawData flags() const;
     quint16 questionCount() const;

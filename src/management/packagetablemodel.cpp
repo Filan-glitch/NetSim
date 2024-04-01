@@ -1,5 +1,5 @@
 #include "packagetablemodel.h"
-#include "src/network/packageutil.h"
+#include "src/utils/packageutil.h"
 
 using namespace NetSim;
 
@@ -74,11 +74,11 @@ QVariant PackageTableModel::data(const QModelIndex &index, int role) const {
       case UDP:
         return "UDP";
         break;
-      case IP:
-        return "IP";
+      case IPv4:
+        return "IPv4";
         break;
-      case ETHERNET2:
-        return "MAC";
+      case IPv6:
+        return "IPv6";
         break;
       default:
         return "Unknown";

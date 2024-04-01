@@ -9,91 +9,43 @@ TCPSegment::TCPSegment(const RawData &data)
     calculateChecksum();
 }
 
-TCPSegment::TCPSegment(const RawData &headerData, const RawData &payload)
-    : m_headerData(headerData), m_payload(payload)
-{
-    calculateDataOffset();
-    calculateChecksum();
-}
-
-void TCPSegment::setSourcePort(const RawData &sourcePort)
+TCPSegment::TCPSegment(quint16 sourcePort, quint16 destinationPort, quint32 sequenceNumber, quint32 achnowledgementNumber, bool CWR, bool ECE, bool URG, bool ACK, bool PSH, bool PST, bool SYN, bool FIN, quint16 windowSize, quint16 urgentPointer, const RawData &payload)
+    : m_payload(payload)
 {
     m_headerData.setBytes(0, sourcePort);
-    calculateChecksum();
-}
-
-void TCPSegment::setDestinationPort(const RawData &destinationPort)
-{
     m_headerData.setBytes(2, destinationPort);
-    calculateChecksum();
-}
-
-void TCPSegment::setSequenceNumber(const RawData &sequenceNumber)
-{
     m_headerData.setBytes(4, sequenceNumber);
-    calculateChecksum();
-}
-
-void TCPSegment::setAcknowledgementNumber(const RawData &acknowledgementNumber)
-{
-    m_headerData.setBytes(8, acknowledgementNumber);
-    calculateChecksum();
-}
-
-void TCPSegment::setFlags(const RawData &flags)
-{
-    m_headerData.setBytes(13, flags);
-    calculateChecksum();
-}
-
-void TCPSegment::setWindowSize(const RawData &windowSize)
-{
+    m_headerData.setBytes(8, achnowledgementNumber);
+    m_headerData.setBit(13, 1, CWR);
+    m_headerData.setBit(13, 2, ECE);
+    m_headerData.setBit(13, 3, URG);
+    m_headerData.setBit(13, 4, ACK);
+    m_headerData.setBit(13, 5, PSH);
+    m_headerData.setBit(13, 6, PST);
+    m_headerData.setBit(13, 7, SYN);
+    m_headerData.setBit(13, 8, FIN);
     m_headerData.setBytes(14, windowSize);
-    calculateChecksum();
-}
-
-void TCPSegment::setUrgentPointer(const RawData &urgentPointer)
-{
-    m_headerData.setBytes(18, urgentPointer);
-    calculateChecksum();
-}
-
-void TCPSegment::appendOption(const RawData &option)
-{
-    m_headerData << option;
+    m_headerData.setBytes(16, urgentPointer);
     calculateDataOffset();
     calculateChecksum();
 }
 
-void TCPSegment::setPayload(const RawData &payload)
-{
-    m_payload = payload;
-    calculateChecksum();
-}
-
-void TCPSegment::clearOptions()
-{
-    m_headerData.truncate(160);
-    calculateDataOffset();
-    calculateChecksum();
-}
-
-RawData TCPSegment::sourcePort() const
+quint16 TCPSegment::sourcePort() const
 {
     return m_headerData.getBytes(0, 2);
 }
 
-RawData TCPSegment::destinationPort() const
+quint16 TCPSegment::destinationPort() const
 {
     return m_headerData.getBytes(2, 2);
 }
 
-RawData TCPSegment::sequenceNumber() const
+quint32 TCPSegment::sequenceNumber() const
 {
     return m_headerData.getBytes(4, 4);
 }
 
-RawData TCPSegment::acknowledgementNumber() const
+quint32 TCPSegment::acknowledgementNumber() const
 {
     return m_headerData.getBytes(8, 4);
 }
@@ -103,27 +55,22 @@ RawData TCPSegment::dataOffset() const
     return m_headerData.getBits(96, 4);
 }
 
-RawData TCPSegment::reserved() const
-{
-    return RawData(4);
-}
-
 RawData TCPSegment::flags() const
 {
     return m_headerData.getBytes(13, 1);
 }
 
-RawData TCPSegment::windowSize() const
+quint16 TCPSegment::windowSize() const
 {
     return m_headerData.getBytes(14, 2);
 }
 
-RawData TCPSegment::checksum() const
+quint16 TCPSegment::checksum() const
 {
     return m_headerData.getBytes(16, 2);
 }
 
-RawData TCPSegment::urgentPointer() const
+quint16 TCPSegment::urgentPointer() const
 {
     return m_headerData.getBytes(18, 2);
 }

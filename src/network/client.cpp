@@ -4,8 +4,7 @@
 #include "src/models/strategies/tcpclientconnectionclosestrategy.h"
 #include "src/models/strategies/tcpclienthandshakestrategy.h"
 #include "src/network/router.h"
-#include "src/network/packageutil.h"
-#include "src/protocols/tcp.h"
+#include "src/utils/packageutil.h"
 
 using namespace NetSim;
 
@@ -50,7 +49,7 @@ void Client::execDomainResolution(const QString &domain) {
   router->receivePackage(dnsRequest);
 }
 
-void Client::execHandShake(const IPAddress &address) {
+void Client::execHandShake(const IPv4Address &address) {
   qInfo() << "Executing: Client::execHandShake"
           << " Client: " << this->networkCard().networkAddress().toString();
 
@@ -83,7 +82,7 @@ void Client::execHandShake(const IPAddress &address) {
   router->receivePackage(package);
 }
 
-void Client::execHTTPRequest(const IPAddress &address, const QString &uri) {
+void Client::execHTTPRequest(const IPv4Address &address, const QString &uri) {
   qInfo() << "Executing: Client::execHTTPRequest"
           << " Client: " << this->networkCard().networkAddress().toString();
 
@@ -115,7 +114,7 @@ void Client::execHTTPRequest(const IPAddress &address, const QString &uri) {
   router->receivePackage(httpProcess.generateHTTPRequestPackage(uri, address));
 }
 
-void Client::execCloseConnection(const IPAddress &address) {
+void Client::execCloseConnection(const IPv4Address &address) {
   qInfo() << "Executing: Client::execCloseConnection"
           << " Client: " << this->networkCard().networkAddress().toString();
 
@@ -158,10 +157,10 @@ void Client::receivePackage(Package data) {
   IPackageStrategy *strategy = nullptr;
 
   // Receives a DNS Response Package from Server
-  if (HeaderUtil::getTopProtocol(data) == DNS) {
-    for (auto i = 0; i < HeaderUtil::getDNSAnswerRRs(data).toInt(); i++) {
-      addDomain(HeaderUtil::getDNSAnswer(data, i, RRAttribute::NAME),
-                HeaderUtil::getDNSAnswerIPAddress(data, i));
+  if (PackageUtil::getTopProtocol(data) == DNS) {
+    for (auto i = 0; i < PackageUtil::getDNSAnswerRRs(data).toInt(); i++) {
+      addDomain(PackageUtil::getDNSAnswer(data, i, RRAttribute::NAME),
+                PackageUtil::getDNSAnswerIPAddress(data, i));
     }
     return;
   }

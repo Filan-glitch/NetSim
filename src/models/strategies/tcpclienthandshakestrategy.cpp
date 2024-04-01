@@ -1,14 +1,14 @@
 #include "tcpclienthandshakestrategy.h"
 #include "src/network/cablenotfoundexception.h"
 #include "src/network/router.h"
-#include "src/protocols/packageutil.h"
+#include "src/utils/packageutil.h"
 
 using namespace NetSim;
 
 void NetSim::TCPClientHandshakeStrategy::handle(Package package,
                                                 Host *host) const {
   MACAddress routerMAC = host->hostTable().value(
-      HeaderUtil::getIPAddressAsIPAddress(package, true));
+      PackageUtil::getIPAddressAsIPAddress(package, true));
   Router *router;
   try {
     router = host->getRouterByMACAddress(routerMAC);
@@ -36,5 +36,5 @@ void NetSim::TCPClientHandshakeStrategy::handle(Package package,
           << " sends 3. Handshake Package to router: "
           << router->networkCard().physicalAddress().toString();
   router->receivePackage(httpProcess.generateHandShakePackage(
-      HeaderUtil::getIPAddressAsIPAddress(package, true), false, true));
+      PackageUtil::getIPAddressAsIPAddress(package, true), false, true));
 }
