@@ -37,6 +37,7 @@ SimulationWindow::SimulationWindow(SimulationManager *manager, QWidget *parent)
       QHeaderView::ResizeToContents);
   ui->packagesTableView->verticalHeader()->setSectionResizeMode(
       QHeaderView::ResizeToContents);
+  ui->packagesTableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Interactive);
 
   // TreeWidget Initialization
   m_treeWidget = new QTreeWidget(this);

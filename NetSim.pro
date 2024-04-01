@@ -6,8 +6,12 @@ CONFIG += c++21
 
 VERSION = 2.0.0.0
 
-RC_ICONS = icon.ico
+TARGET= NetSim
 
+RC_ICONS = icon.ico
+ICON = icon.icns
+
+DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 
 SOURCES += \
     src/main.cpp \

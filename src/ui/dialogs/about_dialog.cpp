@@ -9,7 +9,7 @@ About_Dialog::About_Dialog(QWidget *parent)
   QTextCursor cursor = QTextCursor(ui->full_description_textBox->document());
   cursor.movePosition(QTextCursor::EndOfLine);
   ui->full_description_textBox->setTextCursor(cursor);
-  cursor.insertText(QCoreApplication::applicationVersion());
+  cursor.insertText(APP_VERSION);
 }
 
 About_Dialog::~About_Dialog() { delete ui; }
