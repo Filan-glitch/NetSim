@@ -18,6 +18,8 @@ SettingsDialog::SettingsDialog(QWidget *parent)
   setWindowFlags(Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint);
 
   // Setting the radio buttons
+  ui->httpRadioButton->setChecked(true);
+  ui->dnsRadioButton->setEnabled(false);
   ui->udpRadioButton->setEnabled(false);
   ui->tcpRadioButton->setEnabled(false);
   ui->icmpRadioButton->setEnabled(false);
